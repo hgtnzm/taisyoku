@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>退職・失業給付 完全ガイド｜退職から振込まで全部わかる</title>
+<meta name="description" content="退職から失業給付受け取りまでの全手順を完全解説。給付金計算ツール・Day0〜Day60タイムライン・チェックリストを無料提供。2025年最新法改正対応。">
+<link rel="stylesheet" href="common.css">
+<style>
+/* ===== HERO ===== */
+.hero {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 40%, #2563eb 70%, #0ea5e9 100%);
+  padding: 80px 20px 70px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-inner { max-width: 800px; margin: 0 auto; position: relative; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.2); color: white;
+  border: 1px solid rgba(255,255,255,0.3);
+  font-size: 12px; font-weight: 700;
+  padding: 6px 16px; border-radius: 99px;
+  margin-bottom: 24px; backdrop-filter: blur(4px);
+}
+.hero h1 {
+  font-size: clamp(28px, 6vw, 52px);
+  font-weight: 900; color: white;
+  line-height: 1.2; margin-bottom: 20px;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.2);
+}
+.hero h1 .accent {
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  color: rgba(255,255,255,0.88);
+  font-size: clamp(15px, 3vw, 18px);
+  line-height: 1.7; margin-bottom: 36px;
+}
+.hero-cta {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+}
+.hero-stats {
+  display: flex; justify-content: center; gap: 32px;
+  margin-top: 48px; flex-wrap: wrap;
+}
+.stat-item {
+  color: white; text-align: center;
+}
+.stat-num {
+  display: block;
+  font-size: clamp(28px,5vw,40px); font-weight: 900;
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat-label {
+  font-size: 12px; color: rgba(255,255,255,0.8);
+  margin-top: 2px;
+}
+.stat-divider {
+  width: 1px; background: rgba(255,255,255,0.2);
+  margin: 0;
+}
+
+/* ===== FEATURES ===== */
+.features {
+  max-width: 900px; margin: -36px auto 0;
+  padding: 0 16px; position: relative; z-index: 10;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.feature-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 24px 20px;
+  text-align: center;
+  transition: transform 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  border: 2px solid transparent;
+}
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary-light);
+  text-decoration: none;
+}
+.feature-icon {
+  font-size: 36px; margin-bottom: 12px;
+  display: block;
+}
+.feature-title {
+  font-size: 15px; font-weight: 800;
+  color: var(--gray-800); margin-bottom: 6px;
+}
+.feature-desc {
+  font-size: 12px; color: var(--gray-500);
+  line-height: 1.6;
+}
+.feature-badge {
+  display: inline-block;
+  background: var(--primary-light); color: var(--primary);
+  font-size: 11px; font-weight: 700;
+  padding: 2px 8px; border-radius: 99px;
+  margin-top: 8px;
+}
+
+/* ===== SECTION ===== */
+.section {
+  max-width: 900px; margin: 60px auto 0; padding: 0 16px;
+}
+.section-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--primary-light); color: var(--primary);
+  font-size: 12px; font-weight: 700;
+  padding: 4px 12px; border-radius: 99px;
+  margin-bottom: 12px;
+}
+.section h2 {
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 800; color: var(--gray-900);
+  margin-bottom: 8px; line-height: 1.3;
+}
+.section .section-sub {
+  color: var(--gray-500); font-size: 15px; margin-bottom: 32px;
+}
+
+/* ===== COMPARE TABLE ===== */
+.compare-wrap { overflow-x: auto; }
+.compare-tbl { width: 100%; border-collapse: collapse; min-width: 560px; }
+.compare-tbl th {
+  padding: 14px 16px; font-weight: 700; font-size: 14px;
+  background: var(--gray-800); color: white; text-align: center;
+}
+.compare-tbl th:first-child { background: var(--gray-700); text-align: left; }
+.compare-tbl th.col-ours { background: var(--primary); }
+.compare-tbl td {
+  padding: 12px 16px; border-bottom: 1px solid var(--gray-100);
+  font-size: 14px; text-align: center; vertical-align: middle;
+}
+.compare-tbl td:first-child { font-weight: 600; text-align: left; color: var(--gray-700); }
+.compare-tbl td.col-ours { background: var(--primary-xlight); color: var(--primary-dark); font-weight: 700; }
+.compare-tbl tr:last-child td { border-bottom: none; }
+.compare-tbl .ck { color: var(--success); font-size: 16px; }
+.compare-tbl .cr { color: var(--danger); font-size: 16px; }
+.compare-tbl .cm { color: var(--warning); font-size: 14px; }
+
+/* ===== FLOW STEPS ===== */
+.flow-row {
+  display: flex; align-items: stretch; gap: 0;
+  overflow-x: auto; padding-bottom: 8px;
+}
+.flow-item {
+  flex: 1; min-width: 140px;
+  background: white;
+  border-radius: var(--radius); padding: 16px 12px;
+  text-align: center; position: relative;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-200);
+  margin-right: 0;
+}
+.flow-arrow {
+  display: flex; align-items: center;
+  color: var(--gray-300); font-size: 20px; padding: 0 4px;
+  flex-shrink: 0;
+}
+.flow-day {
+  font-size: 11px; font-weight: 700;
+  background: var(--primary); color: white;
+  border-radius: 99px; padding: 2px 10px;
+  display: inline-block; margin-bottom: 8px;
+}
+.flow-item.green .flow-day { background: var(--success); }
+.flow-item.orange .flow-day { background: var(--warning); }
+.flow-item.purple .flow-day { background: var(--purple); }
+.flow-icon { font-size: 28px; margin-bottom: 6px; }
+.flow-label { font-size: 12px; font-weight: 700; color: var(--gray-800); line-height: 1.4; }
+.flow-sub { font-size: 11px; color: var(--gray-500); margin-top: 4px; line-height: 1.5; }
+
+/* ===== FAQ ===== */
+.faq-list { list-style: none; }
+.faq-item { border: 1px solid var(--gray-200); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+.faq-q {
+  padding: 16px 20px;
+  font-weight: 700; font-size: 15px; color: var(--gray-800);
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px;
+  background: white;
+  transition: background 0.15s;
+}
+.faq-q:hover { background: var(--gray-50); }
+.faq-q::before {
+  content: 'Q';
+  color: var(--primary); font-weight: 900;
+  font-size: 16px; flex-shrink: 0;
+}
+.faq-q .faq-arrow { color: var(--gray-400); font-size: 12px; transition: transform 0.2s; }
+.faq-a {
+  display: none;
+  padding: 0 20px 16px 46px;
+  font-size: 14px; color: var(--gray-600);
+  line-height: 1.8;
+  background: var(--gray-50);
+}
+.faq-item.open .faq-a { display: block; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+/* ===== CTA SECTION ===== */
+.cta-section {
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  border-radius: var(--radius-xl);
+  padding: 48px 32px;
+  text-align: center;
+  margin-top: 60px;
+}
+.cta-section h2 { color: white; font-size: clamp(20px,4vw,28px); margin-bottom: 12px; }
+.cta-section p { color: rgba(255,255,255,0.8); margin-bottom: 28px; }
+.cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ===== MOBILE ===== */
+@media (max-width: 640px) {
+  .features-grid { grid-template-columns: 1fr 1fr; }
+  .hero-stats { gap: 20px; }
+  .flow-item { min-width: 120px; }
+}
+@media (max-width: 400px) {
+  .features-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="logo">📋 <span>退職・失業給付</span>完全ガイド</a>
+  <ul class="nav-links">
+    <li><a href="timeline.html">📅 タイムライン</a></li>
+    <li><a href="voluntary.html">🙋 自己都合</a></li>
+    <li><a href="company.html">🏢 会社都合</a></li>
+    <li><a href="checklist.html">✅ チェックリスト</a></li>
+    <li><a href="calculator.html" class="btn-calc">🧮 給付金計算</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">✅ 2025年最新法改正（給付制限1ヶ月に短縮）対応</div>
+    <h1>退職したら<br><span class="accent">いつ・いくら</span>もらえる？<br>全部ここで解決</h1>
+    <p>退職日から初回振込まで、わかりにくいハローワーク手続きを<br>Day0〜Day60タイムラインで完全攻略</p>
+    <div class="hero-cta">
+      <a href="calculator.html" class="btn btn-lg" style="background:#fbbf24;color:#1e3a8a;">🧮 給付金を今すぐ計算</a>
+      <a href="timeline.html" class="btn btn-lg btn-outline" style="border-color:rgba(255,255,255,0.5);color:white;">📅 Day0〜Day60を見る</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">最短7日</span>
+        <div class="stat-label">会社都合の受給開始</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">最大330日</span>
+        <div class="stat-label">所定給付日数（最長）</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">1ヶ月に短縮</span>
+        <div class="stat-label">自己都合 給付制限（2025年4月〜）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<div class="features">
+  <div class="features-grid">
+    <a href="calculator.html" class="feature-card">
+      <span class="feature-icon">🧮</span>
+      <div class="feature-title">給付金シミュレーター</div>
+      <div class="feature-desc">月収・年齢・加入期間を入力するだけで自動計算。再就職手当も含む</div>
+      <span class="feature-badge">無料・即時計算</span>
+    </a>
+    <a href="timeline.html" class="feature-card">
+      <span class="feature-icon">📅</span>
+      <div class="feature-title">Day0〜Day60<br>タイムライン</div>
+      <div class="feature-desc">退職後に何をいつやるか、日付別で全部わかる完全ロードマップ</div>
+      <span class="feature-badge">当サイト限定</span>
+    </a>
+    <a href="checklist.html" class="feature-card">
+      <span class="feature-icon">✅</span>
+      <div class="feature-title">退職後やること<br>チェックリスト</div>
+      <div class="feature-desc">健康保険・年金・住民税・確定申告まで全手続きを一枚にまとめ</div>
+      <span class="feature-badge">PDF保存対応</span>
+    </a>
+    <a href="voluntary.html" class="feature-card">
+      <span class="feature-icon">🙋</span>
+      <div class="feature-title">自己都合 完全ガイド</div>
+      <div class="feature-desc">自己都合でも損しない方法・給付制限の正しい理解・特定理由への変更</div>
+      <span class="feature-badge">2025年4月改正対応</span>
+    </a>
+    <a href="company.html" class="feature-card">
+      <span class="feature-icon">🏢</span>
+      <div class="feature-title">会社都合 完全ガイド</div>
+      <div class="feature-desc">解雇・倒産・希望退職の違いと、受け取れる最大日数・金額の解説</div>
+      <span class="feature-badge">最大330日対応</span>
+    </a>
+    <a href="checklist.html#special" class="feature-card">
+      <span class="feature-icon">🔍</span>
+      <div class="feature-title">状況別 特殊ケース</div>
+      <div class="feature-desc">パート・派遣・ダブルワーク・傷病・妊娠・外国人の特別対応ガイド</div>
+      <span class="feature-badge">6ケース対応</span>
+    </a>
+  </div>
+</div>
+
+<!-- FLOW OVERVIEW -->
+<div class="section" style="margin-top:80px;">
+  <div class="section-label">📋 全体フロー</div>
+  <h2>退職から<br class="sp-only">振込まで<br>完全ロードマップ</h2>
+  <p class="section-sub">ハローワーク手続きの全体像を一目で把握できます</p>
+
+  <div class="card" style="overflow:hidden;">
+    <div class="flow-row">
+      <div class="flow-item">
+        <div class="flow-day">Day 0</div>
+        <div class="flow-icon">👔</div>
+        <div class="flow-label">退職</div>
+        <div class="flow-sub">離職票を<br>受け取る</div>
+      </div>
+      <div class="flow-arrow">›</div>
+      <div class="flow-item green">
+        <div class="flow-day">Day 7〜14</div>
+        <div class="flow-icon">📑</div>
+        <div class="flow-label">ハローワーク<br>申請</div>
+        <div class="flow-sub">書類を持参<br>求職登録</div>
+      </div>
+      <div class="flow-arrow">›</div>
+      <div class="flow-item orange">
+        <div class="flow-day">Day 14〜</div>
+        <div class="flow-icon">📢</div>
+        <div class="flow-label">受給説明会</div>
+        <div class="flow-sub">必ず出席<br>（必須）</div>
+      </div>
+      <div class="flow-arrow">›</div>
+      <div class="flow-item" style="border-color:var(--warning);">
+        <div class="flow-day" style="background:var(--warning);">待機期間</div>
+        <div class="flow-icon">⏳</div>
+        <div class="flow-label">7日間待機<br>+給付制限</div>
+        <div class="flow-sub">自己都合は<br>+1〜3ヶ月</div>
+      </div>
+      <div class="flow-arrow">›</div>
+      <div class="flow-item purple">
+        <div class="flow-day" style="background:var(--purple);">4週ごと</div>
+        <div class="flow-icon">🗓</div>
+        <div class="flow-label">失業認定日</div>
+        <div class="flow-sub">求職活動を<br>報告</div>
+      </div>
+      <div class="flow-arrow">›</div>
+      <div class="flow-item green">
+        <div class="flow-day" style="background:var(--success);">振込！</div>
+        <div class="flow-icon">💰</div>
+        <div class="flow-label">給付金<br>受け取り</div>
+        <div class="flow-sub">認定後<br>約5営業日</div>
+      </div>
+    </div>
+    <div style="margin-top:20px;text-align:center;">
+      <a href="timeline.html" class="btn btn-primary">📅 Day0〜Day60の詳細タイムラインを見る →</a>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARE TABLE -->
+<div class="section">
+  <div class="section-label">🔍 比較</div>
+  <h2>自己都合 vs 会社都合<br>給付の違い一覧</h2>
+  <p class="section-sub">退職理由によって受取額・日数・開始時期が大きく変わります</p>
+
+  <div class="card">
+    <div class="compare-wrap">
+      <table class="compare-tbl">
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>自己都合退職</th>
+            <th>会社都合退職<br>（特定受給資格者）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>給付制限</td>
+            <td>1〜3ヶ月（2025年4月〜1ヶ月に短縮）</td>
+            <td style="color:var(--success);font-weight:700;">なし</td>
+          </tr>
+          <tr>
+            <td>待機期間</td>
+            <td>7日間</td>
+            <td>7日間</td>
+          </tr>
+          <tr>
+            <td>初回振込まで</td>
+            <td>約45〜75日</td>
+            <td style="color:var(--success);font-weight:700;">約30〜35日</td>
+          </tr>
+          <tr>
+            <td>所定給付日数</td>
+            <td>90〜150日</td>
+            <td style="color:var(--success);font-weight:700;">90〜330日</td>
+          </tr>
+          <tr>
+            <td>加入期間条件</td>
+            <td>2年間で12ヶ月以上</td>
+            <td style="color:var(--success);font-weight:700;">1年間で6ヶ月以上</td>
+          </tr>
+          <tr>
+            <td>給付率</td>
+            <td>50〜80%</td>
+            <td>50〜80%（同じ）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert alert-warning" style="margin-top:16px;">
+      ⚡ <strong>2025年4月1日〜</strong> 自己都合退職の給付制限が <strong>2ヶ月→1ヶ月</strong> に短縮されました（5年間に2回目以上の場合は3ヶ月のまま）
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+  <div class="section-label">❓ よくある質問</div>
+  <h2>みんなが迷う<br>よくある質問</h2>
+  <p class="section-sub">退職・失業給付についてよくある疑問にお答えします</p>
+
+  <div class="card">
+    <ul class="faq-list">
+      <li class="faq-item">
+        <div class="faq-q">離職票がなかなか届かない場合はどうする？ <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">離職票は退職後10〜14日以内に郵送されるのが一般的です。2週間を過ぎても届かない場合は、会社に発行を督促してください。それでも発行されない場合は、ハローワークに「離職票未交付の雇用保険被保険者」として申し出ることで、給付申請を進めることが可能です。</div>
+      </li>
+      <li class="faq-item">
+        <div class="faq-q">アルバイトや派遣でも失業給付は受け取れる？ <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">週20時間以上かつ31日以上継続雇用見込みの労働者は雇用保険に加入する義務があります。雇用保険に加入していれば、正社員でなくても失業給付を受け取れます。加入期間の条件（自己都合：2年間で12ヶ月以上）を満たしているか確認しましょう。</div>
+      </li>
+      <li class="faq-item">
+        <div class="faq-q">給付を受けながらアルバイトはできる？ <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">受給中のアルバイトは一定条件のもと可能ですが、必ず<strong>失業認定申告書に申告</strong>する必要があります。申告なしの場合は不正受給になります。週20時間以上・月14日以上の就労は「就職」と見なされ、給付が停止されます。短時間・少日数のアルバイトであれば調整された金額で受給が継続できる場合があります。</div>
+      </li>
+      <li class="faq-item">
+        <div class="faq-q">自己都合でも「特定理由離職者」になれる場合は？ <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">以下のケースは自己都合でも給付制限なしの特定理由離職者として扱われます：①体力的に続けられない（医師の診断書あり）、②家族の介護、③結婚・配偶者の転勤による住所変更、④セクハラ・パワハラなど職場環境の問題、⑤契約更新なし（雇止め）。詳しくは<a href="voluntary.html">自己都合完全ガイド</a>を参照してください。</div>
+      </li>
+      <li class="faq-item">
+        <div class="faq-q">再就職が決まった場合、再就職手当はいくらもらえる？ <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">再就職手当は所定給付日数の残日数に応じて計算されます。<br>・残日数が2/3以上：基本手当日額 × 残日数 × <strong>70%</strong><br>・残日数が1/3以上：基本手当日額 × 残日数 × <strong>60%</strong><br>例）基本手当日額4,000円、残日数60日の場合 → 4,000×60×70% = <strong>168,000円</strong><br><a href="calculator.html">計算ツール</a>で自動計算できます。</div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="section">
+  <div class="cta-section">
+    <h2>まず、いくらもらえるか確認しよう</h2>
+    <p>月収・年齢・加入期間を入力するだけで、あなたの受給額を即時計算します</p>
+    <div class="cta-buttons">
+      <a href="calculator.html" class="btn btn-lg" style="background:#fbbf24;color:#1e3a8a;">🧮 無料で給付金を計算する</a>
+      <a href="checklist.html" class="btn btn-lg btn-outline" style="border-color:rgba(255,255,255,0.5);color:white;">✅ チェックリストを確認する</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">📋 退職・失業給付 完全ガイド</div>
+      <p>退職から失業給付受け取りまでを<br>わかりやすく解説する無料情報サイトです。<br>2025年最新法改正に対応しています。</p>
+      <div class="disclaimer">⚠️ 本サイトは情報提供を目的としており、個別の法律・税務アドバイスではありません。最終判断はハローワークや社会保険労務士にご確認ください。</div>
+    </div>
+    <div>
+      <h4>コンテンツ</h4>
+      <ul>
+        <li><a href="calculator.html">給付金計算ツール</a></li>
+        <li><a href="timeline.html">Day0〜Day60タイムライン</a></li>
+        <li><a href="voluntary.html">自己都合完全ガイド</a></li>
+        <li><a href="company.html">会社都合完全ガイド</a></li>
+        <li><a href="checklist.html">退職後チェックリスト</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>情報</h4>
+      <ul>
+        <li><a href="https://www.hellowork.mhlw.go.jp/" target="_blank">ハローワーク公式</a></li>
+        <li><a href="https://www.mhlw.go.jp/" target="_blank">厚生労働省</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 退職・失業給付 完全ガイド ｜ 情報は参考目的であり、法的アドバイスではありません</p>
+  </div>
+</footer>
+
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
