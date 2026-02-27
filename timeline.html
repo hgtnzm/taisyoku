@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>退職後Day0〜Day60完全タイムライン｜いつ何をすればいい？</title>
+<meta name="description" content="退職日から失業給付初回振込まで、Day0〜Day60の全スケジュールを完全解説。自己都合・会社都合別に必要な手続きを日付順に整理。">
+<link rel="stylesheet" href="common.css">
+<style>
+.timeline-container { max-width: 760px; margin: 0 auto; padding: 0 16px 80px; }
+
+/* タイムライン本体 */
+.tl-phase {
+  margin-bottom: 40px;
+}
+.tl-phase-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  font-weight: 800; font-size: 16px;
+}
+.tl-phase-header.blue { background: linear-gradient(90deg,#1d4ed8,#2563eb); color: white; }
+.tl-phase-header.green { background: linear-gradient(90deg,#15803d,#16a34a); color: white; }
+.tl-phase-header.orange { background: linear-gradient(90deg,#b45309,#d97706); color: white; }
+.tl-phase-header.purple { background: linear-gradient(90deg,#6d28d9,#7c3aed); color: white; }
+.tl-phase-header.teal { background: linear-gradient(90deg,#0f766e,#0d9488); color: white; }
+
+.tl-items { padding-left: 24px; border-left: 3px solid var(--gray-200); }
+.tl-item {
+  position: relative;
+  padding: 0 0 24px 24px;
+}
+.tl-item::before {
+  content: '';
+  position: absolute; left: -8px; top: 6px;
+  width: 14px; height: 14px;
+  border-radius: 50%; background: white;
+  border: 3px solid var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+.tl-item.green::before { border-color: var(--success); box-shadow: 0 0 0 3px var(--success-light); }
+.tl-item.orange::before { border-color: var(--warning); box-shadow: 0 0 0 3px var(--warning-light); }
+.tl-item.purple::before { border-color: var(--purple); box-shadow: 0 0 0 3px var(--purple-light); }
+.tl-item.red::before { border-color: var(--danger); box-shadow: 0 0 0 3px var(--danger-light); }
+
+.tl-day-tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--primary); color: white;
+  font-size: 12px; font-weight: 700;
+  padding: 2px 10px; border-radius: 99px;
+  margin-bottom: 6px;
+}
+.tl-item.green .tl-day-tag { background: var(--success); }
+.tl-item.orange .tl-day-tag { background: var(--warning); }
+.tl-item.purple .tl-day-tag { background: var(--purple); }
+.tl-item.red .tl-day-tag { background: var(--danger); }
+
+.tl-title {
+  font-size: 16px; font-weight: 800;
+  color: var(--gray-800); margin-bottom: 6px;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.tl-body {
+  font-size: 14px; color: var(--gray-600); line-height: 1.8;
+}
+.tl-docs {
+  background: var(--gray-50); border-radius: var(--radius-sm);
+  padding: 12px 14px; margin-top: 10px;
+  font-size: 13px; color: var(--gray-700);
+}
+.tl-docs strong { color: var(--gray-800); }
+.doc-tag {
+  display: inline-block;
+  background: white; border: 1px solid var(--gray-200);
+  font-size: 12px; padding: 2px 8px; border-radius: 4px;
+  margin: 2px; color: var(--gray-700);
+}
+
+/* 比較セレクター */
+.type-toggle {
+  display: flex; gap: 0; background: var(--gray-100);
+  border-radius: 99px; padding: 4px; margin-bottom: 24px;
+  width: fit-content;
+}
+.type-toggle button {
+  padding: 8px 20px; border: none; background: transparent;
+  border-radius: 99px; cursor: pointer;
+  font-size: 14px; font-weight: 700; color: var(--gray-500);
+  transition: all 0.2s;
+}
+.type-toggle button.active {
+  background: var(--primary); color: white;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.3);
+}
+
+/* 給付開始カレンダー */
+.calendar-card {
+  background: white; border-radius: var(--radius-lg);
+  border: 2px solid var(--primary-light);
+  padding: 24px; margin: 24px 0;
+  box-shadow: var(--shadow);
+}
+.calendar-title {
+  font-weight: 800; font-size: 16px;
+  color: var(--primary); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.date-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 0; border-bottom: 1px solid var(--gray-100);
+  font-size: 14px;
+}
+.date-row:last-child { border-bottom: none; }
+.date-label { width: 160px; color: var(--gray-600); flex-shrink: 0; font-size: 13px; }
+.date-val { font-weight: 700; color: var(--gray-800); }
+.date-note { color: var(--gray-400); font-size: 12px; margin-left: auto; }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">📋 <span>退職・失業給付</span>完全ガイド</a>
+  <ul class="nav-links">
+    <li><a href="timeline.html" class="active">📅 タイムライン</a></li>
+    <li><a href="voluntary.html">🙋 自己都合</a></li>
+    <li><a href="company.html">🏢 会社都合</a></li>
+    <li><a href="checklist.html">✅ チェックリスト</a></li>
+    <li><a href="calculator.html" class="btn-calc">🧮 給付金計算</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="badge">📅 完全ロードマップ</div>
+  <h1>退職後 <em>Day0〜Day60</em><br>完全タイムライン</h1>
+  <p>「退職したら何をすればいい？」を日付順に全部解説。<br>やることを見落とさないための完全スケジュール表。</p>
+</div>
+
+<div class="timeline-container">
+
+  <!-- TYPE TOGGLE -->
+  <div class="card">
+    <div class="card-title"><div class="icon">⚙️</div>退職理由を選択してください</div>
+    <div class="type-toggle">
+      <button class="active" id="btn-voluntary" onclick="switchType('voluntary')">🙋 自己都合退職</button>
+      <button id="btn-company" onclick="switchType('company')">🏢 会社都合退職</button>
+    </div>
+    <div class="alert alert-info" id="type-info">
+      自己都合退職の場合：7日間の待機期間 ＋ <strong>1ヶ月（初回）または3ヶ月（2回目以上）の給付制限</strong>があります。初回振込まで約45〜75日かかります。
+    </div>
+  </div>
+
+  <!-- 想定スケジュール -->
+  <div class="calendar-card">
+    <div class="calendar-title">📆 あなたの想定スケジュール（例：1月31日退職）</div>
+    <div id="schedule-rows">
+      <!-- 自己都合デフォルト -->
+      <div class="date-row"><div class="date-label">Day 0 退職日</div><div class="date-val">1月31日（金）</div></div>
+      <div class="date-row"><div class="date-label">離職票受取（目安）</div><div class="date-val">2月7日〜14日</div><div class="date-note">会社が発行</div></div>
+      <div class="date-row"><div class="date-label">ハローワーク申請</div><div class="date-val">2月14日頃</div><div class="date-note">なるべく早く</div></div>
+      <div class="date-row"><div class="date-label">受給説明会</div><div class="date-val">2月中旬〜下旬</div><div class="date-note">必ず出席</div></div>
+      <div class="date-row"><div class="date-label">7日間待機期間 終了</div><div class="date-val">申請日の翌日から7日後</div></div>
+      <div class="date-row" id="restriction-row"><div class="date-label">給付制限終了（1ヶ月）</div><div class="date-val">3月中旬頃</div><div class="date-note" style="color:var(--warning);">⚡ 2025年4月〜1ヶ月に短縮</div></div>
+      <div class="date-row"><div class="date-label">第1回 失業認定日</div><div class="date-val">3月下旬〜4月初旬</div></div>
+      <div class="date-row" style="border-bottom:2px solid var(--success);"><div class="date-label">💰 <strong>初回振込</strong></div><div class="date-val" style="color:var(--success);font-size:16px;"><strong>4月上旬（目安）</strong></div><div class="date-note">認定後 約5営業日</div></div>
+    </div>
+  </div>
+
+  <!-- TIMELINE PHASE 1 -->
+  <div class="tl-phase">
+    <div class="tl-phase-header blue">🔵 Phase 1：退職直後（Day0〜Day7）— 準備期間</div>
+    <div class="tl-items">
+      <div class="tl-item">
+        <div class="tl-day-tag">Day 0 ｜ 退職日</div>
+        <div class="tl-title">👔 退職手続き完了・書類受取</div>
+        <div class="tl-body">
+          会社から受け取るべき書類を確認しましょう。特に<strong>離職票（1と2）</strong>は給付申請に必須です。離職票は退職後10〜14日以内に郵送されます。
+        </div>
+        <div class="tl-docs">
+          <strong>📄 受け取るべき書類：</strong><br>
+          <span class="doc-tag">離職票-1（賃金月額証明書）</span>
+          <span class="doc-tag">離職票-2（離職証明書）</span>
+          <span class="doc-tag">雇用保険被保険者証</span>
+          <span class="doc-tag">源泉徴収票</span>
+          <span class="doc-tag">健康保険資格喪失証明書</span>
+          <span class="doc-tag">年金手帳（預かっている場合）</span>
+        </div>
+      </div>
+      <div class="tl-item orange">
+        <div class="tl-day-tag">Day 0〜5</div>
+        <div class="tl-title">🏥 健康保険の切り替えを決める <span class="badge-orange">期限あり</span></div>
+        <div class="tl-body">
+          退職後は健康保険から外れます。以下の3択から選択してください：<br><br>
+          <strong>①任意継続（最大2年）</strong>：退職後20日以内に申請。保険料は2倍になるが、扶養家族がいる場合はお得な場合も。<br>
+          <strong>②国民健康保険</strong>：市区町村に14日以内に届出。退職理由が会社都合なら保険料が軽減される制度あり。<br>
+          <strong>③家族の扶養に入る</strong>：年収130万円未満の見込みなら、配偶者や親の扶養に入れる場合あり。
+        </div>
+      </div>
+      <div class="tl-item orange">
+        <div class="tl-day-tag">Day 0〜14</div>
+        <div class="tl-title">🏛️ 年金を国民年金に切り替える <span class="badge-orange">期限あり</span></div>
+        <div class="tl-body">
+          退職翌日から14日以内に市区町村の窓口で国民年金の加入手続きをします。収入がない・少ない場合は<strong>免除・猶予制度</strong>を活用できます（後払い可能）。
+        </div>
+        <div class="tl-docs">
+          <strong>📄 必要書類：</strong>
+          <span class="doc-tag">年金手帳 or 基礎年金番号通知書</span>
+          <span class="doc-tag">退職日確認できる書類</span>
+          <span class="doc-tag">マイナンバーカード</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE PHASE 2 -->
+  <div class="tl-phase">
+    <div class="tl-phase-header green">🟢 Phase 2：ハローワーク申請（Day7〜Day14）</div>
+    <div class="tl-items">
+      <div class="tl-item green">
+        <div class="tl-day-tag">Day 7〜14</div>
+        <div class="tl-title">📑 ハローワークへ行く（申請）<span class="badge-green">最重要</span></div>
+        <div class="tl-body">
+          離職票が届いたら、なるべく早くハローワークへ行き、求職申込みと受給資格の決定申請を行います。<strong>この日が「申請日」になり、以降のスケジュールがすべてここから始まります</strong>。
+        </div>
+        <div class="tl-docs">
+          <strong>📄 持参するもの（忘れると再来所が必要）：</strong><br>
+          <span class="doc-tag">離職票-1・-2</span>
+          <span class="doc-tag">雇用保険被保険者証</span>
+          <span class="doc-tag">マイナンバーカード（またはマイナンバー通知書＋身分証）</span>
+          <span class="doc-tag">写真2枚（3cm×2.4cm）</span>
+          <span class="doc-tag">銀行口座の通帳またはキャッシュカード</span>
+          <span class="doc-tag">印鑑（認印可）</span>
+        </div>
+      </div>
+      <div class="tl-item green">
+        <div class="tl-day-tag">申請後 約1〜2週間</div>
+        <div class="tl-title">📢 雇用保険受給説明会 <span class="badge-red">出席必須</span></div>
+        <div class="tl-body">
+          申請後に日程が指定されます。<strong>無断欠席すると給付を受けられなくなります</strong>。説明会では「雇用保険受給資格者証」と「失業認定申告書」が配布されます。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE PHASE 3 -->
+  <div class="tl-phase">
+    <div class="tl-phase-header orange">🟠 Phase 3：待機・給付制限期間（Day14〜Day45）</div>
+    <div class="tl-items">
+      <div class="tl-item orange">
+        <div class="tl-day-tag">申請日から7日間</div>
+        <div class="tl-title">⏳ 7日間の待機期間（自己都合・会社都合 共通）</div>
+        <div class="tl-body">
+          ハローワーク申請日の翌日から7日間は「待機期間」です。この期間中はアルバイトを含む就労をしてはいけません（待機期間がリセットされます）。
+        </div>
+      </div>
+      <div class="tl-item" id="restriction-phase" style="--c: var(--warning);">
+        <div class="tl-day-tag" style="background:var(--warning);">自己都合のみ｜給付制限期間</div>
+        <div class="tl-title">⚡ 給付制限（1〜3ヶ月）— 2025年4月から短縮！</div>
+        <div class="tl-body">
+          待機7日後から給付制限が始まります。この期間中も求職活動を続ける必要があります。<br><br>
+          <div class="alert alert-warning">
+            <strong>2025年4月1日改正：</strong>初回・2年間で1回目の自己都合退職の給付制限が <strong>2ヶ月→1ヶ月</strong> に短縮されました！5年間に2回目以上の場合は従来通り3ヶ月です。
+          </div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-day-tag">給付制限期間中</div>
+        <div class="tl-title">💡 住民税の支払いに注意</div>
+        <div class="tl-body">
+          前年度の住民税は退職後も引き続き請求されます。在職中は給与から天引きされていましたが、退職後は自分で納付します。一括払いまたは分割払いを選択できます（6月以降に請求書が届きます）。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMELINE PHASE 4 -->
+  <div class="tl-phase">
+    <div class="tl-phase-header purple">🟣 Phase 4：失業認定と給付開始（Day45〜Day60）</div>
+    <div class="tl-items">
+      <div class="tl-item purple">
+        <div class="tl-day-tag">4週ごと（認定日）</div>
+        <div class="tl-title">🗓 失業認定日（ハローワーク来所）<span class="badge-red">必ず出席</span></div>
+        <div class="tl-body">
+          指定された「失業認定日」にハローワークへ出頭し、この4週間に行った求職活動実績を申告します。<strong>原則2回以上</strong>の求職活動実績が必要です（ハローワーク相談・求人応募・セミナー参加など）。
+        </div>
+        <div class="tl-docs">
+          <strong>認定される求職活動の例：</strong>
+          <span class="doc-tag">ハローワークへの来所・相談</span>
+          <span class="doc-tag">求人への応募</span>
+          <span class="doc-tag">ハローワーク主催セミナー参加</span>
+          <span class="doc-tag">民間就職支援サービスの利用</span>
+        </div>
+      </div>
+      <div class="tl-item green" style="border-left-color:var(--success);">
+        <div class="tl-day-tag" style="background:var(--success);">認定後 約5営業日</div>
+        <div class="tl-title">💰 給付金 振込！<span class="badge-green">目標ゴール</span></div>
+        <div class="tl-body">
+          失業認定後、約5営業日で指定の銀行口座に振り込まれます。以降4週ごとに認定→振込を繰り返します。
+          <br><br>
+          <div class="alert alert-success">
+            <strong>再就職手当を忘れずに！</strong> 受給中に就職が決まった場合、残日数の60〜70%相当を一括受給できます。<a href="calculator.html">計算ツール</a>で試算できます。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 5 その他手続き -->
+  <div class="tl-phase">
+    <div class="tl-phase-header teal">🟦 並行して行う手続き（確定申告・転職活動）</div>
+    <div class="tl-items">
+      <div class="tl-item" style="">
+        <div class="tl-day-tag">翌年2月〜3月</div>
+        <div class="tl-title">📊 確定申告（還付の可能性あり！）</div>
+        <div class="tl-body">
+          年の途中で退職した場合、給与から多く源泉徴収されている可能性があります。確定申告をすることで<strong>還付金を受け取れる可能性</strong>があります。失業給付は非課税なので申告不要です。
+        </div>
+      </div>
+      <div class="tl-item green">
+        <div class="tl-day-tag">給付開始〜受給中</div>
+        <div class="tl-title">🔍 転職・再就職活動（再就職手当を最大化する）</div>
+        <div class="tl-body">
+          給付制限終了後、早めに就職が決まるほど再就職手当が多くなります。残日数が多いうちに就職するのが最もお得です。<a href="calculator.html">計算ツール</a>で試算してみましょう。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="card" style="text-align:center;background:linear-gradient(135deg,#eff6ff,#f0fdf4);">
+    <div style="font-size:32px;margin-bottom:12px;">🧮</div>
+    <h3 style="font-size:18px;font-weight:800;margin-bottom:8px;">あなたの給付金を今すぐ計算</h3>
+    <p style="color:var(--gray-600);font-size:14px;margin-bottom:20px;">月収・年齢・加入期間を入力するだけで、受給額と初回振込日を自動計算します</p>
+    <a href="calculator.html" class="btn btn-primary btn-lg">🧮 無料シミュレーターへ</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">📋 退職・失業給付 完全ガイド</div>
+      <p>退職から失業給付受け取りまでをわかりやすく解説する無料情報サイト。2025年最新法改正対応。</p>
+      <div class="disclaimer">⚠️ 本サイトは情報提供を目的としており、個別の法律・税務アドバイスではありません。</div>
+    </div>
+    <div>
+      <h4>コンテンツ</h4>
+      <ul>
+        <li><a href="calculator.html">給付金計算ツール</a></li>
+        <li><a href="timeline.html">Day0〜Day60タイムライン</a></li>
+        <li><a href="voluntary.html">自己都合完全ガイド</a></li>
+        <li><a href="company.html">会社都合完全ガイド</a></li>
+        <li><a href="checklist.html">退職後チェックリスト</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>公式情報</h4>
+      <ul>
+        <li><a href="https://www.hellowork.mhlw.go.jp/" target="_blank">ハローワーク</a></li>
+        <li><a href="https://www.mhlw.go.jp/" target="_blank">厚生労働省</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 退職・失業給付 完全ガイド</div>
+</footer>
+
+<script>
+function switchType(type) {
+  document.getElementById('btn-voluntary').classList.toggle('active', type==='voluntary');
+  document.getElementById('btn-company').classList.toggle('active', type==='company');
+
+  const info = document.getElementById('type-info');
+  const restrictionRow = document.getElementById('restriction-row');
+  const restrictionPhase = document.getElementById('restriction-phase');
+
+  if (type === 'voluntary') {
+    info.className = 'alert alert-info';
+    info.innerHTML = '自己都合退職の場合：7日間の待機期間 ＋ <strong>1ヶ月（初回）または3ヶ月（2回目以上）の給付制限</strong>があります。初回振込まで約45〜75日かかります。';
+    restrictionRow.style.display = '';
+    restrictionPhase.style.display = '';
+  } else {
+    info.className = 'alert alert-success';
+    info.innerHTML = '会社都合退職の場合：7日間の待機期間のみで<strong>給付制限はありません</strong>。初回振込まで約30〜35日と、自己都合より大幅に短くなります。所定給付日数も最大330日です。';
+    restrictionRow.style.display = 'none';
+    restrictionPhase.style.display = 'none';
+  }
+}
+</script>
+</body>
+</html>
