@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自己都合退職 完全ガイド｜給付制限・受給日数・損しない方法</title>
+<meta name="description" content="自己都合退職の失業給付を完全解説。2025年4月から給付制限が1ヶ月に短縮。特定理由離職者への変更方法、受給日数・金額の計算方法まで詳しく解説。">
+<link rel="stylesheet" href="common.css">
+<style>
+.guide-container { max-width: 800px; margin: 0 auto; padding: 0 16px 80px; }
+
+/* インフォカード */
+.info-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 32px; }
+.info-card {
+  background: white; border-radius: var(--radius-lg);
+  box-shadow: var(--shadow); padding: 20px 16px;
+  text-align: center; border-top: 4px solid var(--primary);
+}
+.info-card.green { border-top-color: var(--success); }
+.info-card.orange { border-top-color: var(--warning); }
+.info-num { font-size: 32px; font-weight: 900; color: var(--primary); line-height: 1; margin-bottom: 4px; }
+.info-card.green .info-num { color: var(--success); }
+.info-card.orange .info-num { color: var(--warning); }
+.info-unit { font-size: 13px; color: var(--gray-500); }
+.info-label { font-size: 13px; font-weight: 700; color: var(--gray-700); margin-top: 6px; }
+
+/* 受給日数テーブル */
+.days-table { width: 100%; border-collapse: collapse; }
+.days-table th { background: var(--primary); color: white; padding: 12px 14px; font-size: 14px; }
+.days-table td { padding: 10px 14px; border-bottom: 1px solid var(--gray-100); font-size: 14px; text-align: center; }
+.days-table tr:last-child td { border-bottom: none; }
+.days-table tr:hover td { background: var(--gray-50); }
+.days-table td:first-child { text-align: left; font-weight: 600; }
+.days-table .hi { color: var(--primary); font-weight: 700; }
+
+/* 特定理由フロー */
+.tr-list { list-style: none; }
+.tr-item {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 14px 16px; border-radius: var(--radius-sm);
+  background: white; border: 1.5px solid var(--gray-200);
+  margin-bottom: 8px;
+}
+.tr-item .tr-icon { font-size: 22px; flex-shrink: 0; }
+.tr-item .tr-title { font-size: 15px; font-weight: 700; color: var(--gray-800); }
+.tr-item .tr-text { font-size: 13px; color: var(--gray-600); margin-top: 3px; line-height: 1.6; }
+
+/* タブ */
+.tabs { display: flex; gap: 0; border-bottom: 2px solid var(--gray-200); margin-bottom: 24px; }
+.tab-btn {
+  padding: 12px 20px; border: none; background: transparent;
+  font-size: 14px; font-weight: 700; color: var(--gray-500);
+  cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px;
+  transition: all 0.2s;
+}
+.tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">📋 <span>退職・失業給付</span>完全ガイド</a>
+  <ul class="nav-links">
+    <li><a href="timeline.html">📅 タイムライン</a></li>
+    <li><a href="voluntary.html" class="active">🙋 自己都合</a></li>
+    <li><a href="company.html">🏢 会社都合</a></li>
+    <li><a href="checklist.html">✅ チェックリスト</a></li>
+    <li><a href="calculator.html" class="btn-calc">🧮 給付金計算</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="badge">🙋 自己都合退職 完全ガイド</div>
+  <h1><em>自己都合退職</em>でも<br>損しない完全ガイド</h1>
+  <p>給付制限・受給日数・特定理由への変更方法まで<br>2025年4月最新法改正を完全反映</p>
+</div>
+
+<div class="guide-container">
+
+  <!-- 速報：法改正 -->
+  <div class="alert alert-warning" style="margin-bottom:24px;font-size:15px;">
+    ⚡ <strong>2025年4月1日〜 法改正！</strong> 自己都合退職の給付制限が <strong>2ヶ月 → 1ヶ月</strong> に短縮されました。5年間に2回目以上の自己都合退職の場合は3ヶ月のままです。
+  </div>
+
+  <!-- KEY NUMBERS -->
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-num">1</div>
+      <div class="info-unit">ヶ月</div>
+      <div class="info-label">給付制限（初回）<br>2025年4月〜短縮</div>
+    </div>
+    <div class="info-card green">
+      <div class="info-num">90〜150</div>
+      <div class="info-unit">日</div>
+      <div class="info-label">所定給付日数<br>（加入期間・年齢による）</div>
+    </div>
+    <div class="info-card orange">
+      <div class="info-num">50〜80</div>
+      <div class="info-unit">%</div>
+      <div class="info-label">給付率<br>（賃金日額に対して）</div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="card">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('basic')">基本情報</button>
+      <button class="tab-btn" onclick="switchTab('days')">受給日数</button>
+      <button class="tab-btn" onclick="switchTab('special')">特定理由離職者</button>
+      <button class="tab-btn" onclick="switchTab('tips')">損しない方法</button>
+    </div>
+
+    <!-- TAB: 基本情報 -->
+    <div class="tab-content active" id="tab-basic">
+      <div class="card-title"><div class="icon">📋</div>自己都合退職の基本</div>
+
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>受給条件を確認する</h3>
+            <p>自己都合退職の場合、<strong>離職日以前の2年間で通算12ヶ月以上の雇用保険加入</strong>が必要です（会社都合の場合は6ヶ月以上）。加入期間が足りない場合は受給できません。</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>給付制限期間を理解する</h3>
+            <p>7日間の待機後、さらに給付制限があります。<strong>2025年4月以降：初回・5年間で1回目は1ヶ月、5年間で2回目以上は3ヶ月</strong>。この期間は給付金が出ません。</p>
+            <div class="alert alert-info" style="margin-top:10px;">
+              💡 給付制限中もハローワークへの求職活動は続けましょう。認定日のスケジュール管理も忘れずに。
+            </div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>初回振込までのスケジュール</h3>
+            <p>申請日から計算すると：<br>
+            ・待機7日 ＋ 給付制限1ヶ月（初回） ＋ 第1回認定日（2〜4週後） ＋ 振込5営業日<br>
+            → <strong>合計：約45〜55日で初回振込</strong></p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>失業給付の計算方法</h3>
+            <p>①賃金日額 = 退職前6ヶ月の給与合計 ÷ 180<br>
+            ②基本手当日額 = 賃金日額 × 給付率（50〜80%、年齢・賃金により変動）<br>
+            ③受給総額 = 基本手当日額 × 所定給付日数</p>
+            <div style="margin-top:10px;">
+              <a href="calculator.html" class="btn btn-primary btn-sm">🧮 給付金を自動計算する</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: 受給日数 -->
+    <div class="tab-content" id="tab-days">
+      <div class="card-title"><div class="icon">📅</div>所定給付日数（自己都合・一般受給資格者）</div>
+      <p style="font-size:14px;color:var(--gray-600);margin-bottom:16px;">自己都合退職の場合、年齢に関わらず加入期間だけで日数が決まります。</p>
+      <div style="overflow-x:auto;">
+        <table class="days-table">
+          <thead>
+            <tr>
+              <th>雇用保険 加入期間</th>
+              <th>29歳以下</th>
+              <th>30〜44歳</th>
+              <th>45〜59歳</th>
+              <th>60〜64歳</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1年未満</td>
+              <td colspan="4" style="text-align:center;color:var(--danger);font-weight:700;">受給不可</td>
+            </tr>
+            <tr>
+              <td>1年以上5年未満</td>
+              <td>90日</td><td>90日</td><td>90日</td><td>90日</td>
+            </tr>
+            <tr>
+              <td>5年以上10年未満</td>
+              <td class="hi">120日</td><td class="hi">120日</td><td class="hi">120日</td><td class="hi">120日</td>
+            </tr>
+            <tr>
+              <td>10年以上20年未満</td>
+              <td class="hi">150日</td><td class="hi">150日</td><td class="hi">150日</td><td class="hi">150日</td>
+            </tr>
+            <tr>
+              <td>20年以上</td>
+              <td class="hi">150日</td><td class="hi">150日</td><td class="hi">150日</td><td class="hi">150日</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="alert alert-info" style="margin-top:16px;">
+        💡 <strong>会社都合の場合は最大330日</strong>まで受け取れます。退職理由が会社都合に該当しないか「特定理由離職者」タブも確認してください。
+      </div>
+    </div>
+
+    <!-- TAB: 特定理由 -->
+    <div class="tab-content" id="tab-special">
+      <div class="card-title"><div class="icon">⚖️</div>特定理由離職者になれるケース</div>
+      <p style="font-size:14px;color:var(--gray-600);margin-bottom:16px;">以下の理由で退職した場合、給付制限なしの「特定理由離職者」として扱われる場合があります。ハローワークへの相談が重要です。</p>
+
+      <ul class="tr-list">
+        <li class="tr-item">
+          <div class="tr-icon">🏥</div>
+          <div>
+            <div class="tr-title">体力的・精神的に続けられなかった</div>
+            <div class="tr-text">医師の診断書があれば認められやすい。うつ・パワハラによる精神的不調も対象になる場合があります。</div>
+          </div>
+        </li>
+        <li class="tr-item">
+          <div class="tr-icon">👴</div>
+          <div>
+            <div class="tr-title">家族の介護・看護のため</div>
+            <div class="tr-text">同居または扶養家族の介護のために退職した場合。医師の診断書や介護認定通知書などが証拠になります。</div>
+          </div>
+        </li>
+        <li class="tr-item">
+          <div class="tr-icon">💍</div>
+          <div>
+            <div class="tr-title">結婚・配偶者の転勤による住所変更</div>
+            <div class="tr-text">通勤が困難になった場合（片道2時間超または交通手段が著しく困難）。住民票や配偶者の転勤辞令が証拠になります。</div>
+          </div>
+        </li>
+        <li class="tr-item">
+          <div class="tr-icon">😰</div>
+          <div>
+            <div class="tr-title">パワハラ・セクハラ・いじめによる退職</div>
+            <div class="tr-text">職場でのハラスメントが原因の場合。記録（メール・LINE）や証言があると認められやすい。「特定受給資格者」に該当する場合も。</div>
+          </div>
+        </li>
+        <li class="tr-item">
+          <div class="tr-icon">📋</div>
+          <div>
+            <div class="tr-title">会社からの契約更新なし（雇い止め）</div>
+            <div class="tr-text">有期雇用契約（パート・派遣など）の更新を希望したが会社に断られた場合。特定受給資格者として扱われます。</div>
+          </div>
+        </li>
+        <li class="tr-item">
+          <div class="tr-icon">💰</div>
+          <div>
+            <div class="tr-title">給与・労働条件の重大な変更</div>
+            <div class="tr-text">賃金が85%未満に引き下げられた、または労働条件が契約と著しく異なる場合。給与明細・労働契約書が証拠になります。</div>
+          </div>
+        </li>
+        <li class="tr-item">
+          <div class="tr-icon">⏰</div>
+          <div>
+            <div class="tr-title">長時間残業（月45時間超が継続）</div>
+            <div class="tr-text">月45時間超の時間外労働が3ヶ月以上続いた場合。タイムカード・給与明細が証拠になります。</div>
+          </div>
+        </li>
+      </ul>
+      <div class="alert alert-warning" style="margin-top:16px;">
+        ⚠️ 特定理由・特定受給への変更は<strong>ハローワークが最終判断</strong>します。申請時に詳しく状況を説明し、証拠書類を持参しましょう。
+      </div>
+    </div>
+
+    <!-- TAB: 損しない方法 -->
+    <div class="tab-content" id="tab-tips">
+      <div class="card-title"><div class="icon">💡</div>自己都合でも損しない7つのポイント</div>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>離職票が届いたらすぐにハローワークへ</h3>
+            <p>申請が遅れるほど受給開始も遅れます。給付制限はハローワーク申請後に始まるため、<strong>1日でも早く申請する</strong>のが基本です。</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>特定理由に該当しないか確認する</h3>
+            <p>上記「特定理由離職者」タブを確認し、1つでも当てはまる理由があれば申請時にハローワークに相談しましょう。給付制限がなくなり、最大受給日数も増える可能性があります。</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>給付制限中も求職活動を続ける</h3>
+            <p>給付制限中も失業認定を受けるための求職活動実績が必要です。給付制限中の求職活動は再就職手当の受給要件にも影響します。</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>受給期間中の早期就職で再就職手当を最大化</h3>
+            <p>給付日数の2/3以上が残っている状態で就職すると、残日数×70%の再就職手当が一括受給できます。早く就職するほどお得です。</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <h3>アルバイトはハローワークに必ず申告する</h3>
+            <p>給付中のアルバイトは申告義務があります。週20時間未満・月14日未満の範囲であれば調整給付で継続受給できます。無申告は不正受給になります。</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">6</div>
+          <div class="step-content">
+            <h3>国民健康保険の軽減制度を活用（会社都合の場合）</h3>
+            <p>会社都合退職の場合、国保料が最大7割軽減される制度があります。市区町村窓口で「非自発的失業者の軽減申請」を忘れずに。</p>
+          </div>
+        </div>
+        <div class="step-item" style="padding-bottom:0;">
+          <div class="step-num">7</div>
+          <div class="step-content">
+            <h3>職業訓練で給付を延長する</h3>
+            <p>ハロートレーニング（職業訓練）に参加すると、受講中は給付が延長されます。新しいスキルを習得しながら収入を確保できる最強の方法です。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="card" style="text-align:center;background:linear-gradient(135deg,#eff6ff,#f0fdf4);">
+    <div style="font-size:32px;margin-bottom:12px;">🧮</div>
+    <h3 style="font-size:18px;font-weight:800;margin-bottom:8px;">あなたの受給額を今すぐ計算</h3>
+    <p style="color:var(--gray-600);font-size:14px;margin-bottom:20px;">月収・年齢・加入期間から、受給総額・再就職手当を自動計算します</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="calculator.html" class="btn btn-primary">🧮 給付金シミュレーター</a>
+      <a href="timeline.html" class="btn btn-outline">📅 Day0〜Day60タイムライン</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">📋 退職・失業給付 完全ガイド</div>
+      <p>退職から失業給付受け取りまでをわかりやすく解説。2025年最新法改正対応。</p>
+      <div class="disclaimer">⚠️ 本サイトは情報提供を目的としており、個別の法律・税務アドバイスではありません。</div>
+    </div>
+    <div>
+      <h4>コンテンツ</h4>
+      <ul>
+        <li><a href="calculator.html">給付金計算ツール</a></li>
+        <li><a href="timeline.html">Day0〜Day60タイムライン</a></li>
+        <li><a href="voluntary.html">自己都合完全ガイド</a></li>
+        <li><a href="company.html">会社都合完全ガイド</a></li>
+        <li><a href="checklist.html">退職後チェックリスト</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>公式情報</h4>
+      <ul>
+        <li><a href="https://www.hellowork.mhlw.go.jp/" target="_blank">ハローワーク</a></li>
+        <li><a href="https://www.mhlw.go.jp/" target="_blank">厚生労働省</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 退職・失業給付 完全ガイド</div>
+</footer>
+
+<script>
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', ['basic','days','special','tips'][i]===name));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.id==='tab-'+name));
+}
+</script>
+</body>
+</html>
