@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>退職後やることチェックリスト｜健康保険・年金・住民税・確定申告まで全網羅</title>
+<meta name="description" content="退職後に必要な全手続きを一覧チェックリストで解説。健康保険・国民年金・住民税・雇用保険申請・確定申告まで見落としゼロで対応できます。">
+<link rel="stylesheet" href="common.css">
+<style>
+.cl-container { max-width: 800px; margin: 0 auto; padding: 0 16px 80px; }
+
+/* チェックリスト */
+.cl-section {
+  margin-bottom: 32px;
+}
+.cl-section-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
+  font-weight: 800; font-size: 15px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+.cl-section-header.blue { background: var(--primary-light); color: var(--primary-dark); border-left: 4px solid var(--primary); }
+.cl-section-header.green { background: var(--success-light); color: var(--success); border-left: 4px solid var(--success); }
+.cl-section-header.orange { background: var(--warning-light); color: var(--warning); border-left: 4px solid var(--warning); }
+.cl-section-header.purple { background: var(--purple-light); color: var(--purple); border-left: 4px solid var(--purple); }
+.cl-section-header.gray { background: var(--gray-100); color: var(--gray-700); border-left: 4px solid var(--gray-400); }
+
+.cl-list { list-style: none; }
+.cl-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 6px;
+  background: white;
+  border: 1.5px solid var(--gray-200);
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+.cl-item:hover { border-color: var(--primary-light); background: var(--primary-xlight); }
+.cl-item.checked {
+  background: var(--success-light);
+  border-color: var(--success);
+  opacity: 0.85;
+}
+.cl-item.checked .cl-text { text-decoration: line-through; color: var(--gray-400); }
+.cl-item.checked .cl-title { color: var(--gray-400); }
+
+.cl-cb {
+  width: 22px; height: 22px; min-width: 22px;
+  border-radius: 6px; border: 2px solid var(--gray-300);
+  background: white; display: flex; align-items: center; justify-content: center;
+  margin-top: 2px; transition: all 0.2s;
+  flex-shrink: 0;
+}
+.cl-item.checked .cl-cb {
+  background: var(--success); border-color: var(--success); color: white;
+}
+.cl-cb::after { content: ''; }
+.cl-item.checked .cl-cb::after { content: '✓'; font-size: 14px; font-weight: 900; }
+
+.cl-content { flex: 1; }
+.cl-title {
+  font-size: 15px; font-weight: 700; color: var(--gray-800); line-height: 1.4;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.cl-text { font-size: 13px; color: var(--gray-500); margin-top: 4px; line-height: 1.6; }
+.cl-deadline { font-size: 11px; font-weight: 700; }
+
+/* プログレスバー */
+.progress-section {
+  position: sticky; top: 60px; z-index: 90;
+  background: white; border-bottom: 1px solid var(--gray-200);
+  padding: 12px 20px;
+  box-shadow: var(--shadow-sm);
+}
+.progress-inner { max-width: 800px; margin: 0 auto; }
+.progress-label {
+  display: flex; justify-content: space-between;
+  font-size: 13px; font-weight: 700; margin-bottom: 6px;
+  color: var(--gray-700);
+}
+.progress-bar { height: 8px; background: var(--gray-200); border-radius: 99px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--success)); border-radius: 99px; transition: width 0.4s; }
+
+/* 特殊ケース */
+.special-card {
+  background: white; border-radius: var(--radius-lg);
+  border: 2px solid var(--gray-200);
+  padding: 20px 20px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.special-card:hover { border-color: var(--primary-light); }
+.special-card-header {
+  display: flex; justify-content: space-between; align-items: center;
+}
+.special-card h4 { font-size: 15px; font-weight: 800; color: var(--gray-800); }
+.special-card .arrow { color: var(--gray-400); transition: transform 0.2s; }
+.special-card.open .arrow { transform: rotate(180deg); }
+.special-body { display: none; margin-top: 14px; font-size: 14px; color: var(--gray-600); line-height: 1.8; padding-top: 14px; border-top: 1px solid var(--gray-100); }
+.special-card.open .special-body { display: block; }
+
+/* 印刷ボタン */
+.print-btn-area {
+  text-align: center; padding: 24px;
+  background: var(--gray-50); border-radius: var(--radius);
+  margin-bottom: 32px;
+}
+@media print {
+  .navbar, .progress-section, .print-btn-area, footer, .btn { display: none !important; }
+  .cl-item.checked { background: #f0fff4 !important; }
+  body { background: white; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">📋 <span>退職・失業給付</span>完全ガイド</a>
+  <ul class="nav-links">
+    <li><a href="timeline.html">📅 タイムライン</a></li>
+    <li><a href="voluntary.html">🙋 自己都合</a></li>
+    <li><a href="company.html">🏢 会社都合</a></li>
+    <li><a href="checklist.html" class="active">✅ チェックリスト</a></li>
+    <li><a href="calculator.html" class="btn-calc">🧮 給付金計算</a></li>
+  </ul>
+</nav>
+
+<!-- プログレスバー -->
+<div class="progress-section">
+  <div class="progress-inner">
+    <div class="progress-label">
+      <span>✅ 退職後やること チェックリスト</span>
+      <span id="progress-text">0 / 20 完了</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+</div>
+
+<div class="page-header">
+  <div class="badge">✅ 完全チェックリスト</div>
+  <h1>退職後<em>やること</em><br>全部チェックリスト</h1>
+  <p>健康保険・年金・雇用保険・住民税・確定申告まで<br>見落としゼロで手続きを完了できます</p>
+</div>
+
+<div class="cl-container">
+
+  <div class="print-btn-area">
+    <p style="font-size:14px;color:var(--gray-500);margin-bottom:12px;">チェックを入れながら使えます。チェックはこのブラウザに保存されます。</p>
+    <button class="btn btn-outline" onclick="window.print()">🖨️ 印刷・PDF保存する</button>
+    <button class="btn btn-outline" onclick="resetAll()" style="margin-left:8px;">🔄 リセット</button>
+  </div>
+
+  <!-- SECTION 1: 退職直後（緊急） -->
+  <div class="cl-section">
+    <div class="cl-section-header blue">🔵 ① 退職直後に必ずやること（期限あり）</div>
+    <ul class="cl-list" id="list-1">
+      <li class="cl-item" onclick="toggle(this)" data-id="c1">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">健康保険の切り替え手続き <span class="badge-red">20日以内</span></div>
+          <div class="cl-text">任意継続（退職後20日以内）・国民健康保険（14日以内）・家族の扶養の3択から選択。任意継続は協会けんぽまたは健保組合に申請。</div>
+        </div>
+      </li>
+      <li class="cl-item" onclick="toggle(this)" data-id="c2">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">国民年金への切り替え <span class="badge-red">14日以内</span></div>
+          <div class="cl-text">市区町村の国民年金担当窓口へ。収入がない場合は「免除・猶予申請」も同時に行うと保険料を免除できます。</div>
+        </div>
+      </li>
+      <li class="cl-item" onclick="toggle(this)" data-id="c3">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">離職票の受取確認</div>
+          <div class="cl-text">退職後10〜14日以内に会社から郵送されます。届かない場合は会社に督促。ハローワークでの申請に必須です。</div>
+        </div>
+      </li>
+      <li class="cl-item" onclick="toggle(this)" data-id="c4">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">雇用保険被保険者証の確認</div>
+          <div class="cl-text">会社が保管していた場合は退職時に返却されます。紛失した場合はハローワークで再発行可能。</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SECTION 2: ハローワーク -->
+  <div class="cl-section">
+    <div class="cl-section-header green">🟢 ② ハローワーク手続き</div>
+    <ul class="cl-list">
+      <li class="cl-item" onclick="toggle(this)" data-id="c5">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">ハローワークへ受給申請 <span class="badge-orange">なるべく早く</span></div>
+          <div class="cl-text">離職票・雇用保険被保険者証・マイナンバーカード・写真2枚・通帳・印鑑を持参。この日が起算日となります。</div>
+        </div>
+      </li>
+      <li class="cl-item" onclick="toggle(this)" data-id="c6">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">雇用保険受給説明会に出席 <span class="badge-red">必須</span></div>
+          <div class="cl-text">申請後に指定される日程に必ず出席。無断欠席すると給付が止まります。受給資格者証と失業認定申告書が配布されます。</div>
+        </div>
+      </li>
+      <li class="cl-item" onclick="toggle(this)" data-id="c7">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">失業認定日のスケジュール管理</div>
+          <div class="cl-text">4週ごとに指定される認定日をカレンダーに記入。無断欠席した場合はその期間の給付がもらえません。</div>
+        </div>
+      </li>
+      <li class="cl-item" onclick="toggle(this)" data-id="c8">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">求職活動実績を作る（原則 認定期間に2回以上）</div>
+          <div class="cl-text">ハローワーク来所・相談、求人応募、セミナー参加などが実績になります。インターネットから求人に応募しても実績になります。</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SECTION 3: 税金・住民税 -->
+  <div class="cl-section">
+    <div class="cl-section-header orange">🟠 ③ 税金・住民税の手続き</div>
+    <ul class="cl-list">
+      <li class="cl-item" onclick="toggle(this)" data-id="c9">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">住民税の支払い方法を確認 <span class="badge-orange">退職翌月から請求</span></div>
+          <div class="cl-text">在職中は給与天引きでしたが、退職後は自分で納付書払いになります。6月頃に市区町村から請求書が届きます。一括払いまたは4回分割。</div>
+        </div>
+      </li>
+      <li class="cl-item" onclick="toggle(this)" data-id="c10">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">確定申告の要否を確認（翌年2〜3月）</div>
+          <div class="cl-text">年の途中で退職した場合、年末調整を受けていないため確定申告で源泉徴収税の還付を受けられる可能性が高いです。失業給付は非課税なので申告不要。</div>
+        </div>
+      </li>
+      <li class="cl-item" onclick="toggle(this)" data-id="c11">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">源泉徴収票の保管</div>
+          <div class="cl-text">確定申告や年末調整で必要になります。退職時に受け取ったものを大切に保管してください。</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SECTION 4: 再就職 -->
+  <div class="cl-section">
+    <div class="cl-section-header purple">🟣 ④ 再就職・給付金最大化</div>
+    <ul class="cl-list">
+      <li class="cl-item" onclick="toggle(this)" data-id="c12">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">給付金シミュレーションで受給総額を確認</div>
+          <div class="cl-text">月収・年齢・加入期間を入力して受給額を把握。再就職手当の計算も同時にできます。</div>
+        </div>
+      </li>
+      <li class="cl-item" onclick="toggle(this)" data-id="c13">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">再就職手当の申請タイミングを把握</div>
+          <div class="cl-text">所定給付日数の1/3以上が残った状態で就職が決まった場合に申請できます。早期就職ほど手当が多くなります（残り2/3以上で70%、1/3以上で60%）。</div>
+        </div>
+      </li>
+      <li class="cl-item" onclick="toggle(this)" data-id="c14">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">職業訓練（ハロートレーニング）の検討</div>
+          <div class="cl-text">スキルアップしながら給付延長が可能。給付終了後も「職業訓練受講給付金」（月10万円）を受けられる場合があります。</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SECTION 5: その他 -->
+  <div class="cl-section">
+    <div class="cl-section-header gray">⚫ ⑤ その他・忘れがちな手続き</div>
+    <ul class="cl-list">
+      <li class="cl-item" onclick="toggle(this)" data-id="c15">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">会社の貸与物を返却（PC・社員証・社員証・定期券等）</div>
+          <div class="cl-text">返却忘れがあると後日トラブルになることがあります。退職前に確認リストを作成しておきましょう。</div>
+        </div>
+      </li>
+      <li class="cl-item" onclick="toggle(this)" data-id="c16">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">iDeCo・企業型確定拠出年金の手続き</div>
+          <div class="cl-text">企業型DCに加入していた場合、退職後6ヶ月以内にiDeCoへ移換手続きが必要。放置すると現金化されて保険料・手数料がかかります。</div>
+        </div>
+      </li>
+      <li class="cl-item" onclick="toggle(this)" data-id="c17">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">生命保険・火災保険の見直し</div>
+          <div class="cl-text">収入が減る期間は保険料の見直しが有効です。不要な保険を解約・変更することで毎月の支出を減らせます。</div>
+        </div>
+      </li>
+      <li class="cl-item" onclick="toggle(this)" data-id="c18">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">社会保険料の軽減制度を確認（会社都合の場合）</div>
+          <div class="cl-text">会社都合退職は国民健康保険料が最大7割軽減される「非自発的失業者の軽減制度」の対象になる場合があります。市区町村窓口で申請。</div>
+        </div>
+      </li>
+      <li class="cl-item" onclick="toggle(this)" data-id="c19">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">給付期間中のアルバイトはハローワークに申告</div>
+          <div class="cl-text">失業認定申告書にアルバイトの日数・収入を正直に記載。申告なしは不正受給になり、受給額の3倍返還を求められます。</div>
+        </div>
+      </li>
+      <li class="cl-item" onclick="toggle(this)" data-id="c20">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">次の就職先決定後：再就職手当申請書の提出</div>
+          <div class="cl-text">就職日の翌日から1ヶ月以内にハローワークへ申請。証明書類として「採用証明書」が必要です。</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 特殊ケース -->
+  <div id="special" class="card" style="margin-top:40px;">
+    <div class="card-title"><div class="icon">🔍</div>状況別 特殊ケース</div>
+
+    <div class="special-card" onclick="toggleSpecial(this)">
+      <div class="special-card-header">
+        <h4>👷 パート・アルバイトの場合</h4>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="special-body">
+        週20時間以上かつ31日以上の雇用見込みで雇用保険に加入済みであれば、正社員と同様に失業給付を受け取れます。加入していたか不明な場合は、直近の給与明細で「雇用保険料」が控除されているか確認してください。自己都合での離職でも、<strong>勤続1年以上であれば90日分</strong>受け取れます。
+      </div>
+    </div>
+
+    <div class="special-card" onclick="toggleSpecial(this)">
+      <div class="special-card-header">
+        <h4>🏭 派遣社員の場合</h4>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="special-body">
+        派遣元（派遣会社）から離職票が発行されます。派遣先の契約終了が「雇止め」に当たる場合、特定理由離職者として<strong>給付制限なし</strong>で申請できます。また、次の派遣先が紹介されなかった場合も同様の扱いになる可能性があります。
+      </div>
+    </div>
+
+    <div class="special-card" onclick="toggleSpecial(this)">
+      <div class="special-card-header">
+        <h4>💼 副業・ダブルワークをしていた場合</h4>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="special-body">
+        複数の仕事をしていた場合、<strong>主たる雇用元（週所定労働時間が長い会社）の離職票</strong>を使って申請します。副業先が週20時間未満であれば、失業給付を受けながら継続できます（ただし認定申告書への申告が必要）。
+      </div>
+    </div>
+
+    <div class="special-card" onclick="toggleSpecial(this)">
+      <div class="special-card-header">
+        <h4>🏥 病気・怪我で働けない場合</h4>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="special-body">
+        失業給付は「すぐに働ける状態」が条件です。病気・怪我で働けない場合は受給資格がありません。この場合は<strong>傷病手当金（在職中の傷病）または傷病給付（失業認定後の傷病）</strong>を活用します。回復後に「受給期間の延長申請」をすることで、最大4年間受給期間を延ばすことができます。
+      </div>
+    </div>
+
+    <div class="special-card" onclick="toggleSpecial(this)">
+      <div class="special-card-header">
+        <h4>🤱 妊娠・育児中の場合</h4>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="special-body">
+        妊娠・出産・育児で就職活動ができない場合、<strong>受給期間の延長申請</strong>（最大3年間）ができます。育児が落ち着いてから受給開始することが可能です。申請は離職日翌日から30日経過後〜1年以内に行う必要があります。
+      </div>
+    </div>
+
+    <div class="special-card" onclick="toggleSpecial(this)">
+      <div class="special-card-header">
+        <h4>🌏 外国人（在留資格保有者）の場合</h4>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="special-body">
+        就労可能な在留資格（就労ビザ）を持ち、雇用保険に加入していれば、日本人と同様に失業給付を受け取れます。ただし、在留期間の満了前に受給資格が消滅する場合があります。在留資格の変更・更新時期に注意してください。
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="card" style="text-align:center;background:linear-gradient(135deg,#eff6ff,#f0fdf4);margin-top:32px;">
+    <div style="font-size:32px;margin-bottom:12px;">🧮</div>
+    <h3 style="font-size:18px;font-weight:800;margin-bottom:8px;">いくらもらえるか計算しよう</h3>
+    <p style="color:var(--gray-600);font-size:14px;margin-bottom:20px;">月収・年齢・加入期間を入力するだけで受給額を自動計算</p>
+    <a href="calculator.html" class="btn btn-primary btn-lg">🧮 無料給付金シミュレーター</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">📋 退職・失業給付 完全ガイド</div>
+      <p>退職から失業給付受け取りまでをわかりやすく解説する無料情報サイト。2025年最新法改正対応。</p>
+      <div class="disclaimer">⚠️ 本サイトは情報提供を目的としており、個別の法律・税務アドバイスではありません。</div>
+    </div>
+    <div>
+      <h4>コンテンツ</h4>
+      <ul>
+        <li><a href="calculator.html">給付金計算ツール</a></li>
+        <li><a href="timeline.html">Day0〜Day60タイムライン</a></li>
+        <li><a href="voluntary.html">自己都合完全ガイド</a></li>
+        <li><a href="company.html">会社都合完全ガイド</a></li>
+        <li><a href="checklist.html">退職後チェックリスト</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>公式情報</h4>
+      <ul>
+        <li><a href="https://www.hellowork.mhlw.go.jp/" target="_blank">ハローワーク</a></li>
+        <li><a href="https://www.mhlw.go.jp/" target="_blank">厚生労働省</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 退職・失業給付 完全ガイド</div>
+</footer>
+
+<script>
+const TOTAL = 20;
+
+function toggle(el) {
+  el.classList.toggle('checked');
+  const id = el.dataset.id;
+  const checked = el.classList.contains('checked');
+  localStorage.setItem(id, checked ? '1' : '0');
+  updateProgress();
+}
+
+function updateProgress() {
+  let count = 0;
+  document.querySelectorAll('.cl-item').forEach(el => { if (el.classList.contains('checked')) count++; });
+  document.getElementById('progress-text').textContent = count + ' / ' + TOTAL + ' 完了';
+  document.getElementById('progress-fill').style.width = (count/TOTAL*100) + '%';
+}
+
+function resetAll() {
+  if (!confirm('チェックをすべてリセットしますか？')) return;
+  document.querySelectorAll('.cl-item').forEach(el => {
+    el.classList.remove('checked');
+    localStorage.removeItem(el.dataset.id);
+  });
+  updateProgress();
+}
+
+function toggleSpecial(el) {
+  el.classList.toggle('open');
+}
+
+// ローカルストレージから復元
+document.querySelectorAll('.cl-item').forEach(el => {
+  if (localStorage.getItem(el.dataset.id) === '1') el.classList.add('checked');
+});
+updateProgress();
+</script>
+</body>
+</html>
