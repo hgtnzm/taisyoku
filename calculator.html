@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>失業給付金 計算ツール｜退職から振込まで完全シミュレーション</title>
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #dbeafe;
+    --success: #16a34a;
+    --success-light: #dcfce7;
+    --warning: #d97706;
+    --warning-light: #fef3c7;
+    --danger: #dc2626;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-400: #9ca3af;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --radius: 12px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+    background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+    min-height: 100vh;
+    color: var(--gray-800);
+    padding: 16px;
+  }
+  .container { max-width: 760px; margin: 0 auto; }
+
+  /* ヘッダー */
+  .header {
+    text-align: center;
+    padding: 32px 24px 24px;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+  }
+  .header .badge {
+    display: inline-block;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 99px;
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+  .header h1 {
+    font-size: clamp(20px, 5vw, 28px);
+    font-weight: 800;
+    color: var(--gray-800);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .header h1 span { color: var(--primary); }
+  .header p {
+    color: var(--gray-600);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .law-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--success-light);
+    color: var(--success);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 99px;
+    margin-top: 10px;
+  }
+
+  /* カード */
+  .card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--gray-800);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--primary-light);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title .icon {
+    width: 28px; height: 28px;
+    background: var(--primary-light);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+
+  /* フォーム */
+  .form-group { margin-bottom: 20px; }
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gray-700);
+    margin-bottom: 8px;
+  }
+  label .required {
+    background: var(--danger);
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 6px;
+    font-weight: 700;
+  }
+  label .hint {
+    font-size: 12px;
+    color: var(--gray-400);
+    font-weight: 400;
+    margin-left: 4px;
+  }
+  input[type="number"], select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--gray-200);
+    border-radius: 8px;
+    font-size: 16px;
+    color: var(--gray-800);
+    background: var(--gray-50);
+    transition: all 0.2s;
+    -webkit-appearance: none;
+  }
+  input[type="number"]:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 3px var(--primary-light);
+  }
+  .input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .input-wrap input { padding-right: 48px; }
+  .input-unit {
+    position: absolute;
+    right: 16px;
+    color: var(--gray-600);
+    font-size: 14px;
+    font-weight: 600;
+    pointer-events: none;
+  }
+
+  /* ラジオボタン */
+  .radio-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .radio-group.three { grid-template-columns: 1fr 1fr 1fr; }
+  .radio-label {
+    position: relative;
+    cursor: pointer;
+  }
+  .radio-label input[type="radio"] { display: none; }
+  .radio-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 8px;
+    border: 2px solid var(--gray-200);
+    border-radius: 10px;
+    background: var(--gray-50);
+    transition: all 0.2s;
+    text-align: center;
+    min-height: 64px;
+  }
+  .radio-card .r-icon { font-size: 20px; margin-bottom: 4px; }
+  .radio-card .r-text { font-size: 13px; font-weight: 700; color: var(--gray-700); }
+  .radio-card .r-sub { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
+  .radio-label input[type="radio"]:checked + .radio-card {
+    border-color: var(--primary);
+    background: var(--primary-light);
+  }
+  .radio-label input[type="radio"]:checked + .radio-card .r-text { color: var(--primary-dark); }
+
+  /* ボタン */
+  .btn-calc {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: white;
+    font-size: 17px;
+    font-weight: 800;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 16px rgba(37,99,235,0.35);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .btn-calc:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.45); }
+  .btn-calc:active { transform: translateY(0); }
+
+  /* 結果エリア */
+  #result { display: none; }
+  .result-hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+  }
+  .result-hero .label { font-size: 13px; opacity: 0.85; margin-bottom: 6px; letter-spacing: 0.05em; }
+  .result-hero .total-amount {
+    font-size: clamp(36px, 10vw, 52px);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+  }
+  .result-hero .total-amount span { font-size: 22px; }
+  .result-hero .sub-info {
+    font-size: 13px;
+    opacity: 0.8;
+    margin-top: 8px;
+  }
+  .result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .result-item {
+    background: white;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    text-align: center;
+  }
+  .result-item .r-label {
+    font-size: 12px;
+    color: var(--gray-400);
+    font-weight: 600;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .result-item .r-value {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--primary);
+  }
+  .result-item .r-value .unit { font-size: 13px; }
+  .result-item.highlight { background: var(--primary-light); }
+  .result-item.highlight .r-value { color: var(--primary-dark); }
+
+  /* タイムライン */
+  .timeline { padding: 8px 0; }
+  .tl-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .tl-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 40px;
+    bottom: -20px;
+    width: 2px;
+    background: var(--gray-200);
+  }
+  .tl-dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+  .tl-dot.blue { background: var(--primary-light); }
+  .tl-dot.green { background: var(--success-light); }
+  .tl-dot.yellow { background: var(--warning-light); }
+  .tl-content { flex: 1; padding-top: 6px; }
+  .tl-day {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 2px;
+  }
+  .tl-title { font-size: 15px; font-weight: 700; color: var(--gray-800); margin-bottom: 2px; }
+  .tl-desc { font-size: 13px; color: var(--gray-600); line-height: 1.5; }
+
+  /* 再就職手当 */
+  .saishushoku {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border: 2px solid #86efac;
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .saishushoku h3 {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--success);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .saishushoku-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .saishushoku-item {
+    background: white;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+  }
+  .saishushoku-item .s-label { font-size: 12px; color: var(--gray-400); margin-bottom: 4px; font-weight: 600; }
+  .saishushoku-item .s-value { font-size: 20px; font-weight: 800; color: var(--success); }
+  .saishushoku-item .s-note { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
+
+  /* 注意事項 */
+  .notice {
+    background: var(--warning-light);
+    border-left: 4px solid var(--warning);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--gray-700);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .notice strong { color: var(--warning); }
+
+  /* フッター */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: var(--gray-400);
+    line-height: 1.8;
+  }
+
+  /* エラー */
+  .error-msg {
+    display: none;
+    color: var(--danger);
+    font-size: 13px;
+    margin-top: 6px;
+    font-weight: 600;
+  }
+
+  /* レスポンシブ */
+  @media (max-width: 480px) {
+    .result-grid { grid-template-columns: 1fr 1fr; }
+    .saishushoku-grid { grid-template-columns: 1fr 1fr; }
+    .radio-group.three { grid-template-columns: 1fr 1fr 1fr; }
+  }
+
+  /* アニメーション */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate { animation: fadeUp 0.4s ease forwards; }
+</style>
+</head>
+<body>
+<nav class="navbar" style="position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(8px);border-bottom:1px solid #e5e7eb;padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 4px rgba(0,0,0,0.06);">
+  <a href="index.html" style="font-size:17px;font-weight:800;color:#2563eb;text-decoration:none;display:flex;align-items:center;gap:6px;">📋 <span style="color:#1f2937;">退職・失業給付</span>完全ガイド</a>
+  <div style="display:flex;gap:4px;flex-wrap:wrap;">
+    <a href="timeline.html" style="font-size:13px;font-weight:600;color:#4b5563;padding:6px 10px;border-radius:8px;text-decoration:none;">📅 タイムライン</a>
+    <a href="voluntary.html" style="font-size:13px;font-weight:600;color:#4b5563;padding:6px 10px;border-radius:8px;text-decoration:none;">🙋 自己都合</a>
+    <a href="company.html" style="font-size:13px;font-weight:600;color:#4b5563;padding:6px 10px;border-radius:8px;text-decoration:none;">🏢 会社都合</a>
+    <a href="checklist.html" style="font-size:13px;font-weight:600;color:#4b5563;padding:6px 10px;border-radius:8px;text-decoration:none;">✅ チェックリスト</a>
+  </div>
+</nav>
+<div class="container">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="badge">🧮 無料 計算ツール</div>
+    <h1>失業給付金<span>いくらもらえる？</span><br>完全シミュレーター</h1>
+    <p>退職から初回振込まで、あなたの受給額を自動計算</p>
+    <div class="law-badge">✅ 2025年8月最新の基本手当日額・法改正対応済み</div>
+  </div>
+
+  <!-- 入力フォーム -->
+  <div class="card">
+    <div class="card-title"><div class="icon">📋</div>あなたの情報を入力</div>
+
+    <!-- 退職理由 -->
+    <div class="form-group">
+      <label>退職理由<span class="required">必須</span></label>
+      <div class="radio-group">
+        <label class="radio-label">
+          <input type="radio" name="reason" value="voluntary" checked>
+          <div class="radio-card">
+            <div class="r-icon">🙋</div>
+            <div class="r-text">自己都合</div>
+            <div class="r-sub">自分から辞めた</div>
+          </div>
+        </label>
+        <label class="radio-label">
+          <input type="radio" name="reason" value="company">
+          <div class="radio-card">
+            <div class="r-icon">🏢</div>
+            <div class="r-text">会社都合・特定理由</div>
+            <div class="r-sub">解雇・倒産・やむを得ず</div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- 給付制限（自己都合のみ） -->
+    <div class="form-group" id="restriction-group">
+      <label>過去5年間の自己都合退職<span class="required">必須</span><span class="hint">（給付制限期間に影響）</span></label>
+      <div class="radio-group">
+        <label class="radio-label">
+          <input type="radio" name="restriction" value="1month" checked>
+          <div class="radio-card">
+            <div class="r-icon">1️⃣</div>
+            <div class="r-text">初回 or 1回目</div>
+            <div class="r-sub">給付制限：1ヶ月</div>
+          </div>
+        </label>
+        <label class="radio-label">
+          <input type="radio" name="restriction" value="3month">
+          <div class="radio-card">
+            <div class="r-icon">3️⃣</div>
+            <div class="r-text">2回目以上</div>
+            <div class="r-sub">給付制限：3ヶ月</div>
+          </div>
+        </label>
+      </div>
+      <div style="font-size:12px;color:#d97706;margin-top:8px;padding:8px 12px;background:#fef3c7;border-radius:6px;">
+        ⚡ 2025年4月〜 自己都合の給付制限が <strong>2ヶ月→1ヶ月</strong> に短縮されました！
+      </div>
+    </div>
+
+    <!-- 離職時の年齢 -->
+    <div class="form-group">
+      <label>離職時の年齢<span class="required">必須</span></label>
+      <div class="radio-group three">
+        <label class="radio-label">
+          <input type="radio" name="age" value="under30" checked>
+          <div class="radio-card">
+            <div class="r-text">29歳以下</div>
+          </div>
+        </label>
+        <label class="radio-label">
+          <input type="radio" name="age" value="30to44">
+          <div class="radio-card">
+            <div class="r-text">30〜44歳</div>
+          </div>
+        </label>
+        <label class="radio-label">
+          <input type="radio" name="age" value="45to59">
+          <div class="radio-card">
+            <div class="r-text">45〜59歳</div>
+          </div>
+        </label>
+        <label class="radio-label">
+          <input type="radio" name="age" value="60to64">
+          <div class="radio-card">
+            <div class="r-text">60〜64歳</div>
+          </div>
+        </label>
+        <label class="radio-label" style="grid-column: span 2;">
+          <input type="radio" name="age" value="65over">
+          <div class="radio-card">
+            <div class="r-text">65歳以上</div>
+            <div class="r-sub">高年齢求職者給付金</div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- 雇用保険加入期間 -->
+    <div class="form-group">
+      <label>雇用保険の加入期間<span class="required">必須</span></label>
+      <select id="insured-period">
+        <option value="under6">6ヶ月未満（受給不可）</option>
+        <option value="6to11">6ヶ月以上1年未満</option>
+        <option value="1to4" selected>1年以上5年未満</option>
+        <option value="5to9">5年以上10年未満</option>
+        <option value="10to19">10年以上20年未満</option>
+        <option value="20over">20年以上</option>
+      </select>
+    </div>
+
+    <!-- 月収 -->
+    <div class="form-group">
+      <label>退職前6ヶ月の平均月収（額面）<span class="required">必須</span><span class="hint">※賞与除く・残業代含む</span></label>
+      <div class="input-wrap">
+        <input type="number" id="monthly-salary" placeholder="例：280000" min="0" max="9999999">
+        <span class="input-unit">円</span>
+      </div>
+      <div class="error-msg" id="salary-error">月収を入力してください</div>
+    </div>
+
+    <!-- 計算ボタン -->
+    <button class="btn-calc" onclick="calculate()">
+      🧮 今すぐ計算する
+    </button>
+  </div>
+
+  <!-- 結果エリア -->
+  <div id="result">
+
+    <!-- 総受給額ヒーロー -->
+    <div class="result-hero animate" id="hero-section">
+      <div class="label">💰 失業給付 受給総額（目安）</div>
+      <div class="total-amount"><span>約</span><span id="total-amount">0</span><span>万円</span></div>
+      <div class="sub-info" id="hero-sub"></div>
+    </div>
+
+    <!-- 詳細数値グリッド -->
+    <div class="result-grid animate">
+      <div class="result-item">
+        <div class="r-label">賃金日額</div>
+        <div class="r-value"><span id="wage-daily">0</span><span class="unit">円</span></div>
+      </div>
+      <div class="result-item highlight">
+        <div class="r-label">基本手当日額</div>
+        <div class="r-value"><span id="benefit-daily">0</span><span class="unit">円</span></div>
+      </div>
+      <div class="result-item">
+        <div class="r-label">所定給付日数</div>
+        <div class="r-value"><span id="benefit-days">0</span><span class="unit">日</span></div>
+      </div>
+      <div class="result-item">
+        <div class="r-label">給付率</div>
+        <div class="r-value"><span id="benefit-rate">0</span><span class="unit">%</span></div>
+      </div>
+      <div class="result-item">
+        <div class="r-label">初回振込まで</div>
+        <div class="r-value"><span id="first-payment">0</span><span class="unit">日後</span></div>
+      </div>
+      <div class="result-item">
+        <div class="r-label">1ヶ月あたり受取額</div>
+        <div class="r-value"><span id="monthly-benefit">0</span><span class="unit">万円</span></div>
+      </div>
+    </div>
+
+    <!-- 再就職手当 -->
+    <div class="saishushoku animate">
+      <h3>🎉 早期再就職なら「再就職手当」も！</h3>
+      <div class="saishushoku-grid">
+        <div class="saishushoku-item">
+          <div class="s-label">残日数2/3以上で就職</div>
+          <div class="s-value" id="saishushoku-high">0万円</div>
+          <div class="s-note">給付率70%</div>
+        </div>
+        <div class="saishushoku-item">
+          <div class="s-label">残日数1/3以上で就職</div>
+          <div class="s-value" id="saishushoku-low">0万円</div>
+          <div class="s-note">給付率60%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- タイムライン -->
+    <div class="card animate">
+      <div class="card-title"><div class="icon">📅</div>退職後の流れ・タイムライン</div>
+      <div class="timeline" id="timeline"></div>
+    </div>
+
+    <!-- 注意事項 -->
+    <div class="notice animate">
+      <strong>⚠️ ご注意：</strong>本ツールは目安の計算です。実際の受給額はハローワークの審査・離職理由の判定・賃金の詳細により異なります。正確な金額はお近くのハローワークへご確認ください。<br>
+      基本手当日額は令和7年8月1日〜の適用額を使用しています。
+    </div>
+
+    <!-- リセットボタン -->
+    <button class="btn-calc" onclick="resetForm()" style="background: linear-gradient(135deg, #6b7280, #4b5563); box-shadow: none; margin-bottom: 20px;">
+      🔄 もう一度計算する
+    </button>
+  </div>
+
+  <div class="footer">
+    ※本ツールは情報提供を目的としたものです。<br>
+    令和7年8月1日施行の基本手当日額・2025年4月施行の給付制限短縮に対応。<br>
+    © 退職・失業給付 完全ガイド
+  </div>
+
+</div>
+
+<script>
+// ============================================================
+//  計算ロジック
+// ============================================================
+
+// 基本手当日額を計算（2025年8月〜）
+function calcDailyBenefit(w, ageGroup) {
+  let y = 0;
+  if (ageGroup === 'under30') {
+    if (w < 3014) y = 0;
+    else if (w < 5340) y = 0.8 * w;
+    else if (w <= 13140) y = 0.8 * w - 0.3 * ((w - 5340) / (13140 - 5340)) * w;
+    else if (w <= 14510) y = 0.5 * w;
+    else y = 7255;
+  } else if (ageGroup === '30to44') {
+    if (w < 3014) y = 0;
+    else if (w < 5340) y = 0.8 * w;
+    else if (w <= 13140) y = 0.8 * w - 0.3 * ((w - 5340) / (13140 - 5340)) * w;
+    else if (w <= 16110) y = 0.5 * w;
+    else y = 8055;
+  } else if (ageGroup === '45to59') {
+    if (w < 3014) y = 0;
+    else if (w < 5340) y = 0.8 * w;
+    else if (w <= 13140) y = 0.8 * w - 0.3 * ((w - 5340) / (13140 - 5340)) * w;
+    else if (w <= 17740) y = 0.5 * w;
+    else y = 8870;
+  } else if (ageGroup === '60to64') {
+    if (w < 3014) y = 0;
+    else if (w < 5340) y = 0.8 * w;
+    else if (w <= 11800) {
+      const a = 0.8 * w - 0.35 * ((w - 5340) / (11800 - 5340)) * w;
+      const b = 0.05 * w + (11800 * 0.4);
+      y = Math.min(a, b);
+    } else if (w <= 16940) y = 0.45 * w;
+    else y = 7623;
+  } else {
+    // 65歳以上：高年齢求職者給付金（30日 or 50日）
+    y = 0.5 * w;
+  }
+  return Math.floor(y);
+}
+
+// 給付率を推定
+function estimateRate(w, y) {
+  if (w <= 0) return 0;
+  return Math.round((y / w) * 100);
+}
+
+// 所定給付日数（自己都合）
+function getBenefitDaysVoluntary(period) {
+  if (period === 'under6' || period === '6to11') return 0; // 受給不可（自己都合は12ヶ月必要）
+  if (period === '1to4') return 90;
+  if (period === '5to9') return 90;
+  if (period === '10to19') return 120;
+  if (period === '20over') return 150;
+  return 0;
+}
+
+// 所定給付日数（会社都合）
+function getBenefitDaysCompany(period, ageGroup) {
+  if (period === 'under6') return 90;
+  if (period === '6to11') return 90;
+  // 1年以上5年未満
+  if (period === '1to4') {
+    if (ageGroup === 'under30') return 90;
+    if (ageGroup === '30to44') return 120;
+    if (ageGroup === '45to59') return 180; // 35〜44:150, 45〜59:180
+    if (ageGroup === '60to64') return 150;
+    if (ageGroup === '65over') return 50;
+    return 90;
+  }
+  // 5年以上10年未満
+  if (period === '5to9') {
+    if (ageGroup === 'under30') return 120;
+    if (ageGroup === '30to44') return 180;
+    if (ageGroup === '45to59') return 240;
+    if (ageGroup === '60to64') return 180;
+    if (ageGroup === '65over') return 50;
+    return 120;
+  }
+  // 10年以上20年未満
+  if (period === '10to19') {
+    if (ageGroup === 'under30') return 180;
+    if (ageGroup === '30to44') return 210;
+    if (ageGroup === '45to59') return 270;
+    if (ageGroup === '60to64') return 210;
+    if (ageGroup === '65over') return 50;
+    return 180;
+  }
+  // 20年以上
+  if (period === '20over') {
+    if (ageGroup === 'under30') return 180;
+    if (ageGroup === '30to44') return 240;
+    if (ageGroup === '45to59') return 330;
+    if (ageGroup === '60to64') return 240;
+    if (ageGroup === '65over') return 50;
+    return 240;
+  }
+  return 90;
+}
+
+// 数値フォーマット
+function fmt(n) { return n.toLocaleString('ja-JP'); }
+function fmtMan(n) { return (n / 10000).toFixed(1); }
+
+// タイムライン生成
+function buildTimeline(reason, restriction, benefitDays, firstPayDays) {
+  const isCompany = reason === 'company';
+  const limit = isCompany ? 0 : (restriction === '3month' ? 90 : 30);
+  const items = [];
+
+  items.push({
+    day: 'Day 0', icon: '🏢', color: 'blue',
+    title: '退職日',
+    desc: '会社から「離職票」「雇用保険被保険者証」を受け取る（郵送の場合は退職後10〜14日後）'
+  });
+  items.push({
+    day: 'Day 14〜21', icon: '🏛️', color: 'blue',
+    title: 'ハローワークへ申請',
+    desc: '離職票・マイナンバーカード・写真2枚・通帳を持参。求職申込＋受給資格決定手続き'
+  });
+  items.push({
+    day: '申請後 Day 7', icon: '⏳', color: 'yellow',
+    title: '待期期間 満了（7日間）',
+    desc: 'この7日間はアルバイトNG。全員共通で発生する期間'
+  });
+
+  if (!isCompany) {
+    items.push({
+      day: `待期後 +${limit === 30 ? '1ヶ月' : '3ヶ月'}`, icon: '🚫', color: 'yellow',
+      title: `給付制限期間（${limit === 30 ? '1ヶ月' : '3ヶ月'}）`,
+      desc: limit === 30
+        ? '⚡2025年4月〜 2ヶ月→1ヶ月に短縮！この期間はアルバイト可（上限あり）'
+        : '過去5年間で2回目以上の自己都合退職のため3ヶ月の給付制限'
+    });
+  }
+
+  items.push({
+    day: `待期後 約4週間`, icon: '📝', color: 'blue',
+    title: '第1回 失業認定日',
+    desc: '指定日にハローワークへ。求職活動実績が1回以上必要。認定されれば初回振込へ'
+  });
+  items.push({
+    day: `認定後 約5営業日`, icon: '💰', color: 'green',
+    title: `🎉 初回振込！（申請から約${firstPayDays}日後）`,
+    desc: `初回は21日分が振込まれます。以降は4週間ごとに28日分ずつ受取り。合計${benefitDays}日分`
+  });
+  items.push({
+    day: '受給中', icon: '🔄', color: 'blue',
+    title: '4週間ごとに認定→振込を繰り返す',
+    desc: '各認定期間中に求職活動実績が2回以上必要。就職が決まったらハローワークへ報告'
+  });
+
+  return items;
+}
+
+// ============================================================
+//  メイン計算
+// ============================================================
+function calculate() {
+  const salary = parseInt(document.getElementById('monthly-salary').value);
+  if (!salary || salary <= 0) {
+    document.getElementById('salary-error').style.display = 'block';
+    document.getElementById('monthly-salary').focus();
+    return;
+  }
+  document.getElementById('salary-error').style.display = 'none';
+
+  const reason = document.querySelector('input[name="reason"]:checked').value;
+  const ageGroup = document.querySelector('input[name="age"]:checked').value;
+  const period = document.getElementById('insured-period').value;
+  const restriction = document.querySelector('input[name="restriction"]:checked')?.value || '1month';
+  const isCompany = reason === 'company';
+  const is65over = ageGroup === '65over';
+
+  // 賃金日額
+  const wageDailyRaw = (salary * 6) / 180;
+  const wageDaily = Math.floor(wageDailyRaw);
+
+  // 基本手当日額
+  const benefitDaily = calcDailyBenefit(wageDaily, ageGroup);
+
+  // 給付率
+  const rate = estimateRate(wageDaily, benefitDaily);
+
+  // 所定給付日数
+  let benefitDays = 0;
+  if (period === 'under6') {
+    // 自己都合は加入12ヶ月必要、会社都合は6ヶ月でOK
+    if (isCompany) benefitDays = getBenefitDaysCompany(period, ageGroup);
+    else benefitDays = 0;
+  } else if (period === '6to11') {
+    if (isCompany) benefitDays = getBenefitDaysCompany(period, ageGroup);
+    else benefitDays = 0; // 自己都合は受給不可
+  } else {
+    benefitDays = isCompany
+      ? getBenefitDaysCompany(period, ageGroup)
+      : getBenefitDaysVoluntary(period);
+  }
+
+  // 高年齢求職者給付金（65歳以上）
+  let is65note = '';
+  if (is65over) {
+    benefitDays = period === '1to4' || period === '5to9' ? 30 : 50;
+    is65note = '（高年齢求職者給付金：一時金）';
+  }
+
+  // 受給不可チェック
+  if (benefitDays === 0) {
+    alert('ご入力の条件では失業給付を受給できない可能性があります。\n\n自己都合退職の場合は離職前2年間に12ヶ月以上の加入が必要です。\nハローワークへご相談ください。');
+    return;
+  }
+
+  // 総受給額
+  const totalBenefit = benefitDaily * benefitDays;
+
+  // 初回振込まで（日数目安）
+  const limitDays = isCompany ? 0 : (restriction === '3month' ? 90 : 30);
+  // 待期7日 + 給付制限 + 説明会・認定までの期間（約28日） + 振込5営業日
+  const firstPayDays = 7 + limitDays + 28 + 7;
+
+  // 月あたり（28日分）
+  const monthlyBenefit = benefitDaily * 28;
+
+  // 再就職手当
+  const saishushokuHigh = Math.floor(benefitDaily * benefitDays * 0.7);
+  const saishushokuLow = Math.floor(benefitDaily * benefitDays * 0.6);
+
+  // ============================================================
+  //  結果表示
+  // ============================================================
+  document.getElementById('total-amount').textContent = fmtMan(totalBenefit);
+  document.getElementById('hero-sub').textContent =
+    `基本手当日額 ${fmt(benefitDaily)}円 × ${benefitDays}日分${is65note}`;
+
+  document.getElementById('wage-daily').textContent = fmt(wageDaily);
+  document.getElementById('benefit-daily').textContent = fmt(benefitDaily);
+  document.getElementById('benefit-days').textContent = benefitDays;
+  document.getElementById('benefit-rate').textContent = rate;
+  document.getElementById('first-payment').textContent = `約${firstPayDays}`;
+  document.getElementById('monthly-benefit').textContent = fmtMan(monthlyBenefit);
+
+  document.getElementById('saishushoku-high').textContent = `約${fmtMan(saishushokuHigh)}万円`;
+  document.getElementById('saishushoku-low').textContent = `約${fmtMan(saishushokuLow)}万円`;
+
+  // タイムライン
+  const tlContainer = document.getElementById('timeline');
+  tlContainer.innerHTML = '';
+  const tlItems = buildTimeline(reason, restriction, benefitDays, firstPayDays);
+  tlItems.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'tl-item';
+    div.innerHTML = `
+      <div class="tl-dot ${item.color}">${item.icon}</div>
+      <div class="tl-content">
+        <div class="tl-day">${item.day}</div>
+        <div class="tl-title">${item.title}</div>
+        <div class="tl-desc">${item.desc}</div>
+      </div>`;
+    tlContainer.appendChild(div);
+  });
+
+  // 表示
+  const resultEl = document.getElementById('result');
+  resultEl.style.display = 'block';
+  resultEl.querySelectorAll('.animate').forEach((el, i) => {
+    el.style.opacity = '0';
+    setTimeout(() => {
+      el.style.animation = 'none';
+      el.offsetHeight;
+      el.style.animation = 'fadeUp 0.4s ease forwards';
+    }, i * 80);
+  });
+
+  // スクロール
+  setTimeout(() => {
+    resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+// リセット
+function resetForm() {
+  document.getElementById('result').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// 退職理由切り替えで給付制限グループ表示/非表示
+document.querySelectorAll('input[name="reason"]').forEach(el => {
+  el.addEventListener('change', function() {
+    const rg = document.getElementById('restriction-group');
+    rg.style.display = this.value === 'voluntary' ? 'block' : 'none';
+  });
+});
+</script>
+</body>
+</html>
