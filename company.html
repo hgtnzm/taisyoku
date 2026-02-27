@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会社都合退職 完全ガイド｜最大330日・給付制限なしで受け取る方法</title>
+<meta name="description" content="会社都合退職（解雇・倒産・希望退職）の失業給付を完全解説。給付制限なし・最大330日・加入条件6ヶ月など、自己都合との違いと受給最大化の方法を解説。">
+<link rel="stylesheet" href="common.css">
+<style>
+.guide-container { max-width: 800px; margin: 0 auto; padding: 0 16px 80px; }
+
+.info-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 32px; }
+.info-card {
+  background: white; border-radius: var(--radius-lg);
+  box-shadow: var(--shadow); padding: 20px 16px;
+  text-align: center; border-top: 4px solid var(--success);
+}
+.info-card.blue { border-top-color: var(--primary); }
+.info-card.orange { border-top-color: var(--warning); }
+.info-num { font-size: 30px; font-weight: 900; color: var(--success); line-height: 1; margin-bottom: 4px; }
+.info-card.blue .info-num { color: var(--primary); }
+.info-card.orange .info-num { color: var(--warning); }
+.info-unit { font-size: 13px; color: var(--gray-500); }
+.info-label { font-size: 13px; font-weight: 700; color: var(--gray-700); margin-top: 6px; }
+
+.days-table { width: 100%; border-collapse: collapse; }
+.days-table th { background: var(--success); color: white; padding: 12px 14px; font-size: 13px; text-align: center; }
+.days-table th:first-child { text-align: left; }
+.days-table td { padding: 10px 14px; border-bottom: 1px solid var(--gray-100); font-size: 13px; text-align: center; vertical-align: middle; }
+.days-table tr:last-child td { border-bottom: none; }
+.days-table tr:hover td { background: var(--gray-50); }
+.days-table td:first-child { text-align: left; font-weight: 600; }
+.days-table .hi { color: var(--success); font-weight: 700; font-size: 15px; }
+.days-table .md { color: var(--primary); font-weight: 600; }
+
+.type-card {
+  background: white; border-radius: var(--radius-lg);
+  border: 2px solid var(--gray-200); padding: 20px;
+  margin-bottom: 12px; cursor: pointer;
+  transition: border-color 0.2s;
+}
+.type-card:hover { border-color: var(--success); }
+.type-card-header { display: flex; justify-content: space-between; align-items: center; }
+.type-card h4 { font-size: 15px; font-weight: 800; color: var(--gray-800); }
+.type-card .type-arrow { color: var(--gray-400); transition: transform 0.2s; }
+.type-card.open .type-arrow { transform: rotate(180deg); }
+.type-body { display: none; margin-top: 14px; font-size: 14px; color: var(--gray-600); line-height: 1.8; padding-top: 14px; border-top: 1px solid var(--gray-100); }
+.type-card.open .type-body { display: block; }
+
+.tabs { display: flex; gap: 0; border-bottom: 2px solid var(--gray-200); margin-bottom: 24px; overflow-x: auto; }
+.tab-btn { padding: 12px 18px; border: none; background: transparent; font-size: 14px; font-weight: 700; color: var(--gray-500); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; white-space: nowrap; }
+.tab-btn.active { color: var(--success); border-bottom-color: var(--success); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.compare-highlight {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;
+}
+.compare-box {
+  border-radius: var(--radius); padding: 18px 16px; text-align: center;
+}
+.compare-box.vol { background: var(--warning-light); border: 2px solid var(--warning); }
+.compare-box.com { background: var(--success-light); border: 2px solid var(--success); }
+.compare-box .cb-label { font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+.compare-box.vol .cb-label { color: var(--warning); }
+.compare-box.com .cb-label { color: var(--success); }
+.compare-box .cb-val { font-size: 22px; font-weight: 900; }
+.compare-box.vol .cb-val { color: var(--warning); }
+.compare-box.com .cb-val { color: var(--success); }
+.compare-box .cb-note { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="logo">📋 <span>退職・失業給付</span>完全ガイド</a>
+  <ul class="nav-links">
+    <li><a href="timeline.html">📅 タイムライン</a></li>
+    <li><a href="voluntary.html">🙋 自己都合</a></li>
+    <li><a href="company.html" class="active">🏢 会社都合</a></li>
+    <li><a href="checklist.html">✅ チェックリスト</a></li>
+    <li><a href="calculator.html" class="btn-calc">🧮 給付金計算</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="badge">🏢 会社都合退職 完全ガイド</div>
+  <h1><em>会社都合退職</em>の<br>失業給付を最大化する</h1>
+  <p>給付制限なし・最大330日・加入条件6ヶ月<br>自己都合との違いと受給最大化の完全解説</p>
+</div>
+
+<div class="guide-container">
+
+  <!-- KEY ADVANTAGE -->
+  <div class="alert alert-success" style="margin-bottom:24px;font-size:15px;">
+    ✅ <strong>会社都合退職の最大メリット：</strong>給付制限なし（申請7日後から受給可能）・所定給付日数が最大<strong>2倍以上</strong>・雇用保険加入条件が6ヶ月に緩和
+  </div>
+
+  <!-- KEY NUMBERS -->
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-num">なし</div>
+      <div class="info-unit">（7日待機後すぐ）</div>
+      <div class="info-label">給付制限<br>自己都合は1〜3ヶ月</div>
+    </div>
+    <div class="info-card blue">
+      <div class="info-num">最大330</div>
+      <div class="info-unit">日</div>
+      <div class="info-label">所定給付日数<br>（45歳以上・加入20年以上）</div>
+    </div>
+    <div class="info-card orange">
+      <div class="info-num">6ヶ月</div>
+      <div class="info-unit">（直前1年間）</div>
+      <div class="info-label">受給に必要な<br>雇用保険加入期間</div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="card">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('compare')">自己都合との比較</button>
+      <button class="tab-btn" onclick="switchTab('types')">会社都合の種類</button>
+      <button class="tab-btn" onclick="switchTab('days')">受給日数表</button>
+      <button class="tab-btn" onclick="switchTab('how')">手続き方法</button>
+    </div>
+
+    <!-- TAB: 比較 -->
+    <div class="tab-content active" id="tab-compare">
+      <div class="card-title"><div class="icon">🔍</div>自己都合 vs 会社都合 徹底比較</div>
+      <div class="compare-highlight">
+        <div class="compare-box vol">
+          <div class="cb-label">🙋 自己都合退職</div>
+          <div class="cb-val">1〜3ヶ月</div>
+          <div class="cb-note">給付制限（2025年4月〜）</div>
+        </div>
+        <div class="compare-box com">
+          <div class="cb-label">🏢 会社都合退職</div>
+          <div class="cb-val">なし</div>
+          <div class="cb-note">給付制限（7日待機のみ）</div>
+        </div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>比較項目</th>
+              <th>自己都合</th>
+              <th style="color:var(--success);">会社都合</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>給付制限</td>
+              <td>1〜3ヶ月</td>
+              <td style="color:var(--success);font-weight:700;">なし</td>
+            </tr>
+            <tr>
+              <td>初回振込まで</td>
+              <td>約45〜75日</td>
+              <td style="color:var(--success);font-weight:700;">約30〜35日</td>
+            </tr>
+            <tr>
+              <td>加入条件</td>
+              <td>2年間で12ヶ月</td>
+              <td style="color:var(--success);font-weight:700;">1年間で6ヶ月</td>
+            </tr>
+            <tr>
+              <td>最大給付日数</td>
+              <td>150日</td>
+              <td style="color:var(--success);font-weight:700;">330日</td>
+            </tr>
+            <tr>
+              <td>給付率</td>
+              <td>50〜80%</td>
+              <td>50〜80%（同じ）</td>
+            </tr>
+            <tr>
+              <td>国保料軽減</td>
+              <td>なし</td>
+              <td style="color:var(--success);font-weight:700;">最大7割軽減</td>
+            </tr>
+            <tr>
+              <td>障害等の特例</td>
+              <td>なし</td>
+              <td style="color:var(--success);font-weight:700;">就職困難者は最大360日</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB: 種類 -->
+    <div class="tab-content" id="tab-types">
+      <div class="card-title"><div class="icon">📋</div>会社都合・特定受給資格者の種類</div>
+      <p style="font-size:14px;color:var(--gray-600);margin-bottom:16px;">以下に該当する場合、特定受給資格者として優遇されます。</p>
+
+      <div class="type-card" onclick="toggleType(this)">
+        <div class="type-card-header">
+          <h4>🚫 解雇（普通解雇・整理解雇）</h4>
+          <span class="type-arrow">▼</span>
+        </div>
+        <div class="type-body">
+          会社の判断による解雇。整理解雇（リストラ）も含まれます。解雇予告通知書または解雇通知書を離職票とともに提出してください。自己都合を強制されそうな場合はサインせず、ハローワークに相談しましょう。
+        </div>
+      </div>
+      <div class="type-card" onclick="toggleType(this)">
+        <div class="type-card-header">
+          <h4>🏚️ 会社の倒産・廃業</h4>
+          <span class="type-arrow">▼</span>
+        </div>
+        <div class="type-body">
+          会社が倒産・廃業した場合。離職票の発行が遅れる場合は、ハローワークに倒産事実を申し出ることで手続きを進められます。また、「未払賃金立替払制度」により未払い賃金の80%を国が立て替える制度もあります。
+        </div>
+      </div>
+      <div class="type-card" onclick="toggleType(this)">
+        <div class="type-card-header">
+          <h4>✋ 希望退職・早期退職（特定の条件あり）</h4>
+          <span class="type-arrow">▼</span>
+        </div>
+        <div class="type-body">
+          会社が募集した希望退職・早期退職に応募した場合。自己都合扱いになることがありますが、会社都合に準じた扱いになる場合もあります。離職票の「離職理由コード」を確認し、疑問がある場合はハローワークに申し出てください。
+        </div>
+      </div>
+      <div class="type-card" onclick="toggleType(this)">
+        <div class="type-card-header">
+          <h4>📝 雇い止め（有期契約の不更新）</h4>
+          <span class="type-arrow">▼</span>
+        </div>
+        <div class="type-body">
+          パート・アルバイト・派遣などの有期雇用契約が更新されなかった場合（雇用期間3年以上、または2回以上の更新後）。「特定受給資格者」または「特定理由離職者」に該当します。契約書・更新書類を保管しておきましょう。
+        </div>
+      </div>
+      <div class="type-card" onclick="toggleType(this)">
+        <div class="type-card-header">
+          <h4>🌍 事業所の移転・閉鎖による退職</h4>
+          <span class="type-arrow">▼</span>
+        </div>
+        <div class="type-body">
+          勤務地が遠方に移転・閉鎖になり、通勤困難になった場合。片道2時間以上になる場合などが対象です。引越しが困難な家庭の事情がある場合も含まれます。
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: 日数表 -->
+    <div class="tab-content" id="tab-days">
+      <div class="card-title"><div class="icon">📅</div>所定給付日数（会社都合・特定受給資格者）</div>
+      <p style="font-size:14px;color:var(--gray-600);margin-bottom:16px;">年齢と加入期間の両方で日数が変わります。自己都合より大幅に多くなります。</p>
+      <div style="overflow-x:auto;">
+        <table class="days-table">
+          <thead>
+            <tr>
+              <th>加入期間</th>
+              <th>29歳以下</th>
+              <th>30〜34歳</th>
+              <th>35〜44歳</th>
+              <th>45〜59歳</th>
+              <th>60〜64歳</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>6ヶ月〜1年未満</td>
+              <td>90日</td><td>90日</td><td>90日</td><td>90日</td><td>90日</td>
+            </tr>
+            <tr>
+              <td>1年以上5年未満</td>
+              <td class="md">90日</td><td class="md">90日</td><td class="md">90日</td><td class="md">180日</td><td class="md">150日</td>
+            </tr>
+            <tr>
+              <td>5年以上10年未満</td>
+              <td class="md">120日</td><td class="md">180日</td><td class="md">180日</td><td class="hi">240日</td><td class="md">180日</td>
+            </tr>
+            <tr>
+              <td>10年以上20年未満</td>
+              <td class="md">180日</td><td class="hi">210日</td><td class="hi">240日</td><td class="hi">270日</td><td class="hi">210日</td>
+            </tr>
+            <tr>
+              <td>20年以上</td>
+              <td class="hi">240日</td><td class="hi">240日</td><td class="hi">270日</td><td class="hi">330日</td><td class="hi">240日</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="alert alert-info" style="margin-top:14px;">
+        💡 緑色は最大クラスの給付日数です。<strong>45歳以上・加入20年以上の場合、最大330日（約11ヶ月分）</strong>受け取れます。
+      </div>
+      <div class="alert alert-warning" style="margin-top:10px;">
+        ⚠️ 就職困難者（障害をお持ちの方など）はさらに長く、<strong>最大360日</strong>の給付を受けられる場合があります。
+      </div>
+    </div>
+
+    <!-- TAB: 手続き -->
+    <div class="tab-content" id="tab-how">
+      <div class="card-title"><div class="icon">📋</div>会社都合退職後の手続き</div>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>離職票の「離職理由コード」を確認する</h3>
+            <p>離職票-2の右下に「離職理由」欄があります。会社都合の場合は「11」（解雇）「21」（倒産）「31」（契約期間満了）などのコードが記入されています。<strong>自己都合（40〜）になっていないか必ず確認</strong>してください。</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>離職理由に異議がある場合はハローワークで申し立て</h3>
+            <p>会社が自己都合扱いにしていても、実態が会社都合であれば<strong>ハローワークへの申し出で変更できる場合があります</strong>。証拠書類（メール・解雇通知・タイムカードなど）を持参しましょう。</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>国民健康保険の軽減申請も同時に行う</h3>
+            <p>会社都合退職者は<strong>国民健康保険料が最大7割軽減</strong>されます。市区町村窓口で「離職票」または「雇用保険受給資格者証」を提示して申請してください。</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="background:var(--success);">4</div>
+          <div class="step-content">
+            <h3>早期再就職で再就職手当を獲得する</h3>
+            <p>会社都合退職は給付日数が長い分、再就職手当の金額も大きくなります。<strong>残日数が2/3以上の状態で就職 → 残日数×70%</strong>が一括支給されます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="card" style="text-align:center;background:linear-gradient(135deg,#f0fdf4,#eff6ff);">
+    <div style="font-size:32px;margin-bottom:12px;">🧮</div>
+    <h3 style="font-size:18px;font-weight:800;margin-bottom:8px;">最大330日分の受給額を計算しよう</h3>
+    <p style="color:var(--gray-600);font-size:14px;margin-bottom:20px;">月収・年齢・加入期間を入力するだけで、受給総額・再就職手当を自動計算します</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="calculator.html" class="btn btn-success">🧮 給付金シミュレーター</a>
+      <a href="checklist.html" class="btn btn-outline">✅ 手続きチェックリスト</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">📋 退職・失業給付 完全ガイド</div>
+      <p>退職から失業給付受け取りまでをわかりやすく解説。2025年最新法改正対応。</p>
+      <div class="disclaimer">⚠️ 本サイトは情報提供を目的としており、個別の法律・税務アドバイスではありません。</div>
+    </div>
+    <div>
+      <h4>コンテンツ</h4>
+      <ul>
+        <li><a href="calculator.html">給付金計算ツール</a></li>
+        <li><a href="timeline.html">Day0〜Day60タイムライン</a></li>
+        <li><a href="voluntary.html">自己都合完全ガイド</a></li>
+        <li><a href="company.html">会社都合完全ガイド</a></li>
+        <li><a href="checklist.html">退職後チェックリスト</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>公式情報</h4>
+      <ul>
+        <li><a href="https://www.hellowork.mhlw.go.jp/" target="_blank">ハローワーク</a></li>
+        <li><a href="https://www.mhlw.go.jp/" target="_blank">厚生労働省</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 退職・失業給付 完全ガイド</div>
+</footer>
+
+<script>
+function switchTab(name) {
+  const keys = ['compare','types','days','how'];
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', keys[i]===name));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.id==='tab-'+name));
+}
+function toggleType(el) { el.classList.toggle('open'); }
+</script>
+</body>
+</html>
