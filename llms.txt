@@ -8,6 +8,7 @@
 
 ## ページ一覧
 
-- [トップページ（総合ガイド・FAQ）](https://hgtnzm.github.io/taisyoku/index.html): 失業給付の全体像とよくある質問（離職票・アルバイト・特定理由離職者・再就職手当など）
+- [トップページ（総合ガイド・FAQ）](https://shitugyoukyufu.com/index.html
+): 失業給付の全体像とよくある質問（離職票・アルバイト・特定理由離職者・再就職手当など）
 - [自己都合退職 完全ガイド](https://hgtnzm.github.io/taisyoku/voluntary.html): 受給条件、給付制限期間、所定給付日数一覧表、特定理由離職者になれる7つのケース、損しないためのポイント
 - [失業給付 計算ツール](https://hgtnzm.github.io/taisyoku/calculator.html): 退職理由・年齢・雇用保険加入期間・月収を入力すると基本手当日額・所定給付日数・総受給額を自動計算
