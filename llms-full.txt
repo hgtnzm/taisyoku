@@ -3,7 +3,8 @@
 > 退職後の失業保険（雇用保険の基本手当）の受給条件、計算方法、手続きの流れを
 > 網羅的に解説する日本語の情報サイトです。自己都合・会社都合の両方に対応し、
 > 2025年4月の制度改正についても反映しています。
-> サイトURL: https://hgtnzm.github.io/taisyoku/
+> サイトURL:https://shitugyoukyufu.com/
+
 
 ---
 
@@ -192,7 +193,8 @@ URL: https://hgtnzm.github.io/taisyoku/calculator.html
 ## サイト情報
 
 - サイト名: 退職・失業給付ガイド
-- URL: https://hgtnzm.github.io/taisyoku/
+- URL: https://shitugyoukyufu.com/
+
 - 対象読者: 退職を検討している人、退職直後で手続きを知りたい人
 - 対象制度: 雇用保険（基本手当・再就職手当・高年齢求職者給付金）
 - 制度情報の基準時点: 2025年4月改正対応
