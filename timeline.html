@@ -154,6 +154,115 @@
   margin-bottom: 20px;
 }
 .difficult-info-box strong { color: #7c3aed; }
+/* ========== カレンダー ========== */
+.cal-section {
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--primary-light);
+  padding: 24px;
+  margin: 24px 0;
+  box-shadow: var(--shadow);
+}
+.cal-section-title {
+  font-weight: 800; font-size: 16px;
+  color: var(--primary); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.cal-input-row {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 20px; flex-wrap: wrap;
+}
+.cal-input-row label {
+  font-size: 14px; font-weight: 700; color: var(--gray-700);
+  margin-bottom: 0;
+}
+.cal-input-row input[type="date"] {
+  padding: 10px 14px;
+  border: 2px solid var(--gray-200);
+  border-radius: 8px;
+  font-size: 15px;
+  color: var(--gray-800);
+  background: var(--gray-50);
+  font-family: inherit;
+}
+.cal-input-row input[type="date"]:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+.cal-btn {
+  padding: 10px 20px;
+  background: var(--primary);
+  color: white;
+  border: none; border-radius: 8px;
+  font-size: 14px; font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.cal-btn:hover { background: var(--primary-dark); }
+
+.cal-grid-wrap {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  justify-content: center;
+}
+.cal-month {
+  flex: 0 0 auto;
+  width: 220px;
+  background: var(--gray-50);
+  border-radius: 10px;
+  padding: 12px;
+}
+.cal-month-title {
+  text-align: center;
+  font-weight: 800; font-size: 14px;
+  color: var(--gray-800);
+  margin-bottom: 8px;
+}
+.cal-weekdays {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  text-align: center; font-size: 11px; font-weight: 700;
+  color: var(--gray-400); margin-bottom: 4px;
+}
+.cal-days {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+.cal-day {
+  position: relative;
+  text-align: center;
+  font-size: 12px;
+  padding: 4px 0;
+  border-radius: 6px;
+  color: var(--gray-700);
+  line-height: 1.6;
+}
+.cal-day.empty { visibility: hidden; }
+.cal-day.today { font-weight: 800; }
+.cal-day.sat { color: #2563eb; }
+.cal-day.sun { color: #dc2626; }
+
+/* イベント色 */
+.cal-day.ev-retire { background: #fecaca; color: #991b1b; font-weight: 800; }
+.cal-day.ev-docs { background: #fed7aa; color: #9a3412; }
+.cal-day.ev-hw { background: #bbf7d0; color: #166534; font-weight: 700; }
+.cal-day.ev-wait { background: #e5e7eb; color: #4b5563; }
+.cal-day.ev-restrict { background: #fef3c7; color: #92400e; }
+.cal-day.ev-nintei { background: #c4b5fd; color: #5b21b6; font-weight: 700; }
+.cal-day.ev-payment { background: #86efac; color: #166534; font-weight: 800; }
+
+.cal-legend {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-top: 16px; justify-content: center;
+}
+.cal-legend-item {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 11px; color: var(--gray-600);
+}
+.cal-legend-dot {
+  width: 12px; height: 12px; border-radius: 3px;
+  flex-shrink: 0;
+}
+
 </style>
 <script type="application/ld+json">
 {
@@ -257,6 +366,20 @@
   </div>
 
   <!-- 想定スケジュール -->
+    <!-- ビジュアルカレンダー -->
+  <div class="cal-section" id="cal-section">
+    <div class="cal-section-title">📅 あなたの退職カレンダー</div>
+    <div class="cal-input-row">
+      <label for="retire-date">退職日を入力：</label>
+      <input type="date" id="retire-date" value="">
+      <button class="cal-btn" onclick="generateCalendar()">カレンダーを表示</button>
+    </div>
+    <div id="cal-result" style="display:none;">
+      <div class="cal-grid-wrap" id="cal-grid"></div>
+      <div class="cal-legend" id="cal-legend"></div>
+    </div>
+  </div>
+
   <div class="calendar-card">
     <div class="calendar-title">📆 あなたの想定スケジュール（例：1月31日退職）</div>
     <div id="schedule-rows">
@@ -585,6 +708,159 @@ function switchType(type) {
 
 // 初期表示
 renderSchedule('voluntary');
+  
+// ============================================================
+//  ビジュアルカレンダー
+// ============================================================
+
+function generateCalendar() {
+  const input = document.getElementById('retire-date').value;
+  if (!input) { alert('退職日を入力してください'); return; }
+
+  const retireDate = new Date(input);
+  const type = document.getElementById('btn-company').classList.contains('active') ? 'company'
+             : document.getElementById('btn-difficult').classList.contains('active') ? 'difficult'
+             : 'voluntary';
+
+  // 日付計算ヘルパー
+  function addDays(d, n) { const r = new Date(d); r.setDate(r.getDate() + n); return r; }
+  function fmt(d) { return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+  function sameDay(a, b) { return fmt(a) === fmt(b); }
+  function inRange(d, start, end) { return d >= start && d <= end; }
+
+  // イベント日付を計算
+  const day0 = retireDate;
+  const docsStart = addDays(day0, 7);
+  const docsEnd = addDays(day0, 14);
+  const hwDate = addDays(day0, 14); // 申請日（目安）
+  const waitStart = addDays(hwDate, 1);
+  const waitEnd = addDays(hwDate, 7);
+
+  let restrictStart = null, restrictEnd = null;
+  if (type === 'voluntary') {
+    restrictStart = addDays(waitEnd, 1);
+    restrictEnd = addDays(waitEnd, 30); // 1ヶ月（初回）
+  }
+
+  const ninteiBase = (type === 'voluntary') ? addDays(restrictEnd || waitEnd, 28) : addDays(waitEnd, 28);
+  const paymentDate = addDays(ninteiBase, 7);
+
+  // 表示範囲：退職月〜振込月+1ヶ月
+  const startMonth = new Date(day0.getFullYear(), day0.getMonth(), 1);
+  const endMonth = new Date(paymentDate.getFullYear(), paymentDate.getMonth() + 1, 1);
+
+  // 月ごとにカレンダー生成
+  const gridEl = document.getElementById('cal-grid');
+  gridEl.innerHTML = '';
+
+  let current = new Date(startMonth);
+  while (current < endMonth) {
+    const year = current.getFullYear();
+    const month = current.getMonth();
+    const firstDay = new Date(year, month, 1).getDay(); // 0=日
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    const monthEl = document.createElement('div');
+    monthEl.className = 'cal-month';
+
+    const monthNames = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+    monthEl.innerHTML = `
+      <div class="cal-month-title">${year}年 ${monthNames[month]}</div>
+      <div class="cal-weekdays">
+        <div>日</div><div>月</div><div>火</div><div>水</div><div>木</div><div>金</div><div>土</div>
+      </div>
+    `;
+
+    const daysContainer = document.createElement('div');
+    daysContainer.className = 'cal-days';
+
+    // 空白セル
+    for (let i = 0; i < firstDay; i++) {
+      const empty = document.createElement('div');
+      empty.className = 'cal-day empty';
+      empty.textContent = '';
+      daysContainer.appendChild(empty);
+    }
+
+    // 日付セル
+    for (let d = 1; d <= daysInMonth; d++) {
+      const cell = document.createElement('div');
+      cell.className = 'cal-day';
+      const thisDate = new Date(year, month, d);
+      const dow = thisDate.getDay();
+
+      if (dow === 0) cell.classList.add('sun');
+      if (dow === 6) cell.classList.add('sat');
+
+      // イベント判定（優先順位順）
+      if (sameDay(thisDate, day0)) {
+        cell.classList.add('ev-retire');
+        cell.title = '退職日';
+      } else if (sameDay(thisDate, paymentDate)) {
+        cell.classList.add('ev-payment');
+        cell.title = '💰 初回振込（目安）';
+      } else if (sameDay(thisDate, ninteiBase)) {
+        cell.classList.add('ev-nintei');
+        cell.title = '第1回 失業認定日（目安）';
+      } else if (sameDay(thisDate, hwDate)) {
+        cell.classList.add('ev-hw');
+        cell.title = 'ハローワーク申請（目安）';
+      } else if (inRange(thisDate, waitStart, waitEnd)) {
+        cell.classList.add('ev-wait');
+        cell.title = '待機期間（7日間）';
+      } else if (restrictStart && inRange(thisDate, restrictStart, restrictEnd)) {
+        cell.classList.add('ev-restrict');
+        cell.title = '給付制限期間（1ヶ月）';
+      } else if (inRange(thisDate, docsStart, docsEnd)) {
+        cell.classList.add('ev-docs');
+        cell.title = '離職票届く頃（目安）';
+      }
+
+      cell.textContent = d;
+      daysContainer.appendChild(cell);
+    }
+
+    monthEl.appendChild(daysContainer);
+    gridEl.appendChild(monthEl);
+    current = new Date(year, month + 1, 1);
+  }
+
+  // 凡例
+  const legendEl = document.getElementById('cal-legend');
+  const legendItems = [
+    { color: '#fecaca', label: '退職日' },
+    { color: '#fed7aa', label: '離職票届く頃' },
+    { color: '#bbf7d0', label: 'ハローワーク申請' },
+    { color: '#e5e7eb', label: '待機期間（7日）' },
+  ];
+  if (type === 'voluntary') {
+    legendItems.push({ color: '#fef3c7', label: '給付制限（1ヶ月）' });
+  }
+  legendItems.push({ color: '#c4b5fd', label: '第1回 認定日' });
+  legendItems.push({ color: '#86efac', label: '💰 初回振込' });
+
+  legendEl.innerHTML = legendItems.map(item =>
+    `<div class="cal-legend-item"><div class="cal-legend-dot" style="background:${item.color}"></div>${item.label}</div>`
+  ).join('');
+
+  document.getElementById('cal-result').style.display = 'block';
+
+  // スクロール
+  setTimeout(() => {
+    document.getElementById('cal-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 100);
+}
+
+// 退職日デフォルト値を設定（今月末）
+(function() {
+  const now = new Date();
+  const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+  const y = lastDay.getFullYear();
+  const m = String(lastDay.getMonth() + 1).padStart(2, '0');
+  const d = String(lastDay.getDate()).padStart(2, '0');
+  document.getElementById('retire-date').value = `${y}-${m}-${d}`;
+})();
+
 </script>
 </body>
 </html>
