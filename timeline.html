@@ -96,10 +96,28 @@
   border-radius: 99px; cursor: pointer;
   font-size: 14px; font-weight: 700; color: var(--gray-500);
   transition: all 0.2s;
+  white-space: nowrap;
 }
 .type-toggle button.active {
   background: var(--primary); color: white;
   box-shadow: 0 2px 8px rgba(37,99,235,0.3);
+}
+.type-toggle button#btn-difficult.active {
+  background: #7c3aed;
+  box-shadow: 0 2px 8px rgba(124,58,237,0.3);
+}
+
+@media (max-width: 600px) {
+  .type-toggle {
+    flex-direction: column;
+    border-radius: var(--radius);
+    width: 100%;
+  }
+  .type-toggle button {
+    border-radius: var(--radius);
+    padding: 10px 16px;
+    text-align: left;
+  }
 }
 
 /* 給付開始カレンダー */
@@ -123,6 +141,19 @@
 .date-label { width: 160px; color: var(--gray-600); flex-shrink: 0; font-size: 13px; }
 .date-val { font-weight: 700; color: var(--gray-800); }
 .date-note { color: var(--gray-400); font-size: 12px; margin-left: auto; }
+
+/* 就職困難者 補足ボックス */
+.difficult-info-box {
+  background: #ede9fe;
+  border-left: 4px solid #7c3aed;
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-size: 13px;
+  color: var(--gray-700);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.difficult-info-box strong { color: #7c3aed; }
 </style>
 <script type="application/ld+json">
 {
@@ -206,25 +237,30 @@
     <div class="type-toggle">
       <button class="active" id="btn-voluntary" onclick="switchType('voluntary')">🙋 自己都合退職</button>
       <button id="btn-company" onclick="switchType('company')">🏢 会社都合退職</button>
+      <button id="btn-difficult" onclick="switchType('difficult')">🛡️ 就職困難者</button>
     </div>
     <div class="alert alert-info" id="type-info">
       自己都合退職の場合：7日間の待機期間 ＋ <strong>1ヶ月（初回）または3ヶ月（2回目以上）の給付制限</strong>があります。初回振込まで約45〜75日かかります。
     </div>
   </div>
 
+  <!-- 就職困難者 補足説明 -->
+  <div class="difficult-info-box" id="difficult-info" style="display:none;">
+    <strong>🛡️ 就職困難者とは？</strong><br>
+    身体障害者手帳・療育手帳・精神障害者保健福祉手帳をお持ちの方、社会的事情により就職が著しく困難な方が対象です。<br><br>
+    <strong>通常との主な違い：</strong><br>
+    ・所定給付日数が大幅に長い（最大<strong>360日</strong>、一般の自己都合は最大150日）<br>
+    ・雇用保険の加入期間が<strong>1年未満（6ヶ月以上）でも150日</strong>受給可能<br>
+    ・自己都合退職でも<strong>給付制限なし</strong><br>
+    ・求職活動実績は原則同じ（4週間に2回以上）だが、障害の状況に応じてハローワークが配慮する場合あり<br><br>
+    申請時に<strong>障害者手帳</strong>をハローワークに提示してください。主治医の意見書を求められる場合もあります。
+  </div>
+
   <!-- 想定スケジュール -->
   <div class="calendar-card">
     <div class="calendar-title">📆 あなたの想定スケジュール（例：1月31日退職）</div>
     <div id="schedule-rows">
-      <!-- 自己都合デフォルト -->
-      <div class="date-row"><div class="date-label">Day 0 退職日</div><div class="date-val">1月31日（金）</div></div>
-      <div class="date-row"><div class="date-label">離職票受取（目安）</div><div class="date-val">2月7日〜14日</div><div class="date-note">会社が発行</div></div>
-      <div class="date-row"><div class="date-label">ハローワーク申請</div><div class="date-val">2月14日頃</div><div class="date-note">なるべく早く</div></div>
-      <div class="date-row"><div class="date-label">受給説明会</div><div class="date-val">2月中旬〜下旬</div><div class="date-note">必ず出席</div></div>
-      <div class="date-row"><div class="date-label">7日間待機期間 終了</div><div class="date-val">申請日の翌日から7日後</div></div>
-      <div class="date-row" id="restriction-row"><div class="date-label">給付制限終了（1ヶ月）</div><div class="date-val">3月中旬頃</div><div class="date-note" style="color:var(--warning);">⚡ 2025年4月〜1ヶ月に短縮</div></div>
-      <div class="date-row"><div class="date-label">第1回 失業認定日</div><div class="date-val">3月下旬〜4月初旬</div></div>
-      <div class="date-row" style="border-bottom:2px solid var(--success);"><div class="date-label">💰 <strong>初回振込</strong></div><div class="date-val" style="color:var(--success);font-size:16px;"><strong>4月上旬（目安）</strong></div><div class="date-note">認定後 約5営業日</div></div>
+      <!-- JS で切り替え -->
     </div>
   </div>
 
@@ -284,7 +320,7 @@
         <div class="tl-body">
           離職票が届いたら、なるべく早くハローワークへ行き、求職申込みと受給資格の決定申請を行います。<strong>この日が「申請日」になり、以降のスケジュールがすべてここから始まります</strong>。
         </div>
-        <div class="tl-docs">
+        <div class="tl-docs" id="docs-hw">
           <strong>📄 持参するもの（忘れると再来所が必要）：</strong><br>
           <span class="doc-tag">離職票-1・-2</span>
           <span class="doc-tag">雇用保険被保険者証</span>
@@ -292,6 +328,7 @@
           <span class="doc-tag">写真2枚（3cm×2.4cm）</span>
           <span class="doc-tag">銀行口座の通帳またはキャッシュカード</span>
           <span class="doc-tag">印鑑（認印可）</span>
+          <span class="doc-tag difficult-doc" style="display:none;border-color:#7c3aed;color:#7c3aed;font-weight:700;">障害者手帳（就職困難者の方）</span>
         </div>
       </div>
       <div class="tl-item green">
@@ -310,7 +347,7 @@
     <div class="tl-items">
       <div class="tl-item orange">
         <div class="tl-day-tag">申請日から7日間</div>
-        <div class="tl-title">⏳ 7日間の待機期間（自己都合・会社都合 共通）</div>
+        <div class="tl-title">⏳ 7日間の待機期間（全員共通）</div>
         <div class="tl-body">
           ハローワーク申請日の翌日から7日間は「待機期間」です。この期間中はアルバイトを含む就労をしてはいけません（待機期間がリセットされます）。
         </div>
@@ -337,7 +374,7 @@
 
   <!-- TIMELINE PHASE 4 -->
   <div class="tl-phase">
-    <div class="tl-phase-header purple">🟣 Phase 4：失業認定と給付開始（Day45〜Day60）</div>
+    <div class="tl-phase-header purple">🟣 Phase 4：失業認定と給付開始（<span id="phase4-range">Day45〜Day60</span>）</div>
     <div class="tl-items">
       <div class="tl-item purple">
         <div class="tl-day-tag">4週ごと（認定日）</div>
@@ -356,7 +393,7 @@
       <div class="tl-item green" style="border-left-color:var(--success);">
         <div class="tl-day-tag" style="background:var(--success);">認定後 約5営業日</div>
         <div class="tl-title">💰 給付金 振込！<span class="badge-green">目標ゴール</span></div>
-        <div class="tl-body">
+        <div class="tl-body" id="payment-body">
           失業認定後、約5営業日で指定の銀行口座に振り込まれます。以降4週ごとに認定→振込を繰り返します。
           <br><br>
           <div class="alert alert-success">
@@ -383,6 +420,18 @@
         <div class="tl-title">🔍 転職・再就職活動（再就職手当を最大化する）</div>
         <div class="tl-body">
           給付制限終了後、早めに就職が決まるほど再就職手当が多くなります。残日数が多いうちに就職するのが最もお得です。<a href="calculator.html">計算ツール</a>で試算してみましょう。
+        </div>
+      </div>
+      <!-- 就職困難者向け：障害者向け支援 -->
+      <div class="tl-item purple" id="difficult-support" style="display:none;">
+        <div class="tl-day-tag" style="background:#7c3aed;">就職困難者の方へ</div>
+        <div class="tl-title">🛡️ 障害者向け就職支援サービスを活用する</div>
+        <div class="tl-body">
+          ハローワークには<strong>障害者専門の相談窓口</strong>が設置されています。また、以下の支援制度も活用できます：<br><br>
+          <strong>・障害者トライアル雇用</strong>：最大3ヶ月の試行雇用で、企業とのマッチングを確認できる<br>
+          <strong>・就労移行支援</strong>：障害福祉サービスの一つ。就職に必要なスキル訓練を受けられる（最大2年）<br>
+          <strong>・障害者就業・生活支援センター</strong>：就職だけでなく生活面も含めた総合サポート<br><br>
+          所定給付日数が長い（最大360日）ため、焦らず自分に合った職場を探すことが大切です。
         </div>
       </div>
     </div>
@@ -427,26 +476,115 @@
 </footer>
 
 <script>
-function switchType(type) {
-  document.getElementById('btn-voluntary').classList.toggle('active', type==='voluntary');
-  document.getElementById('btn-company').classList.toggle('active', type==='company');
+// スケジュール行データ
+const schedules = {
+  voluntary: [
+    { label: 'Day 0 退職日', val: '1月31日（金）', note: '' },
+    { label: '離職票受取（目安）', val: '2月7日〜14日', note: '会社が発行' },
+    { label: 'ハローワーク申請', val: '2月14日頃', note: 'なるべく早く' },
+    { label: '受給説明会', val: '2月中旬〜下旬', note: '必ず出席' },
+    { label: '7日間待機期間 終了', val: '申請日の翌日から7日後', note: '' },
+    { label: '給付制限終了（1ヶ月）', val: '3月中旬頃', note: '⚡ 2025年4月〜1ヶ月に短縮', noteColor: 'var(--warning)' },
+    { label: '第1回 失業認定日', val: '3月下旬〜4月初旬', note: '' },
+    { label: '💰 <strong>初回振込</strong>', val: '<strong>4月上旬（目安）</strong>', note: '認定後 約5営業日', highlight: true }
+  ],
+  company: [
+    { label: 'Day 0 退職日', val: '1月31日（金）', note: '' },
+    { label: '離職票受取（目安）', val: '2月7日〜14日', note: '会社が発行' },
+    { label: 'ハローワーク申請', val: '2月14日頃', note: 'なるべく早く' },
+    { label: '受給説明会', val: '2月中旬〜下旬', note: '必ず出席' },
+    { label: '7日間待機期間 終了', val: '申請日の翌日から7日後', note: '' },
+    { label: '第1回 失業認定日', val: '3月初旬〜中旬', note: '' },
+    { label: '💰 <strong>初回振込</strong>', val: '<strong>3月中旬（目安）</strong>', note: '認定後 約5営業日', highlight: true }
+  ],
+  difficult: [
+    { label: 'Day 0 退職日', val: '1月31日（金）', note: '' },
+    { label: '離職票受取（目安）', val: '2月7日〜14日', note: '会社が発行' },
+    { label: 'ハローワーク申請', val: '2月14日頃', note: '障害者手帳を持参', noteColor: '#7c3aed' },
+    { label: '受給説明会', val: '2月中旬〜下旬', note: '必ず出席' },
+    { label: '7日間待機期間 終了', val: '申請日の翌日から7日後', note: '' },
+    { label: '第1回 失業認定日', val: '3月初旬〜中旬', note: '給付制限なし' },
+    { label: '💰 <strong>初回振込</strong>', val: '<strong>3月中旬（目安）</strong>', note: '認定後 約5営業日', highlight: true },
+    { label: '🛡️ 所定給付日数', val: '<strong>最大360日（約12ヶ月）</strong>', note: '30〜59歳・加入1年以上', noteColor: '#7c3aed', highlight: false }
+  ]
+};
 
+function renderSchedule(type) {
+  const container = document.getElementById('schedule-rows');
+  const rows = schedules[type];
+  container.innerHTML = '';
+  rows.forEach((row, i) => {
+    const div = document.createElement('div');
+    div.className = 'date-row';
+    if (row.highlight) div.style.borderBottom = '2px solid var(--success)';
+    let noteStyle = row.noteColor ? `color:${row.noteColor}` : '';
+    let valStyle = row.highlight ? 'color:var(--success);font-size:16px;' : '';
+    div.innerHTML = `
+      <div class="date-label">${row.label}</div>
+      <div class="date-val" style="${valStyle}">${row.val}</div>
+      ${row.note ? `<div class="date-note" style="${noteStyle}">${row.note}</div>` : ''}
+    `;
+    container.appendChild(div);
+  });
+}
+
+function switchType(type) {
+  // ボタン
+  document.getElementById('btn-voluntary').classList.toggle('active', type === 'voluntary');
+  document.getElementById('btn-company').classList.toggle('active', type === 'company');
+  document.getElementById('btn-difficult').classList.toggle('active', type === 'difficult');
+
+  // 説明文
   const info = document.getElementById('type-info');
-  const restrictionRow = document.getElementById('restriction-row');
   const restrictionPhase = document.getElementById('restriction-phase');
+  const difficultInfo = document.getElementById('difficult-info');
+  const difficultSupport = document.getElementById('difficult-support');
+  const difficultDocs = document.querySelectorAll('.difficult-doc');
+  const phase4Range = document.getElementById('phase4-range');
 
   if (type === 'voluntary') {
     info.className = 'alert alert-info';
     info.innerHTML = '自己都合退職の場合：7日間の待機期間 ＋ <strong>1ヶ月（初回）または3ヶ月（2回目以上）の給付制限</strong>があります。初回振込まで約45〜75日かかります。';
-    restrictionRow.style.display = '';
     restrictionPhase.style.display = '';
-  } else {
+    difficultInfo.style.display = 'none';
+    difficultSupport.style.display = 'none';
+    difficultDocs.forEach(el => el.style.display = 'none');
+    phase4Range.textContent = 'Day45〜Day60';
+  } else if (type === 'company') {
     info.className = 'alert alert-success';
     info.innerHTML = '会社都合退職の場合：7日間の待機期間のみで<strong>給付制限はありません</strong>。初回振込まで約30〜35日と、自己都合より大幅に短くなります。所定給付日数も最大330日です。';
-    restrictionRow.style.display = 'none';
     restrictionPhase.style.display = 'none';
+    difficultInfo.style.display = 'none';
+    difficultSupport.style.display = 'none';
+    difficultDocs.forEach(el => el.style.display = 'none');
+    phase4Range.textContent = 'Day21〜Day35';
+  } else {
+    // 就職困難者
+    info.className = 'alert alert-info';
+    info.style.background = '#ede9fe';
+    info.style.borderColor = '#7c3aed';
+    info.style.color = '#374151';
+    info.innerHTML = '就職困難者の場合：7日間の待機期間のみで<strong>給付制限はありません</strong>（自己都合退職でも免除）。所定給付日数は最大<strong>360日</strong>。初回振込まで約30〜35日です。';
+    restrictionPhase.style.display = 'none';
+    difficultInfo.style.display = 'block';
+    difficultSupport.style.display = '';
+    difficultDocs.forEach(el => el.style.display = 'inline-block');
+    phase4Range.textContent = 'Day21〜Day35';
   }
+
+  // alertスタイルリセット（voluntaryとcompanyの場合）
+  if (type !== 'difficult') {
+    info.style.background = '';
+    info.style.borderColor = '';
+    info.style.color = '';
+  }
+
+  // スケジュール
+  renderSchedule(type);
 }
+
+// 初期表示
+renderSchedule('voluntary');
 </script>
 </body>
 </html>
