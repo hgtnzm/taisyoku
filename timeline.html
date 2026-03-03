@@ -599,44 +599,162 @@
 </footer>
 
 <script>
-// スケジュール行データ
-const schedules = {
+// ============================================================
+//  スケジュール行テンプレート（日付計算前のデフォルト表示）
+// ============================================================
+const defaultSchedules = {
   voluntary: [
-    { label: 'Day 0 退職日', val: '1月31日（金）', note: '' },
-    { label: '離職票受取（目安）', val: '2月7日〜14日', note: '会社が発行' },
-    { label: 'ハローワーク申請', val: '2月14日頃', note: 'なるべく早く' },
-    { label: '受給説明会', val: '2月中旬〜下旬', note: '必ず出席' },
+    { label: 'Day 0 退職日', val: '退職日を入力してください', note: '' },
+    { label: '離職票受取（目安）', val: '退職後 7〜14日', note: '会社が発行' },
+    { label: 'ハローワーク申請', val: '離職票届き次第すぐ', note: 'なるべく早く' },
+    { label: '受給説明会', val: '申請後 1〜2週間', note: '必ず出席' },
     { label: '7日間待機期間 終了', val: '申請日の翌日から7日後', note: '' },
-    { label: '給付制限終了（1ヶ月）', val: '3月中旬頃', note: '⚡ 2025年4月〜1ヶ月に短縮', noteColor: 'var(--warning)' },
-    { label: '第1回 失業認定日', val: '3月下旬〜4月初旬', note: '' },
-    { label: '💰 <strong>初回振込</strong>', val: '<strong>4月上旬（目安）</strong>', note: '認定後 約5営業日', highlight: true }
+    { label: '給付制限終了（1ヶ月）', val: '待機終了から約1ヶ月後', note: '⚡ 2025年4月〜1ヶ月に短縮', noteColor: 'var(--warning)' },
+    { label: '第1回 失業認定日', val: '給付制限終了後 約4週間', note: '' },
+    { label: '💰 <strong>初回振込</strong>', val: '<strong>認定後 約5営業日</strong>', note: '', highlight: true }
   ],
   company: [
-    { label: 'Day 0 退職日', val: '1月31日（金）', note: '' },
-    { label: '離職票受取（目安）', val: '2月7日〜14日', note: '会社が発行' },
-    { label: 'ハローワーク申請', val: '2月14日頃', note: 'なるべく早く' },
-    { label: '受給説明会', val: '2月中旬〜下旬', note: '必ず出席' },
+    { label: 'Day 0 退職日', val: '退職日を入力してください', note: '' },
+    { label: '離職票受取（目安）', val: '退職後 7〜14日', note: '会社が発行' },
+    { label: 'ハローワーク申請', val: '離職票届き次第すぐ', note: 'なるべく早く' },
+    { label: '受給説明会', val: '申請後 1〜2週間', note: '必ず出席' },
     { label: '7日間待機期間 終了', val: '申請日の翌日から7日後', note: '' },
-    { label: '第1回 失業認定日', val: '3月初旬〜中旬', note: '' },
-    { label: '💰 <strong>初回振込</strong>', val: '<strong>3月中旬（目安）</strong>', note: '認定後 約5営業日', highlight: true }
+    { label: '第1回 失業認定日', val: '待機終了後 約4週間', note: '' },
+    { label: '💰 <strong>初回振込</strong>', val: '<strong>認定後 約5営業日</strong>', note: '', highlight: true }
   ],
   difficult: [
-    { label: 'Day 0 退職日', val: '1月31日（金）', note: '' },
-    { label: '離職票受取（目安）', val: '2月7日〜14日', note: '会社が発行' },
-    { label: 'ハローワーク申請', val: '2月14日頃', note: '障害者手帳を持参', noteColor: '#7c3aed' },
-    { label: '受給説明会', val: '2月中旬〜下旬', note: '必ず出席' },
+    { label: 'Day 0 退職日', val: '退職日を入力してください', note: '' },
+    { label: '離職票受取（目安）', val: '退職後 7〜14日', note: '会社が発行' },
+    { label: 'ハローワーク申請', val: '離職票届き次第すぐ', note: '障害者手帳を持参', noteColor: '#7c3aed' },
+    { label: '受給説明会', val: '申請後 1〜2週間', note: '必ず出席' },
     { label: '7日間待機期間 終了', val: '申請日の翌日から7日後', note: '' },
-    { label: '第1回 失業認定日', val: '3月初旬〜中旬', note: '給付制限なし' },
-    { label: '💰 <strong>初回振込</strong>', val: '<strong>3月中旬（目安）</strong>', note: '認定後 約5営業日', highlight: true },
-    { label: '🛡️ 所定給付日数', val: '<strong>最大360日（約12ヶ月）</strong>', note: '30〜59歳・加入1年以上', noteColor: '#7c3aed', highlight: false }
+    { label: '第1回 失業認定日', val: '待機終了後 約4週間', note: '給付制限なし' },
+    { label: '💰 <strong>初回振込</strong>', val: '<strong>認定後 約5営業日</strong>', note: '', highlight: true },
+    { label: '🛡️ 所定給付日数', val: '<strong>最大360日（約12ヶ月）</strong>', note: '30〜59歳・加入1年以上', noteColor: '#7c3aed' }
   ]
 };
 
-function renderSchedule(type) {
+// ============================================================
+//  日付ヘルパー
+// ============================================================
+function addDays(d, n) { const r = new Date(d); r.setDate(r.getDate() + n); return r; }
+function fmtDate(d) {
+  const y = d.getFullYear();
+  const m = d.getMonth() + 1;
+  const day = d.getDate();
+  const dow = ['日','月','火','水','木','金','土'][d.getDay()];
+  return `${y}年${m}月${day}日（${dow}）`;
+}
+function fmtDateShort(d) {
+  const m = d.getMonth() + 1;
+  const day = d.getDate();
+  const dow = ['日','月','火','水','木','金','土'][d.getDay()];
+  return `${m}月${day}日（${dow}）`;
+}
+function fmtRange(d1, d2) {
+  return `${fmtDateShort(d1)}〜${fmtDateShort(d2)}`;
+}
+function isoFmt(d) { return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+function sameDay(a, b) { return isoFmt(a) === isoFmt(b); }
+function inRange(d, start, end) { return d >= start && d <= end; }
+
+// ============================================================
+//  現在の退職タイプを取得
+// ============================================================
+function getCurrentType() {
+  if (document.getElementById('btn-company').classList.contains('active')) return 'company';
+  if (document.getElementById('btn-difficult').classList.contains('active')) return 'difficult';
+  return 'voluntary';
+}
+
+// ============================================================
+//  スケジュール表を描画
+// ============================================================
+function renderSchedule(type, retireDate) {
   const container = document.getElementById('schedule-rows');
-  const rows = schedules[type];
+  const titleEl = document.querySelector('.calendar-card .calendar-title');
+
+  // 退職日が未入力の場合はデフォルト表示
+  if (!retireDate) {
+    titleEl.textContent = '📆 退職日を入力するとスケジュールが表示されます';
+    const rows = defaultSchedules[type];
+    container.innerHTML = '';
+    rows.forEach(row => {
+      const div = document.createElement('div');
+      div.className = 'date-row';
+      if (row.highlight) div.style.borderBottom = '2px solid var(--success)';
+      let noteStyle = row.noteColor ? `color:${row.noteColor}` : '';
+      let valStyle = row.highlight ? 'color:var(--success);font-size:16px;' : '';
+      div.innerHTML = `
+        <div class="date-label">${row.label}</div>
+        <div class="date-val" style="${valStyle}">${row.val}</div>
+        ${row.note ? `<div class="date-note" style="${noteStyle}">${row.note}</div>` : ''}
+      `;
+      container.appendChild(div);
+    });
+    return;
+  }
+
+  // 日付を計算
+  const day0 = new Date(retireDate);
+  const docsStart = addDays(day0, 7);
+  const docsEnd = addDays(day0, 14);
+  const hwDate = addDays(day0, 14);
+  const setsumeikai = addDays(hwDate, 10);
+  const waitEnd = addDays(hwDate, 7);
+
+  let restrictEnd = null;
+  if (type === 'voluntary') {
+    restrictEnd = addDays(waitEnd, 30);
+  }
+
+  const ninteiDate = (type === 'voluntary') ? addDays(restrictEnd, 28) : addDays(waitEnd, 28);
+  const paymentDate = addDays(ninteiDate, 7);
+
+  titleEl.textContent = `📆 ${fmtDateShort(day0)} 退職の場合のスケジュール`;
+
+  // 行データを構築
+  const rows = [];
+  rows.push({ label: 'Day 0 退職日', val: fmtDate(day0), note: '' });
+  rows.push({ label: '離職票受取（目安）', val: fmtRange(docsStart, docsEnd), note: '会社が発行' });
+  rows.push({
+    label: 'ハローワーク申請',
+    val: `${fmtDateShort(hwDate)}頃`,
+    note: type === 'difficult' ? '障害者手帳を持参' : 'なるべく早く',
+    noteColor: type === 'difficult' ? '#7c3aed' : ''
+  });
+  rows.push({ label: '受給説明会', val: `${fmtDateShort(setsumeikai)}頃`, note: '必ず出席' });
+  rows.push({ label: '7日間待機期間 終了', val: fmtDateShort(waitEnd), note: '' });
+
+  if (type === 'voluntary') {
+    rows.push({
+      label: '給付制限終了（1ヶ月）',
+      val: `${fmtDateShort(restrictEnd)}頃`,
+      note: '⚡ 2025年4月〜1ヶ月に短縮',
+      noteColor: 'var(--warning)'
+    });
+  }
+
+  rows.push({ label: '第1回 失業認定日', val: `${fmtDateShort(ninteiDate)}頃`, note: type === 'difficult' ? '給付制限なし' : '' });
+  rows.push({
+    label: '💰 <strong>初回振込</strong>',
+    val: `<strong>${fmtDateShort(paymentDate)}頃</strong>`,
+    note: '認定後 約5営業日',
+    highlight: true
+  });
+
+  if (type === 'difficult') {
+    rows.push({
+      label: '🛡️ 所定給付日数',
+      val: '<strong>最大360日（約12ヶ月）</strong>',
+      note: '30〜59歳・加入1年以上',
+      noteColor: '#7c3aed'
+    });
+  }
+
+  // 描画
   container.innerHTML = '';
-  rows.forEach((row, i) => {
+  rows.forEach(row => {
     const div = document.createElement('div');
     div.className = 'date-row';
     if (row.highlight) div.style.borderBottom = '2px solid var(--success)';
@@ -651,19 +769,25 @@ function renderSchedule(type) {
   });
 }
 
+// ============================================================
+//  退職理由切り替え
+// ============================================================
 function switchType(type) {
-  // ボタン
   document.getElementById('btn-voluntary').classList.toggle('active', type === 'voluntary');
   document.getElementById('btn-company').classList.toggle('active', type === 'company');
   document.getElementById('btn-difficult').classList.toggle('active', type === 'difficult');
 
-  // 説明文
   const info = document.getElementById('type-info');
   const restrictionPhase = document.getElementById('restriction-phase');
   const difficultInfo = document.getElementById('difficult-info');
   const difficultSupport = document.getElementById('difficult-support');
   const difficultDocs = document.querySelectorAll('.difficult-doc');
   const phase4Range = document.getElementById('phase4-range');
+
+  // スタイルリセット
+  info.style.background = '';
+  info.style.borderColor = '';
+  info.style.color = '';
 
   if (type === 'voluntary') {
     info.className = 'alert alert-info';
@@ -682,7 +806,6 @@ function switchType(type) {
     difficultDocs.forEach(el => el.style.display = 'none');
     phase4Range.textContent = 'Day21〜Day35';
   } else {
-    // 就職困難者
     info.className = 'alert alert-info';
     info.style.background = '#ede9fe';
     info.style.borderColor = '#7c3aed';
@@ -695,61 +818,50 @@ function switchType(type) {
     phase4Range.textContent = 'Day21〜Day35';
   }
 
-  // alertスタイルリセット（voluntaryとcompanyの場合）
-  if (type !== 'difficult') {
-    info.style.background = '';
-    info.style.borderColor = '';
-    info.style.color = '';
+  // スケジュール表 & カレンダーも更新
+  const dateInput = document.getElementById('retire-date').value;
+  if (dateInput) {
+    renderSchedule(type, dateInput);
+    generateCalendar();
+  } else {
+    renderSchedule(type, null);
   }
-
-  // スケジュール
-  renderSchedule(type);
 }
 
-// 初期表示
-renderSchedule('voluntary');
-  
 // ============================================================
 //  ビジュアルカレンダー
 // ============================================================
-
 function generateCalendar() {
   const input = document.getElementById('retire-date').value;
   if (!input) { alert('退職日を入力してください'); return; }
 
+  const type = getCurrentType();
   const retireDate = new Date(input);
-  const type = document.getElementById('btn-company').classList.contains('active') ? 'company'
-             : document.getElementById('btn-difficult').classList.contains('active') ? 'difficult'
-             : 'voluntary';
 
-  // 日付計算ヘルパー
-  function addDays(d, n) { const r = new Date(d); r.setDate(r.getDate() + n); return r; }
-  function fmt(d) { return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
-  function sameDay(a, b) { return fmt(a) === fmt(b); }
-  function inRange(d, start, end) { return d >= start && d <= end; }
+  // スケジュール表も同時に更新
+  renderSchedule(type, input);
 
   // イベント日付を計算
   const day0 = retireDate;
   const docsStart = addDays(day0, 7);
   const docsEnd = addDays(day0, 14);
-  const hwDate = addDays(day0, 14); // 申請日（目安）
+  const hwDate = addDays(day0, 14);
   const waitStart = addDays(hwDate, 1);
   const waitEnd = addDays(hwDate, 7);
 
   let restrictStart = null, restrictEnd = null;
   if (type === 'voluntary') {
     restrictStart = addDays(waitEnd, 1);
-    restrictEnd = addDays(waitEnd, 30); // 1ヶ月（初回）
+    restrictEnd = addDays(waitEnd, 30);
   }
 
-  const ninteiBase = (type === 'voluntary') ? addDays(restrictEnd || waitEnd, 28) : addDays(waitEnd, 28);
+  const ninteiBase = (type === 'voluntary') ? addDays(restrictEnd, 28) : addDays(waitEnd, 28);
   const paymentDate = addDays(ninteiBase, 7);
 
-  // 表示範囲：退職月〜振込月+1ヶ月
+  // 表示範囲
   const startMonth = new Date(day0.getFullYear(), day0.getMonth(), 1);
   const endMonth = new Date(paymentDate.getFullYear(), paymentDate.getMonth() + 1, 1);
 
-  // 月ごとにカレンダー生成
   const gridEl = document.getElementById('cal-grid');
   gridEl.innerHTML = '';
 
@@ -757,7 +869,7 @@ function generateCalendar() {
   while (current < endMonth) {
     const year = current.getFullYear();
     const month = current.getMonth();
-    const firstDay = new Date(year, month, 1).getDay(); // 0=日
+    const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
     const monthEl = document.createElement('div');
@@ -774,7 +886,6 @@ function generateCalendar() {
     const daysContainer = document.createElement('div');
     daysContainer.className = 'cal-days';
 
-    // 空白セル
     for (let i = 0; i < firstDay; i++) {
       const empty = document.createElement('div');
       empty.className = 'cal-day empty';
@@ -782,7 +893,6 @@ function generateCalendar() {
       daysContainer.appendChild(empty);
     }
 
-    // 日付セル
     for (let d = 1; d <= daysInMonth; d++) {
       const cell = document.createElement('div');
       cell.className = 'cal-day';
@@ -792,7 +902,6 @@ function generateCalendar() {
       if (dow === 0) cell.classList.add('sun');
       if (dow === 6) cell.classList.add('sat');
 
-      // イベント判定（優先順位順）
       if (sameDay(thisDate, day0)) {
         cell.classList.add('ev-retire');
         cell.title = '退職日';
@@ -845,20 +954,25 @@ function generateCalendar() {
 
   document.getElementById('cal-result').style.display = 'block';
 
-  // スクロール
   setTimeout(() => {
     document.getElementById('cal-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }, 100);
 }
 
-// 退職日デフォルト値を設定（今月末）
+// ============================================================
+//  初期化
+// ============================================================
 (function() {
+  // 退職日デフォルト値（今月末）
   const now = new Date();
   const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
   const y = lastDay.getFullYear();
   const m = String(lastDay.getMonth() + 1).padStart(2, '0');
   const d = String(lastDay.getDate()).padStart(2, '0');
   document.getElementById('retire-date').value = `${y}-${m}-${d}`;
+
+  // デフォルト表示
+  renderSchedule('voluntary', null);
 })();
 
 </script>
