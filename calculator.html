@@ -23,6 +23,8 @@
     --warning: #d97706;
     --warning-light: #fef3c7;
     --danger: #dc2626;
+    --purple: #7c3aed;
+    --purple-light: #ede9fe;
     --gray-50: #f9fafb;
     --gray-100: #f3f4f6;
     --gray-200: #e5e7eb;
@@ -178,7 +180,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
-  .radio-group.three { grid-template-columns: 1fr 1fr 1fr; }
+  .radio-group.three-col { grid-template-columns: 1fr 1fr 1fr; }
   .radio-label {
     position: relative;
     cursor: pointer;
@@ -369,6 +371,19 @@
   }
   .notice strong { color: var(--warning); }
 
+  /* 補足注記 */
+  .result-note {
+    background: var(--primary-light);
+    border-left: 4px solid var(--primary);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--gray-700);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    display: none;
+  }
+
   /* フッター */
   .footer {
     text-align: center;
@@ -391,7 +406,7 @@
   @media (max-width: 480px) {
     .result-grid { grid-template-columns: 1fr 1fr; }
     .saishushoku-grid { grid-template-columns: 1fr 1fr; }
-    .radio-group.three { grid-template-columns: 1fr 1fr 1fr; }
+    .radio-group.three-col { grid-template-columns: 1fr 1fr 1fr; }
   }
 
   /* アニメーション */
@@ -429,7 +444,7 @@
     <!-- 退職理由 -->
     <div class="form-group">
       <label>退職理由<span class="required">必須</span></label>
-      <div class="radio-group">
+      <div class="radio-group three-col">
         <label class="radio-label">
           <input type="radio" name="reason" value="voluntary" checked>
           <div class="radio-card">
@@ -446,6 +461,17 @@
             <div class="r-sub">解雇・倒産・やむを得ず</div>
           </div>
         </label>
+        <label class="radio-label">
+          <input type="radio" name="reason" value="difficult">
+          <div class="radio-card">
+            <div class="r-icon">🛡️</div>
+            <div class="r-text">就職困難者</div>
+            <div class="r-sub">障害者手帳をお持ちの方</div>
+          </div>
+        </label>
+      </div>
+      <div id="difficult-note" style="display:none;font-size:12px;color:#7c3aed;margin-top:8px;padding:8px 12px;background:#ede9fe;border-radius:6px;">
+        🛡️ 身体障害者手帳・療育手帳・精神障害者保健福祉手帳をお持ちの方、社会的事情により就職が著しく困難な方が対象です。最大<strong>360日</strong>の給付を受けられる場合があります。
       </div>
     </div>
 
@@ -478,7 +504,7 @@
     <!-- 離職時の年齢 -->
     <div class="form-group">
       <label>離職時の年齢<span class="required">必須</span></label>
-      <div class="radio-group three">
+      <div class="radio-group three-col">
         <label class="radio-label">
           <input type="radio" name="age" value="under30" checked>
           <div class="radio-card">
@@ -517,7 +543,7 @@
     <div class="form-group">
       <label>雇用保険の加入期間<span class="required">必須</span></label>
       <select id="insured-period">
-        <option value="under6">6ヶ月未満（受給不可）</option>
+        <option value="under6">6ヶ月未満（受給不可の場合あり）</option>
         <option value="6to11">6ヶ月以上1年未満</option>
         <option value="1to4" selected>1年以上5年未満</option>
         <option value="5to9">5年以上10年未満</option>
@@ -550,6 +576,11 @@
       <div class="label">💰 失業給付 受給総額（目安）</div>
       <div class="total-amount"><span>約</span><span id="total-amount">0</span><span>万円</span></div>
       <div class="sub-info" id="hero-sub"></div>
+    </div>
+
+    <!-- 補足注記（会社都合30〜44歳の場合に表示） -->
+    <div class="result-note animate" id="age-split-note">
+      ℹ️ <strong>30〜44歳の会社都合退職について：</strong>実際の制度では30〜34歳と35〜44歳で所定給付日数が異なります。本ツールでは30〜34歳の日数（少ない方）で計算しています。35歳以上の方は実際の給付日数がこの結果より多くなる可能性があります。正確な日数はハローワークでご確認ください。
     </div>
 
     <!-- 詳細数値グリッド -->
@@ -659,8 +690,12 @@ function calcDailyBenefit(w, ageGroup) {
     } else if (w <= 16940) y = 0.45 * w;
     else y = 7623;
   } else {
-    // 65歳以上：高年齢求職者給付金（30日 or 50日）
-    y = 0.5 * w;
+    // 65歳以上
+    if (w < 3014) y = 0;
+    else if (w < 5340) y = 0.8 * w;
+    else if (w <= 13140) y = 0.8 * w - 0.3 * ((w - 5340) / (13140 - 5340)) * w;
+    else if (w <= 14510) y = 0.5 * w;
+    else y = 7255;
   }
   return Math.floor(y);
 }
@@ -671,57 +706,86 @@ function estimateRate(w, y) {
   return Math.round((y / w) * 100);
 }
 
-// 所定給付日数（自己都合）
+// ── 所定給付日数テーブル ──
+
+// 自己都合（一般受給資格者）
 function getBenefitDaysVoluntary(period) {
-  if (period === 'under6' || period === '6to11') return 0; // 受給不可（自己都合は12ヶ月必要）
+  if (period === 'under6' || period === '6to11') return 0;
   if (period === '1to4') return 90;
-  if (period === '5to9') return 90;
-  if (period === '10to19') return 120;
+  if (period === '5to9') return 120;
+  if (period === '10to19') return 150;
   if (period === '20over') return 150;
   return 0;
 }
 
-// 所定給付日数（会社都合）
+// 会社都合（特定受給資格者・特定理由離職者）
+// ※30〜44歳は30〜34歳の日数（低い方）を採用
 function getBenefitDaysCompany(period, ageGroup) {
-  if (period === 'under6') return 90;
-  if (period === '6to11') return 90;
+  if (period === 'under6') return 0;
+
+  if (period === '6to11') {
+    if (ageGroup === '65over') return 0;
+    return 90;
+  }
   // 1年以上5年未満
   if (period === '1to4') {
     if (ageGroup === 'under30') return 90;
-    if (ageGroup === '30to44') return 120;
-    if (ageGroup === '45to59') return 180; // 35〜44:150, 45〜59:180
+    if (ageGroup === '30to44') return 120;  // 30-34:120, 35-44:150
+    if (ageGroup === '45to59') return 180;
     if (ageGroup === '60to64') return 150;
-    if (ageGroup === '65over') return 50;
+    if (ageGroup === '65over') return 0;
     return 90;
   }
   // 5年以上10年未満
   if (period === '5to9') {
     if (ageGroup === 'under30') return 120;
-    if (ageGroup === '30to44') return 180;
+    if (ageGroup === '30to44') return 180;  // 30-34:180, 35-44:180
     if (ageGroup === '45to59') return 240;
     if (ageGroup === '60to64') return 180;
-    if (ageGroup === '65over') return 50;
+    if (ageGroup === '65over') return 0;
     return 120;
   }
   // 10年以上20年未満
   if (period === '10to19') {
     if (ageGroup === 'under30') return 180;
-    if (ageGroup === '30to44') return 210;
+    if (ageGroup === '30to44') return 210;  // 30-34:210, 35-44:240
     if (ageGroup === '45to59') return 270;
     if (ageGroup === '60to64') return 210;
-    if (ageGroup === '65over') return 50;
+    if (ageGroup === '65over') return 0;
     return 180;
   }
   // 20年以上
   if (period === '20over') {
     if (ageGroup === 'under30') return 180;
-    if (ageGroup === '30to44') return 240;
+    if (ageGroup === '30to44') return 240;  // 30-34:240, 35-44:270
     if (ageGroup === '45to59') return 330;
     if (ageGroup === '60to64') return 240;
-    if (ageGroup === '65over') return 50;
+    if (ageGroup === '65over') return 0;
     return 240;
   }
   return 90;
+}
+
+// 就職困難者
+function getBenefitDaysDifficult(period, ageGroup) {
+  if (period === 'under6') return 0;
+
+  if (ageGroup === '65over') {
+    // 65歳以上は高年齢求職者給付金
+    return 0;
+  }
+
+  // 6ヶ月以上1年未満
+  if (period === '6to11') {
+    return 150;
+  }
+
+  // 1年以上（全区分共通で年齢による分岐）
+  if (ageGroup === 'under30' || ageGroup === '60to64') {
+    return 300;
+  }
+  // 30歳〜59歳
+  return 360;
 }
 
 // 数値フォーマット
@@ -730,8 +794,8 @@ function fmtMan(n) { return (n / 10000).toFixed(1); }
 
 // タイムライン生成
 function buildTimeline(reason, restriction, benefitDays, firstPayDays) {
-  const isCompany = reason === 'company';
-  const limit = isCompany ? 0 : (restriction === '3month' ? 90 : 30);
+  const isVoluntary = reason === 'voluntary';
+  const limit = isVoluntary ? (restriction === '3month' ? 90 : 30) : 0;
   const items = [];
 
   items.push({
@@ -750,7 +814,7 @@ function buildTimeline(reason, restriction, benefitDays, firstPayDays) {
     desc: 'この7日間はアルバイトNG。全員共通で発生する期間'
   });
 
-  if (!isCompany) {
+  if (isVoluntary) {
     items.push({
       day: `待期後 +${limit === 30 ? '1ヶ月' : '3ヶ月'}`, icon: '🚫', color: 'yellow',
       title: `給付制限期間（${limit === 30 ? '1ヶ月' : '3ヶ月'}）`,
@@ -795,7 +859,9 @@ function calculate() {
   const ageGroup = document.querySelector('input[name="age"]:checked').value;
   const period = document.getElementById('insured-period').value;
   const restriction = document.querySelector('input[name="restriction"]:checked')?.value || '1month';
+  const isVoluntary = reason === 'voluntary';
   const isCompany = reason === 'company';
+  const isDifficult = reason === 'difficult';
   const is65over = ageGroup === '65over';
 
   // 賃金日額
@@ -810,29 +876,40 @@ function calculate() {
 
   // 所定給付日数
   let benefitDays = 0;
-  if (period === 'under6') {
-    // 自己都合は加入12ヶ月必要、会社都合は6ヶ月でOK
-    if (isCompany) benefitDays = getBenefitDaysCompany(period, ageGroup);
-    else benefitDays = 0;
-  } else if (period === '6to11') {
-    if (isCompany) benefitDays = getBenefitDaysCompany(period, ageGroup);
-    else benefitDays = 0; // 自己都合は受給不可
+  if (isVoluntary) {
+    benefitDays = getBenefitDaysVoluntary(period);
+  } else if (isCompany) {
+    benefitDays = getBenefitDaysCompany(period, ageGroup);
   } else {
-    benefitDays = isCompany
-      ? getBenefitDaysCompany(period, ageGroup)
-      : getBenefitDaysVoluntary(period);
+    // 就職困難者
+    benefitDays = getBenefitDaysDifficult(period, ageGroup);
   }
 
   // 高年齢求職者給付金（65歳以上）
   let is65note = '';
   if (is65over) {
-    benefitDays = period === '1to4' || period === '5to9' ? 30 : 50;
+    if (period === 'under6') {
+      benefitDays = 0;
+    } else if (period === '6to11') {
+      benefitDays = 30;
+    } else {
+      benefitDays = 50;
+    }
     is65note = '（高年齢求職者給付金：一時金）';
   }
 
   // 受給不可チェック
   if (benefitDays === 0) {
-    alert('ご入力の条件では失業給付を受給できない可能性があります。\n\n自己都合退職の場合は離職前2年間に12ヶ月以上の加入が必要です。\nハローワークへご相談ください。');
+    let msg = 'ご入力の条件では失業給付を受給できない可能性があります。\n\n';
+    if (isVoluntary) {
+      msg += '自己都合退職の場合は離職前2年間に12ヶ月以上の雇用保険加入が必要です。';
+    } else if (is65over) {
+      msg += '65歳以上の方は6ヶ月以上の雇用保険加入が必要です。';
+    } else {
+      msg += '会社都合・就職困難者の場合は離職前1年間に6ヶ月以上の雇用保険加入が必要です。';
+    }
+    msg += '\nハローワークへご相談ください。';
+    alert(msg);
     return;
   }
 
@@ -840,8 +917,7 @@ function calculate() {
   const totalBenefit = benefitDaily * benefitDays;
 
   // 初回振込まで（日数目安）
-  const limitDays = isCompany ? 0 : (restriction === '3month' ? 90 : 30);
-  // 待期7日 + 給付制限 + 説明会・認定までの期間（約28日） + 振込5営業日
+  const limitDays = isVoluntary ? (restriction === '3month' ? 90 : 30) : 0;
   const firstPayDays = 7 + limitDays + 28 + 7;
 
   // 月あたり（28日分）
@@ -867,6 +943,14 @@ function calculate() {
 
   document.getElementById('saishushoku-high').textContent = `約${fmtMan(saishushokuHigh)}万円`;
   document.getElementById('saishushoku-low').textContent = `約${fmtMan(saishushokuLow)}万円`;
+
+  // 30〜44歳 会社都合の場合の注記
+  const ageSplitNote = document.getElementById('age-split-note');
+  if (isCompany && ageGroup === '30to44' && period !== 'under6' && period !== '6to11') {
+    ageSplitNote.style.display = 'block';
+  } else {
+    ageSplitNote.style.display = 'none';
+  }
 
   // タイムライン
   const tlContainer = document.getElementById('timeline');
@@ -909,11 +993,13 @@ function resetForm() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// 退職理由切り替えで給付制限グループ表示/非表示
+// 退職理由切り替えで表示/非表示
 document.querySelectorAll('input[name="reason"]').forEach(el => {
   el.addEventListener('change', function() {
     const rg = document.getElementById('restriction-group');
+    const dn = document.getElementById('difficult-note');
     rg.style.display = this.value === 'voluntary' ? 'block' : 'none';
+    dn.style.display = this.value === 'difficult' ? 'block' : 'none';
   });
 });
 </script>
