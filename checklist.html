@@ -1,4 +1,4 @@
-　<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -135,7 +135,7 @@
   <div class="progress-inner">
     <div class="progress-label">
       <span>✅ 退職後やること チェックリスト</span>
-      <span id="progress-text">0 / 20 完了</span>
+      <span id="progress-text">0 / 23 完了</span>
     </div>
     <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
   </div>
@@ -199,6 +199,13 @@
         <div class="cl-content">
           <div class="cl-title">ハローワークへ受給申請 <span class="badge-orange">なるべく早く</span></div>
           <div class="cl-text">離職票・雇用保険被保険者証・マイナンバーカード・写真2枚・通帳・印鑑を持参。この日が起算日となります。</div>
+        </div>
+      </li>
+      <li class="cl-item" onclick="toggle(this)" data-id="c5b" style="border-left:3px solid #7c3aed;">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">🛡️ 就職困難者の方：障害者手帳を持参</div>
+          <div class="cl-text">身体障害者手帳・療育手帳・精神障害者保健福祉手帳をお持ちの方は、ハローワーク申請時に必ず提示してください。就職困難者として認定されると、給付制限なし・所定給付日数が最大360日に大幅優遇されます。</div>
         </div>
       </li>
       <li class="cl-item" onclick="toggle(this)" data-id="c6">
@@ -276,6 +283,20 @@
         <div class="cl-content">
           <div class="cl-title">職業訓練（ハロートレーニング）の検討</div>
           <div class="cl-text">スキルアップしながら給付延長が可能。給付終了後も「職業訓練受講給付金」（月10万円）を受けられる場合があります。</div>
+        </div>
+      </li>
+      <li class="cl-item" onclick="toggle(this)" data-id="c14b" style="border-left:3px solid #7c3aed;">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">🛡️ 就職困難者の方：障害者専門窓口に相談</div>
+          <div class="cl-text">ハローワークには障害者専門の相談窓口が設置されています。一般窓口より手厚いサポートが受けられます。障害者トライアル雇用（最大3ヶ月の試行雇用）の紹介も受けられます。</div>
+        </div>
+      </li>
+      <li class="cl-item" onclick="toggle(this)" data-id="c14c" style="border-left:3px solid #7c3aed;">
+        <div class="cl-cb"></div>
+        <div class="cl-content">
+          <div class="cl-title">🛡️ 就職困難者の方：就労移行支援の利用を検討</div>
+          <div class="cl-text">障害福祉サービスの一つで、最大2年間の就職訓練を受けられます。所定給付日数が長い（最大360日）ため、給付を受けながら訓練に集中できます。市区町村の障害福祉課またはハローワークで相談。</div>
         </div>
       </li>
     </ul>
@@ -393,6 +414,22 @@
         就労可能な在留資格（就労ビザ）を持ち、雇用保険に加入していれば、日本人と同様に失業給付を受け取れます。ただし、在留期間の満了前に受給資格が消滅する場合があります。在留資格の変更・更新時期に注意してください。
       </div>
     </div>
+
+    <div class="special-card" onclick="toggleSpecial(this)">
+      <div class="special-card-header">
+        <h4>🛡️ 就職困難者（障害者手帳をお持ちの方）の場合</h4>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="special-body">
+        身体障害者手帳・療育手帳・精神障害者保健福祉手帳をお持ちの方は「就職困難者」として優遇されます。<strong>自己都合退職でも給付制限なし</strong>、所定給付日数は最大360日（30〜59歳・加入1年以上の場合）です。加入期間が1年未満（6ヶ月以上）でも150日受給可能です。<br><br>
+        <strong>申請時のポイント：</strong><br>
+        ・ハローワーク申請時に障害者手帳を必ず提示する<br>
+        ・主治医の意見書を求められる場合があるので、事前に主治医に相談しておく<br>
+        ・障害者専門の相談窓口で手厚いサポートを受けられる<br>
+        ・障害者トライアル雇用、就労移行支援（最大2年）、障害者就業・生活支援センターなどの支援制度も活用可能<br><br>
+        <a href="calculator.html" style="color:#7c3aed;font-weight:700;">🧮 就職困難者の給付金を計算する →</a>
+      </div>
+    </div>
   </div>
 
   <!-- CTA -->
@@ -434,7 +471,7 @@
 </footer>
 
 <script>
-const TOTAL = 20;
+const TOTAL = 23;
 
 function toggle(el) {
   el.classList.toggle('checked');
@@ -472,3 +509,4 @@ updateProgress();
 </script>
 </body>
 </html>
+
