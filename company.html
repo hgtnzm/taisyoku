@@ -175,7 +175,7 @@
             <tr>
               <td>最大給付日数</td>
               <td>150日</td>
-              <td style="color:var(--success);font-weight:700;">330日</td>
+              <td style="color:var(--success);font-weight:700;">330日<br><span style="font-size:12px;color:#7c3aed;">※就職困難者は最大360日</span></td>
             </tr>
             <tr>
               <td>給付率</td>
@@ -295,6 +295,37 @@
       <div class="alert alert-warning" style="margin-top:10px;">
         ⚠️ 就職困難者（障害をお持ちの方など）はさらに長く、<strong>最大360日</strong>の給付を受けられる場合があります。
       </div>
+
+      <!-- ▼▼▼ 追加：就職困難者の給付日数表 ▼▼▼ -->
+      <div style="background:linear-gradient(135deg,#faf5ff,#f3e8ff);border:2px solid #c4b5fd;border-radius:12px;padding:20px;margin-top:20px;">
+        <div style="font-size:15px;font-weight:800;color:#6d28d9;margin-bottom:12px;">♿ 就職困難者の所定給付日数</div>
+        <p style="font-size:13px;color:var(--gray-600);margin-bottom:12px;">身体障害者手帳・精神障害者保健福祉手帳・療育手帳をお持ちの方は、退職理由を問わず以下の日数が適用されます。</p>
+        <div style="overflow-x:auto;">
+          <table class="days-table" style="border:1px solid #c4b5fd;">
+            <thead>
+              <tr>
+                <th style="background:#7c3aed;">加入期間</th>
+                <th style="background:#7c3aed;">44歳以下</th>
+                <th style="background:#7c3aed;">45〜64歳</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>6ヶ月〜1年未満</td>
+                <td style="color:#7c3aed;font-weight:700;">150日</td>
+                <td style="color:#7c3aed;font-weight:700;">150日</td>
+              </tr>
+              <tr>
+                <td>1年以上</td>
+                <td style="color:#7c3aed;font-weight:700;font-size:15px;">300日</td>
+                <td style="color:#7c3aed;font-weight:800;font-size:16px;">360日</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:12px;color:var(--gray-500);margin-top:8px;">※ 給付制限なし（自己都合退職でも適用）。ハローワーク申請時に手帳を持参してください。</p>
+      </div>
+      <!-- ▲▲▲ 追加ここまで ▲▲▲ -->
     </div>
 
     <!-- TAB: 手続き -->
@@ -332,6 +363,21 @@
       </div>
     </div>
   </div>
+
+  <!-- ▼▼▼ 追加：就職困難者への案内ブロック ▼▼▼ -->
+  <div style="background:linear-gradient(135deg,#faf5ff,#f3e8ff);border:2px solid #c4b5fd;border-radius:12px;padding:20px 24px;margin:24px 0;">
+    <div style="font-size:15px;font-weight:800;color:#6d28d9;margin-bottom:8px;">♿ 障害者手帳をお持ちの方へ</div>
+    <p style="font-size:14px;color:#4b5563;line-height:1.8;margin:0;">
+      身体障害者手帳・精神障害者保健福祉手帳・療育手帳をお持ちの方は<strong>「就職困難者」</strong>として認定され、
+      会社都合・自己都合を問わず<strong>給付制限なし</strong>で、所定給付日数が<strong>最大360日</strong>（45〜64歳・加入1年以上）まで大幅に拡大されます。
+      ハローワーク申請時に必ず手帳を持参してください。
+    </p>
+    <div style="margin-top:12px;">
+      <a href="calculator.html" style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:#7c3aed;color:white;font-size:13px;font-weight:700;border-radius:8px;text-decoration:none;">🧮 就職困難者の給付額を計算する</a>
+      <a href="timeline.html" style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:white;color:#7c3aed;font-size:13px;font-weight:700;border-radius:8px;text-decoration:none;border:2px solid #7c3aed;margin-left:8px;">📅 タイムラインを確認する</a>
+    </div>
+  </div>
+  <!-- ▲▲▲ 追加ここまで ▲▲▲ -->
 
   <!-- CTA -->
   <div class="card" style="text-align:center;background:linear-gradient(135deg,#f0fdf4,#eff6ff);">
