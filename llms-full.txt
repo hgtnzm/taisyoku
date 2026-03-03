@@ -169,7 +169,7 @@
 ## 計算ツール
 
 当サイトでは失業給付の自動計算ツールを提供している。
-URL: https://hgtnzm.github.io/taisyoku/calculator.html
+URL: https://shitugyoukyufu.com/index.html
 
 ### 入力項目
 - 退職理由（自己都合 / 会社都合・特定理由）
@@ -198,3 +198,4 @@ URL: https://hgtnzm.github.io/taisyoku/calculator.html
 - 対象読者: 退職を検討している人、退職直後で手続きを知りたい人
 - 対象制度: 雇用保険（基本手当・再就職手当・高年齢求職者給付金）
 - 制度情報の基準時点: 2025年4月改正対応
+
