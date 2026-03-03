@@ -687,6 +687,14 @@
     <div class="calc-card animate">
       <div class="calc-card-title"><div class="icon">📅</div>退職後の流れ・タイムライン</div>
       <div class="timeline" id="timeline"></div>
+      <!-- Xシェアボタン -->
+<div id="share-block" style="text-align:center;margin:2rem 0 1rem;">
+  <p style="font-size:.9rem;color:#666;margin-bottom:.6rem;">計算結果をシェアして、退職仲間に届けよう</p>
+  <button id="btn-share-x" onclick="shareToX()" style="display:inline-flex;align-items:center;gap:.5em;background:#000;color:#fff;border:none;padding:.7rem 1.6rem;border-radius:8px;font-size:1rem;font-weight:600;cursor:pointer;transition:opacity .2s;">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    Xでシェア
+  </button>
+</div>
     </div>
 
     <!-- タイムライン詳細への誘導 -->
@@ -1034,6 +1042,23 @@ function calculate() {
   setTimeout(function() {
     resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 100);
+}
+  // Xシェアボタン
+function shareToX() {
+  var total = document.getElementById('total-amount').textContent;
+  var daily = document.getElementById('benefit-daily').textContent;
+  var days = document.getElementById('benefit-days').textContent;
+  var rate = document.getElementById('benefit-rate').textContent;
+  var text = '【失業給付シミュレーション結果】\n'
+    + '基本手当日額：' + daily + '円\n'
+    + '給付日数：' + days + '日\n'
+    + '受給総額：約' + total + '万円\n'
+    + '給付率：' + rate + '%\n\n'
+    + '失業保険の申請は無料でできます！\n'
+    + '計算ツールはこちら↓\n';
+  var url = 'https://shitugyoukyufu.com/calculator.html';
+  var shareUrl = 'https://x.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url);
+  window.open(shareUrl, '_blank', 'width=550,height=420');
 }
 
 // リセット
