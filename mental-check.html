@@ -5,9 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>こころと体の状態チェック｜退職後の自分を知るセルフチェック</title>
 <meta name="description" content="退職後の心身の状態を17問でチェック。結果は精神科・心療内科の受診サポートシートとして活用できます。医療診断ではありません。">
+<link rel="stylesheet" href="common.css">
+   <meta property="og:site_name" content="退職・失業給付ガイド">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="こころと体の状態チェック｜退職後のセルフチェック">
+<meta property="og:description" content="退職後の心身の状態を17問でチェック。受診サポートシート付き。">
+<meta property="og:url" content="https://shitugyoukyufu.com/mental-check.html">
+<meta property="og:image" content="https://shitugyoukyufu.com/images/ogp-index.jpg">
+<meta name="twitter:image" content="https://shitugyoukyufu.com/images/ogp-index.jpg">
+
 
 <!-- LZString for URL compression -->
-<script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
+
 
 <style>
 /* =============================================
@@ -1467,13 +1478,13 @@ body {
     <div class="benefit-banner kyufu" id="banner-kyufu">
       <h4>💰 給付延長の可能性があります</h4>
       <p>精神科・心療内科の診断書があると、ハローワークで「就職困難者」として認定され、失業給付が<strong>90日→最大300日に延長</strong>される可能性があります。</p>
-      <a href="https://shitugyoukyufu.com/benefits-extension.html">→ 給付延長の詳しい手続きを見る</a>
+      <a href="benefits-extension.html">→ 給付延長の詳しい手続きを見る</a>
     </div>
 
     <div class="benefit-banner shoubyo" id="banner-shoubyo">
       <h4>🏥 傷病手当金を受け取れた可能性があります</h4>
       <p>在職中から症状があった場合、健康保険の傷病手当金（給与の約2/3・最大1年6ヶ月）を退職後も継続受給できる可能性があります。</p>
-      <a href="https://shitugyoukyufu.com/shoubyo-teatekin.html">→ 傷病手当金の詳細を確認する</a>
+      <a href="shoubyo-teatekin.html">→ 傷病手当金の詳細を確認する</a>
     </div>
 
     <!-- Save Panel -->
@@ -1792,7 +1803,7 @@ function showResult(a) {
   if (level === 2) {
     const scenario2 = (a.q14 && a.q14.filter(v => v !== 'g').length >= 3) ? 'adhd' : 'utsu';
     const s2 = calcScore(a);
-    const ctaHref = `https://shitugyoukyufu.com/clinic-support.html?level=2&scenario=${scenario2}&score=${s2}`;
+    const ctaHref = `clinic-support.html?level=2&scenario=${scenario2}&score=${s2}`;
     const ctaBtn  = document.getElementById('cta-btn-go');
     if (ctaBtn) ctaBtn.href = ctaHref;
 
@@ -1912,7 +1923,7 @@ function buildNextSteps(a, level) {
   if (level >= 1) {
     // シナリオ判定: q14(ADHD傾向)が3件以上 → adhd、それ以外 → utsu
     const scenario = (a.q14 && a.q14.filter(v => v !== 'g').length >= 3) ? 'adhd' : 'utsu';
-    const clinicURL = `https://shitugyoukyufu.com/clinic-support.html?level=${level}&scenario=${scenario}&score=${calcScore(a)}`;
+    const clinicURL = `clinic-support.html?level=${level}&scenario=${scenario}&score=${calcScore(a)}`;
     steps.push({
       icon: '🏥',
       title: '精神科・心療内科への受診を検討する',
@@ -1936,7 +1947,7 @@ function buildNextSteps(a, level) {
     icon: '🧭',
     title: '次の働き方を考えるヒントを探す',
     desc: '「はたらきかた診断」で、自分に合う職場環境・仕事の特徴を探しましょう。',
-    link: 'https://shitugyoukyufu.com/diagnosis/work-type/',
+    link: 'diagnosis/work-type/',
     linkText: '→ はたらきかた診断を試す（準備中）'
   });
 
@@ -1945,7 +1956,7 @@ function buildNextSteps(a, level) {
       icon: '📋',
       title: '職場の困りごとをさらに詳しくチェック',
       desc: '「職場の困りごと確認シート」でADHD・ASD傾向についてより詳しく確認できます。',
-      link: 'https://shitugyoukyufu.com/diagnosis/workplace-troubles/',
+      link: 'diagnosis/workplace-troubles/',
       linkText: '→ 困りごと確認シートを見る（準備中）'
     });
   }
@@ -2255,6 +2266,10 @@ window.addEventListener('DOMContentLoaded', () => {
   #result-page { display: block !important; }
 }
 </style>
+<script>
+var LZString=function(){var r="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-$",o={};function n(r,n,e){var t,i,s,u={},a={},p="",c="",l="",f=2,d=3,h=2,v=[],g=0,m=0;for(s=0;s<r.length;s+=1)if(p=r.charAt(s),Object.prototype.hasOwnProperty.call(u,p)||(u[p]=d++,a[p]=!0),c=l+p,Object.prototype.hasOwnProperty.call(u,c))l=c;else{if(Object.prototype.hasOwnProperty.call(a,l)){if(l.charCodeAt(0)<256){for(t=0;t<h;t++)g<<=1,m==e-1?(m=0,v.push(n(g)),g=0):m++;for(t=0,i=l.charCodeAt(0);t<8;t++)g=g<<1|1&i,m==e-1?(m=0,v.push(n(g)),g=0):m++,i>>=1}else{for(i=1,t=0;t<h;t++)g=g<<1|1,m==e-1?(m=0,v.push(n(g)),g=0):m++;for(t=0,i=l.charCodeAt(0);t<16;t++)g=g<<1|1&i,m==e-1?(m=0,v.push(n(g)),g=0):m++,i>>=1}0==--f&&(f=Math.pow(2,h),h++),delete a[l]}else for(t=0,i=u[l];t<h;t++)g=g<<1|1&i,m==e-1?(m=0,v.push(n(g)),g=0):m++,i>>=1;0==--f&&(f=Math.pow(2,h),h++),u[c]=d++,l=String(p)}if(""!==l){if(Object.prototype.hasOwnProperty.call(a,l)){if(l.charCodeAt(0)<256){for(t=0;t<h;t++)g<<=1,m==e-1?(m=0,v.push(n(g)),g=0):m++;for(t=0,i=l.charCodeAt(0);t<8;t++)g=g<<1|1&i,m==e-1?(m=0,v.push(n(g)),g=0):m++,i>>=1}else{for(i=1,t=0;t<h;t++)g=g<<1|1,m==e-1?(m=0,v.push(n(g)),g=0):m++;for(t=0,i=l.charCodeAt(0);t<16;t++)g=g<<1|1&i,m==e-1?(m=0,v.push(n(g)),g=0):m++,i>>=1}0==--f&&(f=Math.pow(2,h),h++),delete a[l]}else for(t=0,i=u[l];t<h;t++)g=g<<1|1&i,m==e-1?(m=0,v.push(n(g)),g=0):m++,i>>=1}for(i=2,t=0;t<h;t++)g=g<<1|1&i,m==e-1?(m=0,v.push(n(g)),g=0):m++,i>>=1;for(;;){if(g<<=1,m==e-1){v.push(n(g));break}m++}return v.join("")}function e(n,e){for(var t=n.length,i=[],s=4,u=4,a=3,p="",c=[],l={val:e(0),position:r.length,index:1},f=0;f<3;f+=1)i[f]=f;for(var d=0,h=Math.pow(2,2),v=1;v!=h;)s=l.val&l.position,l.position>>=1,0==l.position&&(l.position=r.length,l.val=e(l.index++)),d|=(s>0?1:0)*v,v<<=1;switch(d){case 0:for(d=0,h=Math.pow(2,8),v=1;v!=h;)s=l.val&l.position,l.position>>=1,0==l.position&&(l.position=r.length,l.val=e(l.index++)),d|=(s>0?1:0)*v,v<<=1;c.push(String.fromCharCode(d)),u=3;break;case 1:for(d=0,h=Math.pow(2,16),v=1;v!=h;)s=l.val&l.position,l.position>>=1,0==l.position&&(l.position=r.length,l.val=e(l.index++)),d|=(s>0?1:0)*v,v<<=1;c.push(String.fromCharCode(d)),u=3;break;case 2:return""}for(p=c[0],c.push(p);;){if(l.index>t)return"";for(d=0,h=Math.pow(2,a),v=1;v!=h;)s=l.val&l.position,l.position>>=1,0==l.position&&(l.position=r.length,l.val=e(l.index++)),d|=(s>0?1:0)*v,v<<=1;switch(d){case 0:for(d=0,h=Math.pow(2,8),v=1;v!=h;)s=l.val&l.position,l.position>>=1,0==l.position&&(l.position=r.length,l.val=e(l.index++)),d|=(s>0?1:0)*v,v<<=1;i[u++]=String.fromCharCode(d),d=u-1,f--;break;case 1:for(d=0,h=Math.pow(2,16),v=1;v!=h;)s=l.val&l.position,l.position>>=1,0==l.position&&(l.position=r.length,l.val=e(l.index++)),d|=(s>0?1:0)*v,v<<=1;i[u++]=String.fromCharCode(d),d=u-1,f--;break;case 2:return c.join("")}if(0==f&&(f=Math.pow(2,a),a++),i[d])p=i[d];else{if(d!==u)return null;p=c[c.length-1]+c[c.length-1].charAt(0)}c.push(p),i[u++]=c[c.length-2]+p.charAt(0),p=i[d],0==--f&&(f=Math.pow(2,a),a++)}}return{compressToEncodedURIComponent:function(r){return null==r?"":n(r,6,function(n){return"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-$".charAt(n)})},decompressFromEncodedURIComponent:function(n){if(null==n)return"";if(""==n)return null;n=n.replace(/ /g,"+");var t={};for(var i=0;i<65;i++)t["ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-$".charAt(i)]=i;return e(n.length,function(e){return t[n.charAt(e)]})}}}();
+</script>
+<script src="nav.js"></script>
 
 </body>
 </html>
