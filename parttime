@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>失業保険の受給中にアルバイトはできる？｜4時間ルール・申告方法を完全解説</title>
+<meta name="description" content="失業保険を受給しながらアルバイトはできる？4時間以上・4時間未満の違い、週20時間の就職ライン、申告方法、バレる仕組みまで完全解説。不正受給にならないために必読。">
+<meta property="og:site_name" content="退職・失業給付ガイド">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="失業保険の受給中にアルバイトはできる？｜4時間ルール・申告方法を完全解説">
+<meta property="og:description" content="失業保険を受給しながらアルバイトはできる？4時間ルール・申告方法・バレる仕組みまで完全解説。">
+<meta property="og:url" content="https://shitugyoukyufu.com/parttime.html">
+<meta property="og:image" content="https://shitugyoukyufu.com/images/ogp-index.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://shitugyoukyufu.com/images/ogp-index.jpg">
+<meta name="twitter:title" content="失業保険の受給中にアルバイトはできる？｜4時間ルール完全解説">
+<meta name="twitter:description" content="受給中のアルバイト、4時間以上・未満の違い、申告方法、バレる仕組みまで完全解説。">
+<link rel="canonical" href="https://shitugyoukyufu.com/parttime.html">
+<link rel="stylesheet" href="common.css">
+
+<style>
+/* ===== parttime固有スタイル ===== */
+.pt-container { max-width: 800px; margin: 0 auto; padding: 16px; }
+
+.pt-hero {
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #0ea5e9 100%);
+  border-radius: var(--radius-lg);
+  padding: 40px 24px;
+  text-align: center;
+  color: white;
+  margin-bottom: 24px;
+}
+.pt-hero h1 {
+  font-size: clamp(22px, 5vw, 32px);
+  font-weight: 900;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+.pt-hero h1 .accent {
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.pt-hero p {
+  font-size: 15px;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* セクション */
+.pt-section {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 24px;
+  margin-bottom: 20px;
+}
+.pt-section-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--gray-800);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--primary-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pt-section-title .icon {
+  font-size: 22px;
+}
+
+/* 結論ボックス */
+.conclusion-box {
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+  border: 2px solid #93c5fd;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+.conclusion-box .big-text {
+  font-size: clamp(20px, 4vw, 26px);
+  font-weight: 900;
+  color: var(--primary-dark);
+  margin-bottom: 8px;
+}
+.conclusion-box p {
+  font-size: 14px;
+  color: var(--gray-600);
+  line-height: 1.6;
+}
+
+/* 比較テーブル */
+.rule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+.rule-table th {
+  background: var(--gray-800);
+  color: white;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+.rule-table th:first-child {
+  text-align: left;
+}
+.rule-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 14px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.6;
+}
+.rule-table td:first-child {
+  font-weight: 700;
+  text-align: left;
+  color: var(--gray-700);
+}
+.rule-table tr:nth-child(even) {
+  background: var(--gray-50);
+}
+
+/* 4時間ルール図解 */
+.rule-visual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 20px 0;
+}
+.rule-card {
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+}
+.rule-card.under4 {
+  background: #fef3c7;
+  border: 2px solid #f59e0b;
+}
+.rule-card.over4 {
+  background: #dbeafe;
+  border: 2px solid #3b82f6;
+}
+.rule-card .rule-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+.rule-card .rule-title {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.rule-card.under4 .rule-title { color: #92400e; }
+.rule-card.over4 .rule-title { color: #1e40af; }
+.rule-card .rule-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--gray-700);
+}
+
+/* 警告ボックス */
+.warning-box {
+  background: #fef2f2;
+  border: 2px solid #fca5a5;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+.warning-box .warning-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #dc2626;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.warning-box p {
+  font-size: 14px;
+  color: var(--gray-700);
+  line-height: 1.8;
+}
+
+/* 安心ボックス */
+.safe-box {
+  background: #f0fdf4;
+  border: 2px solid #86efac;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+.safe-box .safe-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #16a34a;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.safe-box p {
+  font-size: 14px;
+  color: var(--gray-700);
+  line-height: 1.8;
+}
+
+/* 申告書の書き方 */
+.form-guide {
+  background: var(--gray-50);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin: 16px 0;
+}
+.form-guide .form-step {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+.form-guide .form-step:last-child {
+  margin-bottom: 0;
+}
+.form-guide .step-num {
+  width: 28px;
+  height: 28px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.form-guide .step-text {
+  font-size: 14px;
+  color: var(--gray-700);
+  line-height: 1.6;
+  padding-top: 3px;
+}
+
+/* 具体例 */
+.example-box {
+  background: #faf5ff;
+  border: 2px solid #c4b5fd;
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+.example-box .example-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #7c3aed;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.example-item {
+  background: white;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gray-700);
+}
+.example-item:last-child {
+  margin-bottom: 0;
+}
+.example-item strong {
+  color: var(--gray-800);
+}
+
+/* FAQ */
+.pt-faq-item {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.pt-faq-q {
+  padding: 16px 20px;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--gray-800);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  transition: background 0.15s;
+}
+.pt-faq-q:hover { background: var(--gray-50); }
+.pt-faq-q::before {
+  content: 'Q';
+  color: var(--primary);
+  font-weight: 900;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.pt-faq-q .faq-arrow {
+  color: var(--gray-400);
+  font-size: 12px;
+  transition: transform 0.2s;
+}
+.pt-faq-a {
+  display: none;
+  padding: 0 20px 16px 46px;
+  font-size: 14px;
+  color: var(--gray-600);
+  line-height: 1.8;
+  background: var(--gray-50);
+}
+.pt-faq-item.open .pt-faq-a { display: block; }
+.pt-faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+  .pt-container { padding: 12px; }
+  .pt-hero { padding: 28px 16px; }
+  .pt-section { padding: 20px 16px; }
+  .rule-visual { grid-template-columns: 1fr; }
+  .rule-table { font-size: 12px; }
+  .rule-table th, .rule-table td { padding: 10px 8px; }
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "失業保険の受給中にアルバイトはできますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "条件付きで可能です。1日4時間以上の就労は「就労」扱いとなり、その日の基本手当は不支給（後日に繰り越し）になります。4時間未満は「内職・手伝い」扱いで、収入額に応じて減額されます。ただし週20時間以上または月14日以上の就労は「就職」とみなされ、給付が停止されます。いずれの場合も失業認定申告書への申告が必須です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "アルバイトをハローワークに申告しないとバレますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "バレます。アルバイト先が雇用保険に加入手続きをした時点でハローワークのシステムに記録されます。また、マイナンバーによる所得情報の照合、税務署への給与支払報告書、第三者からの密告でも発覚します。不正受給が発覚した場合は受給額の全額返還に加え、最大2倍の納付命令（合計3倍返還）が科されます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "待機期間（7日間）中にアルバイトはできますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "待機期間の7日間はアルバイトを含む一切の就労ができません。就労すると待機期間がリセットされ、カウントがやり直しになります。待機期間が完了するまで給付手続きが進みません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "給付制限期間中のアルバイトはできますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "給付制限期間中（自己都合退職の場合1〜3ヶ月）はアルバイト可能です。ただし週20時間未満・月14日未満に抑える必要があります。この期間のアルバイトも失業認定申告書への記載が必要です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "日雇いや単発バイトも申告が必要ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、必要です。日雇い・単発・日払い・手渡しであっても、働いた事実はすべて失業認定申告書に記載する義務があります。金額や雇用形態に関係なく、申告しなければ不正受給になります。"
+      }
+    }
+  ]
+}
+</script>
+
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="logo">📋 <span>退職・失業給付</span>完全ガイド</a>
+  <button class="nav-toggle" aria-label="メニュー"><span></span></button>
+  <ul class="nav-links">
+    <li><a href="timeline.html">📅 タイムライン</a></li>
+    <li><a href="voluntary.html">🙋 自己都合</a></li>
+    <li><a href="company.html">🏢 会社都合</a></li>
+    <li><a href="checklist.html">✅ チェックリスト</a></li>
+    <li><a href="calculator.html" class="btn-calc">🧮 給付金計算</a></li>
+    <li><a href="scam.html">⚠️ 詐欺に注意</a></li>
+  </ul>
+</nav>
+
+<!-- 詐欺注意バナー -->
+<div class="scam-banner">
+  <a href="scam.html">⚠️「失業保険の受給額を増やせる」という広告に注意！運営者は30万円騙されました <span class="scam-cta">→ 詳しく見る</span></a>
+</div>
+
+<div class="pt-container">
+
+  <!-- ヒーロー -->
+  <div class="pt-hero">
+    <h1>失業保険をもらいながら<br><span class="accent">アルバイトはできる？</span></h1>
+    <p>4時間ルール・申告方法・バレる仕組みまで完全解説</p>
+  </div>
+
+  <!-- 結論ボックス -->
+  <div class="conclusion-box">
+    <div class="big-text">結論：条件付きでアルバイトできます</div>
+    <p>ただし「4時間」「週20時間」「申告義務」の3つのルールを守る必要があります。<br>ルールを破ると不正受給になり、<strong>受給額の3倍返還</strong>を求められます。</p>
+  </div>
+
+  <!-- ===== セクション1：3つの絶対ルール ===== -->
+  <div class="pt-section">
+    <div class="pt-section-title"><span class="icon">📏</span> 受給中アルバイトの3つの絶対ルール</div>
+
+    <table class="rule-table">
+      <thead>
+        <tr>
+          <th>ルール</th>
+          <th>基準</th>
+          <th>超えるとどうなる？</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1日の労働時間</td>
+          <td>4時間が境目</td>
+          <td>4時間以上 → その日の給付は不支給（繰越）<br>4時間未満 → 収入に応じて減額</td>
+        </tr>
+        <tr>
+          <td>週の労働時間</td>
+          <td>週20時間未満</td>
+          <td>週20時間以上 →「就職」扱いで給付停止</td>
+        </tr>
+        <tr>
+          <td>月の労働日数</td>
+          <td>月14日未満</td>
+          <td>月14日以上 →「就職」扱いで給付停止</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== セクション2：4時間ルール図解 ===== -->
+  <div class="pt-section">
+    <div class="pt-section-title"><span class="icon">⏱️</span> 4時間ルールを図解で理解する</div>
+
+    <div class="rule-visual">
+      <div class="rule-card under4">
+        <div class="rule-icon">⏳</div>
+        <div class="rule-title">4時間未満の場合</div>
+        <div class="rule-desc">
+          <strong>「内職・手伝い」扱い</strong><br><br>
+          その日の基本手当は<strong>支給される</strong>が、収入額に応じて<strong>減額</strong>される。<br><br>
+          収入が少なければ全額支給、多ければ一部または全額不支給になる。
+        </div>
+      </div>
+      <div class="rule-card over4">
+        <div class="rule-icon">💼</div>
+        <div class="rule-title">4時間以上の場合</div>
+        <div class="rule-desc">
+          <strong>「就労」扱い</strong><br><br>
+          その日の基本手当は<strong>不支給</strong>。ただし消滅するわけではなく、<strong>後ろに1日繰り越し</strong>される。<br><br>
+          いくら稼いでも減額計算はされない。
+        </div>
+      </div>
+    </div>
+
+    <div class="safe-box">
+      <div class="safe-title">💡 つまり4時間以上なら損しない？</div>
+      <p>4時間以上働いた日の給付は「もらえない」のではなく「後日に回る」だけです。受給期間（原則：離職日翌日から1年間）内であれば、給付日数が残っている限り最終的には全額受け取れます。そのため、アルバイトするなら<strong>4時間以上で働くほうが結果的に有利</strong>になるケースが多いです。</p>
+    </div>
+
+    <!-- 4時間未満の減額計算 -->
+    <h3 style="font-size:15px;font-weight:800;color:var(--gray-800);margin:20px 0 12px;">📐 4時間未満の場合の減額計算</h3>
+    <p style="font-size:14px;color:var(--gray-600);line-height:1.8;margin-bottom:12px;">
+      4時間未満で働いた場合、収入額と基本手当日額の合計が「賃金日額の80%」を超えるかどうかで支給額が変わります。
+    </p>
+    <table class="rule-table">
+      <thead>
+        <tr>
+          <th>条件</th>
+          <th>その日の支給額</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>収入＋基本手当日額 ≦ 賃金日額の80%</td>
+          <td><strong>全額支給</strong>（減額なし）</td>
+        </tr>
+        <tr>
+          <td>収入＋基本手当日額 ＞ 賃金日額の80%</td>
+          <td><strong>超過分だけ減額</strong>して支給</td>
+        </tr>
+        <tr>
+          <td>収入 ≧ 賃金日額の80%</td>
+          <td><strong>全額不支給</strong>（この日の分は繰越）</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px;color:var(--gray-500);margin-top:8px;">※「収入」はバイト代から控除額（1,310円/日）を差し引いた金額です。</p>
+  </div>
+
+  <!-- ===== セクション3：具体例 ===== -->
+  <div class="pt-section">
+    <div class="pt-section-title"><span class="icon">📝</span> 具体例で理解する</div>
+
+    <div class="example-box">
+      <div class="example-title">💰 例：基本手当日額5,000円・賃金日額10,000円の場合</div>
+
+      <div class="example-item">
+        <strong>例1：4時間未満で日給3,000円のバイト</strong><br>
+        収入 = 3,000円 − 1,310円（控除）= 1,690円<br>
+        1,690円 + 5,000円（基本手当日額）= 6,690円<br>
+        賃金日額の80% = 8,000円<br>
+        6,690円 ≦ 8,000円 → <strong style="color:#16a34a;">全額支給（5,000円）</strong>
+      </div>
+
+      <div class="example-item">
+        <strong>例2：4時間未満で日給6,000円のバイト</strong><br>
+        収入 = 6,000円 − 1,310円 = 4,690円<br>
+        4,690円 + 5,000円 = 9,690円<br>
+        賃金日額の80% = 8,000円<br>
+        超過分 = 9,690円 − 8,000円 = 1,690円<br>
+        → <strong style="color:#d97706;">減額支給（5,000円 − 1,690円 = 3,310円）</strong>
+      </div>
+
+      <div class="example-item">
+        <strong>例3：4時間以上で日給10,000円のバイト</strong><br>
+        → 就労扱い。その日の基本手当は<strong style="color:#2563eb;">不支給（翌日以降に繰り越し）</strong><br>
+        バイト代10,000円はそのまま受け取れる。基本手当は後日もらえる。
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== セクション4：時期別ルール ===== -->
+  <div class="pt-section">
+    <div class="pt-section-title"><span class="icon">📅</span> 時期別：いつバイトしていいの？</div>
+
+    <table class="rule-table">
+      <thead>
+        <tr>
+          <th>時期</th>
+          <th>バイトできる？</th>
+          <th>注意点</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>待機期間（7日間）</strong></td>
+          <td style="color:#dc2626;font-weight:700;">❌ できない</td>
+          <td>1日でも働くと待機期間がリセット。カウントやり直し。</td>
+        </tr>
+        <tr>
+          <td><strong>給付制限期間</strong><br>（自己都合：1〜3ヶ月）</td>
+          <td style="color:#16a34a;font-weight:700;">⭕ できる</td>
+          <td>週20時間未満・月14日未満を守ること。申告も必要。</td>
+        </tr>
+        <tr>
+          <td><strong>受給期間中</strong></td>
+          <td style="color:#16a34a;font-weight:700;">⭕ できる</td>
+          <td>4時間ルールに従い、失業認定申告書に必ず記載。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== セクション5：申告方法 ===== -->
+  <div class="pt-section">
+    <div class="pt-section-title"><span class="icon">📄</span> 失業認定申告書への記入方法</div>
+
+    <p style="font-size:14px;color:var(--gray-600);line-height:1.8;margin-bottom:16px;">
+      アルバイトした日は、4週間ごとの失業認定日に提出する「失業認定申告書」に必ず記載します。記入を忘れると不正受給になります。
+    </p>
+
+    <div class="form-guide">
+      <div class="form-step">
+        <div class="step-num">1</div>
+        <div class="step-text">カレンダー欄に、<strong>就労した日は「○」</strong>、<strong>4時間未満の内職は「×」</strong>を記入する</div>
+      </div>
+      <div class="form-step">
+        <div class="step-num">2</div>
+        <div class="step-text">「収入のあった日」欄に、<strong>働いた日付・収入額・勤務先名</strong>を記入する</div>
+      </div>
+      <div class="form-step">
+        <div class="step-num">3</div>
+        <div class="step-text">認定日にハローワークへ持参し、窓口で提出する</div>
+      </div>
+    </div>
+
+    <div class="warning-box">
+      <div class="warning-title">⚠️ こんな場合も申告が必要です</div>
+      <p>
+        <strong>日雇い・単発バイト</strong> → 1日だけでも申告必須<br>
+        <strong>日払い・手渡し</strong> → 支払方法に関係なく申告必須<br>
+        <strong>友人の手伝い</strong> → 報酬をもらった場合は申告必須<br>
+        <strong>フリマ・せどり</strong> → 継続的な収入は申告が必要<br>
+        <strong>クラウドソーシング</strong> → 報酬が発生したら申告必須
+      </p>
+    </div>
+  </div>
+
+  <!-- ===== セクション6：バレる仕組み ===== -->
+  <div class="pt-section">
+    <div class="pt-section-title"><span class="icon">🔍</span> アルバイトはハローワークにバレるのか？</div>
+
+    <div class="warning-box" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border-color:#f87171;">
+      <div class="warning-title">🚨 結論：ほぼ確実にバレます</div>
+      <p>「手渡しだからバレない」「単発だから大丈夫」は完全な間違いです。以下の仕組みで発覚します。</p>
+    </div>
+
+    <table class="rule-table">
+      <thead>
+        <tr>
+          <th>発覚ルート</th>
+          <th>仕組み</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>雇用保険の加入</strong></td>
+          <td>バイト先が雇用保険の手続きをした時点で、ハローワークのシステムに記録される</td>
+        </tr>
+        <tr>
+          <td><strong>マイナンバー</strong></td>
+          <td>給与支払者がマイナンバーを届け出ることで、所得情報が紐づく</td>
+        </tr>
+        <tr>
+          <td><strong>給与支払報告書</strong></td>
+          <td>バイト先が市区町村に提出する給与支払報告書から住民税経由で発覚</td>
+        </tr>
+        <tr>
+          <td><strong>第三者からの密告</strong></td>
+          <td>同僚・知人・近隣住民などからの通報。実は最も多い発覚パターンの一つ</td>
+        </tr>
+        <tr>
+          <td><strong>ハローワークの調査</strong></td>
+          <td>不審な点がある場合、ハローワークが事業主に直接照会を行うことがある</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== セクション7：不正受給のペナルティ ===== -->
+  <div class="pt-section">
+    <div class="pt-section-title"><span class="icon">⚖️</span> 不正受給が発覚した場合のペナルティ</div>
+
+    <div class="warning-box" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border-color:#f87171;">
+      <div class="warning-title">💀 最大「3倍返し」の処分</div>
+      <p>不正受給が発覚すると、以下のすべてが科されます。</p>
+    </div>
+
+    <table class="rule-table">
+      <thead>
+        <tr>
+          <th>処分内容</th>
+          <th>詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>① 支給停止</strong></td>
+          <td>不正が発覚した日以降の給付がすべて停止される</td>
+        </tr>
+        <tr>
+          <td><strong>② 全額返還命令</strong></td>
+          <td>不正に受給した金額の全額を返還しなければならない</td>
+        </tr>
+        <tr>
+          <td><strong>③ 納付命令（2倍）</strong></td>
+          <td>返還額に加えて、不正受給額の最大2倍の納付が命じられる</td>
+        </tr>
+        <tr>
+          <td><strong>④ 延滞金</strong></td>
+          <td>返還・納付が遅れた場合は延滞金が加算される</td>
+        </tr>
+        <tr>
+          <td><strong>⑤ 刑事告発</strong></td>
+          <td>悪質な場合は詐欺罪として刑事告発される可能性がある</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="example-box" style="background:#fef2f2;border-color:#fca5a5;">
+      <div class="example-title" style="color:#dc2626;">💸 具体例：50万円を不正受給した場合</div>
+      <div class="example-item">
+        返還額：50万円（全額）<br>
+        ＋ 納付命令：100万円（2倍）<br>
+        ＋ 延滞金<br>
+        ＝ <strong style="color:#dc2626;">合計150万円以上の支払い</strong><br><br>
+        50万円をごまかすために150万円以上を失うことになります。絶対に割に合いません。
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== セクション8：FAQ ===== -->
+  <div class="pt-section">
+    <div class="pt-section-title"><span class="icon">❓</span> よくある質問</div>
+
+    <div class="pt-faq-item">
+      <div class="pt-faq-q" onclick="this.parentElement.classList.toggle('open')">
+        待機期間（7日間）中にアルバイトはできますか？
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="pt-faq-a">
+        できません。待機期間の7日間はアルバイトを含む一切の就労が禁止されています。1日でも働くと待機期間がリセットされ、カウントがやり直しになります。待機期間が完了するまで給付手続きが進みません。
+      </div>
+    </div>
+
+    <div class="pt-faq-item">
+      <div class="pt-faq-q" onclick="this.parentElement.classList.toggle('open')">
+        給付制限期間中のアルバイトはできますか？
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="pt-faq-a">
+        できます。給付制限期間中（自己都合退職の場合1〜3ヶ月）はアルバイト可能です。ただし週20時間未満・月14日未満に抑える必要があります。これを超えると「就職」とみなされ、給付資格に影響します。この期間のアルバイトも失業認定申告書への記載が必要です。
+      </div>
+    </div>
+
+    <div class="pt-faq-item">
+      <div class="pt-faq-q" onclick="this.parentElement.classList.toggle('open')">
+        日雇いや単発バイトも申告が必要ですか？
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="pt-faq-a">
+        はい、必要です。日雇い・単発・日払い・手渡しであっても、働いた事実はすべて失業認定申告書に記載する義務があります。「1日だけだから」「現金手渡しだから」は通用しません。金額や雇用形態に関係なく、申告しなければ不正受給になります。
+      </div>
+    </div>
+
+    <div class="pt-faq-item">
+      <div class="pt-faq-q" onclick="this.parentElement.classList.toggle('open')">
+        メルカリやフリマアプリの売上は申告が必要？
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="pt-faq-a">
+        不用品の処分程度であれば申告不要です。ただし、継続的に仕入れて販売するなど「事業的な活動」に該当する場合は申告が必要になります。判断に迷う場合はハローワークに相談してください。
+      </div>
+    </div>
+
+    <div class="pt-faq-item">
+      <div class="pt-faq-q" onclick="this.parentElement.classList.toggle('open')">
+        ボランティアは申告が必要ですか？
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="pt-faq-a">
+        無報酬のボランティアであれば申告不要です。ただし、交通費や日当などの名目で報酬を受け取った場合は申告が必要です。また、ボランティア活動が長時間にわたる場合は「就労」とみなされる可能性があるため、事前にハローワークに確認することをおすすめします。
+      </div>
+    </div>
+
+    <div class="pt-faq-item">
+      <div class="pt-faq-q" onclick="this.parentElement.classList.toggle('open')">
+        在宅ワーク・クラウドソーシングも申告が必要ですか？
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="pt-faq-a">
+        はい、必要です。クラウドワークス、ランサーズ、ココナラなどで報酬が発生した場合は、作業時間と報酬額を失業認定申告書に記載する必要があります。作業時間が4時間以上かどうかで「就労」か「内職」かの扱いが変わります。
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== まとめ ===== -->
+  <div class="pt-section">
+    <div class="pt-section-title"><span class="icon">✅</span> まとめ：安全にアルバイトするためのチェックリスト</div>
+
+    <div class="safe-box">
+      <div class="safe-title">🛡️ この5つを守れば大丈夫</div>
+      <p>
+        <strong>① 待機期間（7日間）は絶対に働かない</strong><br>
+        <strong>② 週20時間未満・月14日未満を守る</strong><br>
+        <strong>③ 働いた日は失業認定申告書に必ず記載する</strong><br>
+        <strong>④ 日雇い・手渡し・単発でも申告する</strong><br>
+        <strong>⑤ 迷ったらハローワークに事前相談する</strong><br><br>
+        正しく申告すれば、アルバイトしながら失業保険を受け取ることは何も問題ありません。ルールを守って、生活費を確保しながら次の就職活動に集中しましょう。
+      </p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="pt-section" style="text-align:center;background:linear-gradient(135deg,#eff6ff,#f0fdf4);border:2px solid #bbf7d0;">
+    <div style="font-size:28px;margin-bottom:8px;">🧮</div>
+    <h3 style="font-size:16px;font-weight:800;margin-bottom:6px;color:#1f2937;">あなたの給付金を今すぐ計算</h3>
+    <p style="color:#4b5563;font-size:13px;margin-bottom:16px;line-height:1.6;">月収・年齢・加入期間を入力するだけで<br>受給額と初回振込日を自動計算します</p>
+    <a href="calculator.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:white;font-size:15px;font-weight:800;border:none;border-radius:10px;text-decoration:none;box-shadow:0 4px 16px rgba(37,99,235,0.35);">🧮 無料シミュレーターへ</a>
+  </div>
+
+  <!-- メンタルケアフッター -->
+  <div class="pt-section" style="text-align:center;background:#faf5ff;border:2px solid #e9d5ff;">
+    <div style="font-size:24px;margin-bottom:8px;">💜</div>
+    <h3 style="font-size:15px;font-weight:800;margin-bottom:12px;color:#6b21a8;">つらいときは一人で抱えないで</h3>
+    <p style="font-size:13px;color:#6b7280;line-height:1.8;margin-bottom:4px;">
+      🫶 よりそいホットライン <strong>0120-279-338</strong>（24時間・通話無料）<br>
+      💚 <a href="https://www.mhlw.go.jp/mamorouyokokoro/" target="_blank" rel="noopener" style="color:#16a34a;">まもろうよ こころ（厚生労働省）</a><br>
+      📞 こころの健康相談統一ダイヤル <strong>0570-064-556</strong>
+    </p>
+  </div>
+
+</div>
+
+<!-- ハンバーガーメニュー -->
+<script>
+document.querySelector('.nav-toggle').addEventListener('click', function() {
+  this.classList.toggle('open');
+  document.querySelector('.nav-links').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(function(link) {
+  link.addEventListener('click', function() {
+    document.querySelector('.nav-toggle').classList.remove('open');
+    document.querySelector('.nav-links').classList.remove('open');
+  });
+});
+</script>
+
+</body>
+</html>
