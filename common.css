@@ -393,3 +393,7 @@ footer ul a:hover { color: white; }
   .scam-banner { font-size: .7rem; }
   .btn-lg { padding: 12px 20px; font-size: 14px; width: 100%; justify-content: center; }
 }
+.feature-badge.danger {
+  background: #fef2f2;
+  color: #dc2626;
+}
