@@ -14,9 +14,7 @@
 <meta property="og:url" content="https://shitugyoukyufu.com/index.html">
 <meta property="og:image" content="https://shitugyoukyufu.com/images/ogp-index.jpg">
 <meta name="twitter:image" content="https://shitugyoukyufu.com/images/ogp-index.jpg">
-
-
-  <link rel="stylesheet" href="common.css">
+<link rel="stylesheet" href="common.css">
 <style>
 /* ===== HERO ===== */
 .hero {
@@ -64,9 +62,7 @@
   display: flex; justify-content: center; gap: 32px;
   margin-top: 48px; flex-wrap: wrap;
 }
-.stat-item {
-  color: white; text-align: center;
-}
+.stat-item { color: white; text-align: center; }
 .stat-num {
   display: block;
   font-size: clamp(28px,5vw,40px); font-weight: 900;
@@ -75,14 +71,8 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-.stat-label {
-  font-size: 12px; color: rgba(255,255,255,0.8);
-  margin-top: 2px;
-}
-.stat-divider {
-  width: 1px; background: rgba(255,255,255,0.2);
-  margin: 0;
-}
+.stat-label { font-size: 12px; color: rgba(255,255,255,0.8); margin-top: 2px; }
+.stat-divider { width: 1px; background: rgba(255,255,255,0.2); margin: 0; }
 
 /* ===== FEATURES ===== */
 .features {
@@ -111,18 +101,9 @@
   border-color: var(--primary-light);
   text-decoration: none;
 }
-.feature-icon {
-  font-size: 36px; margin-bottom: 12px;
-  display: block;
-}
-.feature-title {
-  font-size: 15px; font-weight: 800;
-  color: var(--gray-800); margin-bottom: 6px;
-}
-.feature-desc {
-  font-size: 12px; color: var(--gray-500);
-  line-height: 1.6;
-}
+.feature-icon { font-size: 36px; margin-bottom: 12px; display: block; }
+.feature-title { font-size: 15px; font-weight: 800; color: var(--gray-800); margin-bottom: 6px; }
+.feature-desc { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
 .feature-badge {
   display: inline-block;
   background: var(--primary-light); color: var(--primary);
@@ -130,48 +111,10 @@
   padding: 2px 8px; border-radius: 99px;
   margin-top: 8px;
 }
-.feature-badge.danger {
-  background: #fef2f2;
-  color: #dc2626;
-}
-
-@media (max-width: 768px) {
-  .features-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
-  }
-  .feature-card {
-    padding: 1rem 0.6rem;
-  }
-  .feature-icon {
-    font-size: 1.6rem;
-  }
-  .feature-title {
-    font-size: 0.85rem;
-  }
-  .feature-desc {
-    font-size: 0.7rem;
-  }
-  .feature-badge {
-    font-size: 0.65rem;
-    padding: 2px 6px;
-  }
-}
-
-@media (max-width: 380px) {
-  .features-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
-  }
-  .feature-desc {
-    display: none;
-  }
-}
+.feature-badge.danger { background: #fef2f2; color: #dc2626; }
 
 /* ===== SECTION ===== */
-.section {
-  max-width: 900px; margin: 60px auto 0; padding: 0 16px;
-}
+.section { max-width: 900px; margin: 60px auto 0; padding: 0 16px; }
 .section-label {
   display: inline-flex; align-items: center; gap: 6px;
   background: var(--primary-light); color: var(--primary);
@@ -184,9 +127,7 @@
   font-weight: 800; color: var(--gray-900);
   margin-bottom: 8px; line-height: 1.3;
 }
-.section .section-sub {
-  color: var(--gray-500); font-size: 15px; margin-bottom: 32px;
-}
+.section .section-sub { color: var(--gray-500); font-size: 15px; margin-bottom: 32px; }
 
 /* ===== COMPARE TABLE ===== */
 .compare-wrap { overflow-x: auto; }
@@ -282,14 +223,40 @@
 .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
 /* ===== MOBILE ===== */
-@media (max-width: 640px) {
-  .features-grid { grid-template-columns: 1fr 1fr; }
-  .hero-stats { gap: 20px; }
-  .flow-item { min-width: 120px; }
+@media (max-width: 768px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+  .feature-card {
+    padding: 1rem 0.6rem;
+  }
+  .feature-icon {
+    font-size: 1.6rem;
+  }
+  .feature-title {
+    font-size: 0.85rem;
+  }
+  .feature-desc {
+    font-size: 0.7rem;
+  }
+  .feature-badge {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+  }
 }
 @media (max-width: 640px) {
   .hero-stats { gap: 20px; }
   .flow-item { min-width: 120px; }
+}
+@media (max-width: 380px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  .feature-desc {
+    display: none;
+  }
 }
 </style>
 <script type="application/ld+json">
@@ -340,7 +307,7 @@
   ]
 }
 </script>
-  <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QPRTVYDMY1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -348,7 +315,6 @@
   gtag('js', new Date());
   gtag('config', 'G-QPRTVYDMY1');
 </script>
-
 </head>
 <body>
 
@@ -361,7 +327,6 @@
     <div class="hero-cta">
       <a href="calculator.html" class="btn btn-lg" style="background:#fbbf24;color:#1e3a8a;">🧮 給付金を今すぐ計算</a>
       <a href="timeline.html" class="btn btn-lg" style="background:white;color:#1e3a8a;font-weight:700;">📅 Day0〜Day60を見る</a>
-
     </div>
     <div class="hero-stats">
       <div class="stat-item">
@@ -382,34 +347,34 @@
   </div>
 </section>
 
-<!-- S -->
-<div class="s">
-  <div class="s-grid">
-    <a href="calculator.html" class="-card">
-      <span class="-icon">🧮</span>
-      <div class="-title">給付金シミュレーター</div>
-      <div class="-desc">月収・年齢・加入期間を入力するだけで自動計算。再就職手当も含む</div>
-      <span class="-badge">無料・即時計算</span>
+<!-- FEATURES -->
+<div class="features">
+  <div class="features-grid">
+    <a href="calculator.html" class="feature-card">
+      <span class="feature-icon">🧮</span>
+      <div class="feature-title">給付金シミュレーター</div>
+      <div class="feature-desc">月収・年齢・加入期間を入力するだけで自動計算。再就職手当も含む</div>
+      <span class="feature-badge">無料・即時計算</span>
     </a>
-    <a href="timeline.html" class="-card">
-      <span class="-icon">📅</span>
-      <div class="-title">Day0〜Day60<br>タイムライン</div>
-      <div class="-desc">退職後に何をいつやるか、日付別で全部わかる完全ロードマップ</div>
-      <span class="-badge">当サイト限定</span>
+    <a href="timeline.html" class="feature-card">
+      <span class="feature-icon">📅</span>
+      <div class="feature-title">Day0〜Day60<br>タイムライン</div>
+      <div class="feature-desc">退職後に何をいつやるか、日付別で全部わかる完全ロードマップ</div>
+      <span class="feature-badge">当サイト限定</span>
     </a>
-    <a href="checklist.html" class="-card">
-      <span class="-icon">✅</span>
-      <div class="-title">退職後やること<br>チェックリスト</div>
-      <div class="-desc">健康保険・年金・住民税・確定申告まで全手続きを一枚にまとめ</div>
-      <span class="-badge">PDF保存対応</span>
+    <a href="checklist.html" class="feature-card">
+      <span class="feature-icon">✅</span>
+      <div class="feature-title">退職後やること<br>チェックリスト</div>
+      <div class="feature-desc">健康保険・年金・住民税・確定申告まで全手続きを一枚にまとめ</div>
+      <span class="feature-badge">PDF保存対応</span>
     </a>
-    <a href="voluntary.html" class="-card">
-      <span class="-icon">🙋</span>
-      <div class="-title">自己都合 完全ガイド</div>
-      <div class="-desc">自己都合でも損しない方法・給付制限の正しい理解・特定理由への変更</div>
-      <span class="-badge">2025年4月改正対応</span>
+    <a href="voluntary.html" class="feature-card">
+      <span class="feature-icon">🙋</span>
+      <div class="feature-title">自己都合 完全ガイド</div>
+      <div class="feature-desc">自己都合でも損しない方法・給付制限の正しい理解・特定理由への変更</div>
+      <span class="feature-badge">2025年4月改正対応</span>
     </a>
-    <a href="company.html" class="-card">
+    <a href="company.html" class="feature-card">
       <span class="feature-icon">🏢</span>
       <div class="feature-title">会社都合 完全ガイド</div>
       <div class="feature-desc">解雇・倒産・希望退職の違いと、受け取れる最大日数・金額の解説</div>
@@ -423,30 +388,30 @@
     </a>
     <a href="mental-check.html" class="feature-card">
       <span class="feature-icon">🧠</span>
-      <div class="feature-title">メンタルセルフチェック</div>
+      <div class="feature-title">メンタル<br>セルフチェック</div>
       <div class="feature-desc">退職後の心身の状態を17問でチェック。受診サポートシート付き</div>
       <span class="feature-badge">無料・3分で完了</span>
     </a>
     <a href="scam.html" class="feature-card">
       <span class="feature-icon">⚠️</span>
-      <div class="feature-title">詐欺・悪徳業者に注意</div>
+      <div class="feature-title">詐欺・悪徳業者<br>に注意</div>
       <div class="feature-desc">「失業保険サポート」を装う詐欺の手口と見分け方・対処法</div>
       <span class="feature-badge danger">被害急増中</span>
     </a>
     <a href="checklist.html#special" class="feature-card">
       <span class="feature-icon">🔍</span>
-      <div class="feature-title">状況別 特殊ケース</div>
+      <div class="feature-title">状況別<br>特殊ケース</div>
       <div class="feature-desc">パート・派遣・ダブルワーク・傷病・妊娠・外国人の特別対応ガイド</div>
       <span class="feature-badge">6ケース対応</span>
     </a>
   </div>
 </div>
+
 <!-- COMPARE TABLE -->
 <div class="section">
   <div class="section-label">🔍 比較</div>
   <h2>自己都合 vs 会社都合<br>給付の違い一覧</h2>
   <p class="section-sub">退職理由によって受取額・日数・開始時期が大きく変わります</p>
-
   <div class="card">
     <div class="compare-wrap">
       <table class="compare-tbl">
@@ -502,7 +467,6 @@
   <div class="section-label">❓ よくある質問</div>
   <h2>みんなが迷う<br>よくある質問</h2>
   <p class="section-sub">退職・失業給付についてよくある疑問にお答えします</p>
-
   <div class="card">
     <ul class="faq-list">
       <li class="faq-item">
@@ -583,15 +547,6 @@ document.querySelectorAll('.faq-q').forEach(q => {
   });
 });
 </script>
-<script>
-function switchTab(name) {
-  const keys = ['compare','types','days','how'];
-  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', keys[i]===name));
-  document.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.id==='tab-'+name));
-}
-function toggleType(el) { el.classList.toggle('open'); }
-</script>
 <script src="nav.js"></script>
-
 </body>
 </html>
