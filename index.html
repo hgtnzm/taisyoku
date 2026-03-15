@@ -168,44 +168,6 @@
   }
 }
 
-
-.feature-card {
-  background: white;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  padding: 24px 20px;
-  text-align: center;
-  transition: transform 0.2s;
-  cursor: pointer;
-  text-decoration: none;
-  display: block;
-  border: 2px solid transparent;
-}
-.feature-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--primary-light);
-  text-decoration: none;
-}
-.feature-icon {
-  font-size: 36px; margin-bottom: 12px;
-  display: block;
-}
-.feature-title {
-  font-size: 15px; font-weight: 800;
-  color: var(--gray-800); margin-bottom: 6px;
-}
-.feature-desc {
-  font-size: 12px; color: var(--gray-500);
-  line-height: 1.6;
-}
-.feature-badge {
-  display: inline-block;
-  background: var(--primary-light); color: var(--primary);
-  font-size: 11px; font-weight: 700;
-  padding: 2px 8px; border-radius: 99px;
-  margin-top: 8px;
-}
-
 /* ===== SECTION ===== */
 .section {
   max-width: 900px; margin: 60px auto 0; padding: 0 16px;
@@ -325,8 +287,9 @@
   .hero-stats { gap: 20px; }
   .flow-item { min-width: 120px; }
 }
-@media (max-width: 400px) {
-  .features-grid { grid-template-columns: 1fr; }
+@media (max-width: 640px) {
+  .hero-stats { gap: 20px; }
+  .flow-item { min-width: 120px; }
 }
 </style>
 <script type="application/ld+json">
@@ -419,34 +382,34 @@
   </div>
 </section>
 
-<!-- FEATURES -->
-<div class="features">
-  <div class="features-grid">
-    <a href="calculator.html" class="feature-card">
-      <span class="feature-icon">🧮</span>
-      <div class="feature-title">給付金シミュレーター</div>
-      <div class="feature-desc">月収・年齢・加入期間を入力するだけで自動計算。再就職手当も含む</div>
-      <span class="feature-badge">無料・即時計算</span>
+<!-- S -->
+<div class="s">
+  <div class="s-grid">
+    <a href="calculator.html" class="-card">
+      <span class="-icon">🧮</span>
+      <div class="-title">給付金シミュレーター</div>
+      <div class="-desc">月収・年齢・加入期間を入力するだけで自動計算。再就職手当も含む</div>
+      <span class="-badge">無料・即時計算</span>
     </a>
-    <a href="timeline.html" class="feature-card">
-      <span class="feature-icon">📅</span>
-      <div class="feature-title">Day0〜Day60<br>タイムライン</div>
-      <div class="feature-desc">退職後に何をいつやるか、日付別で全部わかる完全ロードマップ</div>
-      <span class="feature-badge">当サイト限定</span>
+    <a href="timeline.html" class="-card">
+      <span class="-icon">📅</span>
+      <div class="-title">Day0〜Day60<br>タイムライン</div>
+      <div class="-desc">退職後に何をいつやるか、日付別で全部わかる完全ロードマップ</div>
+      <span class="-badge">当サイト限定</span>
     </a>
-    <a href="checklist.html" class="feature-card">
-      <span class="feature-icon">✅</span>
-      <div class="feature-title">退職後やること<br>チェックリスト</div>
-      <div class="feature-desc">健康保険・年金・住民税・確定申告まで全手続きを一枚にまとめ</div>
-      <span class="feature-badge">PDF保存対応</span>
+    <a href="checklist.html" class="-card">
+      <span class="-icon">✅</span>
+      <div class="-title">退職後やること<br>チェックリスト</div>
+      <div class="-desc">健康保険・年金・住民税・確定申告まで全手続きを一枚にまとめ</div>
+      <span class="-badge">PDF保存対応</span>
     </a>
-    <a href="voluntary.html" class="feature-card">
-      <span class="feature-icon">🙋</span>
-      <div class="feature-title">自己都合 完全ガイド</div>
-      <div class="feature-desc">自己都合でも損しない方法・給付制限の正しい理解・特定理由への変更</div>
-      <span class="feature-badge">2025年4月改正対応</span>
+    <a href="voluntary.html" class="-card">
+      <span class="-icon">🙋</span>
+      <div class="-title">自己都合 完全ガイド</div>
+      <div class="-desc">自己都合でも損しない方法・給付制限の正しい理解・特定理由への変更</div>
+      <span class="-badge">2025年4月改正対応</span>
     </a>
-    <a href="company.html" class="feature-card">
+    <a href="company.html" class="-card">
       <span class="feature-icon">🏢</span>
       <div class="feature-title">会社都合 完全ガイド</div>
       <div class="feature-desc">解雇・倒産・希望退職の違いと、受け取れる最大日数・金額の解説</div>
