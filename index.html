@@ -92,8 +92,42 @@
 .features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 1.2rem;
 }
+
+@media (max-width: 768px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+  .feature-card {
+    padding: 1rem 0.6rem;
+  }
+  .feature-icon {
+    font-size: 1.6rem;
+  }
+  .feature-title {
+    font-size: 0.85rem;
+  }
+  .feature-desc {
+    font-size: 0.7rem;
+  }
+  .feature-badge {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+  }
+}
+
+@media (max-width: 380px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  .feature-desc {
+    display: none;
+  }
+}
+
 .feature-card {
   background: white;
   border-radius: var(--radius-lg);
