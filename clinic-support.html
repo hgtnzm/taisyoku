@@ -1402,6 +1402,148 @@ ul.check-list li::before{
   const effectiveScenario = scenario || (effectiveLevel >= 0 ? 'utsu' : '');
 
   if (effectiveLevel < 0) return; // 診断なしで直接訪問の場合はスキップ
+     // ── 症状パラメータを取得 ──
+  const q1  = parseInt(params.get('q1')  || '-1');
+  const q2  = parseInt(params.get('q2')  || '-1');
+  const q3  = parseInt(params.get('q3')  || '-1');
+  const q5  = parseInt(params.get('q5')  || '-1');
+  const q7  = parseInt(params.get('q7')  || '-1');
+  const q8  = (params.get('q8') || '').split(',').filter(v => v && v !== 'e');
+  const q9  = parseInt(params.get('q9')  || '0');
+  const q11 = parseInt(params.get('q11') || '0');
+  const q12 = parseInt(params.get('q12') || '0');
+
+  const hasSymptoms = q1 >= 0;
+
+  // ── 症状テキストを組み立て ──
+  if (hasSymptoms) {
+    const parts = [];
+    if (q1 >= 2) parts.push('気分の落ち込みがひどい');
+    if (q2 >= 2) parts.push('何をしても楽しめない・やる気が出ない');
+    if (q3 >= 2) parts.push('漠然とした不安が続いている');
+    if (q5 >= 2) parts.push('動悸や体の緊張がある');
+    if (q12 >= 2) parts.push('何もしていなくても疲れが取れない');
+    if (q11 >= 2) parts.push('家事や身支度など日常生活がつらい');
+
+    const sleepMap = { a: '寝つきが悪い', b: '夜中に何度も目が覚める', c: '朝早く目が覚めてしまう', d: '日中に強い眠気がある' };
+    q8.forEach(v => { if (sleepMap[v]) parts.push(sleepMap[v]); });
+
+    if (q9 === 1) parts.push('食欲がない');
+    if (q9 === 2) parts.push('食べすぎてしまう');
+
+    if (parts.length === 0) parts.push('退職後から体調がすぐれない');
+
+    const symptomJoined = parts.slice(0, 4).join('、');
+    const durationText = '退職してから';
+
+    // ── パーソナライズ台本HTML ──
+    const personalScript = `
+      <div class="card" id="personal-script-card" style="border:3px solid ${col};position:relative;">
+        <div style="position:absolute;top:-12px;left:16px;background:${col};color:#fff;font-size:12px;font-weight:800;padding:3px 14px;border-radius:20px;">
+          ✨ あなた専用の台本
+        </div>
+        <h3 style="margin-top:10px;">🎯 チェック結果から作成された電話予約台本</h3>
+        <p style="font-size:13px;color:var(--text-sub);margin-bottom:14px;">セルフチェックの回答をもとに、あなたの症状に合ったセリフを自動生成しました。このままそっくり読み上げてください。</p>
+
+        <div class="dialogue">
+          <div class="bubble-wrap staff">
+            <div class="bubble-avatar">👩‍⚕️</div>
+            <div>
+              <div class="speaker-label">クリニック受付</div>
+              <div class="bubble">はい、〇〇クリニックです。</div>
+            </div>
+          </div>
+
+          <div class="bubble-wrap">
+            <div class="bubble-avatar">🙋</div>
+            <div>
+              <div class="speaker-label">あなた（このまま読んでください）</div>
+              <div class="bubble">
+                初診の予約をしたいのですが、よろしいでしょうか。
+              </div>
+            </div>
+          </div>
+
+          <div class="bubble-wrap staff">
+            <div class="bubble-avatar">👩‍⚕️</div>
+            <div>
+              <div class="speaker-label">クリニック受付</div>
+              <div class="bubble">はい、ありがとうございます。どのようなご症状でしょうか？</div>
+            </div>
+          </div>
+
+          <div class="bubble-wrap">
+            <div class="bubble-avatar">🙋</div>
+            <div>
+              <div class="speaker-label">あなた</div>
+              <div class="bubble">
+                ${durationText}、<strong>${symptomJoined}</strong>という状態が続いています。一度診ていただきたいと思いました。
+                <span class="you-note">📌 この文はあなたのチェック結果から自動生成されています。そのまま読むだけでOKです</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bubble-wrap staff">
+            <div class="bubble-avatar">👩‍⚕️</div>
+            <div>
+              <div class="speaker-label">クリニック受付</div>
+              <div class="bubble">わかりました。ご希望の日時はございますか？</div>
+            </div>
+          </div>
+
+          <div class="bubble-wrap">
+            <div class="bubble-avatar">🙋</div>
+            <div>
+              <div class="speaker-label">あなた</div>
+              <div class="bubble">
+                〇月〇日の午後か、〇月〇日の午前中あたりで空きはありますか？できれば早めに受診したいのですが、最も早い空きはいつになりますか？
+                <span class="you-note">📌 日時候補は3〜5つ挙げると予約が取りやすいです</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bubble-wrap staff">
+            <div class="bubble-avatar">👩‍⚕️</div>
+            <div>
+              <div class="speaker-label">クリニック受付</div>
+              <div class="bubble">〇月〇日の〇時でよろしいでしょうか。お名前と生年月日、お電話番号を教えていただけますか？</div>
+            </div>
+          </div>
+
+          <div class="bubble-wrap">
+            <div class="bubble-avatar">🙋</div>
+            <div>
+              <div class="speaker-label">あなた</div>
+              <div class="bubble">
+                〇〇と申します。生年月日は〇年〇月〇日で、電話番号は〇〇〇〇です。よろしくお願いします。
+                <span class="you-note">📌 予約完了！日時をメモしてください</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-copy-script" onclick="copyPersonalScript()">📋 あなた専用のセリフをコピーする</button>
+        <div class="copy-done" id="copy-done-personal">✅ コピーしました！メモやLINEに貼り付けて当日使えます</div>
+      </div>
+    `;
+
+    // ── パーソナライズ台本のコピー用テキスト ──
+    window._personalScriptText = '【あなた専用 電話予約台本】\\n\\nあなた：「初診の予約をしたいのですが、よろしいでしょうか。」\\n\\nクリニック：「どのようなご症状でしょうか？」\\n\\nあなた：「' + durationText + '、' + symptomJoined + 'という状態が続いています。一度診ていただきたいと思いました。」\\n\\nクリニック：「ご希望の日時はございますか？」\\n\\nあなた：「〇月〇日の午後か、〇月〇日の午前中あたりで空きはありますか？できれば早めに受診したいのですが、最も早い空きはいつになりますか？」\\n\\n（日時が決まったら）\\n「〇〇と申します。生年月日は〇年〇月〇日で、電話番号は〇〇〇〇です。よろしくお願いします。」';
+
+    // ── DOMContentLoaded でパーソナライズ台本を挿入 ──
+    window.addEventListener('DOMContentLoaded', () => {
+      const scriptSection = document.getElementById('phone-script');
+      if (scriptSection) {
+        const tabs = scriptSection.querySelector('.script-tabs');
+        if (tabs) {
+          const personalDiv = document.createElement('div');
+          personalDiv.innerHTML = personalScript;
+          tabs.parentNode.insertBefore(personalDiv, tabs);
+        }
+      }
+    });
+  }
+
 
   // --- 診断結果バナーを挿入 ---
   const levelLabels = ['経過を見守り中', '専門家相談を検討中', '早期受診を推奨'];
@@ -1617,6 +1759,17 @@ window.addEventListener('DOMContentLoaded', () => {
     );
   }
 });
+   async function copyPersonalScript() {
+  const text = (window._personalScriptText || '').replace(/\\n/g, '\n');
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch(e) {
+    prompt('コピーしてください', text);
+  }
+  const el = document.getElementById('copy-done-personal');
+  if(el) { el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 3000); }
+}
+
 </script>
 
 </body>
