@@ -592,19 +592,7 @@ function switchTab(name) {
 }
 function toggleType(el) { el.classList.toggle('open'); }
 </script>
-  <script>
-document.querySelector('.nav-toggle').addEventListener('click', function() {
-  this.classList.toggle('open');
-  document.querySelector('.nav-links').classList.toggle('open');
-});
-// メニュー内リンクをクリックしたら閉じる
-document.querySelectorAll('.nav-links a').forEach(function(link) {
-  link.addEventListener('click', function() {
-    document.querySelector('.nav-toggle').classList.remove('open');
-    document.querySelector('.nav-links').classList.remove('open');
-  });
-});
-</script>
+<script src="nav.js"></script>
 
 </body>
 </html>
