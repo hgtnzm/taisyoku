@@ -1441,7 +1441,7 @@ ul.check-list li::before{
 
   // --- 台本タブの自動切替 ---
   const tabMap = { adhd: 'tab-adhd', utsu: 'tab-utsu', cert: 'tab-cert', basic: 'tab-basic' };
-  const panelMap = { adhd: 'panel-adhd', utsu: 'panel-utsu', cert: 'panel-cert', basic: 'panel-basic' };
+ const panelMap = { adhd: 'tab-adhd', utsu: 'tab-utsu', cert: 'tab-cert', basic: 'tab-basic' };
   const targetTab   = tabMap[effectiveScenario]   || 'tab-utsu';
   const targetPanel = panelMap[effectiveScenario] || 'panel-utsu';
 
