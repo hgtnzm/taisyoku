@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     + '    <li><a href="parttime.html">💼 バイトのルール</a></li>'
     + '    <li><a href="checklist.html">✅ チェックリスト</a></li>'
     + '    <li><a href="calculator.html" class="btn-calc">🧮 給付金計算</a></li>'
+    + '    <li><a href="mental-check.html">🧠 メンタルチェック</a></li>'
     + '    <li><a href="scam.html">⚠️ 詐欺に注意</a></li>'
     + '  </ul>'
     + '</nav>'
