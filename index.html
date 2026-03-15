@@ -2,1622 +2,599 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>受診不安解消ガイド｜心療内科・精神科への第一歩をサポート</title>
-<meta name="description" content="「電話が怖い」「費用が心配」「予約が取れない」——受診前の不安をすべて解消します。そのまま読める電話予約台本付き。">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>退職・失業給付 完全ガイド｜退職から振込まで全部わかる</title>
+<meta name="description" content="退職後の失業保険（雇用保険）の受給条件・計算方法・手続きの流れを完全解説。2025年4月の給付制限短縮にも対応。計算ツール・チェックリスト無料公開中。">
+<meta property="og:site_name" content="退職・失業給付ガイド">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="退職・失業給付 完全ガイド｜退職から振込まで全部わかる">
+<meta property="og:description" content="退職後の失業保険の受給条件・計算方法・手続きの流れを完全解説。2025年4月改正対応。">
+<meta property="og:url" content="https://shitugyoukyufu.com/index.html">
+<meta property="og:image" content="https://shitugyoukyufu.com/images/ogp-index.jpg">
+<meta name="twitter:image" content="https://shitugyoukyufu.com/images/ogp-index.jpg">
+
+
+  <link rel="stylesheet" href="common.css">
 <style>
-/* =============================================
-   Variables & Reset
-============================================= */
-:root {
-  --teal:      #4A90A4;
-  --teal-dk:   #357A8F;
-  --teal-lt:   #EBF5F8;
-  --sage:      #5BA17A;
-  --sage-lt:   #EBF5EF;
-  --amber:     #C49A22;
-  --amber-lt:  #FEF9E7;
-  --rose:      #C0504D;
-  --rose-lt:   #FFF5F5;
-  --lavender:  #7B68C8;
-  --lav-lt:    #F0EEFB;
-  --text:      #2D3748;
-  --text-sub:  #718096;
-  --bg:        #F7F9FB;
-  --card:      #FFFFFF;
-  --border:    #E2E8F0;
-  --shadow:    0 2px 14px rgba(0,0,0,0.07);
-  --r:         14px;
-  --r-sm:      8px;
-  --font:      'Hiragino Kaku Gothic ProN','Hiragino Sans','Noto Sans JP',sans-serif;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:15px;line-height:1.7}
-
-/* Layout */
-.wrap{max-width:660px;margin:0 auto;padding:0 16px 80px}
-
-/* =============================================
-   クリニック検索カード
-   ============================================= */
-.clinic-search-card {
-  background: linear-gradient(135deg, #EBF5F8 0%, #F0EEFB 100%);
-  border-radius: var(--r);
-  border: 1.5px solid #C8E6F0;
-  padding: 18px 16px;
-  margin-bottom: 14px;
+/* ===== HERO ===== */
+.hero {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 40%, #2563eb 70%, #0ea5e9 100%);
+  padding: 80px 20px 70px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
-.clinic-search-card h3 {
-  font-size: 15px; font-weight: 800;
-  color: var(--teal-dk); margin-bottom: 6px;
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
-.clinic-search-card p {
-  font-size: 12px; color: var(--text-sub); margin-bottom: 14px; line-height: 1.6;
-}
-.clinic-search-btns {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
-}
-.csb {
-  display: flex; flex-direction: column; align-items: center; gap: 4px;
-  padding: 12px 8px;
-  border-radius: 10px;
+.hero-inner { max-width: 800px; margin: 0 auto; position: relative; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.2); color: white;
+  border: 1px solid rgba(255,255,255,0.3);
   font-size: 12px; font-weight: 700;
+  padding: 6px 16px; border-radius: 99px;
+  margin-bottom: 24px; backdrop-filter: blur(4px);
+}
+.hero h1 {
+  font-size: clamp(28px, 6vw, 52px);
+  font-weight: 900; color: white;
+  line-height: 1.2; margin-bottom: 20px;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.2);
+}
+.hero h1 .accent {
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  color: rgba(255,255,255,0.88);
+  font-size: clamp(15px, 3vw, 18px);
+  line-height: 1.7; margin-bottom: 36px;
+}
+.hero-cta {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+}
+.hero-stats {
+  display: flex; justify-content: center; gap: 32px;
+  margin-top: 48px; flex-wrap: wrap;
+}
+.stat-item {
+  color: white; text-align: center;
+}
+.stat-num {
+  display: block;
+  font-size: clamp(28px,5vw,40px); font-weight: 900;
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat-label {
+  font-size: 12px; color: rgba(255,255,255,0.8);
+  margin-top: 2px;
+}
+.stat-divider {
+  width: 1px; background: rgba(255,255,255,0.2);
+  margin: 0;
+}
+
+/* ===== FEATURES ===== */
+.features {
+  max-width: 900px; margin: -36px auto 0;
+  padding: 0 16px; position: relative; z-index: 10;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.feature-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 24px 20px;
+  text-align: center;
+  transition: transform 0.2s;
+  cursor: pointer;
   text-decoration: none;
-  border: none; cursor: pointer;
-  transition: opacity 0.15s;
+  display: block;
+  border: 2px solid transparent;
 }
-.csb:active { opacity: 0.75; }
-.csb-icon { font-size: 22px; }
-.csb-label { color: #fff; font-size: 12px; font-weight: 700; }
-.csb-sub   { font-size: 10px; opacity: 0.85; color: #fff; }
-.csb.gmap  { background: linear-gradient(135deg, #4285F4, #1967D2); }
-.csb.online{ background: linear-gradient(135deg, #5BA17A, #4A8F6A); }
-.csb.tel   { background: linear-gradient(135deg, #C0504D, #A33F3C); }
-.csb.search{ background: linear-gradient(135deg, #7B68C8, #5A4EA0); }
-.clinic-search-note {
-  font-size: 11px; color: var(--text-sub);
-  margin-top: 10px; line-height: 1.5;
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary-light);
+  text-decoration: none;
 }
-
-
-/* =============================================
-   Header
-============================================= */
-.site-header{
-  background:var(--teal);color:#fff;
-  padding:12px 16px;
-  position:sticky;top:0;z-index:100;
-  box-shadow:0 2px 8px rgba(0,0,0,.15)
+.feature-icon {
+  font-size: 36px; margin-bottom: 12px;
+  display: block;
 }
-.site-header .inner{max-width:660px;margin:0 auto;display:flex;align-items:center;gap:10px}
-.site-header a{font-size:13px;font-weight:700;color:#fff;text-decoration:none;opacity:.85}
-.site-header .pt{font-size:13px;font-weight:600;flex:1;text-align:right}
-
-/* =============================================
-   Hero
-============================================= */
-.hero{
-  background:linear-gradient(135deg,#357A8F 0%,#4A90A4 60%,#5BA17A 100%);
-  color:#fff;padding:36px 16px 32px;text-align:center
+.feature-title {
+  font-size: 15px; font-weight: 800;
+  color: var(--gray-800); margin-bottom: 6px;
 }
-.hero .eyebrow{
-  display:inline-block;
-  background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);
-  border-radius:20px;padding:4px 16px;
-  font-size:12px;font-weight:700;letter-spacing:.06em;margin-bottom:16px
+.feature-desc {
+  font-size: 12px; color: var(--gray-500);
+  line-height: 1.6;
 }
-.hero h1{font-size:24px;font-weight:800;line-height:1.35;margin-bottom:12px}
-.hero h1 em{font-style:normal;border-bottom:3px solid rgba(255,255,255,.5)}
-.hero .sub{font-size:14px;opacity:.9;line-height:1.7;max-width:420px;margin:0 auto 20px}
-.hero .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
-.hero .chip{
-  background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
-  border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600
+.feature-badge {
+  display: inline-block;
+  background: var(--primary-light); color: var(--primary);
+  font-size: 11px; font-weight: 700;
+  padding: 2px 8px; border-radius: 99px;
+  margin-top: 8px;
 }
 
-/* =============================================
-   Section
-============================================= */
-.section{margin-top:32px}
-.section-title{
-  display:flex;align-items:center;gap:10px;
-  margin-bottom:16px;
-  padding-bottom:10px;
-  border-bottom:2px solid var(--border)
+/* ===== SECTION ===== */
+.section {
+  max-width: 900px; margin: 60px auto 0; padding: 0 16px;
 }
-.section-title .ico{
-  width:38px;height:38px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:20px;flex-shrink:0
+.section-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--primary-light); color: var(--primary);
+  font-size: 12px; font-weight: 700;
+  padding: 4px 12px; border-radius: 99px;
+  margin-bottom: 12px;
 }
-.section-title h2{font-size:17px;font-weight:800}
-.section-title p{font-size:12px;color:var(--text-sub);margin-top:2px}
-
-/* Card */
-.card{
-  background:var(--card);border-radius:var(--r);
-  box-shadow:var(--shadow);padding:18px 16px;margin-bottom:14px
+.section h2 {
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 800; color: var(--gray-900);
+  margin-bottom: 8px; line-height: 1.3;
 }
-.card h3{font-size:15px;font-weight:700;margin-bottom:10px}
-
-/* Callout boxes */
-.callout{
-  border-radius:var(--r-sm);padding:14px 16px;margin-bottom:14px;
-  font-size:14px;line-height:1.7
-}
-.callout.info  {background:var(--teal-lt);border-left:4px solid var(--teal)}
-.callout.warn  {background:var(--amber-lt);border-left:4px solid var(--amber)}
-.callout.good  {background:var(--sage-lt);border-left:4px solid var(--sage)}
-.callout.alert {background:var(--rose-lt);border-left:4px solid var(--rose)}
-.callout strong{display:block;margin-bottom:4px;font-size:15px}
-
-/* =============================================
-   Anxiety Cards (top section)
-============================================= */
-.anxiety-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px}
-.anx-card{
-  background:var(--card);border-radius:var(--r);
-  box-shadow:var(--shadow);padding:14px 12px;
-  border-top:4px solid var(--border);
-  transition:border-color .2s
-}
-.anx-card.resolved{border-top-color:var(--sage)}
-.anx-icon{font-size:24px;margin-bottom:6px}
-.anx-label{font-size:12px;font-weight:700;color:var(--text-sub);margin-bottom:6px}
-.anx-q{font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.4}
-.anx-a{font-size:12px;color:var(--text-sub);line-height:1.6}
-.anx-badge{
-  display:inline-block;background:var(--sage);color:#fff;
-  border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;
-  margin-bottom:6px
+.section .section-sub {
+  color: var(--gray-500); font-size: 15px; margin-bottom: 32px;
 }
 
-/* =============================================
-   Timeline
-============================================= */
-.timeline{margin:0;padding:0;list-style:none}
-.tl-item{
-  display:flex;gap:12px;
-  padding-bottom:18px;position:relative
+/* ===== COMPARE TABLE ===== */
+.compare-wrap { overflow-x: auto; }
+.compare-tbl { width: 100%; border-collapse: collapse; min-width: 560px; }
+.compare-tbl th {
+  padding: 14px 16px; font-weight: 700; font-size: 14px;
+  background: var(--gray-800); color: white; text-align: center;
 }
-.tl-item:not(:last-child)::before{
-  content:'';
-  position:absolute;left:17px;top:34px;bottom:0;
-  width:2px;background:var(--border)
+.compare-tbl th:first-child { background: var(--gray-700); text-align: left; }
+.compare-tbl th.col-ours { background: var(--primary); }
+.compare-tbl td {
+  padding: 12px 16px; border-bottom: 1px solid var(--gray-100);
+  font-size: 14px; text-align: center; vertical-align: middle;
 }
-.tl-dot{
-  width:34px;height:34px;border-radius:50%;
-  background:var(--teal);color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  font-size:14px;font-weight:800;flex-shrink:0;
-  box-shadow:0 2px 6px rgba(74,144,164,.3)
-}
-.tl-body{flex:1;padding-top:4px}
-.tl-body h4{font-size:14px;font-weight:700;margin-bottom:4px}
-.tl-body p{font-size:13px;color:var(--text-sub);line-height:1.6}
-.tl-body .tl-time{
-  display:inline-block;background:var(--teal-lt);color:var(--teal-dk);
-  border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;margin-bottom:6px
-}
+.compare-tbl td:first-child { font-weight: 600; text-align: left; color: var(--gray-700); }
+.compare-tbl td.col-ours { background: var(--primary-xlight); color: var(--primary-dark); font-weight: 700; }
+.compare-tbl tr:last-child td { border-bottom: none; }
+.compare-tbl .ck { color: var(--success); font-size: 16px; }
+.compare-tbl .cr { color: var(--danger); font-size: 16px; }
+.compare-tbl .cm { color: var(--warning); font-size: 14px; }
 
-/* =============================================
-   Cost Table
-============================================= */
-.cost-table{width:100%;border-collapse:collapse;font-size:13px}
-.cost-table th{
-  background:var(--teal);color:#fff;
-  padding:8px 12px;text-align:left;font-weight:700;font-size:12px
+/* ===== FLOW STEPS ===== */
+.flow-row {
+  display: flex; align-items: stretch; gap: 0;
+  overflow-x: auto; padding-bottom: 8px;
 }
-.cost-table td{padding:10px 12px;border-bottom:1px solid var(--border)}
-.cost-table tr:last-child td{border-bottom:none}
-.cost-table .amt{font-weight:700;color:var(--teal-dk);text-align:right;white-space:nowrap}
-.cost-table .note{font-size:11px;color:var(--text-sub)}
-.cost-table tr.total-row td{
-  background:var(--teal-lt);font-weight:700;font-size:14px
+.flow-item {
+  flex: 1; min-width: 140px;
+  background: white;
+  border-radius: var(--radius); padding: 16px 12px;
+  text-align: center; position: relative;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-200);
+  margin-right: 0;
 }
-.cost-table tr.total-row .amt{color:var(--rose);font-size:15px}
+.flow-arrow {
+  display: flex; align-items: center;
+  color: var(--gray-300); font-size: 20px; padding: 0 4px;
+  flex-shrink: 0;
+}
+.flow-day {
+  font-size: 11px; font-weight: 700;
+  background: var(--primary); color: white;
+  border-radius: 99px; padding: 2px 10px;
+  display: inline-block; margin-bottom: 8px;
+}
+.flow-item.green .flow-day { background: var(--success); }
+.flow-item.orange .flow-day { background: var(--warning); }
+.flow-item.purple .flow-day { background: var(--purple); }
+.flow-icon { font-size: 28px; margin-bottom: 6px; }
+.flow-label { font-size: 12px; font-weight: 700; color: var(--gray-800); line-height: 1.4; }
+.flow-sub { font-size: 11px; color: var(--gray-500); margin-top: 4px; line-height: 1.5; }
 
-/* =============================================
-   Phone Script (STAR feature)
-============================================= */
-.script-tabs{
-  display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px
+/* ===== FAQ ===== */
+.faq-list { list-style: none; }
+.faq-item { border: 1px solid var(--gray-200); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+.faq-q {
+  padding: 16px 20px;
+  font-weight: 700; font-size: 15px; color: var(--gray-800);
+  cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 12px;
+  background: white;
+  transition: background 0.15s;
 }
-.script-tab{
-  padding:7px 14px;border-radius:20px;
-  border:2px solid var(--border);
-  background:var(--bg);
-  font-family:var(--font);font-size:13px;font-weight:600;
-  cursor:pointer;color:var(--text-sub);
-  transition:all .15s;
-  -webkit-tap-highlight-color:transparent
+.faq-q:hover { background: var(--gray-50); }
+.faq-q::before {
+  content: 'Q';
+  color: var(--primary); font-weight: 900;
+  font-size: 16px; flex-shrink: 0;
 }
-.script-tab.active{
-  background:var(--teal);border-color:var(--teal);color:#fff
+.faq-q .faq-arrow { color: var(--gray-400); font-size: 12px; transition: transform 0.2s; }
+.faq-a {
+  display: none;
+  padding: 0 20px 16px 46px;
+  font-size: 14px; color: var(--gray-600);
+  line-height: 1.8;
+  background: var(--gray-50);
 }
+.faq-item.open .faq-a { display: block; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
 
-.script-panel{display:none}
-.script-panel.active{display:block}
+/* ===== CTA SECTION ===== */
+.cta-section {
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  border-radius: var(--radius-xl);
+  padding: 48px 32px;
+  text-align: center;
+  margin-top: 60px;
+}
+.cta-section h2 { color: white; font-size: clamp(20px,4vw,28px); margin-bottom: 12px; }
+.cta-section p { color: rgba(255,255,255,0.8); margin-bottom: 28px; }
+.cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
-/* Dialogue bubbles */
-.dialogue{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
-.bubble-wrap{display:flex;gap:8px;align-items:flex-start}
-.bubble-wrap.staff{flex-direction:row-reverse}
-.bubble-avatar{
-  width:32px;height:32px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:14px;flex-shrink:0;
-  background:var(--teal-lt);border:2px solid var(--teal)
+/* ===== MOBILE ===== */
+@media (max-width: 640px) {
+  .features-grid { grid-template-columns: 1fr 1fr; }
+  .hero-stats { gap: 20px; }
+  .flow-item { min-width: 120px; }
 }
-.bubble-wrap.staff .bubble-avatar{
-  background:var(--amber-lt);border-color:var(--amber)
-}
-.bubble{
-  max-width:82%;padding:10px 14px;border-radius:12px;
-  font-size:13px;line-height:1.65;position:relative
-}
-.bubble-wrap:not(.staff) .bubble{
-  background:var(--teal);color:#fff;border-top-left-radius:2px
-}
-.bubble-wrap.staff .bubble{
-  background:#fff;border:1px solid var(--border);
-  color:var(--text);border-top-right-radius:2px;
-  box-shadow:var(--shadow)
-}
-.bubble .you-note{
-  display:block;margin-top:6px;
-  background:rgba(255,255,255,.2);border-radius:6px;
-  padding:6px 10px;font-size:11px;line-height:1.5
-}
-.bubble .tip{
-  display:block;margin-top:6px;
-  background:rgba(0,0,0,.06);border-radius:6px;
-  padding:6px 10px;font-size:11px;line-height:1.5;color:var(--text-sub)
-}
-.speaker-label{
-  font-size:11px;font-weight:700;margin-bottom:2px;
-  color:var(--text-sub)
-}
-.bubble-wrap.staff .speaker-label{text-align:right}
-
-/* Copy button for scripts */
-.btn-copy-script{
-  width:100%;padding:12px;
-  background:var(--teal-lt);border:2px solid var(--teal);
-  border-radius:var(--r-sm);
-  font-family:var(--font);font-size:14px;font-weight:700;
-  color:var(--teal-dk);cursor:pointer;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  -webkit-tap-highlight-color:transparent;
-  transition:all .15s;margin-top:10px
-}
-.btn-copy-script:active{background:var(--teal);color:#fff}
-.copy-done{
-  display:none;text-align:center;
-  font-size:13px;color:var(--sage);font-weight:600;
-  margin-top:8px;padding:8px;background:var(--sage-lt);border-radius:var(--r-sm)
-}
-.copy-done.show{display:block}
-
-/* Variation note */
-.var-note{
-  background:var(--lav-lt);border:1px solid #C5BEF0;
-  border-radius:var(--r-sm);padding:12px 14px;
-  font-size:13px;line-height:1.6;margin-top:12px
-}
-.var-note strong{color:var(--lavender);font-size:14px;display:block;margin-bottom:4px}
-
-/* =============================================
-   Alternative Methods
-============================================= */
-.alt-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.alt-card{
-  background:var(--card);border-radius:var(--r);
-  box-shadow:var(--shadow);padding:14px 12px;
-  display:flex;flex-direction:column;gap:6px
-}
-.alt-icon{font-size:24px}
-.alt-title{font-size:13px;font-weight:700}
-.alt-desc{font-size:12px;color:var(--text-sub);line-height:1.5}
-.alt-badge{
-  display:inline-block;border-radius:4px;
-  padding:2px 7px;font-size:11px;font-weight:700;
-  align-self:flex-start;margin-top:2px
-}
-.alt-badge.easy{background:#E8F8EE;color:#2E7D52}
-.alt-badge.ok  {background:var(--teal-lt);color:var(--teal-dk)}
-.alt-badge.hard{background:var(--amber-lt);color:#7D6608}
-
-/* =============================================
-   Waiting Period
-============================================= */
-.wait-steps{display:flex;flex-direction:column;gap:10px}
-.wait-step{
-  display:flex;gap:12px;align-items:flex-start;
-  background:var(--card);border-radius:var(--r-sm);
-  box-shadow:var(--shadow);padding:14px
-}
-.wait-step .ws-ico{font-size:24px;flex-shrink:0;margin-top:2px}
-.wait-step h4{font-size:14px;font-weight:700;margin-bottom:4px}
-.wait-step p{font-size:13px;color:var(--text-sub);line-height:1.6}
-.wait-step .ws-badge{
-  display:inline-block;background:var(--teal-lt);color:var(--teal-dk);
-  border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;margin-bottom:4px
-}
-
-/* =============================================
-   Benefit Link Cards
-============================================= */
-.benefit-cards{display:flex;flex-direction:column;gap:10px}
-.benefit-link-card{
-  display:flex;align-items:center;gap:14px;
-  background:var(--card);border-radius:var(--r);
-  box-shadow:var(--shadow);padding:16px;
-  text-decoration:none;color:var(--text);
-  border-left:5px solid var(--teal);
-  -webkit-tap-highlight-color:transparent;
-  transition:box-shadow .15s
-}
-.benefit-link-card:active{box-shadow:none}
-.benefit-link-card .blc-ico{font-size:28px;flex-shrink:0}
-.benefit-link-card h4{font-size:14px;font-weight:700;margin-bottom:3px}
-.benefit-link-card p{font-size:12px;color:var(--text-sub);line-height:1.5}
-.benefit-link-card .arrow{margin-left:auto;font-size:18px;color:var(--teal);flex-shrink:0}
-
-/* =============================================
-   Hotline
-============================================= */
-.hotline-card{
-  background:linear-gradient(135deg,#5BA17A,#4A8F6A);
-  color:#fff;border-radius:var(--r);padding:20px 16px;
-  text-align:center;margin-top:28px
-}
-.hotline-card h3{font-size:16px;font-weight:800;margin-bottom:8px}
-.hotline-card p{font-size:13px;opacity:.9;line-height:1.6;margin-bottom:16px}
-.hotline-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.hotline-item{
-  background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);
-  border-radius:var(--r-sm);padding:10px 8px;
-  text-decoration:none;color:#fff;
-  -webkit-tap-highlight-color:transparent
-}
-.hotline-item .hl-num{font-size:15px;font-weight:800;display:block;margin-bottom:2px}
-.hotline-item .hl-name{font-size:11px;opacity:.85;display:block}
-.hotline-item .hl-hour{font-size:10px;opacity:.7;display:block;margin-top:2px}
-
-/* =============================================
-   Accordion
-============================================= */
-.accordion{margin-bottom:10px}
-.acc-btn{
-  width:100%;padding:14px 16px;
-  background:var(--card);border:1px solid var(--border);border-radius:var(--r-sm);
-  font-family:var(--font);font-size:14px;font-weight:600;
-  color:var(--text);text-align:left;cursor:pointer;
-  display:flex;justify-content:space-between;align-items:center;
-  -webkit-tap-highlight-color:transparent;gap:8px
-}
-.acc-btn .acc-arrow{
-  font-size:12px;color:var(--text-sub);flex-shrink:0;
-  transition:transform .25s
-}
-.acc-btn.open .acc-arrow{transform:rotate(180deg)}
-.acc-body{
-  max-height:0;overflow:hidden;
-  transition:max-height .35s ease
-}
-.acc-body-inner{
-  padding:14px 16px;font-size:13px;line-height:1.7;
-  background:var(--bg);border:1px solid var(--border);
-  border-top:none;border-radius:0 0 var(--r-sm) var(--r-sm)
-}
-
-/* =============================================
-   Scroll Top / Sticky CTA
-============================================= */
-.sticky-cta{
-  position:fixed;bottom:0;left:0;right:0;
-  background:#fff;border-top:1px solid var(--border);
-  padding:10px 16px 14px;
-  display:flex;gap:8px;max-width:660px;margin:0 auto;
-  z-index:90
-}
-.sticky-cta a, .sticky-cta button{
-  flex:1;padding:12px 8px;
-  border-radius:var(--r-sm);
-  font-family:var(--font);font-size:13px;font-weight:700;
-  text-align:center;text-decoration:none;cursor:pointer;
-  -webkit-tap-highlight-color:transparent;border:none;
-  display:flex;flex-direction:column;align-items:center;gap:2px
-}
-.sticky-cta .cta-script{
-  background:var(--teal);color:#fff;
-  box-shadow:0 2px 8px rgba(74,144,164,.35)
-}
-.sticky-cta .cta-check{
-  background:var(--bg);border:2px solid var(--teal);color:var(--teal-dk)
-}
-.sticky-cta .cta-sub{font-size:10px;font-weight:400;opacity:.85}
-
-.scroll-top{
-  position:fixed;bottom:72px;right:16px;
-  width:40px;height:40px;background:var(--teal);color:#fff;
-  border:none;border-radius:50%;font-size:18px;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2);
-  opacity:0;transition:opacity .3s;z-index:89
-}
-.scroll-top.visible{opacity:1}
-
-/* =============================================
-   Utilities
-============================================= */
-.tag{
-  display:inline-block;border-radius:4px;padding:2px 8px;
-  font-size:11px;font-weight:700
-}
-.tag.teal  {background:var(--teal-lt);color:var(--teal-dk)}
-.tag.sage  {background:var(--sage-lt);color:#2E6B4F}
-.tag.amber {background:var(--amber-lt);color:#7D6608}
-.tag.rose  {background:var(--rose-lt);color:#9B2626}
-
-ul.check-list{list-style:none;display:flex;flex-direction:column;gap:6px}
-ul.check-list li{display:flex;align-items:flex-start;gap:8px;font-size:13px}
-ul.check-list li::before{
-  content:'✓';color:var(--sage);font-weight:900;
-  flex-shrink:0;margin-top:2px
-}
-
-@media(max-width:400px){
-  .anxiety-grid{grid-template-columns:1fr}
-  .alt-grid{grid-template-columns:1fr}
-  .hotline-grid{grid-template-columns:1fr}
+@media (max-width: 400px) {
+  .features-grid { grid-template-columns: 1fr; }
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "離職票がなかなか届かない場合はどうする？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "離職票は退職後10〜14日以内に郵送されるのが一般的です。2週間を過ぎても届かない場合は、会社に発行を督促してください。それでも発行されない場合は、ハローワークに「離職票未交付の雇用保険被保険者」として申し出ることで、給付申請を進めることが可能です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "アルバイトや派遣でも失業給付は受け取れる？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "週20時間以上かつ31日以上継続雇用見込みの労働者は雇用保険に加入する義務があります。雇用保険に加入していれば、正社員でなくても失業給付を受け取れます。加入期間の条件（自己都合：2年間で12ヶ月以上）を満たしているか確認しましょう。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "給付を受けながらアルバイトはできる？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "受給中のアルバイトは一定条件のもと可能ですが、必ず失業認定申告書に申告する必要があります。申告なしの場合は不正受給になります。週20時間以上・月14日以上の就労は「就職」と見なされ、給付が停止されます。短時間・少日数のアルバイトであれば調整された金額で受給が継続できる場合があります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "自己都合でも「特定理由離職者」になれる場合は？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "以下のケースは自己都合でも給付制限なしの特定理由離職者として扱われます：体力的に続けられない（医師の診断書あり）、家族の介護、結婚・配偶者の転勤による住所変更、セクハラ・パワハラなど職場環境の問題、契約更新なし（雇止め）。ハローワークに証拠書類を持参して相談してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "再就職が決まった場合、再就職手当はいくらもらえる？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "再就職手当は所定給付日数の残日数に応じて計算されます。残日数が2/3以上の場合は基本手当日額×残日数×70%、残日数が1/3以上の場合は基本手当日額×残日数×60%です。例えば基本手当日額4,000円、残日数60日の場合は4,000×60×70%=168,000円となります。"
+      }
+    }
+  ]
+}
+</script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QPRTVYDMY1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QPRTVYDMY1');
+</script>
+
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
-<header class="site-header">
-  <div class="inner">
-    <a href="https://shitugyoukyufu.com">shitugyoukyufu.com</a>
-    <span class="pt">受診不安解消ガイド</span>
-  </div>
-</header>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">✅ 2025年最新法改正（給付制限1ヶ月に短縮）対応</div>
+    <h1>退職したら<br><span class="accent">いつ・いくら</span>もらえる？<br>全部ここで解決</h1>
+    <p>退職日から初回振込まで、わかりにくいハローワーク手続きを<br>Day0〜Day60タイムラインで完全攻略</p>
+    <div class="hero-cta">
+      <a href="calculator.html" class="btn btn-lg" style="background:#fbbf24;color:#1e3a8a;">🧮 給付金を今すぐ計算</a>
+      <a href="timeline.html" class="btn btn-lg" style="background:white;color:#1e3a8a;font-weight:700;">📅 Day0〜Day60を見る</a>
 
-<div class="wrap">
-
-<!-- ===== HERO ===== -->
-<div class="hero" style="margin:0 -16px">
-  <div class="eyebrow">🏥 受診サポート完全ガイド</div>
-  <h1>「病院に行こう」と<br>思えるまでの<em>不安をゼロに</em></h1>
-  <p class="sub">予約の取り方から費用・待機期間の過ごし方まで。<br>そのまま読める<strong>電話予約台本</strong>付きです。</p>
-  <div class="chips">
-    <span class="chip">📞 電話台本5パターン</span>
-    <span class="chip">💴 費用の透明化</span>
-    <span class="chip">⏰ 待ち時間対策</span>
-    <span class="chip">🌐 電話NG派の代替手段</span>
-  </div>
-</div>
-
-<!-- ===== SECTION 1: 不安の解消 ===== -->
-<div class="section">
-  <div class="section-title">
-    <div class="ico" style="background:#EBF5F8">🤔</div>
-    <div>
-      <h2>よくある「受診をためらう理由」と現実</h2>
-      <p>その不安、全部答えます</p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">最短7日</span>
+        <div class="stat-label">会社都合の受給開始</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">最大330日</span>
+        <div class="stat-label">所定給付日数（最長）</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">1ヶ月に短縮</span>
+        <div class="stat-label">自己都合 給付制限（2025年4月〜）</div>
+      </div>
     </div>
   </div>
+</section>
 
-  <div class="anxiety-grid">
-    <div class="anx-card resolved">
-      <div class="anx-badge">解消できます</div>
-      <div class="anx-icon">📞</div>
-      <div class="anx-q">電話するのが怖い・何を言えばいいかわからない</div>
-      <div class="anx-a">このページの「電話台本」をそのまま読むだけでOK。Web予約対応クリニックなら電話不要です。</div>
-    </div>
-    <div class="anx-card resolved">
-      <div class="anx-badge">解消できます</div>
-      <div class="anx-icon">💴</div>
-      <div class="anx-q">費用がいくらかかるか不安</div>
-      <div class="anx-a">初診は3,000〜6,000円が目安。保険証1枚で受けられます。詳細な内訳はこのページで透明化しています。</div>
-    </div>
-    <div class="anx-card resolved">
-      <div class="anx-badge">解消できます</div>
-      <div class="anx-icon">🗓</div>
-      <div class="anx-q">「まだそこまで重くない」「行くほどじゃない」</div>
-      <div class="anx-a">重症化してからでは回復に時間がかかります。「行くほどじゃないかも」と思うくらいが受診の最適タイミングです。</div>
-    </div>
-    <div class="anx-card resolved">
-      <div class="anx-badge">解消できます</div>
-      <div class="anx-icon">😔</div>
-      <div class="anx-q">「精神科に行くと弱い人みたい」「恥ずかしい」</div>
-      <div class="anx-a">精神科・心療内科は内科や整形外科と同じ医療機関です。誰でも使えます。他の人に知られることは基本的にありません。</div>
-    </div>
-    <div class="anx-card resolved">
-      <div class="anx-badge">解消できます</div>
-      <div class="anx-icon">📅</div>
-      <div class="anx-q">予約が1〜2ヶ月取れないと聞いた</div>
-      <div class="anx-a">クリニックによります。オンライン診療なら当日〜数日で受けられる場合も。複数のクリニックに同時に問い合わせるのがコツです。</div>
-    </div>
-    <div class="anx-card resolved">
-      <div class="anx-badge">解消できます</div>
-      <div class="anx-icon">💊</div>
-      <div class="anx-q">薬を処方されるのが怖い</div>
-      <div class="anx-a">「薬は飲みたくない」と伝えれば処方なしで話を聞いてもらえます。初診で必ず薬が出るわけではありません。</div>
-    </div>
-  </div>
-
-  <div class="callout info" style="margin-top:6px">
-    💡 <strong>「診察で何を話せばいいかわからない」も解消できます</strong>
-    前のページ「こころと体の状態チェック」で作った<strong>受診用シート（URLまたはスクショ）</strong>を見せるだけでOKです。言葉で説明しなくても伝わります。
+<!-- FEATURES -->
+<div class="features">
+  <div class="features-grid">
+    <a href="calculator.html" class="feature-card">
+      <span class="feature-icon">🧮</span>
+      <div class="feature-title">給付金シミュレーター</div>
+      <div class="feature-desc">月収・年齢・加入期間を入力するだけで自動計算。再就職手当も含む</div>
+      <span class="feature-badge">無料・即時計算</span>
+    </a>
+    <a href="timeline.html" class="feature-card">
+      <span class="feature-icon">📅</span>
+      <div class="feature-title">Day0〜Day60<br>タイムライン</div>
+      <div class="feature-desc">退職後に何をいつやるか、日付別で全部わかる完全ロードマップ</div>
+      <span class="feature-badge">当サイト限定</span>
+    </a>
+    <a href="checklist.html" class="feature-card">
+      <span class="feature-icon">✅</span>
+      <div class="feature-title">退職後やること<br>チェックリスト</div>
+      <div class="feature-desc">健康保険・年金・住民税・確定申告まで全手続きを一枚にまとめ</div>
+      <span class="feature-badge">PDF保存対応</span>
+    </a>
+    <a href="voluntary.html" class="feature-card">
+      <span class="feature-icon">🙋</span>
+      <div class="feature-title">自己都合 完全ガイド</div>
+      <div class="feature-desc">自己都合でも損しない方法・給付制限の正しい理解・特定理由への変更</div>
+      <span class="feature-badge">2025年4月改正対応</span>
+    </a>
+    <a href="company.html" class="feature-card">
+      <span class="feature-icon">🏢</span>
+      <div class="feature-title">会社都合 完全ガイド</div>
+      <div class="feature-desc">解雇・倒産・希望退職の違いと、受け取れる最大日数・金額の解説</div>
+      <span class="feature-badge">最大330日対応</span>
+    </a>
+    <a href="checklist.html#special" class="feature-card">
+      <span class="feature-icon">🔍</span>
+      <div class="feature-title">状況別 特殊ケース</div>
+      <div class="feature-desc">パート・派遣・ダブルワーク・傷病・妊娠・外国人の特別対応ガイド</div>
+      <span class="feature-badge">6ケース対応</span>
+    </a>
   </div>
 </div>
-
-
-<!-- ===== SECTION 2: 予約の現実 ===== -->
+<!-- FEATURES -->
+<div class="features">
+  <div class="features-grid">
+    <a href="calculator.html" class="feature-card">
+      <span class="feature-icon">🧮</span>
+      <div class="feature-title">給付金シミュレーター</div>
+      <div class="feature-desc">月収・年齢・加入期間を入力するだけで自動計算。再就職手当も含む</div>
+      <span class="feature-badge">無料・即時計算</span>
+    </a>
+    <a href="timeline.html" class="feature-card">
+      <span class="feature-icon">📅</span>
+      <div class="feature-title">Day0〜Day60<br>タイムライン</div>
+      <div class="feature-desc">退職後に何をいつやるか、日付別で全部わかる完全ロードマップ</div>
+      <span class="feature-badge">当サイト限定</span>
+    </a>
+    <a href="checklist.html" class="feature-card">
+      <span class="feature-icon">✅</span>
+      <div class="feature-title">退職後やること<br>チェックリスト</div>
+      <div class="feature-desc">健康保険・年金・住民税・確定申告まで全手続きを一枚にまとめ</div>
+      <span class="feature-badge">PDF保存対応</span>
+    </a>
+    <a href="voluntary.html" class="feature-card">
+      <span class="feature-icon">🙋</span>
+      <div class="feature-title">自己都合 完全ガイド</div>
+      <div class="feature-desc">自己都合でも損しない方法・給付制限の正しい理解・特定理由への変更</div>
+      <span class="feature-badge">2025年4月改正対応</span>
+    </a>
+    <a href="company.html" class="feature-card">
+      <span class="feature-icon">🏢</span>
+      <div class="feature-title">会社都合 完全ガイド</div>
+      <div class="feature-desc">解雇・倒産・希望退職の違いと、受け取れる最大日数・金額の解説</div>
+      <span class="feature-badge">最大330日対応</span>
+    </a>
+    <a href="parttime.html" class="feature-card">
+      <span class="feature-icon">💼</span>
+      <div class="feature-title">バイトのルール</div>
+      <div class="feature-desc">受給中にバイトできる？4時間ルール・申告方法・バレる仕組みを解説</div>
+      <span class="feature-badge">不正受給防止</span>
+    </a>
+    <a href="mental-check.html" class="feature-card">
+      <span class="feature-icon">🧠</span>
+      <div class="feature-title">メンタル<br>セルフチェック</div>
+      <div class="feature-desc">退職後の不安・落ち込みを17問で可視化。受診用シートも作成可能</div>
+      <span class="feature-badge">受診シート付き</span>
+    </a>
+    <a href="scam.html" class="feature-card">
+      <span class="feature-icon">⚠️</span>
+      <div class="feature-title">給付金サポート<br>詐欺に注意</div>
+      <div class="feature-desc">運営者が30万円騙された実体験と詐欺の手口・見分け方を公開</div>
+      <span class="feature-badge danger">被害急増中</span>
+    </a>
+    <a href="checklist.html#special" class="feature-card">
+      <span class="feature-icon">🔍</span>
+      <div class="feature-title">状況別 特殊ケース</div>
+      <div class="feature-desc">パート・派遣・ダブルワーク・傷病・妊娠・外国人の特別対応ガイド</div>
+      <span class="feature-badge">6ケース対応</span>
+    </a>
+  </div>
+</div>
+<!-- COMPARE TABLE -->
 <div class="section">
-  <div class="section-title">
-    <div class="ico" style="background:#FEF9E7">📅</div>
-    <div>
-      <h2>予約の現実と「早く受診する」コツ</h2>
-      <p>正直に伝えます</p>
-    </div>
-  </div>
-
-  <div class="callout warn">
-    <strong>⚠️ 正直に伝えます：予約は混んでいます</strong>
-    人気クリニックでは初診まで<strong>1〜2ヶ月待ち</strong>になることがあります。これは精神科・心療内科の施設数が少ない（内科の1/10以下）ためで、あなたのせいではありません。
-    ただし、工夫次第で<strong>1〜2週間以内</strong>に受診できることも多いです。
-  </div>
+  <div class="section-label">🔍 比較</div>
+  <h2>自己都合 vs 会社都合<br>給付の違い一覧</h2>
+  <p class="section-sub">退職理由によって受取額・日数・開始時期が大きく変わります</p>
 
   <div class="card">
-    <h3>🏃 早く受診するための5つのコツ</h3>
-    <ul class="check-list">
-      <li><strong>複数のクリニックに同時に問い合わせる</strong>——1か所だけに絞らない。3〜5か所に問い合わせて最も早い枠を取る</li>
-      <li><strong>「キャンセル待ちをお願いできますか？」と伝える</strong>——意外と1〜2週間で繰り上がることがある</li>
-      <li><strong>オンライン診療クリニックを探す</strong>——「精神科 オンライン診療 初診」で検索。当日〜数日以内に受けられる場合が多い</li>
-      <li><strong>平日午前・月曜避け</strong>でかける——クリニックの予約電話が混みにくい時間帯は平日午後早め</li>
-      <li><strong>かかりつけ内科に相談する</strong>——「眠れない・気分が落ち込む」と相談し、紹介状を書いてもらうと優先予約が取りやすい</li>
+    <div class="compare-wrap">
+      <table class="compare-tbl">
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>自己都合退職</th>
+            <th>会社都合退職<br>（特定受給資格者）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>給付制限</td>
+            <td>1〜3ヶ月（2025年4月〜1ヶ月に短縮）</td>
+            <td style="color:var(--success);font-weight:700;">なし</td>
+          </tr>
+          <tr>
+            <td>待機期間</td>
+            <td>7日間</td>
+            <td>7日間</td>
+          </tr>
+          <tr>
+            <td>初回振込まで</td>
+            <td>約45〜75日</td>
+            <td style="color:var(--success);font-weight:700;">約30〜35日</td>
+          </tr>
+          <tr>
+            <td>所定給付日数</td>
+            <td>90〜150日</td>
+            <td style="color:var(--success);font-weight:700;">90〜330日</td>
+          </tr>
+          <tr>
+            <td>加入期間条件</td>
+            <td>2年間で12ヶ月以上</td>
+            <td style="color:var(--success);font-weight:700;">1年間で6ヶ月以上</td>
+          </tr>
+          <tr>
+            <td>給付率</td>
+            <td>50〜80%</td>
+            <td>50〜80%（同じ）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert alert-warning" style="margin-top:16px;">
+      ⚡ <strong>2025年4月1日〜</strong> 自己都合退職の給付制限が <strong>2ヶ月→1ヶ月</strong> に短縮されました（5年間に2回目以上の場合は3ヶ月のまま）
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+  <div class="section-label">❓ よくある質問</div>
+  <h2>みんなが迷う<br>よくある質問</h2>
+  <p class="section-sub">退職・失業給付についてよくある疑問にお答えします</p>
+
+  <div class="card">
+    <ul class="faq-list">
+      <li class="faq-item">
+        <div class="faq-q">離職票がなかなか届かない場合はどうする？ <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">離職票は退職後10〜14日以内に郵送されるのが一般的です。2週間を過ぎても届かない場合は、会社に発行を督促してください。それでも発行されない場合は、ハローワークに「離職票未交付の雇用保険被保険者」として申し出ることで、給付申請を進めることが可能です。</div>
+      </li>
+      <li class="faq-item">
+        <div class="faq-q">アルバイトや派遣でも失業給付は受け取れる？ <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">週20時間以上かつ31日以上継続雇用見込みの労働者は雇用保険に加入する義務があります。雇用保険に加入していれば、正社員でなくても失業給付を受け取れます。加入期間の条件（自己都合：2年間で12ヶ月以上）を満たしているか確認しましょう。</div>
+      </li>
+      <li class="faq-item">
+        <div class="faq-q">給付を受けながらアルバイトはできる？ <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">受給中のアルバイトは一定条件のもと可能ですが、必ず<strong>失業認定申告書に申告</strong>する必要があります。申告なしの場合は不正受給になります。週20時間以上・月14日以上の就労は「就職」と見なされ、給付が停止されます。短時間・少日数のアルバイトであれば調整された金額で受給が継続できる場合があります。</div>
+      </li>
+      <li class="faq-item">
+        <div class="faq-q">自己都合でも「特定理由離職者」になれる場合は？ <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">以下のケースは自己都合でも給付制限なしの特定理由離職者として扱われます：①体力的に続けられない（医師の診断書あり）、②家族の介護、③結婚・配偶者の転勤による住所変更、④セクハラ・パワハラなど職場環境の問題、⑤契約更新なし（雇止め）。詳しくは<a href="voluntary.html">自己都合完全ガイド</a>を参照してください。</div>
+      </li>
+      <li class="faq-item">
+        <div class="faq-q">再就職が決まった場合、再就職手当はいくらもらえる？ <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">再就職手当は所定給付日数の残日数に応じて計算されます。<br>・残日数が2/3以上：基本手当日額 × 残日数 × <strong>70%</strong><br>・残日数が1/3以上：基本手当日額 × 残日数 × <strong>60%</strong><br>例）基本手当日額4,000円、残日数60日の場合 → 4,000×60×70% = <strong>168,000円</strong><br><a href="calculator.html">計算ツール</a>で自動計算できます。</div>
+      </li>
     </ul>
   </div>
-
-  <div class="card">
-    <h3>🔍 クリニックの探し方</h3>
-    <p style="font-size:13px;color:var(--text-sub);margin-bottom:10px">以下のキーワードで検索して、口コミ・予約しやすさを確認しましょう。</p>
-    <div style="display:flex;flex-wrap:wrap;gap:6px">
-      <span class="tag teal">心療内科 [あなたの市区町村名]</span>
-      <span class="tag teal">精神科 初診 予約 空き</span>
-      <span class="tag teal">メンタルクリニック オンライン 初診</span>
-      <span class="tag teal">心療内科 当日予約</span>
-    </div>
-  </div>
 </div>
 
-
-<!-- ===== SECTION 3: 費用の透明化 ===== -->
+<!-- CTA -->
 <div class="section">
-  <div class="section-title">
-    <div class="ico" style="background:#EBF5EF">💴</div>
+  <div class="cta-section">
+    <h2>まず、いくらもらえるか確認しよう</h2>
+    <p>月収・年齢・加入期間を入力するだけで、あなたの受給額を即時計算します</p>
+    <div class="cta-buttons">
+      <a href="calculator.html" class="btn btn-lg" style="background:#fbbf24;color:#1e3a8a;">🧮 無料で給付金を計算する</a>
+      <a href="checklist.html" class="btn btn-lg btn-outline" style="background:white;color:#1e3a8a;font-weight:700;">✅ チェックリストを確認する</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">📋 退職・失業給付 完全ガイド</div>
+      <p>退職から失業給付受け取りまでを<br>わかりやすく解説する無料情報サイトです。<br>2025年最新法改正に対応しています。</p>
+      <div class="disclaimer">⚠️ 本サイトは情報提供を目的としており、個別の法律・税務アドバイスではありません。最終判断はハローワークや社会保険労務士にご確認ください。</div>
+    </div>
     <div>
-      <h2>費用の透明化</h2>
-      <p>初診でかかるお金のすべて</p>
+      <h4>コンテンツ</h4>
+      <ul>
+        <li><a href="calculator.html">給付金計算ツール</a></li>
+        <li><a href="timeline.html">Day0〜Day60タイムライン</a></li>
+        <li><a href="voluntary.html">自己都合完全ガイド</a></li>
+        <li><a href="company.html">会社都合完全ガイド</a></li>
+        <li><a href="checklist.html">退職後チェックリスト</a></li>
+      </ul>
     </div>
-  </div>
-
-  <div class="card" style="padding:0;overflow:hidden">
-    <table class="cost-table">
-      <thead>
-        <tr><th>費用の種類</th><th style="text-align:right">目安金額（3割負担）</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <div style="font-weight:600">初診料・診察料</div>
-            <div class="note">保険証があれば3割負担。問診・診察込み</div>
-          </td>
-          <td class="amt">2,500〜6,000円</td>
-        </tr>
-        <tr>
-          <td>
-            <div style="font-weight:600">心理検査（任意）</div>
-            <div class="note">ADHD・うつの評価検査。初診時に必ずあるわけではない</div>
-          </td>
-          <td class="amt">+2,000〜5,000円</td>
-        </tr>
-        <tr>
-          <td>
-            <div style="font-weight:600">お薬代（処方された場合）</div>
-            <div class="note">抗不安薬・睡眠薬など。1〜2週間分。院外薬局で払う</div>
-          </td>
-          <td class="amt">+2,000〜5,000円</td>
-        </tr>
-        <tr>
-          <td>
-            <div style="font-weight:600">診断書（希望した場合）</div>
-            <div class="note" style="color:var(--rose)">⚠️ 保険適用外・全額自己負担。ハローワーク提出・休職用</div>
-          </td>
-          <td class="amt" style="color:var(--rose)">+2,000〜5,000円</td>
-        </tr>
-        <tr class="total-row">
-          <td><strong>初回の合計目安</strong><br><span class="note">診断書・薬なしなら最低限2,500円〜</span></td>
-          <td class="amt">3,000〜<br>15,000円</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="callout good">
-    <strong>💡 知っておきたい：自立支援医療制度</strong>
-    継続通院が必要と診断された場合、<strong>自立支援医療制度（精神通院医療）</strong>に申請できます。自己負担が<strong>3割→1割</strong>に軽減され、薬代も対象。申請は役所で行います。主治医に「申請したい」と伝えるだけで手続きが始まります。
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn" onclick="toggleAcc(this)">
-      「お金がなくても受診できますか？」<span class="acc-arrow">▼</span>
-    </button>
-    <div class="acc-body">
-      <div class="acc-body-inner">
-        <ul class="check-list">
-          <li>健康保険証があれば3割負担で受診できます</li>
-          <li>失業中でも国民健康保険に加入していれば保険適用されます</li>
-          <li>保険料が払えない場合は市区町村の窓口で「減免申請」が可能です</li>
-          <li>生活が困窮している場合は「生活困窮者自立支援制度」の相談も選択肢の一つです</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion">
-    <button class="acc-btn" onclick="toggleAcc(this)">
-      「診断書はいつ頼めばいいですか？」<span class="acc-arrow">▼</span>
-    </button>
-    <div class="acc-body">
-      <div class="acc-body-inner">
-        初診時に「〇〇の目的で診断書が必要です」と伝えて構いません。
-        ただし、診断書は<strong>当日発行できない</strong>クリニックもあります（1〜2週間かかる場合も）。
-        ハローワーク提出用の場合は、初診の段階で「就職困難者認定のために使いたい」と伝えると、必要な記載内容を医師が把握してくれます。
-        診断書代は保険外のため1通2,000〜5,000円が相場です。<strong>期間を長めに設定してもらう</strong>と、延長のたびに費用がかかりません。
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- ===== SECTION 4: 電話予約台本 ===== -->
-<div class="section" id="phone-script">
-  <div class="section-title">
-    <div class="ico" style="background:#F0EEFB">📞</div>
     <div>
-      <h2>電話予約台本</h2>
-      <p>あなたの状況に合ったセリフをそのまま読んでください</p>
+      <h4>情報</h4>
+      <ul>
+        <li><a href="https://www.hellowork.mhlw.go.jp/" target="_blank">ハローワーク公式</a></li>
+        <li><a href="https://www.mhlw.go.jp/" target="_blank">厚生労働省</a></li>
+      </ul>
     </div>
   </div>
-
-  <div class="callout info">
-    💡 <strong>電話前に手元に用意するもの</strong>
-    ①希望する日時（3〜5候補）　②自分の名前・生年月日　③折り返し電話番号　④このページ（症状説明用）
+  <div class="footer-bottom">
+    <p>© 2025 退職・失業給付 完全ガイド ｜ 情報は参考目的であり、法的アドバイスではありません</p>
   </div>
-
-  <!-- タブ切替 -->
-  <div class="script-tabs">
-    <button id="tab-basic" class="script-tab active" onclick="switchTab(this,'tab-basic')">📋 基本版</button>
-    <button id="tab-adhd" class="script-tab" onclick="switchTab(this,'tab-adhd')">🧩 ADHD/ASD傾向</button>
-    <button id="tab-utsu" class="script-tab" onclick="switchTab(this,'tab-utsu')">😔 気分・うつ系</button>
-    <button id="tab-cert" class="script-tab" onclick="switchTab(this,'tab-cert')">📄 診断書目的</button>
-    <button id="tab-cancel" class="script-tab" onclick="switchTab(this,'tab-cancel')">🔄 キャンセル待ち</button>
-  </div>
-
-  <!-- ===== TAB: 基本版 ===== -->
-  <div class="script-panel active" id="tab-basic">
-    <div class="card">
-      <h3>📋 基本版：どんな症状でも使えるシンプル台本</h3>
-      <p style="font-size:13px;color:var(--text-sub);margin-bottom:14px">症状をうまく説明できなくても大丈夫。「つらい」という事実だけ伝えれば予約は取れます。</p>
-
-      <div class="dialogue">
-        <div class="bubble-wrap staff">
-          <div class="bubble-avatar">👩‍⚕️</div>
-          <div>
-            <div class="speaker-label">クリニック受付</div>
-            <div class="bubble">はい、〇〇クリニックです。<div class="tip">※電話が繋がったら、すぐ話し始めて大丈夫です</div></div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap">
-          <div class="bubble-avatar">🙋</div>
-          <div>
-            <div class="speaker-label">あなた（青が話すセリフ）</div>
-            <div class="bubble">
-              初診の予約をしたいのですが、よろしいでしょうか。
-              <span class="you-note">📌 「初診」「予約したい」の2ワードだけ言えればOKです</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap staff">
-          <div class="bubble-avatar">👩‍⚕️</div>
-          <div>
-            <div class="speaker-label">クリニック受付</div>
-            <div class="bubble">はい、ありがとうございます。簡単で構いませんので、どのようなご症状でしょうか？</div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap">
-          <div class="bubble-avatar">🙋</div>
-          <div>
-            <div class="speaker-label">あなた</div>
-            <div class="bubble">
-              退職後から気分の落ち込みと眠れない日が続いていて、一度診てもらいたいと思いました。
-              <span class="you-note">📌 これだけで十分です。詳しく説明しなくてOKです</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap staff">
-          <div class="bubble-avatar">👩‍⚕️</div>
-          <div>
-            <div class="speaker-label">クリニック受付</div>
-            <div class="bubble">わかりました。ご希望の日時はございますか？</div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap">
-          <div class="bubble-avatar">🙋</div>
-          <div>
-            <div class="speaker-label">あなた</div>
-            <div class="bubble">
-              〇月〇日の午後か、〇月〇日の午前中あたりで空きはありますか？できれば今月中に受診したいのですが。
-              <span class="you-note">📌 日時候補は3〜5つ挙げると予約が取りやすい</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap staff">
-          <div class="bubble-avatar">👩‍⚕️</div>
-          <div>
-            <div class="speaker-label">クリニック受付</div>
-            <div class="bubble">〇月〇日の〇時でよろしいでしょうか。お名前と生年月日、お電話番号を教えていただけますか？</div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap">
-          <div class="bubble-avatar">🙋</div>
-          <div>
-            <div class="speaker-label">あなた</div>
-            <div class="bubble">
-              〇〇と申します。生年月日は〇年〇月〇日で、電話番号は〇〇〇〇です。よろしくお願いします。
-              <span class="you-note">📌 予約完了です！予約日時は必ずメモしてください</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <button class="btn-copy-script" onclick="copyScript('basic')">📋 このセリフをコピーする</button>
-      <div class="copy-done" id="copy-done-basic">✅ コピーしました！LINEのKeepやメモに貼り付けて当日使えます</div>
-    </div>
-
-    <div class="var-note">
-      <strong>💬 「空きがない」と言われたら？</strong>
-      「キャンセル待ちをお願いすることはできますか？」と一言添えてみましょう。
-      または「一番早い空きはいつになりますか？」と聞いて、それで予約するのも手です。
-    </div>
-  </div>
-
-  <!-- ===== TAB: ADHD/ASD傾向 ===== -->
-  <div class="script-panel" id="tab-adhd">
-    <div class="card">
-      <h3>🧩 ADHD・ASD傾向を確認したい場合の台本</h3>
-      <p style="font-size:13px;color:var(--text-sub);margin-bottom:14px">「発達障害かもしれない」という言葉は使わなくても大丈夫。職場での困りごとを伝えるだけで、医師が適切に判断します。</p>
-
-      <div class="dialogue">
-        <div class="bubble-wrap staff">
-          <div class="bubble-avatar">👩‍⚕️</div>
-          <div>
-            <div class="speaker-label">クリニック受付</div>
-            <div class="bubble">はい、〇〇クリニックです。</div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap">
-          <div class="bubble-avatar">🙋</div>
-          <div>
-            <div class="speaker-label">あなた</div>
-            <div class="bubble">初診の予約をしたいのですが、よろしいでしょうか。</div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap staff">
-          <div class="bubble-avatar">👩‍⚕️</div>
-          <div>
-            <div class="speaker-label">クリニック受付</div>
-            <div class="bubble">はい。どのようなご症状でいらっしゃいますか？</div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap">
-          <div class="bubble-avatar">🙋</div>
-          <div>
-            <div class="speaker-label">あなた</div>
-            <div class="bubble">
-              仕事でミスが多い、集中が続かない、といった困りごとが続いていまして、自分の特性を一度きちんと診ていただきたいと思っています。発達に関する検査や相談を行っていただけるクリニックを探しています。
-              <span class="you-note">📌 「発達障害の検査をしてほしい」と言っても大丈夫です</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap staff">
-          <div class="bubble-avatar">👩‍⚕️</div>
-          <div>
-            <div class="speaker-label">クリニック受付</div>
-            <div class="bubble">
-              発達に関するご相談ですね、承りました。当院では対応しております。
-              <div class="tip">※「対応していない」と言われた場合は「発達障害 検査 ○○市」で別クリニックを探してください</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap">
-          <div class="bubble-avatar">🙋</div>
-          <div>
-            <div class="speaker-label">あなた</div>
-            <div class="bubble">
-              ありがとうございます。〇月〇日の午後か、〇月〇日あたりで初診の空きはございますか？
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <button class="btn-copy-script" onclick="copyScript('adhd')">📋 このセリフをコピーする</button>
-      <div class="copy-done" id="copy-done-adhd">✅ コピーしました！</div>
-    </div>
-
-    <div class="var-note">
-      <strong>💬 注意：発達障害の「検査」は別途時間と費用がかかります</strong>
-      ADHD・ASD等の心理検査（WAIS-IV等）は通常、初診時ではなく後日の予約で行われます。検査時間は2〜4時間程度かかることがあり、費用は保険適用で5,000〜10,000円程度です。まずは初診で相談し、検査が必要かどうかを医師と話し合いましょう。
-    </div>
-  </div>
-
-  <!-- ===== TAB: うつ系 ===== -->
-  <div class="script-panel" id="tab-utsu">
-    <div class="card">
-      <h3>😔 気分の落ち込み・うつ症状が主な場合の台本</h3>
-      <p style="font-size:13px;color:var(--text-sub);margin-bottom:14px">「うつかもしれない」とはっきり言えなくても大丈夫。体の症状（眠れない・疲れる）だけ伝えるのでもOKです。</p>
-
-      <div class="dialogue">
-        <div class="bubble-wrap staff">
-          <div class="bubble-avatar">👩‍⚕️</div>
-          <div>
-            <div class="speaker-label">クリニック受付</div>
-            <div class="bubble">はい、〇〇クリニックです。</div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap">
-          <div class="bubble-avatar">🙋</div>
-          <div>
-            <div class="speaker-label">あなた</div>
-            <div class="bubble">初診の予約をお願いしたいのですが。</div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap staff">
-          <div class="bubble-avatar">👩‍⚕️</div>
-          <div>
-            <div class="speaker-label">クリニック受付</div>
-            <div class="bubble">承りました。どのようなご症状でしょうか？</div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap">
-          <div class="bubble-avatar">🙋</div>
-          <div>
-            <div class="speaker-label">あなた</div>
-            <div class="bubble">
-              退職してから、朝起きられない、何もやる気が出ない、眠れないという状態が数ヶ月続いています。気分の落ち込みがひどく、一度診ていただきたいと思いました。
-              <span class="you-note">📌 「数ヶ月」「朝起きられない」「眠れない」など具体的な言葉を1〜2個入れると伝わりやすいです</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap staff">
-          <div class="bubble-avatar">👩‍⚕️</div>
-          <div>
-            <div class="speaker-label">クリニック受付</div>
-            <div class="bubble">そうでしたか、ありがとうございます。ご希望の日時はいつ頃でしょうか？</div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap">
-          <div class="bubble-avatar">🙋</div>
-          <div>
-            <div class="speaker-label">あなた</div>
-            <div class="bubble">
-              〇月〇日か〇月〇日の午前中でお願いできますか？できれば早めに受診したいのですが、最も早い空きはいつになりますか？
-              <span class="you-note">📌 「最も早い空きはいつですか？」と聞くのが最速予約のコツです</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <button class="btn-copy-script" onclick="copyScript('utsu')">📋 このセリフをコピーする</button>
-      <div class="copy-done" id="copy-done-utsu">✅ コピーしました！</div>
-    </div>
-
-    <div class="var-note">
-      <strong>💬 電話中に言葉が出てこなくなったら？</strong>
-      「すみません、緊張してうまく話せないのですが…」と正直に言って大丈夫です。受付スタッフは慣れています。または「症状をメモにまとめてきますので、来院時に見ていただけますか？」と伝えれば、詳しい説明なしで予約を取ってもらえます。
-    </div>
-  </div>
-
-  <!-- ===== TAB: 診断書目的 ===== -->
-  <div class="script-panel" id="tab-cert">
-    <div class="card">
-      <h3>📄 診断書が必要な場合の台本（ハローワーク・休職用）</h3>
-      <p style="font-size:13px;color:var(--text-sub);margin-bottom:14px">診断書の目的を正直に伝えることで、医師が必要な記載内容を把握してくれます。</p>
-
-      <div class="callout warn" style="margin-bottom:14px;font-size:13px">
-        ⚠️ <strong>注意：</strong>初診当日に診断書が発行されないこともあります。「今日欲しい」と焦らず、まず状態を診てもらうことが最優先です。
-      </div>
-
-      <div class="dialogue">
-        <div class="bubble-wrap staff">
-          <div class="bubble-avatar">👩‍⚕️</div>
-          <div>
-            <div class="speaker-label">クリニック受付</div>
-            <div class="bubble">はい、〇〇クリニックです。</div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap">
-          <div class="bubble-avatar">🙋</div>
-          <div>
-            <div class="speaker-label">あなた</div>
-            <div class="bubble">初診の予約をしたいのですが。退職後から体調が優れない状態が続いておりまして、受診したいと思っています。</div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap staff">
-          <div class="bubble-avatar">👩‍⚕️</div>
-          <div>
-            <div class="speaker-label">クリニック受付</div>
-            <div class="bubble">承りました。どのようなご症状でしょうか？</div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap">
-          <div class="bubble-avatar">🙋</div>
-          <div>
-            <div class="speaker-label">あなた</div>
-            <div class="bubble">
-              気分の落ち込みや睡眠の乱れが続いています。また、診察の際に診断書のご相談もさせていただきたいのですが、対応していただくことは可能でしょうか。
-              <span class="you-note">📌 用途は「ハローワーク提出のため」と具体的に伝えてもOKです</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap staff">
-          <div class="bubble-avatar">👩‍⚕️</div>
-          <div>
-            <div class="speaker-label">クリニック受付</div>
-            <div class="bubble">診断書については、診察後に医師とご相談ください。初診のご予約ですね。ご希望の日時はいつ頃でしょうか？</div>
-          </div>
-        </div>
-      </div>
-
-      <button class="btn-copy-script" onclick="copyScript('cert')">📋 このセリフをコピーする</button>
-      <div class="copy-done" id="copy-done-cert">✅ コピーしました！</div>
-    </div>
-
-    <div class="var-note">
-      <strong>📋 診断書の「目的」を診察時に伝えるポイント</strong>
-      ハローワークへ提出して「就職困難者」として認定を受けると、失業給付が最大300日に延長される可能性があります。受診サポートシートの「診断書の希望」欄に記載しておくと、医師への説明がスムーズです。
-    </div>
-  </div>
-
-  <!-- ===== TAB: キャンセル待ち ===== -->
-  <div class="script-panel" id="tab-cancel">
-    <div class="card">
-      <h3>🔄 「予約が取れない」と言われたときのキャンセル待ち台本</h3>
-      <p style="font-size:13px;color:var(--text-sub);margin-bottom:14px">一度断られても諦めないで。キャンセル待ちに登録するだけで1〜2週間で受診できることがあります。</p>
-
-      <div class="dialogue">
-        <div class="bubble-wrap staff">
-          <div class="bubble-avatar">👩‍⚕️</div>
-          <div>
-            <div class="speaker-label">クリニック受付</div>
-            <div class="bubble">申し訳ありませんが、初診の予約は〇ヶ月先まで埋まっております。</div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap">
-          <div class="bubble-avatar">🙋</div>
-          <div>
-            <div class="speaker-label">あなた</div>
-            <div class="bubble">
-              そうでしたか。キャンセル待ちのご登録をお願いすることはできますか？キャンセルが出たらご連絡いただける形でも大丈夫です。
-              <span class="you-note">📌 ここで一言添えるだけで登録してもらえることが多いです</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap staff">
-          <div class="bubble-avatar">👩‍⚕️</div>
-          <div>
-            <div class="speaker-label">クリニック受付</div>
-            <div class="bubble">承りました。お名前と連絡先をお伺いしてもよろしいでしょうか。</div>
-          </div>
-        </div>
-
-        <div class="bubble-wrap">
-          <div class="bubble-avatar">🙋</div>
-          <div>
-            <div class="speaker-label">あなた</div>
-            <div class="bubble">
-              〇〇と申します。電話番号は〇〇〇〇です。急でも対応できますので、いつでもご連絡ください。よろしくお願いします。
-              <span class="you-note">📌 「急でも対応できます」と伝えると繰り上がりの連絡が来やすくなります</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <button class="btn-copy-script" onclick="copyScript('cancel')">📋 このセリフをコピーする</button>
-      <div class="copy-done" id="copy-done-cancel">✅ コピーしました！</div>
-    </div>
-
-    <div class="var-note">
-      <strong>💡 並行して複数クリニックに問い合わせましょう</strong>
-      1か所のキャンセル待ちだけに頼らず、同時に3〜5か所のクリニックに問い合わせることをおすすめします。オンライン診療対応のクリニックも合わせて探すと、より早く受診できます。
-    </div>
-  </div>
-
-</div><!-- /#phone-script -->
-
-
-<!-- ===== SECTION 5: 電話が苦手な人へ ===== -->
-<div class="section">
-  <div class="section-title">
-    <div class="ico" style="background:#F0EEFB">🌐</div>
-    <div>
-      <h2>電話が苦手・無理な人への代替手段</h2>
-      <p>電話以外の4つの方法</p>
-    </div>
-  </div>
-
-  <div class="alt-grid">
-    <div class="alt-card">
-      <div class="alt-icon">🌐</div>
-      <div class="alt-title">Web予約対応クリニックを探す</div>
-      <div class="alt-desc">「心療内科 Web予約 〇〇市」で検索。LINEや専用フォームで予約できるクリニックも増えています。</div>
-      <span class="alt-badge easy">📱 最もかんたん</span>
-    </div>
-    <div class="alt-card">
-      <div class="alt-icon">💻</div>
-      <div class="alt-title">オンライン診療を使う</div>
-      <div class="alt-desc">スマホのビデオ通話で受診。外出不要、電話予約も不要。「wemeet」「ソワカ」などが対応しています。</div>
-      <span class="alt-badge easy">🏠 外出不要</span>
-    </div>
-    <div class="alt-card">
-      <div class="alt-icon">👨‍👩‍👧</div>
-      <div class="alt-title">家族・知人に代わりに電話してもらう</div>
-      <div class="alt-desc">「本人の代理で予約したい」と言えば、多くのクリニックで対応しています。台本をそのまま渡しましょう。</div>
-      <span class="alt-badge ok">👥 頼んでOK</span>
-    </div>
-    <div class="alt-card">
-      <div class="alt-icon">🏥</div>
-      <div class="alt-title">かかりつけ内科で紹介状をもらう</div>
-      <div class="alt-desc">「眠れない・気分が落ち込む」と内科で相談。紹介状があると精神科の予約が優先されることがあります。</div>
-      <span class="alt-badge hard">📋 時間かかる</span>
-    </div>
-  </div>
-
-  <div class="callout good" style="margin-top:14px">
-    <strong>✅ 相談窓口（無料・匿名）で話を聞いてもらうことも</strong>
-    「まだ受診するか迷っている」「誰かに話を聞いてほしい」という段階でも使えます。
-    <br>📞 <strong>よりそいホットライン：0120-279-338</strong>（24時間・無料）
-    <br>📞 <strong>こころの健康相談統一ダイヤル：0570-064-556</strong>（各都道府県精神保健センター）
-  </div>
-</div>
-
-
-<!-- ===== SECTION 6: 当日の流れ ===== -->
-<div class="section">
-  <div class="section-title">
-    <div class="ico" style="background:#EBF5EF">🗓</div>
-    <div>
-      <h2>初診当日の流れ</h2>
-      <p>何が起きるか知っていれば怖くない</p>
-    </div>
-  </div>
-
-  <ul class="timeline">
-    <li class="tl-item">
-      <div class="tl-dot">1</div>
-      <div class="tl-body">
-        <span class="tl-time">予約時間の15〜20分前</span>
-        <h4>早めに到着・受付</h4>
-        <p>問診票の記入があるため早めに着くとスムーズ。持ち物：健康保険証・お薬手帳（あれば）・このページのURL（スクショでも可）</p>
-      </div>
-    </li>
-    <li class="tl-item">
-      <div class="tl-dot">2</div>
-      <div class="tl-body">
-        <span class="tl-time">約10〜15分</span>
-        <h4>問診票の記入</h4>
-        <p>症状・既往歴・生活状況などを記入。「こころと体の状態チェック」の受診用シートがあれば、それを見ながら書けるので楽です。</p>
-      </div>
-    </li>
-    <li class="tl-item">
-      <div class="tl-dot">3</div>
-      <div class="tl-body">
-        <span class="tl-time">〜30分待ち（個人差あり）</span>
-        <h4>待合室で待機</h4>
-        <p>予約していても待つことがあります。スマホの充電器持参推奨。静かな環境なので音楽などで過ごせます。</p>
-      </div>
-    </li>
-    <li class="tl-item">
-      <div class="tl-dot">4</div>
-      <div class="tl-body">
-        <span class="tl-time">30〜50分（初診は長め）</span>
-        <h4>診察</h4>
-        <p>医師が丁寧に話を聞いてくれます。受診用シートを見せれば口で説明しなくて大丈夫です。「薬はできれば飲みたくない」「診断書が欲しい」なども遠慮なく伝えましょう。</p>
-      </div>
-    </li>
-    <li class="tl-item">
-      <div class="tl-dot">5</div>
-      <div class="tl-body">
-        <span class="tl-time">5〜10分</span>
-        <h4>会計・次回予約</h4>
-        <p>費用を払い、次の診察日を決めます。処方箋が出た場合は、近くの薬局で薬を受け取ります。診断書は後日の場合も。</p>
-      </div>
-    </li>
-  </ul>
-
-  <div class="callout info" style="margin-top:6px">
-    💡 <strong>「うまく話せなかったら？」は気にしなくて大丈夫</strong>
-    受診用シートを医師に渡して「これを見ていただけますか」と言うだけで伝わります。泣いてしまっても、黙ってしまっても、それ自体が医師への大切な情報になります。
-  </div>
-</div>
-
-
-<!-- ===== SECTION 7: 待機期間中の過ごし方 ===== -->
-<div class="section">
-  <div class="section-title">
-    <div class="ico" style="background:#FEF9E7">⏳</div>
-    <div>
-      <h2>予約から受診まで：待機期間の過ごし方</h2>
-      <p>待っている間も「準備」と「ケア」で有効活用</p>
-    </div>
-  </div>
-
-  <div class="callout warn">
-    <strong>⚠️ やってしまいがちなNG行動</strong>
-    ❌ 待機中に無理して就職活動を進める<br>
-    ❌ 「受診するまで待てばいい」と何もしない（悪化する可能性）<br>
-    ❌ ネットで自己診断を繰り返す（不安が増すだけ）
-  </div>
-
-  <div class="wait-steps">
-    <div class="wait-step">
-      <div class="ws-ico">📓</div>
-      <div>
-        <div class="ws-badge">受診準備になる</div>
-        <h4>症状日記をつける</h4>
-        <p>毎日の気分・睡眠・食欲を3段階でメモするだけでOK。受診時に「この1ヶ月の記録です」と見せると診察が非常にスムーズになります。</p>
-      </div>
-    </div>
-    <div class="wait-step">
-      <div class="ws-ico">🛌</div>
-      <div>
-        <div class="ws-badge">最優先事項</div>
-        <h4>睡眠・食事のリズムだけ守る</h4>
-        <p>「毎日同じ時間に起きる」「1日3食のうち1食は食べる」——この2つだけで十分です。運動は外に出られる日だけ、軽い散歩で。</p>
-      </div>
-    </div>
-    <div class="wait-step">
-      <div class="ws-ico">📞</div>
-      <div>
-        <div class="ws-badge">無料で使える</div>
-        <h4>相談窓口に電話してみる</h4>
-        <p>「よりそいホットライン（0120-279-338）」は予約不要・匿名・24時間対応。「誰かに話したい」というだけで電話していい場所です。</p>
-      </div>
-    </div>
-    <div class="wait-step">
-      <div class="ws-ico">💰</div>
-      <div>
-        <div class="ws-badge">経済的不安の軽減</div>
-        <h4>失業給付の手続きを進める</h4>
-        <p>ハローワークへの登録と給付申請は、受診を待っている間に進められます。給付を受けながら療養する準備を整えておきましょう。</p>
-      </div>
-    </div>
-    <div class="wait-step">
-      <div class="ws-ico">🚨</div>
-      <div>
-        <div class="ws-badge" style="background:var(--rose-lt);color:var(--rose)">緊急：待てない場合</div>
-        <h4>「消えたい・死にたい」気持ちが強いときは今すぐ相談を</h4>
-        <p>受診を待つ必要はありません。<strong>よりそいホットライン（0120-279-338）</strong>または<strong>いのちの電話（0570-783-556）</strong>に今すぐ電話してください。</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- ===== SECTION 8: 失業給付との連携 ===== -->
-<div class="section">
-  <div class="section-title">
-    <div class="ico" style="background:#EBF5EF">💰</div>
-    <div>
-      <h2>受診で「お金」も変わる可能性</h2>
-      <p>このサイトならではの連携情報</p>
-    </div>
-  </div>
-
-  <div class="benefit-cards">
-    <a href="https://shitugyoukyufu.com/benefits-extension.html" class="benefit-link-card">
-      <div class="blc-ico">📅</div>
-      <div>
-        <h4>失業給付が最大300日に延長される可能性</h4>
-        <p>精神科の診断書で「就職困難者」認定 → 給付90日→最大300日に延長。ハローワークに診断書を持参するだけです。</p>
-      </div>
-      <div class="arrow">›</div>
-    </a>
-    <a href="https://shitugyoukyufu.com/shoubyo-teatekin.html" class="benefit-link-card" style="border-left-color:var(--sage)">
-      <div class="blc-ico">🏥</div>
-      <div>
-        <h4>在職中から症状があった場合：傷病手当金</h4>
-        <p>退職前から症状があれば、給与の約2/3を最大1年6ヶ月受け取れる可能性があります。受診記録が証明になります。</p>
-      </div>
-      <div class="arrow">›</div>
-    </a>
-    <a href="https://shitugyoukyufu.com/diagnosis/mental-check.html" class="benefit-link-card" style="border-left-color:var(--lavender)">
-      <div class="blc-ico">📋</div>
-      <div>
-        <h4>受診用シートを今すぐ作る</h4>
-        <p>「こころと体の状態チェック」の結果を保存して、受診当日に医師に見せましょう。</p>
-      </div>
-      <div class="arrow">›</div>
-    </a>
-  </div>
-</div>
-
-
-<!-- ===== クリニック検索 ===== -->
-<div class="section">
-  <div class="section-title">
-    <div class="ico" style="background:#EBF5F8">🔍</div>
-    <div>
-      <h2>近くの心療内科・精神科を探す</h2>
-      <p>予約が取りやすいクリニックを見つけよう</p>
-    </div>
-  </div>
-  <div class="clinic-search-card">
-    <h3>🗺️ 今いる場所で検索できます</h3>
-    <p>Googleマップで現在地から近い心療内科・精神科を確認できます。<br>
-    初診・オンライン対応・発達障害専門など絞り込みも可能です。</p>
-    <div class="clinic-search-btns">
-      <a id="btn-gmap-near"
-         href="https://www.google.com/maps/search/心療内科+精神科/"
-         target="_blank" rel="noopener"
-         class="csb gmap"
-         onclick="updateMapURL(this)">
-        <span class="csb-icon">📍</span>
-        <span class="csb-label">現在地から検索</span>
-        <span class="csb-sub">Googleマップで開く</span>
-      </a>
-      <a href="https://www.google.com/maps/search/心療内科+初診+オンライン診療/"
-         target="_blank" rel="noopener"
-         class="csb online">
-        <span class="csb-icon">💻</span>
-        <span class="csb-label">オンライン診療対応</span>
-        <span class="csb-sub">自宅から受診可能</span>
-      </a>
-      <a href="https://www.google.com/maps/search/精神科+発達障害+検査/"
-         target="_blank" rel="noopener"
-         class="csb search">
-        <span class="csb-icon">🧩</span>
-        <span class="csb-label">発達障害専門クリニック</span>
-        <span class="csb-sub">ADHD・ASD検査対応</span>
-      </a>
-      <a href="tel:0120279338" class="csb tel">
-        <span class="csb-icon">📞</span>
-        <span class="csb-label">今すぐ相談</span>
-        <span class="csb-sub">よりそいH/L・無料</span>
-      </a>
-    </div>
-    <p class="clinic-search-note">
-      ※ 予約は電話・Webどちらでも可。<br>
-      「初診の予約をしたい」の一言で大丈夫です。
-    </p>
-  </div>
-</div>
-
-<!-- ===== HOTLINE ===== -->
-<div class="hotline-card">
-  <h3>🆘 今すぐ話を聞いてほしい方へ</h3>
-  <p>予約なし・無料・匿名でOK。「受診するほどじゃない」と思っていても使える相談窓口です。</p>
-  <div class="hotline-grid">
-    <a href="tel:0120279338" class="hotline-item">
-      <span class="hl-num">0120-279-338</span>
-      <span class="hl-name">よりそいホットライン</span>
-      <span class="hl-hour">24時間・無料</span>
-    </a>
-    <a href="tel:0570064556" class="hotline-item">
-      <span class="hl-num">0570-064-556</span>
-      <span class="hl-name">こころの健康相談統一ダイヤル</span>
-      <span class="hl-hour">平日・各都道府県</span>
-    </a>
-    <a href="tel:0570783556" class="hotline-item">
-      <span class="hl-num">0570-783-556</span>
-      <span class="hl-name">いのちの電話</span>
-      <span class="hl-hour">毎日16〜21時（他時間帯も可）</span>
-    </a>
-    <a href="https://comarigoto.jp/" target="_blank" class="hotline-item">
-      <span class="hl-num" style="font-size:13px">チャット相談</span>
-      <span class="hl-name">よりそいホットライン</span>
-      <span class="hl-hour">文字で話したい方はこちら</span>
-    </a>
-  </div>
-</div>
-
-</div><!-- .wrap -->
-
-<!-- STICKY CTA -->
-<div class="sticky-cta">
-  <a href="#phone-script" class="cta-script">
-    📞 電話台本を見る
-    <span class="cta-sub">そのまま読めます</span>
-  </a>
-  <a href="https://shitugyoukyufu.com/diagnosis/mental-check.html" class="cta-check">
-    📋 受診シートを作る
-    <span class="cta-sub">チェック結果を保存</span>
-  </a>
-</div>
-
-<button class="scroll-top" id="scroll-top" aria-label="トップへ">↑</button>
+</footer>
 
 <script>
-// =============================================
-// スコア受信・シナリオ自動ハイライト
-// =============================================
-(function initFromDiagnosis() {
-  const params = new URLSearchParams(window.location.search);
-  const level    = parseInt(params.get('level')    || '-1');
-  const scenario = params.get('scenario') || '';
-  const score    = parseInt(params.get('score')    || '-1');
-
-  // --- セッションストレージからも読み取り（タブ遷移対応）---
-  let ssLevel = -1, ssScore = -1;
-  try {
-    const ss = JSON.parse(sessionStorage.getItem('mc_result') || '{}');
-    if (ss.ts && Date.now() - ss.ts < 60 * 60 * 1000) {
-      ssLevel = ss.level ?? -1;
-      ssScore = ss.score ?? -1;
-    }
-  } catch(e) {}
-
-  const effectiveLevel    = level    >= 0 ? level    : ssLevel;
-  const effectiveScore    = score    >= 0 ? score    : ssScore;
-  const effectiveScenario = scenario || (effectiveLevel >= 0 ? 'utsu' : '');
-
-  if (effectiveLevel < 0) return; // 診断なしで直接訪問の場合はスキップ
-
-  // --- 診断結果バナーを挿入 ---
-  const levelLabels = ['経過を見守り中', '専門家相談を検討中', '早期受診を推奨'];
-  const levelColors = ['#5BA17A', '#C49A22', '#C0504D'];
-  const levelEmojis = ['🌱', '💛', '🔴'];
-  const lbl = levelLabels[effectiveLevel] || '';
-  const col = levelColors[effectiveLevel] || '#4A90A4';
-  const emj = levelEmojis[effectiveLevel] || '📋';
-
-  const banner = document.createElement('div');
-  banner.id = 'from-diagnosis-banner';
-  banner.style.cssText = `
-    background:${col}18; border-left:4px solid ${col};
-    border-radius:10px; padding:14px 16px; margin:16px 0;
-    display:flex; align-items:flex-start; gap:12px;
-  `;
-  const scoreText = effectiveScore >= 0 ? `（スコア：${effectiveScore}点）` : '';
-  banner.innerHTML = `
-    <span style="font-size:24px;flex-shrink:0">${emj}</span>
-    <div>
-      <div style="font-weight:800;font-size:15px;color:${col}">
-        こころと体の状態チェック結果：${lbl}${scoreText}
-      </div>
-      <div style="font-size:13px;color:#555;margin-top:4px;line-height:1.6">
-        あなたのチェック結果に合わせて、おすすめの電話台本を下でハイライトしています。
-      </div>
-    </div>
-  `;
-
-  // ヒーローの直後に挿入
-  const wrap = document.querySelector('.wrap');
-  if (wrap) {
-    const firstSection = wrap.querySelector('.section');
-    if (firstSection) wrap.insertBefore(banner, firstSection);
-    else wrap.prepend(banner);
-  }
-
-  // --- 台本タブの自動切替 ---
-  const tabMap = { adhd: 'tab-adhd', utsu: 'tab-utsu', cert: 'tab-cert', basic: 'tab-basic' };
-  const panelMap = { adhd: 'panel-adhd', utsu: 'panel-utsu', cert: 'panel-cert', basic: 'panel-basic' };
-  const targetTab   = tabMap[effectiveScenario]   || 'tab-utsu';
-  const targetPanel = panelMap[effectiveScenario] || 'panel-utsu';
-
-  window.addEventListener('DOMContentLoaded', () => {
-    // タブボタンを切替
-    document.querySelectorAll('.script-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.script-panel').forEach(p => p.classList.remove('active'));
-    const activeTab   = document.getElementById(targetTab);
-    const activePanel = document.getElementById(targetPanel);
-    if (activeTab)   { activeTab.classList.add('active');   activeTab.style.outline = '2px solid ' + col; }
-    if (activePanel) activePanel.classList.add('active');
-
-    // 推奨バッジを付与
-    if (activeTab) {
-      const badge = document.createElement('span');
-      badge.textContent = '✨推奨';
-      badge.style.cssText = `
-        background:${col}; color:#fff; font-size:10px; font-weight:700;
-        border-radius:10px; padding:2px 7px; margin-left:6px; vertical-align:middle;
-      `;
-      activeTab.appendChild(badge);
-    }
-
-    // ── 修正B: 電話台本セクションへ自動スクロール ──
-    // level>=1 の場合、1.2秒後に #phone-script セクションへ滑らかにスクロール
-    const scriptSection = document.getElementById('phone-script');
-    if (scriptSection && effectiveLevel >= 1) {
-      setTimeout(() => {
-        const top = scriptSection.getBoundingClientRect().top + window.pageYOffset - 68; // ヘッダー高さ68px分オフセット
-        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-
-        // スクロール先の台本セクションをハイライトアニメーション
-        scriptSection.style.transition = 'box-shadow 0.4s ease';
-        scriptSection.style.boxShadow  = `0 0 0 3px ${col}66, 0 4px 20px rgba(0,0,0,0.1)`;
-        scriptSection.style.borderRadius = '14px';
-        setTimeout(() => {
-          scriptSection.style.boxShadow = '';
-          scriptSection.style.borderRadius = '';
-        }, 2500);
-      }, 1200);
-    }
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
   });
-})();
-
-// Accordion
-function toggleAcc(btn){
-  const body = btn.nextElementSibling;
-  const isOpen = btn.classList.contains('open');
-  btn.classList.toggle('open');
-  body.style.maxHeight = isOpen ? '0' : body.scrollHeight + 'px';
-}
-
-// Tab Switch
-function switchTab(btn, targetId){
-  document.querySelectorAll('.script-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.script-panel').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById(targetId).classList.add('active');
-}
-
-// Copy Script Texts
-const scriptTexts = {
-  basic: `【心療内科 電話予約 台本（基本版）】
-
-クリニック：「はい、〇〇クリニックです。」
-
-あなた：「初診の予約をしたいのですが、よろしいでしょうか。」
-
-クリニック：「どのようなご症状でしょうか？」
-
-あなた：「退職後から気分の落ち込みと眠れない日が続いていて、一度診てもらいたいと思いました。」
-
-クリニック：「ご希望の日時はございますか？」
-
-あなた：「〇月〇日の午後か、〇月〇日の午前中あたりで空きはありますか？できれば今月中に受診したいのですが。」
-（日時が決まったら）
-「〇〇と申します。生年月日は〇年〇月〇日で、電話番号は〇〇〇〇です。よろしくお願いします。」
-
-📌 ポイント：「初診」「予約」の2ワードが言えれば大丈夫。症状の説明は一言で十分です。`,
-
-  adhd: `【心療内科 電話予約 台本（ADHD/ASD傾向）】
-
-あなた：「初診の予約をしたいのですが、よろしいでしょうか。」
-
-クリニック：「どのようなご症状でしょうか？」
-
-あなた：「仕事でミスが多い、集中が続かない、といった困りごとが続いていまして、自分の特性を一度きちんと診ていただきたいと思っています。発達に関する検査や相談を行っていただけるクリニックを探しています。」
-
-クリニック：（対応確認後）「ご希望の日時はいつ頃でしょうか？」
-
-あなた：「〇月〇日の午後か、〇月〇日あたりで初診の空きはございますか？」
-
-📌 「発達障害の検査をしてほしい」とはっきり言っても大丈夫です。`,
-
-  utsu: `【心療内科 電話予約 台本（気分・うつ系）】
-
-あなた：「初診の予約をお願いしたいのですが。」
-
-クリニック：「どのようなご症状でしょうか？」
-
-あなた：「退職してから、朝起きられない、何もやる気が出ない、眠れないという状態が数ヶ月続いています。気分の落ち込みがひどく、一度診ていただきたいと思いました。」
-
-クリニック：「ご希望の日時はいつ頃でしょうか？」
-
-あなた：「〇月〇日か〇月〇日の午前中でお願いできますか？できれば早めに受診したいのですが、最も早い空きはいつになりますか？」
-
-📌 「最も早い空きはいつですか？」が最速予約のコツです。`,
-
-  cert: `【心療内科 電話予約 台本（診断書目的）】
-
-あなた：「初診の予約をしたいのですが。退職後から体調が優れない状態が続いておりまして、受診したいと思っています。」
-
-クリニック：「どのようなご症状でしょうか？」
-
-あなた：「気分の落ち込みや睡眠の乱れが続いています。また、診察の際に診断書のご相談もさせていただきたいのですが、対応していただくことは可能でしょうか。」
-
-クリニック：「診断書については、診察後に医師とご相談ください。ご希望の日時はいつ頃でしょうか？」
-
-📌 用途は「ハローワーク提出のため」と具体的に伝えてもOKです。`,
-
-  cancel: `【キャンセル待ち台本】
-
-クリニック：「申し訳ありませんが、初診の予約は〇ヶ月先まで埋まっております。」
-
-あなた：「そうでしたか。キャンセル待ちのご登録をお願いすることはできますか？キャンセルが出たらご連絡いただける形でも大丈夫です。」
-
-クリニック：「承りました。お名前と連絡先を…」
-
-あなた：「〇〇と申します。電話番号は〇〇〇〇です。急でも対応できますので、いつでもご連絡ください。よろしくお願いします。」
-
-📌 「急でも対応できます」と伝えると繰り上がりの連絡が来やすくなります。`
-};
-
-async function copyScript(type) {
-  const text = scriptTexts[type];
-  try {
-    await navigator.clipboard.writeText(text);
-  } catch(e) {
-    prompt('コピーしてください', text);
-  }
-  const el = document.getElementById('copy-done-' + type);
-  if(el) { el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 3000); }
-}
-
-// Scroll to top
-const stBtn = document.getElementById('scroll-top');
-window.addEventListener('scroll', () => stBtn.classList.toggle('visible', scrollY > 400));
-stBtn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
-
-// ── 修正C: Geolocation でMapURL 動的更新 ──
-function updateMapURL(el) {
-  if (!navigator.geolocation) return;
-  navigator.geolocation.getCurrentPosition(
-    pos => {
-      const lat = pos.coords.latitude.toFixed(5);
-      const lng = pos.coords.longitude.toFixed(5);
-      el.href = `https://www.google.com/maps/search/心療内科+精神科/@${lat},${lng},14z`;
-    },
-    () => {} // 許可拒否は既存URLのまま
-  );
-}
-// ページ表示時に現在地URLをプリロード（ボタン押下前に取得）
-window.addEventListener('DOMContentLoaded', () => {
-  const mapBtn = document.getElementById('btn-gmap-near');
-  if (mapBtn && navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      pos => {
-        const lat = pos.coords.latitude.toFixed(5);
-        const lng = pos.coords.longitude.toFixed(5);
-        mapBtn.href = `https://www.google.com/maps/search/心療内科+精神科/@${lat},${lng},14z`;
-      },
-      () => {}
-    );
-  }
 });
 </script>
+<script>
+function switchTab(name) {
+  const keys = ['compare','types','days','how'];
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', keys[i]===name));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.id==='tab-'+name));
+}
+function toggleType(el) { el.classList.toggle('open'); }
+</script>
+<script src="nav.js"></script>
 
 </body>
 </html>
