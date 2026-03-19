@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>65歳以上の失業給付｜高年齢求職者給付金 完全ガイド</title>
+<meta name="description" content="65歳以上で退職した方向けの「高年齢求職者給付金」を完全解説。一般の失業給付との違い、受給条件、金額の計算方法、年金との併給、申請手順まで。">
+<link rel="stylesheet" href="common.css">
+<meta property="og:site_name" content="退職・失業給付ガイド">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="65歳以上の失業給付｜高年齢求職者給付金 完全ガイド">
+<meta property="og:description" content="65歳以上で退職した方向けの「高年齢求職者給付金」を完全解説。受給条件、金額、年金との併給まで。">
+<meta property="og:url" content="https://shitugyoukyufu.com/elder.html">
+<meta property="og:image" content="https://shitugyoukyufu.com/images/ogp-index.jpg">
+<meta name="twitter:image" content="https://shitugyoukyufu.com/images/ogp-index.jpg">
+<style>
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1e3a8a;
+  --primary-light: #dbeafe;
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --danger: #dc2626;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-800: #1e293b;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Hiragino Sans',sans-serif; color:var(--gray-800); background:var(--gray-50); line-height:1.8; padding-bottom:80px; }
+a { color:var(--primary); }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #065f46, #059669);
+  color:white; text-align:center; padding:60px 20px 40px;
+}
+.hero-icon { font-size:48px; margin-bottom:12px; }
+.hero h1 { font-size:clamp(22px,5vw,32px); font-weight:900; line-height:1.4; margin-bottom:12px; }
+.hero h1 em { font-style:normal; border-bottom:3px solid #fbbf24; }
+.hero .sub { font-size:15px; opacity:0.9; margin-bottom:20px; }
+.hero-chips { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; }
+.hero-chip { background:rgba(255,255,255,0.15); padding:6px 14px; border-radius:99px; font-size:13px; font-weight:600; }
+
+/* SECTION */
+.section { max-width:800px; margin:40px auto; padding:0 16px; }
+.section-icon { font-size:32px; text-align:center; margin-bottom:8px; }
+.section h2 { font-size:clamp(18px,4vw,24px); font-weight:900; text-align:center; margin-bottom:6px; }
+.section .section-sub { text-align:center; font-size:14px; color:var(--gray-500); margin-bottom:24px; }
+
+/* CARD */
+.card { background:white; border-radius:var(--radius-lg); box-shadow:var(--shadow-md); padding:24px 20px; margin-bottom:16px; }
+.card h3 { font-size:16px; font-weight:800; margin-bottom:12px; }
+.card p { font-size:14px; color:var(--gray-600); line-height:1.8; }
+
+/* INFO / WARNING BOX */
+.info-box { background:var(--primary-light); border-radius:var(--radius-md); padding:16px 20px; margin-bottom:16px; font-size:14px; line-height:1.7; }
+.warning-box { background:#fffbeb; border:2px solid var(--warning); border-radius:var(--radius-md); padding:16px 20px; margin-bottom:16px; font-size:14px; line-height:1.7; }
+.danger-box { background:#fef2f2; border:2px solid var(--danger); border-radius:var(--radius-md); padding:16px 20px; margin-bottom:16px; font-size:14px; line-height:1.7; }
+
+/* TABLE */
+.compare-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
+.compare-table th, .compare-table td { padding:12px 16px; text-align:left; border-bottom:1px solid var(--gray-200); font-size:14px; }
+.compare-table th { background:var(--gray-100); font-weight:700; }
+.compare-table .highlight { color:var(--success); font-weight:700; }
+.compare-table .col-elder { background:#f0fdf4; }
+
+/* FLOW */
+.flow-list { list-style:none; counter-reset:flow; }
+.flow-item { background:white; border-radius:var(--radius-md); padding:20px; margin-bottom:12px; box-shadow:var(--shadow-md); position:relative; padding-left:60px; }
+.flow-item::before { counter-increment:flow; content:counter(flow); position:absolute; left:16px; top:20px; width:32px; height:32px; border-radius:50%; background:#059669; color:white; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; }
+.flow-item h4 { font-size:15px; font-weight:800; margin-bottom:4px; }
+.flow-item p { font-size:13px; color:var(--gray-600); line-height:1.7; }
+.flow-item .flow-time { font-size:12px; color:var(--gray-500); margin-bottom:2px; }
+
+/* CALC */
+.calc-box { background:white; border-radius:var(--radius-lg); box-shadow:var(--shadow-lg); padding:24px 20px; margin-bottom:16px; }
+.calc-label { font-size:14px; font-weight:700; margin-bottom:6px; }
+.calc-input { width:100%; padding:12px; border:2px solid var(--gray-200); border-radius:8px; font-size:16px; margin-bottom:16px; }
+.calc-input:focus { outline:none; border-color:var(--primary); }
+.calc-radio-group { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
+.calc-radio { display:none; }
+.calc-radio-label { padding:10px 18px; border:2px solid var(--gray-200); border-radius:8px; font-size:14px; font-weight:700; cursor:pointer; transition:all 0.2s; }
+.calc-radio:checked + .calc-radio-label { background:#059669; color:white; border-color:#059669; }
+.calc-btn { display:block; width:100%; padding:14px; background:#059669; color:white; border:none; border-radius:10px; font-size:16px; font-weight:800; cursor:pointer; }
+.calc-btn:hover { opacity:0.9; }
+.calc-result { display:none; margin-top:20px; padding:20px; background:#f0fdf4; border-radius:var(--radius-md); border:2px solid #059669; }
+.calc-result h3 { font-size:18px; font-weight:900; color:#059669; margin-bottom:12px; text-align:center; }
+.calc-result-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.calc-result-item { text-align:center; }
+.calc-result-item .label { font-size:12px; color:var(--gray-500); }
+.calc-result-item .value { font-size:20px; font-weight:900; color:var(--gray-800); }
+
+/* FAQ */
+.faq-item { background:white; border-radius:var(--radius-md); box-shadow:var(--shadow-md); margin-bottom:8px; overflow:hidden; }
+.faq-q { width:100%; background:none; border:none; cursor:pointer; text-align:left; padding:16px 20px; font-size:14px; font-weight:700; color:var(--gray-800); display:flex; justify-content:space-between; align-items:center; }
+.faq-q::after { content:'▼'; font-size:12px; transition:transform 0.2s; }
+.faq-q.open::after { transform:rotate(180deg); }
+.faq-a { display:none; padding:0 20px 16px; font-size:14px; color:var(--gray-600); line-height:1.8; }
+.faq-a.open { display:block; }
+
+/* CTA */
+.cta-section { text-align:center; padding:40px 20px; background:linear-gradient(135deg,#065f46,#059669); color:white; margin-top:40px; }
+.cta-section h2 { font-size:clamp(18px,4vw,24px); font-weight:900; margin-bottom:12px; }
+.cta-section p { font-size:14px; opacity:0.9; margin-bottom:20px; }
+.cta-btn { display:inline-block; padding:14px 32px; background:white; color:#059669; border-radius:10px; font-size:16px; font-weight:800; text-decoration:none; margin:6px; }
+.cta-btn:hover { opacity:0.9; }
+
+/* MOBILE TABLE */
+@media (max-width:768px) {
+  .compare-table { min-width:auto; }
+  .compare-table thead { display:none; }
+  .compare-table tr { display:block; background:var(--gray-50); border-radius:8px; margin-bottom:12px; padding:12px 16px; border:1px solid var(--gray-200); }
+  .compare-table td { display:flex; justify-content:space-between; align-items:center; text-align:right; padding:8px 0; border-bottom:1px solid var(--gray-200); font-size:13px; }
+  .compare-table td:last-child { border-bottom:none; }
+  .compare-table td:first-child { text-align:left; font-weight:800; color:#059669; font-size:14px; padding-bottom:4px; display:block; border-bottom:2px solid #d1fae5; margin-bottom:4px; }
+  .compare-table td::before { content:attr(data-label); font-weight:700; color:var(--gray-600); font-size:12px; text-align:left; flex-shrink:0; margin-right:8px; }
+  .compare-table td:first-child::before { content:''; }
+  .calc-result-grid { grid-template-columns:1fr; }
+}
+
+/* SCROLL TOP */
+.scroll-top { position:fixed; bottom:20px; right:16px; width:44px; height:44px; border-radius:50%; background:#059669; color:white; border:none; font-size:20px; cursor:pointer; display:none; align-items:center; justify-content:center; box-shadow:var(--shadow-lg); z-index:99; }
+.scroll-top.visible { display:flex; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-icon">👴</div>
+  <h1>65歳以上で退職した方へ<br><em>高年齢求職者給付金</em>ガイド</h1>
+  <p class="sub">通常の失業給付とは全く別の制度です。<br>年金と<strong>同時にもらえる</strong>のが最大のメリット。</p>
+  <div class="hero-chips">
+    <span class="hero-chip">💰 一時金で一括支給</span>
+    <span class="hero-chip">🏦 年金と併給OK</span>
+    <span class="hero-chip">📅 申請期限あり</span>
+    <span class="hero-chip">🧮 計算ツール付き</span>
+  </div>
+</div>
+
+<!-- 概要 -->
+<div class="section">
+  <div class="section-icon">📋</div>
+  <h2>高年齢求職者給付金とは？</h2>
+  <p class="section-sub">65歳以上専用の失業給付制度</p>
+
+  <div class="card">
+    <h3>💡 ひとことで言うと</h3>
+    <p>65歳以上で退職した方が受け取れる<strong>一時金の失業給付</strong>です。64歳以下の「基本手当」（いわゆる失業保険）とは別制度で、<strong>年金と同時に受け取れる</strong>のが最大の特徴です。</p>
+    <p style="margin-top:12px;">正式名称は「高年齢求職者給付金」。65歳以上で雇用保険に加入していた方（＝高年齢被保険者）が対象です。</p>
+  </div>
+
+  <div class="info-box">
+    🏦 <strong>最大のメリット：年金との併給が可能</strong><br>
+    64歳以下の失業給付（基本手当）は、老齢厚生年金と同時に受け取ると<strong>年金が全額停止</strong>されます。しかし、65歳以上の高年齢求職者給付金は<strong>年金が止まりません</strong>。両方もらえます。
+  </div>
+</div>
+
+<!-- 比較表 -->
+<div class="section">
+  <div class="section-icon">⚖️</div>
+  <h2>64歳以下 vs 65歳以上 徹底比較</h2>
+  <p class="section-sub">制度がまったく違います</p>
+
+  <div class="card" style="overflow-x:auto;">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>比較項目</th>
+          <th>64歳以下（基本手当）</th>
+          <th>65歳以上（高年齢求職者給付金）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>給付の形</td>
+          <td data-label="64歳以下">4週間ごとに分割支給</td>
+          <td data-label="65歳以上" class="col-elder highlight">一時金で一括支給</td>
+        </tr>
+        <tr>
+          <td>給付日数</td>
+          <td data-label="64歳以下">90〜330日</td>
+          <td data-label="65歳以上" class="col-elder">30日 or 50日</td>
+        </tr>
+        <tr>
+          <td>年金との併給</td>
+          <td data-label="64歳以下" style="color:var(--danger);font-weight:700;">❌ 年金が全額停止</td>
+          <td data-label="65歳以上" class="col-elder highlight">⭕ 年金と同時に受け取れる</td>
+        </tr>
+        <tr>
+          <td>給付制限</td>
+          <td data-label="64歳以下">自己都合：1〜3ヶ月</td>
+          <td data-label="65歳以上" class="col-elder">自己都合：1〜3ヶ月（同じ）</td>
+        </tr>
+        <tr>
+          <td>待機期間</td>
+          <td data-label="64歳以下">7日間</td>
+          <td data-label="65歳以上" class="col-elder">7日間（同じ）</td>
+        </tr>
+        <tr>
+          <td>雇用保険の加入条件</td>
+          <td data-label="64歳以下">週20h以上・31日以上の雇用</td>
+          <td data-label="65歳以上" class="col-elder">同じ（65歳以上も加入義務あり）</td>
+        </tr>
+        <tr>
+          <td>受給に必要な加入期間</td>
+          <td data-label="64歳以下">自己都合：12ヶ月以上</td>
+          <td data-label="65歳以上" class="col-elder highlight">6ヶ月以上でOK</td>
+        </tr>
+        <tr>
+          <td>繰り返し受給</td>
+          <td data-label="64歳以下">原則1回（受給期間内）</td>
+          <td data-label="65歳以上" class="col-elder highlight">退職→再就職→退職のたびに受給可能</td>
+        </tr>
+        <tr>
+          <td>再就職手当</td>
+          <td data-label="64歳以下">あり</td>
+          <td data-label="65歳以上" class="col-elder" style="color:var(--danger);">なし</td>
+        </tr>
+        <tr>
+          <td>申請期限</td>
+          <td data-label="64歳以下">離職日翌日から1年以内</td>
+          <td data-label="65歳以上" class="col-elder" style="color:var(--danger);font-weight:700;">離職日翌日から1年以内（一時金なので早めに）</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 受給条件 -->
+<div class="section">
+  <div class="section-icon">✅</div>
+  <h2>受給条件</h2>
+  <p class="section-sub">4つすべてを満たす必要があります</p>
+
+  <div class="card">
+    <h3>① 65歳以上で離職した</h3>
+    <p>離職日時点で65歳以上であること。64歳で退職した場合は通常の基本手当が適用されます。</p>
+  </div>
+  <div class="card">
+    <h3>② 雇用保険に6ヶ月以上加入していた</h3>
+    <p>離職日以前の1年間に、被保険者期間が<strong>通算6ヶ月以上</strong>あること。64歳以下の自己都合（12ヶ月必要）より条件が緩いです。</p>
+  </div>
+  <div class="card">
+    <h3>③ 働く意思と能力がある</h3>
+    <p>ハローワークに来所して求職の申し込みを行い、就職する意思があること。完全にリタイアする場合は受給できません。</p>
+  </div>
+  <div class="card">
+    <h3>④ ハローワークで求職の申し込みをした</h3>
+    <p>離職票を持ってハローワークへ行き、受給資格の確認を受けること。申請しないともらえません。</p>
+  </div>
+
+  <div class="warning-box">
+    ⚠️ <strong>「完全リタイア」の方は受給できません</strong><br>
+    「もう働くつもりはない」場合は受給対象外です。ただし「週2〜3日のパートでも探したい」という程度の意思があればOKです。フルタイムで働く必要はありません。
+  </div>
+</div>
+
+<!-- 給付日数と金額 -->
+<div class="section">
+  <div class="section-icon">💰</div>
+  <h2>給付日数と金額</h2>
+  <p class="section-sub">加入期間で30日 or 50日が決まる</p>
+
+  <div class="card" style="overflow-x:auto;">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>雇用保険の加入期間</th>
+          <th>給付日数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>6ヶ月以上1年未満</td>
+          <td data-label="給付日数"><strong>30日分</strong></td>
+        </tr>
+        <tr>
+          <td>1年以上</td>
+          <td data-label="給付日数" class="highlight"><strong>50日分</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box">
+    💡 <strong>計算式</strong><br>
+    <strong>受給額 ＝ 基本手当日額 × 給付日数（30日 or 50日）</strong><br><br>
+    基本手当日額 ＝ 退職前6ヶ月の給与合計 ÷ 180 × 給付率（45〜80%）<br>
+    給付率は賃金日額が低いほど高くなります（低所得者ほど手厚い）。
+  </div>
+</div>
+
+<!-- 計算ツール -->
+<div class="section">
+  <div class="section-icon">🧮</div>
+  <h2>高年齢求職者給付金 計算ツール</h2>
+  <p class="section-sub">月収と加入期間を入力するだけ</p>
+
+  <div class="calc-box">
+    <div class="calc-label">退職前6ヶ月の平均月収（額面）</div>
+    <input type="number" class="calc-input" id="elder-salary" placeholder="例：200000" inputmode="numeric">
+
+    <div class="calc-label">雇用保険の加入期間</div>
+    <div class="calc-radio-group">
+      <input type="radio" name="elder-period" value="30" id="period-30" class="calc-radio">
+      <label for="period-30" class="calc-radio-label">6ヶ月〜1年未満</label>
+      <input type="radio" name="elder-period" value="50" id="period-50" class="calc-radio" checked>
+      <label for="period-50" class="calc-radio-label">1年以上</label>
+    </div>
+
+    <button class="calc-btn" onclick="calcElder()">計算する</button>
+
+    <div class="calc-result" id="elder-result">
+      <h3>💰 高年齢求職者給付金（一時金）</h3>
+      <div class="calc-result-grid">
+        <div class="calc-result-item">
+          <div class="label">賃金日額</div>
+          <div class="value" id="res-daily-wage">-</div>
+        </div>
+        <div class="calc-result-item">
+          <div class="label">基本手当日額</div>
+          <div class="value" id="res-daily-benefit">-</div>
+        </div>
+        <div class="calc-result-item">
+          <div class="label">給付日数</div>
+          <div class="value" id="res-days">-</div>
+        </div>
+        <div class="calc-result-item">
+          <div class="label">受給額（一括）</div>
+          <div class="value" id="res-total" style="color:#059669;">-</div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--gray-500);margin-top:12px;text-align:center;">※ 概算です。正確な金額はハローワークでご確認ください。<br>基本手当日額は令和7年8月1日〜の上限額を適用しています。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 申請手順 -->
+<div class="section">
+  <div class="section-icon">📝</div>
+  <h2>申請の手順</h2>
+  <p class="section-sub">基本的には64歳以下と同じ流れです</p>
+
+  <ol class="flow-list">
+    <li class="flow-item">
+      <div class="flow-time">退職後10〜14日</div>
+      <h4>離職票を受け取る</h4>
+      <p>会社から離職票-1・離職票-2が届きます。届かない場合は会社に督促するか、ハローワークに相談。</p>
+    </li>
+    <li class="flow-item">
+      <div class="flow-time">届いたらすぐ</div>
+      <h4>ハローワークで求職申込み・受給資格確認</h4>
+      <p>離職票・マイナンバーカード・写真2枚・通帳・印鑑を持参。窓口で「高年齢求職者給付金の申請をしたい」と伝えます。</p>
+    </li>
+    <li class="flow-item">
+      <div class="flow-time">申請後7日間</div>
+      <h4>待機期間（7日間）</h4>
+      <p>全員共通で7日間の待機期間があります。この間は就労できません。</p>
+    </li>
+    <li class="flow-item">
+      <div class="flow-time">自己都合の場合</div>
+      <h4>給付制限期間（1〜3ヶ月）</h4>
+      <p>自己都合退職の場合は給付制限があります。会社都合・定年退職の場合は給付制限なし。<strong>2025年4月〜初回は1ヶ月に短縮。</strong></p>
+    </li>
+    <li class="flow-item">
+      <div class="flow-time">失業認定後</div>
+      <h4>一時金が一括振込</h4>
+      <p>失業の認定を受けた後、約1週間で指定口座に<strong>一括で振り込まれます</strong>。64歳以下のように4週間ごとに通う必要はありません。</p>
+    </li>
+  </ol>
+
+  <div class="info-box">
+    💡 <strong>定年退職の場合は給付制限なし</strong><br>
+    定年退職は「自己都合」でも「会社都合」でもない特殊な扱いです。給付制限は適用されず、待機7日間の後すぐに受給できます。
+  </div>
+</div>
+
+<!-- 年金との関係 -->
+<div class="section">
+  <div class="section-icon">🏦</div>
+  <h2>年金との関係</h2>
+  <p class="section-sub">ここが65歳以上の最大メリット</p>
+
+  <div class="card">
+    <h3>⭕ 年金を受け取りながら給付金ももらえる</h3>
+    <p>64歳以下の基本手当を受けると、老齢厚生年金が<strong>全額停止</strong>されます。しかし65歳以上の高年齢求職者給付金は<strong>年金に一切影響しません</strong>。</p>
+    <p style="margin-top:12px;">つまり、毎月の年金を受け取りながら、さらに一時金として給付金をもらえるということです。</p>
+  </div>
+
+  <div class="card" style="overflow-x:auto;">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>64歳以下</th>
+          <th>65歳以上</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>年金</td>
+          <td data-label="64歳以下" style="color:var(--danger);font-weight:700;">❌ 全額停止</td>
+          <td data-label="65歳以上" class="col-elder highlight">⭕ そのまま受給</td>
+        </tr>
+        <tr>
+          <td>給付金</td>
+          <td data-label="64歳以下">基本手当（分割）</td>
+          <td data-label="65歳以上" class="col-elder">一時金（一括）</td>
+        </tr>
+        <tr>
+          <td>合計収入</td>
+          <td data-label="64歳以下">給付金のみ</td>
+          <td data-label="65歳以上" class="col-elder highlight">年金 ＋ 給付金</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="danger-box">
+    🚨 <strong>64歳で退職を検討中の方へ</strong><br>
+    64歳と65歳では制度が大きく異なります。64歳で退職すると給付日数は多い（最大150日）ですが、年金が全額停止されます。65歳まで待てば給付日数は最大50日ですが、年金と併給できます。<br><br>
+    <strong>どちらが得かはケースバイケース。</strong>年金額と給付額を比較して判断してください。迷ったらハローワークや年金事務所に相談を。
+  </div>
+</div>
+
+<!-- 繰り返し受給 -->
+<div class="section">
+  <div class="section-icon">🔄</div>
+  <h2>繰り返し受給できる</h2>
+  <p class="section-sub">65歳以上ならではの特徴</p>
+
+  <div class="card">
+    <h3>退職→再就職→退職のたびに受給可能</h3>
+    <p>65歳以上の場合、再就職して雇用保険に6ヶ月以上加入し、また退職すれば<strong>何度でも</strong>高年齢求職者給付金を受け取れます。</p>
+    <p style="margin-top:12px;">例えば、退職して給付金を受け取り、半年後にパートで再就職。そのパートを1年後に辞めたら、また給付金を申請できます。</p>
+  </div>
+
+  <div class="warning-box">
+    ⚠️ <strong>ただし毎回、加入期間のリセットに注意</strong><br>
+    受給すると加入期間がリセットされます。次に受給するためには、新しい就職先で<strong>6ヶ月以上</strong>雇用保険に加入する必要があります。
+  </div>
+</div>
+
+<!-- マルチジョブホルダー -->
+<div class="section">
+  <div class="section-icon">💼</div>
+  <h2>マルチジョブホルダー制度</h2>
+  <p class="section-sub">2022年1月スタートの新制度</p>
+
+  <div class="card">
+    <h3>2つ以上の仕事を掛け持ちしている65歳以上の方へ</h3>
+    <p>2022年1月から、65歳以上の方は<strong>2つ以上の事業所の労働時間を合算</strong>して、週20時間以上になれば雇用保険に加入できるようになりました（マルチジョブホルダー制度）。</p>
+    <p style="margin-top:12px;">例えば、A社で週10時間・B社で週12時間 → 合計週22時間で雇用保険に加入可能。いずれかを離職した場合に高年齢求職者給付金を申請できます。</p>
+  </div>
+
+  <div class="info-box">
+    💡 <strong>マルチジョブホルダーの注意点</strong><br>
+    ・加入は<strong>本人がハローワークに申し出る必要</strong>があります（会社は手続きしてくれません）<br>
+    ・2つの事業所それぞれで週5時間以上働いていること<br>
+    ・合計で週20時間以上であること<br>
+    ・31日以上の雇用見込みがあること
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+  <div class="section-icon">❓</div>
+  <h2>よくある質問</h2>
+  <p class="section-sub">65歳以上の給付でよくある疑問</p>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">定年退職は「自己都合」と「会社都合」のどちらですか？</button>
+    <div class="faq-a">定年退職は「自己都合」でも「会社都合」でもない、独立した離職理由です。そのため<strong>給付制限は適用されません</strong>。待機7日間の後、すぐに給付を受けられます。</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">65歳の誕生日の前日に退職したらどうなりますか？</button>
+    <div class="faq-a">65歳の誕生日の前日はまだ「64歳」扱いです。この場合は通常の基本手当（64歳以下）が適用されます。65歳以上の高年齢求職者給付金を受けるには、65歳の誕生日当日以降に離職する必要があります。</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">パート・アルバイトでも受給できますか？</button>
+    <div class="faq-a">はい。雇用保険に加入していれば雇用形態は問いません。週20時間以上・31日以上の雇用見込みで雇用保険に加入していた方は受給できます。加入していたか不明な場合は、給与明細で「雇用保険料」が引かれているか確認してください。</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">申請期限はありますか？</button>
+    <div class="faq-a">離職日の翌日から<strong>1年以内</strong>に申請する必要があります。ただし一時金で一括支給のため、実質的には「失業の認定を受ける→振込」のサイクルが1年以内に完了している必要があります。離職票が届いたら早めにハローワークへ行きましょう。</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">高年齢求職者給付金を受け取ったら、求職活動をしなければいけませんか？</button>
+    <div class="faq-a">受給資格の確認時には求職の申し込みが必要です。ただし、一時金で一括支給されるため、64歳以下のように4週間ごとにハローワークに通って求職活動実績を報告する必要はありません。受給後は自由に活動できます。</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">健康保険・介護保険はどうなりますか？</button>
+    <div class="faq-a">65歳以上の退職後は、①後期高齢者医療制度（75歳以上）、②国民健康保険、③家族の扶養のいずれかに加入します。75歳未満の場合は国民健康保険か家族の扶養が選択肢です。介護保険料は年金から天引きされます。</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">高年齢求職者給付金に税金はかかりますか？</button>
+    <div class="faq-a"><strong>非課税</strong>です。64歳以下の基本手当と同様、所得税・住民税はかかりません。確定申告にも記載する必要はありません。</div>
+  </div>
+</div>
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "65歳以上で退職した場合、失業保険はもらえますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "65歳以上で退職した方は「高年齢求職者給付金」という一時金を受け取れます。通常の失業保険（基本手当）とは別の制度で、雇用保険に6ヶ月以上加入していれば受給できます。年金と同時に受け取れるのが最大のメリットです。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "高年齢求職者給付金と年金は同時にもらえますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、同時に受け取れます。64歳以下の基本手当は老齢厚生年金と併給できませんが、65歳以上の高年齢求職者給付金は年金に一切影響しません。年金を受け取りながら、さらに一時金として給付金をもらえます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "高年齢求職者給付金はいくらもらえますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "基本手当日額×給付日数（30日または50日）で計算されます。雇用保険の加入期間が1年以上なら50日分、6ヶ月以上1年未満なら30日分です。例えば月収20万円・加入1年以上の場合、約24万円程度が一括支給されます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "定年退職の場合、給付制限はありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "定年退職の場合、給付制限は適用されません。定年退職は自己都合でも会社都合でもない独立した離職理由として扱われるため、待機7日間の後すぐに受給できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "65歳以上で2つの仕事を掛け持ちしている場合、雇用保険に入れますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "2022年1月から「マルチジョブホルダー制度」が始まり、65歳以上の方は2つ以上の事業所の労働時間を合算して週20時間以上になれば雇用保険に加入できます。ただし、本人がハローワークに申し出る必要があります。"
+      }
+    }
+  ]
+}
+</script>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>まずは給付額を確認しましょう</h2>
+  <p>月収と加入期間を入力するだけで、受給額がわかります</p>
+  <a class="cta-btn" href="#elder-calc" onclick="document.getElementById('elder-salary').focus();">🧮 上の計算ツールへ</a>
+  <a class="cta-btn" href="checklist.html">📋 やることリスト</a>
+</div>
+
+<!-- SCROLL TOP -->
+<button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ===== CALCULATOR =====
+function calcElder() {
+  var salary = parseInt(document.getElementById('elder-salary').value);
+  if (!salary || salary < 1) { alert('月収を入力してください'); return; }
+
+  var days = parseInt(document.querySelector('input[name="elder-period"]:checked').value);
+
+  // 賃金日額
+  var dailyWage = Math.round(salary * 6 / 180);
+
+  // 上下限（令和7年度 60〜64歳の上限を準用）
+  if (dailyWage < 2746) dailyWage = 2746;
+  if (dailyWage > 16210) dailyWage = 16210;
+
+  // 給付率計算（60〜64歳の計算式を準用）
+  var rate;
+  if (dailyWage <= 5200) {
+    rate = 0.80;
+  } else if (dailyWage >= 12580) {
+    rate = 0.45;
+  } else {
+    // 線形補間
+    rate = 0.80 - (dailyWage - 5200) / (12580 - 5200) * (0.80 - 0.45);
+  }
+
+  var dailyBenefit = Math.round(dailyWage * rate);
+
+  // 上限チェック（60〜64歳の上限日額 7,294円）
+  if (dailyBenefit > 7294) dailyBenefit = 7294;
+
+  var total = dailyBenefit * days;
+
+  // 表示
+  document.getElementById('res-daily-wage').textContent = dailyWage.toLocaleString() + '円';
+  document.getElementById('res-daily-benefit').textContent = dailyBenefit.toLocaleString() + '円';
+  document.getElementById('res-days').textContent = days + '日分';
+  document.getElementById('res-total').textContent = '約' + Math.round(total / 10000 * 10) / 10 + '万円';
+  document.getElementById('elder-result').style.display = 'block';
+
+  // スクロール
+  document.getElementById('elder-result').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// ===== FAQ =====
+function toggleFaq(btn) {
+  btn.classList.toggle('open');
+  var answer = btn.nextElementSibling;
+  answer.classList.toggle('open');
+}
+
+// ===== SCROLL TOP =====
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('scroll-top');
+  if (window.scrollY > 400) { btn.classList.add('visible'); }
+  else { btn.classList.remove('visible'); }
+});
+</script>
+<script src="nav.js"></script>
+</body>
+</html>
