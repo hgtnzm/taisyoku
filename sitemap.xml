@@ -53,4 +53,23 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+    <url>
+  <loc>https://shitugyoukyufu.com/clinic-support.html</loc>
+  <lastmod>2026-03-20</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://shitugyoukyufu.com/elder.html</loc>
+  <lastmod>2026-03-20</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+<url>
+  <loc>https://shitugyoukyufu.com/tokutei.html</loc>
+  <lastmod>2026-03-20</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
+
   </urlset>
