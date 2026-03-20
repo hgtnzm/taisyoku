@@ -352,6 +352,7 @@ URL: https://shitugyoukyufu.com/calculator.html
   - 受給中のアルバイト完全ガイド: https://shitugyoukyufu.com/parttime.html
   - こころと体の状態チェック: https://shitugyoukyufu.com/mental-check.html
   - 受診サポート完全ガイド: https://shitugyoukyufu.com/clinic-support.html
+  - 特定理由離職者 完全ガイド: https://shitugyoukyufu.com/tokutei.html
   - 65歳以上の失業給付ガイド: https://shitugyoukyufu.com/elder.html
 - 対象読者: 退職を検討している人、退職直後で手続きを知りたい人
 - 対象制度: 雇用保険（基本手当・再就職手当・高年齢求職者給付金）
