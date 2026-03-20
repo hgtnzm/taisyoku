@@ -35,12 +35,13 @@
     <lastmod>2026-03-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <url>
-  <loc>https://shitugyoukyufu.com/scam.html</loc>
-  <lastmod>2026-03-03</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.8</priority>
-</url>
+  </url>
+  <url>
+    <loc>https://shitugyoukyufu.com/scam.html</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://shitugyoukyufu.com/parttime.html</loc>
     <lastmod>2026-03-15</lastmod>
@@ -53,29 +54,28 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-    <url>
-  <loc>https://shitugyoukyufu.com/clinic-support.html</loc>
-  <lastmod>2026-03-20</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.8</priority>
-</url>
-<url>
-  <loc>https://shitugyoukyufu.com/elder.html</loc>
-  <lastmod>2026-03-20</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.8</priority>
-</url>
-<url>
-  <loc>https://shitugyoukyufu.com/tokutei.html</loc>
-  <lastmod>2026-03-20</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.8</priority>
-</url>
-<url>
-  <loc>https://shitugyoukyufu.com/health-insurance.html</loc>
-  <lastmod>2026-03-20</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.8</priority>
-</url>
-
-  </urlset>
+  <url>
+    <loc>https://shitugyoukyufu.com/clinic-support.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://shitugyoukyufu.com/elder.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://shitugyoukyufu.com/tokutei.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://shitugyoukyufu.com/health-insurance.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
