@@ -267,6 +267,7 @@
 }
 
 </style>
+<!-- ★修正: JSON-LD step7 に退職理由別の初回振込目安を追記 -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -314,7 +315,7 @@
     {
       "@type": "HowToStep",
       "name": "初回振込（認定後約5営業日）",
-      "text": "失業認定後、約5営業日で指定の銀行口座に振り込まれる。以降4週間ごとに認定と振込を繰り返す。",
+      "text": "失業認定後、約5営業日で指定の銀行口座に振り込まれる。退職日から初回振込までの目安は、会社都合で約30〜40日、自己都合（1〜2回目）で約50〜65日、自己都合（3回目以上）で約105〜120日。認定日は4週間サイクル・曜日固定のため申請日により±1週間前後する。以降4週間ごとに認定と振込を繰り返す。",
       "position": 7
     }
   ]
@@ -350,8 +351,9 @@
       <button id="btn-company" onclick="switchType('company')">🏢 会社都合退職</button>
       <button id="btn-difficult" onclick="switchType('difficult')">🛡️ 就職困難者</button>
     </div>
+    <!-- ★修正: 45〜75日 → 50〜65日 + 3回目以上の補足 -->
     <div class="alert alert-info" id="type-info">
-      自己都合退職の場合：7日間の待機期間 ＋ <strong>原則1ヶ月（5年以内に3回目以上の場合は3ヶ月）の給付制限</strong>があります。初回振込まで約45〜75日かかります。
+      自己都合退職の場合：7日間の待機期間 ＋ <strong>原則1ヶ月（5年以内に3回目以上の場合は3ヶ月）の給付制限</strong>があります。初回振込まで<strong>約50〜65日</strong>（5年以内に3回目以上の退職は約105〜120日）かかります。
     </div>
   </div>
 
@@ -467,8 +469,9 @@
   </div>
 
   <!-- TIMELINE PHASE 3 -->
+  <!-- ★修正: Day45固定 → 「Day14〜」に変更（タイプ別に期間が異なるため固定しない） -->
   <div class="tl-phase">
-    <div class="tl-phase-header orange">🟠 Phase 3：待機・給付制限期間（Day14〜Day45）</div>
+    <div class="tl-phase-header orange">🟠 Phase 3：待機・給付制限期間（Day14〜）</div>
     <div class="tl-items">
       <div class="tl-item orange">
         <div class="tl-day-tag">申請日から7日間</div>
@@ -498,8 +501,9 @@
   </div>
 
   <!-- TIMELINE PHASE 4 -->
+  <!-- ★修正: デフォルト Day45〜Day60 → Day50〜Day65（自己都合1ヶ月制限ベース） -->
   <div class="tl-phase">
-    <div class="tl-phase-header purple">🟣 Phase 4：失業認定と給付開始（<span id="phase4-range">Day45〜Day60</span>）</div>
+    <div class="tl-phase-header purple">🟣 Phase 4：失業認定と給付開始（<span id="phase4-range">Day50〜Day65</span>）</div>
     <div class="tl-items">
       <div class="tl-item purple">
         <div class="tl-day-tag">4週ごと（認定日）</div>
@@ -518,9 +522,18 @@
       <div class="tl-item green" style="border-left-color:var(--success);">
         <div class="tl-day-tag" style="background:var(--success);">認定後 約5営業日</div>
         <div class="tl-title">💰 給付金 振込！<span class="badge-green">目標ゴール</span></div>
+        <!-- ★修正: 退職理由別の初回振込目安ボックスを追加 -->
         <div class="tl-body" id="payment-body">
           失業認定後、約5営業日で指定の銀行口座に振り込まれます。以降4週ごとに認定→振込を繰り返します。
           <br><br>
+          <div class="alert alert-info" style="margin-bottom:12px;">
+            <strong>📌 退職日から初回振込までの目安：</strong><br>
+            ・会社都合退職：<strong>約30〜40日</strong><br>
+            ・自己都合（1〜2回目）：<strong>約50〜65日</strong><br>
+            ・自己都合（3回目以上）：<strong>約105〜120日</strong><br>
+            ・就職困難者：<strong>約30〜40日</strong>（給付制限なし）<br>
+            <span style="font-size:12px;color:var(--gray-500);">※認定日は4週間サイクル・曜日固定のため、申請日により±1週間前後します</span>
+          </div>
           <div class="alert alert-success">
             <strong>再就職手当を忘れずに！</strong> 受給中に就職が決まった場合、残日数が所定給付日数の3分の2以上なら70%、3分の1以上なら60%を一括受給！<a href="calculator.html">計算ツール</a>で試算できます。
           </div>
@@ -604,6 +617,7 @@
 // ============================================================
 //  スケジュール行テンプレート（日付計算前のデフォルト表示）
 // ============================================================
+// ★修正: defaultSchedules の初回振込行に退職理由別の目安日数を追記
 const defaultSchedules = {
   voluntary: [
     { label: 'Day 0 退職日', val: '退職日を入力してください', note: '' },
@@ -613,7 +627,7 @@ const defaultSchedules = {
     { label: '7日間待機期間 終了', val: '申請日の翌日から7日後', note: '' },
     { label: '給付制限終了（1ヶ月）', val: '待機終了から約1ヶ月後', note: '⚡ 2025年4月〜1ヶ月に短縮', noteColor: 'var(--warning)' },
     { label: '第1回 失業認定日', val: '給付制限終了後 約4週間', note: '' },
-    { label: '💰 <strong>初回振込</strong>', val: '<strong>認定後 約5営業日</strong>', note: '', highlight: true }
+    { label: '💰 <strong>初回振込</strong>', val: '<strong>退職から約50〜65日後</strong>', note: '3回目以上は約105〜120日', highlight: true }
   ],
   company: [
     { label: 'Day 0 退職日', val: '退職日を入力してください', note: '' },
@@ -622,7 +636,7 @@ const defaultSchedules = {
     { label: '受給説明会', val: '申請後 1〜2週間', note: '必ず出席' },
     { label: '7日間待機期間 終了', val: '申請日の翌日から7日後', note: '' },
     { label: '第1回 失業認定日', val: '待機終了後 約4週間', note: '' },
-    { label: '💰 <strong>初回振込</strong>', val: '<strong>認定後 約5営業日</strong>', note: '', highlight: true }
+    { label: '💰 <strong>初回振込</strong>', val: '<strong>退職から約30〜40日後</strong>', note: '給付制限なし', highlight: true }
   ],
   difficult: [
     { label: 'Day 0 退職日', val: '退職日を入力してください', note: '' },
@@ -631,7 +645,7 @@ const defaultSchedules = {
     { label: '受給説明会', val: '申請後 1〜2週間', note: '必ず出席' },
     { label: '7日間待機期間 終了', val: '申請日の翌日から7日後', note: '' },
     { label: '第1回 失業認定日', val: '待機終了後 約4週間', note: '給付制限なし' },
-    { label: '💰 <strong>初回振込</strong>', val: '<strong>認定後 約5営業日</strong>', note: '', highlight: true },
+    { label: '💰 <strong>初回振込</strong>', val: '<strong>退職から約30〜40日後</strong>', note: '給付制限なし', highlight: true },
     { label: '🛡️ 所定給付日数', val: '<strong>最大360日（約12ヶ月）</strong>', note: '30〜59歳・加入1年以上', noteColor: '#7c3aed' }
   ]
 };
@@ -738,10 +752,13 @@ function renderSchedule(type, retireDate) {
   }
 
   rows.push({ label: '第1回 失業認定日', val: `${fmtDateShort(ninteiDate)}頃`, note: type === 'difficult' ? '給付制限なし' : '' });
+
+  // ★修正: 初回振込行に退職日からの経過日数を表示
+  const daysFromRetire = Math.round((paymentDate - day0) / (1000 * 60 * 60 * 24));
   rows.push({
     label: '💰 <strong>初回振込</strong>',
     val: `<strong>${fmtDateShort(paymentDate)}頃</strong>`,
-    note: '認定後 約5営業日',
+    note: `退職から約${daysFromRetire}日後 ※認定日により±1週間`,
     highlight: true
   });
 
@@ -774,6 +791,7 @@ function renderSchedule(type, retireDate) {
 // ============================================================
 //  退職理由切り替え
 // ============================================================
+// ★修正: switchType 内の日数表記・phase4-range を全パターン修正
 function switchType(type) {
   document.getElementById('btn-voluntary').classList.toggle('active', type === 'voluntary');
   document.getElementById('btn-company').classList.toggle('active', type === 'company');
@@ -793,31 +811,31 @@ function switchType(type) {
 
   if (type === 'voluntary') {
     info.className = 'alert alert-info';
-    info.innerHTML = '自己都合退職の場合：7日間の待機期間 ＋ <strong>1ヶ月（5年間で1回目・2回目）または3ヶ月（3回目以上）の給付制限</strong>があります。初回振込まで約45〜75日かかります。';
+    info.innerHTML = '自己都合退職の場合：7日間の待機期間 ＋ <strong>原則1ヶ月（5年以内に3回目以上の場合は3ヶ月）の給付制限</strong>があります。初回振込まで<strong>約50〜65日</strong>（5年以内に3回目以上の退職は約105〜120日）かかります。';
     restrictionPhase.style.display = '';
     difficultInfo.style.display = 'none';
     difficultSupport.style.display = 'none';
     difficultDocs.forEach(el => el.style.display = 'none');
-    phase4Range.textContent = 'Day45〜Day60';
+    phase4Range.textContent = 'Day50〜Day65';
   } else if (type === 'company') {
     info.className = 'alert alert-success';
-    info.innerHTML = '会社都合退職の場合：7日間の待機期間のみで<strong>給付制限はありません</strong>。初回振込まで約30〜35日と、自己都合より大幅に短くなります。所定給付日数も最大330日です。';
+    info.innerHTML = '会社都合退職の場合：7日間の待機期間のみで<strong>給付制限はありません</strong>。初回振込まで<strong>約30〜40日</strong>と、自己都合より大幅に短くなります。所定給付日数も最大330日です。';
     restrictionPhase.style.display = 'none';
     difficultInfo.style.display = 'none';
     difficultSupport.style.display = 'none';
     difficultDocs.forEach(el => el.style.display = 'none');
-    phase4Range.textContent = 'Day21〜Day35';
+    phase4Range.textContent = 'Day30〜Day40';
   } else {
     info.className = 'alert alert-info';
     info.style.background = '#ede9fe';
     info.style.borderColor = '#7c3aed';
     info.style.color = '#374151';
-    info.innerHTML = '就職困難者の場合：7日間の待機期間のみで<strong>給付制限はありません</strong>（自己都合退職でも免除）。所定給付日数は最大<strong>360日</strong>。初回振込まで約30〜35日です。';
+    info.innerHTML = '就職困難者の場合：7日間の待機期間のみで<strong>給付制限はありません</strong>（自己都合退職でも免除）。所定給付日数は最大<strong>360日</strong>。初回振込まで<strong>約30〜40日</strong>です。';
     restrictionPhase.style.display = 'none';
     difficultInfo.style.display = 'block';
     difficultSupport.style.display = '';
     difficultDocs.forEach(el => el.style.display = 'inline-block');
-    phase4Range.textContent = 'Day21〜Day35';
+    phase4Range.textContent = 'Day30〜Day40';
   }
 
   // スケジュール表 & カレンダーも更新
