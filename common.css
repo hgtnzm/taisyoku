@@ -63,7 +63,7 @@ img { max-width: 100%; }
 .navbar .logo span { color: var(--gray-800); }
 .nav-links {
   display: flex; gap: 4px; align-items: center;
-  list-style: none; flex-wrap: wrap;
+  list-style: none;
 }
 .nav-links a {
   font-size: 13px; font-weight: 600;
@@ -108,6 +108,19 @@ img { max-width: 100%; }
 .nav-toggle.open span { background: transparent; }
 .nav-toggle.open span::before { top: 0; transform: rotate(45deg); }
 .nav-toggle.open span::after { top: 0; transform: rotate(-45deg); }
+
+/* ===== PC幅（1025px以上）のナビ折り返し防止 ===== */
+@media (min-width: 1025px) {
+  .nav-links {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+}
 
 /* ===== 詐欺注意バナー ===== */
 .scam-banner {
@@ -299,9 +312,8 @@ footer ul a:hover { color: white; }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
 
-/* ===== MOBILE ===== */
-@media (max-width: 768px) {
-  /* ナビバー */
+/* ===== タブレット・小PC（1024px以下）：ハンバーガーメニュー ===== */
+@media (max-width: 1024px) {
   .navbar {
     height: 52px;
     padding: 0 12px;
@@ -348,7 +360,10 @@ footer ul a:hover { color: white; }
     padding: 12px 14px;
     border-radius: var(--radius-sm);
   }
+}
 
+/* ===== モバイル（768px以下） ===== */
+@media (max-width: 768px) {
   /* 詐欺注意バナー */
   .scam-banner {
     font-size: .75rem;
@@ -387,12 +402,13 @@ footer ul a:hover { color: white; }
   .alert { font-size: 12px; padding: 10px 12px; }
 }
 
-/* 極小画面 */
+/* ===== 極小画面（380px以下） ===== */
 @media (max-width: 380px) {
   .navbar .logo { font-size: 12px; }
   .scam-banner { font-size: .7rem; }
   .btn-lg { padding: 12px 20px; font-size: 14px; width: 100%; justify-content: center; }
 }
+
 .feature-badge.danger {
   background: #fef2f2;
   color: #dc2626;
