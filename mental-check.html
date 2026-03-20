@@ -1924,6 +1924,7 @@ function buildNextSteps(a, level) {
     const scenario = (a.q14 && a.q14.filter(v => v !== 'g').length >= 3) ? 'adhd' : 'utsu';
    const clinicURL = `clinic-support.html?level=${level}&scenario=${scenario}&score=${calcScore(a)}&q1=${a.q1}&q2=${a.q2}&q3=${a.q3}&q4=${a.q4}&q5=${a.q5}&q6=${a.q6}&q7=${a.q7}&q8=${(a.q8||[]).join(',')}&q9=${a.q9}&q11=${a.q11}&q12=${a.q12}`;
 
+    steps.push({   // ← これが抜けていた
       icon: '🏥',
       title: '精神科・心療内科への受診を検討する',
       desc: '受診不安を解消するサポートページで、予約方法・費用・電話台本を確認できます。',
