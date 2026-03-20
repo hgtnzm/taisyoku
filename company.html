@@ -111,7 +111,8 @@
     <div class="info-card">
       <div class="info-num">なし</div>
       <div class="info-unit">（7日待機後すぐ）</div>
-      <div class="info-label">給付制限<br>自己都合は1〜3ヶ月</div>
+      <!-- ★修正No.4：給付制限を具体化 -->
+      <div class="info-label">給付制限<br>自己都合は原則1ヶ月<span style="font-size:11px;">（3回目以上は3ヶ月）</span></div>
     </div>
     <div class="info-card blue">
       <div class="info-num">最大330</div>
@@ -140,8 +141,9 @@
       <div class="compare-highlight">
         <div class="compare-box vol">
           <div class="cb-label">🙋 自己都合退職</div>
-          <div class="cb-val">1〜3ヶ月</div>
-          <div class="cb-note">給付制限（2025年4月〜）</div>
+          <!-- ★修正No.4：給付制限を具体化 -->
+          <div class="cb-val">原則1ヶ月</div>
+          <div class="cb-note">給付制限（2025年4月〜。3回目以上は3ヶ月）</div>
         </div>
         <div class="compare-box com">
           <div class="cb-label">🏢 会社都合退職</div>
@@ -161,18 +163,22 @@
           <tbody>
             <tr>
               <td>給付制限</td>
-              <td>1〜3ヶ月</td>
+              <!-- ★修正No.4：給付制限を具体化 -->
+              <td>原則1ヶ月<br><span style="font-size:11px;color:var(--gray-500);">5年以内3回目以上は3ヶ月</span></td>
               <td style="color:var(--success);font-weight:700;">なし</td>
             </tr>
             <tr>
               <td>初回振込まで</td>
-              <td>約45〜75日</td>
-              <td style="color:var(--success);font-weight:700;">約30〜35日</td>
+              <!-- ★修正No.3：初回振込を構成要素表記に -->
+              <td>待期7日＋給付制限1ヶ月＋認定日待ち<br><span style="font-size:11px;color:var(--gray-500);">3回目以上は給付制限3ヶ月</span></td>
+              <!-- ★修正：会社都合の初回振込を認定日サイクル考慮 -->
+              <td style="color:var(--success);font-weight:700;">約30〜40日</td>
             </tr>
             <tr>
               <td>加入条件</td>
               <td>2年間で12ヶ月</td>
-              <td style="color:var(--success);font-weight:700;">1年間で6ヶ月</td>
+              <!-- ★修正No.2：加入条件に特例の注記追加 -->
+              <td style="color:var(--success);font-weight:700;">1年間で6ヶ月<br><span style="font-size:11px;color:var(--gray-500);">（特定受給資格者の特例。一般原則は2年間で12ヶ月）</span></td>
             </tr>
             <tr>
               <td>最大給付日数</td>
@@ -192,7 +198,8 @@
             <tr>
               <td>障害等の特例</td>
               <td>なし</td>
-              <td style="color:var(--success);font-weight:700;">就職困難者は最大360日</td>
+              <!-- ★修正No.6：就職困難者の給付日数を範囲表記に -->
+              <td style="color:var(--success);font-weight:700;">就職困難者は150〜360日<br><span style="font-size:11px;color:var(--gray-500);">年齢・加入期間による</span></td>
             </tr>
           </tbody>
         </table>
@@ -298,7 +305,7 @@
         ⚠️ 就職困難者（障害をお持ちの方など）はさらに長く、<strong>最大360日</strong>の給付を受けられる場合があります。
       </div>
 
-      <!-- ▼▼▼ 追加：就職困難者の給付日数表 ▼▼▼ -->
+      <!-- ▼▼▼ 就職困難者の給付日数表 ▼▼▼ -->
       <div style="background:linear-gradient(135deg,#faf5ff,#f3e8ff);border:2px solid #c4b5fd;border-radius:12px;padding:20px;margin-top:20px;">
         <div style="font-size:15px;font-weight:800;color:#6d28d9;margin-bottom:12px;">♿ 就職困難者の所定給付日数</div>
         <p style="font-size:13px;color:var(--gray-600);margin-bottom:12px;">身体障害者手帳・精神障害者保健福祉手帳・療育手帳をお持ちの方は、退職理由を問わず以下の日数が適用されます。</p>
@@ -325,9 +332,10 @@
             </tbody>
           </table>
         </div>
-        <p style="font-size:12px;color:var(--gray-500);margin-top:8px;">※ 給付制限なし（自己都合退職でも適用）。ハローワーク申請時に手帳を持参してください。</p>
+        <!-- ★修正No.1：就職困難者テーブル注釈 -->
+        <p style="font-size:12px;color:var(--gray-500);margin-top:8px;">※ 障害等が退職理由に関係する場合は「正当な理由のある自己都合退職」として給付制限が免除されるケースが多いですが、退職理由によっては給付制限が適用される場合もあります。詳細はハローワークにご確認ください。</p>
       </div>
-      <!-- ▲▲▲ 追加ここまで ▲▲▲ -->
+      <!-- ▲▲▲ ここまで ▲▲▲ -->
     </div>
 
     <!-- TAB: 手続き -->
@@ -359,35 +367,39 @@
           <div class="step-num" style="background:var(--success);">4</div>
           <div class="step-content">
             <h3>早期再就職で再就職手当を獲得する</h3>
-            <p>会社都合退職は給付日数が長い分、再就職手当の金額も大きくなります。<strong>残日数が2/3以上の状態で就職 → 残日数×70%</strong>が一括支給されます。</p>
+            <!-- ★修正No.5：再就職手当の60%条件を追記 -->
+            <p>会社都合退職は給付日数が長い分、再就職手当の金額も大きくなります。<strong>残日数が2/3以上で就職 → 残日数×70%、1/3以上で就職 → 残日数×60%</strong>が一括支給されます。</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ▼▼▼ 追加：就職困難者への案内ブロック ▼▼▼ -->
+  <!-- ▼▼▼ 就職困難者への案内ブロック ▼▼▼ -->
   <div style="background:linear-gradient(135deg,#faf5ff,#f3e8ff);border:2px solid #c4b5fd;border-radius:12px;padding:20px 24px;margin:24px 0;">
     <div style="font-size:15px;font-weight:800;color:#6d28d9;margin-bottom:8px;">♿ 障害者手帳をお持ちの方へ</div>
+    <!-- ★修正No.1＋No.6：給付制限の記述を正確に＋給付日数を範囲表記に -->
     <p style="font-size:14px;color:#4b5563;line-height:1.8;margin:0;">
       身体障害者手帳・精神障害者保健福祉手帳・療育手帳をお持ちの方は<strong>「就職困難者」</strong>として認定され、
-      会社都合・自己都合を問わず<strong>給付制限なし</strong>で、所定給付日数が<strong>最大360日</strong>（45〜64歳・加入1年以上）まで大幅に拡大されます。
-      ハローワーク申請時に必ず手帳を持参してください。
+      所定給付日数が<strong>150〜360日</strong>（年齢・加入期間により異なります。詳細は上の受給日数表をご参照ください）に拡大されます。
+      また、障害等を理由とする退職の場合は「正当な理由のある自己都合退職」として<strong>給付制限が免除されるケースが多く</strong>あります。
+      具体的な適用はハローワークが判断しますので、申請時に手帳を持参のうえご相談ください。
     </p>
     <div style="margin-top:12px;">
       <a href="calculator.html" style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:#7c3aed;color:white;font-size:13px;font-weight:700;border-radius:8px;text-decoration:none;">🧮 就職困難者の給付額を計算する</a>
       <a href="timeline.html" style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:white;color:#7c3aed;font-size:13px;font-weight:700;border-radius:8px;text-decoration:none;border:2px solid #7c3aed;margin-left:8px;">📅 タイムラインを確認する</a>
     </div>
   </div>
-  <!-- ▲▲▲ 追加ここまで ▲▲▲ -->
+  <!-- ▲▲▲ ここまで ▲▲▲ -->
 
   <!-- 転職エージェント紹介（アフィリエイト） -->
 <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#eff6ff);border:2px solid #bbf7d0;">
   <div style="text-align:center;margin-bottom:16px;">
     <span style="background:#dcfce7;color:#16a34a;font-size:12px;font-weight:700;padding:4px 12px;border-radius:99px;">💼 会社都合退職は再就職手当も大きい</span>
   </div>
+  <!-- ★修正No.5：再就職手当の60%条件を追記 -->
   <p style="font-size:14px;color:#4b5563;text-align:center;line-height:1.8;margin-bottom:20px;">
-    給付日数が多い分、<strong>早期再就職で受け取れる再就職手当も高額</strong>に。<br>給付日数の2/3以上を残して就職すれば残日数×70%が一括支給されます。
+    給付日数が多い分、<strong>早期再就職で受け取れる再就職手当も高額</strong>に。<br>給付日数の2/3以上を残して就職すれば残日数×70%、1/3以上なら残日数×60%が一括支給されます。
   </p>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
     <div style="background:white;border-radius:10px;padding:16px;border:1.5px solid #e5e7eb;text-align:center;">
