@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     + '    <li><a href="calculator.html" class="btn-calc">🧮 給付金計算</a></li>'
     + '    <li><a href="mental-check.html">🧠 メンタルチェック</a></li>'
     + '    <li><a href="tokutei.html">📋 特定理由離職者</a></li>'
+    + '    <li><a href="health-insurance.html">🏥 退職後の健康保険</a></li>'
     + '    <li><a href="scam.html">⚠️ 詐欺に注意</a></li>'
     + '  </ul>'
     + '</nav>'
