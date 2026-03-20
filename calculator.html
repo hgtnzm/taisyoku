@@ -651,7 +651,8 @@
       </div>
       <div class="result-item">
         <div class="r-label">初回振込まで</div>
-        <div class="r-value"><span id="first-payment">0</span><span class="unit">日後</span></div>
+        <!-- ★修正：「○日後」→幅を持たせた表示に変更 -->
+        <div class="r-value"><span id="first-payment">0</span></div>
       </div>
       <div class="result-item">
         <div class="r-label">1ヶ月あたり受取額</div>
@@ -753,7 +754,7 @@
 
 // 基本手当日額を計算（2025年8月〜）
 function calcDailyBenefit(w, ageGroup) {
-  let y = 0;
+  var y = 0;
   if (ageGroup === 'under30') {
     if (w < 3014) y = 0;
     else if (w < 5340) y = 0.8 * w;
@@ -870,8 +871,23 @@ function getBenefitDaysDifficult(period, ageGroup) {
 function fmt(n) { return n.toLocaleString('ja-JP'); }
 function fmtMan(n) { return (n / 10000).toFixed(1); }
 
+// ★修正：初回振込日数を幅で返す関数を追加
+function getFirstPayRange(reason, restriction) {
+  if (reason === 'voluntary') {
+    if (restriction === '3month') {
+      return { min: 105, max: 120, label: '約105〜120日' };
+    } else {
+      return { min: 50, max: 65, label: '約50〜65日' };
+    }
+  } else {
+    // 会社都合・就職困難者（給付制限なし）
+    return { min: 30, max: 40, label: '約30〜40日' };
+  }
+}
+
 // タイムライン生成
-function buildTimeline(reason, restriction, benefitDays, firstPayDays) {
+// ★修正：firstPayDaysを幅付きラベルに変更
+function buildTimeline(reason, restriction, benefitDays, firstPayLabel) {
   var isVoluntary = reason === 'voluntary';
   var limit = isVoluntary ? (restriction === '3month' ? 90 : 30) : 0;
   var items = [];
@@ -909,8 +925,8 @@ function buildTimeline(reason, restriction, benefitDays, firstPayDays) {
   });
   items.push({
     day: '認定後 約5営業日', icon: '💰', color: 'green',
-    title: '🎉 初回振込！（申請から約' + firstPayDays + '日後）',
-    desc: '初回は21日分が振込まれます。以降は4週間ごとに28日分ずつ受取り。合計' + benefitDays + '日分'
+    title: '🎉 初回振込！（申請から' + firstPayLabel + '）',
+    desc: '初回は待期満了後〜初回認定日の日数分が振込まれます。以降は4週間ごとに28日分ずつ受取り。合計' + benefitDays + '日分'
   });
   items.push({
     day: '受給中', icon: '🔄', color: 'blue',
@@ -994,9 +1010,8 @@ function calculate() {
   // 総受給額
   var totalBenefit = benefitDaily * benefitDays;
 
-  // 初回振込まで（日数目安）
-  var limitDays = isVoluntary ? (restriction === '3month' ? 90 : 30) : 0;
-  var firstPayDays = 7 + limitDays + 28 + 7;
+  // ★修正：初回振込まで（認定日サイクル考慮の幅付き）
+  var firstPay = getFirstPayRange(reason, restriction);
 
   // 月あたり（28日分）
   var monthlyBenefit = benefitDaily * 28;
@@ -1016,7 +1031,8 @@ function calculate() {
   document.getElementById('benefit-daily').textContent = fmt(benefitDaily);
   document.getElementById('benefit-days').textContent = benefitDays;
   document.getElementById('benefit-rate').textContent = rate;
-  document.getElementById('first-payment').textContent = '約' + firstPayDays;
+  // ★修正：幅付き表示
+  document.getElementById('first-payment').textContent = firstPay.label;
   document.getElementById('monthly-benefit').textContent = fmtMan(monthlyBenefit);
 
   document.getElementById('saishushoku-high').textContent = '約' + fmtMan(saishushokuHigh) + '万円';
@@ -1030,10 +1046,10 @@ function calculate() {
     ageSplitNote.style.display = 'none';
   }
 
-  // タイムライン
+  // ★修正：タイムラインに幅付きラベルを渡す
   var tlContainer = document.getElementById('timeline');
   tlContainer.innerHTML = '';
-  var tlItems = buildTimeline(reason, restriction, benefitDays, firstPayDays);
+  var tlItems = buildTimeline(reason, restriction, benefitDays, firstPay.label);
   tlItems.forEach(function(item) {
     var div = document.createElement('div');
     div.className = 'tl-item';
@@ -1103,4 +1119,3 @@ document.querySelectorAll('input[name="reason"]').forEach(function(el) {
 
 </body>
 </html>
-
