@@ -5,7 +5,10 @@ GitHub Actions から週次で実行される。Claude API は呼ばない。
 分析は Claude Code 側で PROMPT.md に従って手動実行する（案C）。
 
 Env:
-  GSC_SERVICE_ACCOUNT_JSON  サービスアカウントの JSON 文字列
+  GSC_OAUTH_JSON            OAuth 2.0 ユーザー認証情報の JSON 文字列
+                            （client_id / client_secret / refresh_token / token_uri）
+                            GSC の UI がサービスアカウントを受け付けないため、
+                            Yuki 本人アカウントの OAuth refresh_token を使う方式に変更
   GSC_SITE_URL              例: "https://shitugyoukyufu.com/" or "sc-domain:shitugyoukyufu.com"
   OUTPUT_DIR                出力ディレクトリ（既定: docs/analytics/raw）
 """
@@ -19,7 +22,8 @@ import sys
 from datetime import date, timedelta
 from pathlib import Path
 
-from google.oauth2 import service_account
+from google.oauth2.credentials import Credentials
+from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
 
 SCOPES = ["https://www.googleapis.com/auth/webmasters.readonly"]
@@ -27,11 +31,19 @@ ROW_LIMIT = 25000  # GSC API の1リクエスト最大
 
 
 def build_service():
-    raw = os.environ.get("GSC_SERVICE_ACCOUNT_JSON")
+    raw = os.environ.get("GSC_OAUTH_JSON")
     if not raw:
-        sys.exit("GSC_SERVICE_ACCOUNT_JSON is not set")
+        sys.exit("GSC_OAUTH_JSON is not set")
     info = json.loads(raw)
-    creds = service_account.Credentials.from_service_account_info(info, scopes=SCOPES)
+    creds = Credentials(
+        token=None,
+        refresh_token=info["refresh_token"],
+        token_uri=info.get("token_uri", "https://oauth2.googleapis.com/token"),
+        client_id=info["client_id"],
+        client_secret=info["client_secret"],
+        scopes=SCOPES,
+    )
+    creds.refresh(Request())
     return build("searchconsole", "v1", credentials=creds, cache_discovery=False)
 
 

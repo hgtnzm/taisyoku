@@ -28,7 +28,7 @@ jobs:
 
       - name: Fetch GSC data
         env:
-          GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+          GSC_OAUTH_JSON: ${{ secrets.GSC_OAUTH_JSON }}
           GSC_SITE_URL: ${{ vars.GSC_SITE_URL || 'https://shitugyoukyufu.com/' }}
         run: python scripts/fetch_gsc.py
 
