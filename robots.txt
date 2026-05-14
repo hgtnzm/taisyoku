@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /.github/
 
 Sitemap: https://shitugyoukyufu.com/sitemap.xml
