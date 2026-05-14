@@ -9,3 +9,4 @@ exclude:
   - README.md
   - _config.yml
   - CLAUDE.md
+  - "*.ots"

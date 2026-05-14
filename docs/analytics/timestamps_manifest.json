@@ -1,0 +1,105 @@
+{
+  "created_at": "2026-05-14T12:07:28.722676Z",
+  "method": "opentimestamps_direct_calendar_api",
+  "files": [
+    {
+      "file": "CLAUDE.md",
+      "sha256": "bf66e94c79346a3dd0e67627f00efb3dd89ae3568ac20710b229705b2a8ad39b",
+      "size": 5473,
+      "ots_file": "CLAUDE.md.ots",
+      "calendars": [
+        "https://a.pool.opentimestamps.org",
+        "https://b.pool.opentimestamps.org",
+        "https://a.pool.eternitywall.com"
+      ]
+    },
+    {
+      "file": "docs/analytics/PROMPT.md",
+      "sha256": "07eb6ea22e8e98fd93b45fcdeb802b30172c977302029f018062ff0fee8180a0",
+      "size": 6716,
+      "ots_file": "docs/analytics/PROMPT.md.ots",
+      "calendars": [
+        "https://a.pool.opentimestamps.org",
+        "https://b.pool.opentimestamps.org",
+        "https://a.pool.eternitywall.com"
+      ]
+    },
+    {
+      "file": "docs/analytics/README.md",
+      "sha256": "29a9de88f2b1d66172a0c0c1555e1472649b8772172e84c33817823e364531fb",
+      "size": 7135,
+      "ots_file": "docs/analytics/README.md.ots",
+      "calendars": [
+        "https://a.pool.opentimestamps.org",
+        "https://b.pool.opentimestamps.org",
+        "https://a.pool.eternitywall.com"
+      ]
+    },
+    {
+      "file": "docs/analytics/known-issues.md",
+      "sha256": "8772f2c5e784bfe03a6024e989ff6a483ee9d8331e98b0ade6ac243ccd6d5b35",
+      "size": 1496,
+      "ots_file": "docs/analytics/known-issues.md.ots",
+      "calendars": [
+        "https://a.pool.opentimestamps.org",
+        "https://b.pool.opentimestamps.org",
+        "https://a.pool.eternitywall.com"
+      ]
+    },
+    {
+      "file": "scripts/fetch_gsc.py",
+      "sha256": "a69b5941f55804db658b26175691bb6d3e8acb170208810cbff5842d313d7d1f",
+      "size": 5063,
+      "ots_file": "scripts/fetch_gsc.py.ots",
+      "calendars": [
+        "https://a.pool.opentimestamps.org",
+        "https://b.pool.opentimestamps.org",
+        "https://a.pool.eternitywall.com"
+      ]
+    },
+    {
+      "file": ".github/workflows/weekly-seo-report.yml",
+      "sha256": "ee0a0f57cbd49f28e57a22380fe8619e62ca0b3f473b2ca62ee97b0747554581",
+      "size": 3215,
+      "ots_file": ".github/workflows/weekly-seo-report.yml.ots",
+      "calendars": [
+        "https://a.pool.opentimestamps.org",
+        "https://b.pool.opentimestamps.org",
+        "https://a.pool.eternitywall.com"
+      ]
+    },
+    {
+      "file": "_config.yml",
+      "sha256": "92387bd5557abfbda97a71fcb543414de6d02b75e8c087c53cb1698964d18ea5",
+      "size": 298,
+      "ots_file": "_config.yml.ots",
+      "calendars": [
+        "https://a.pool.opentimestamps.org",
+        "https://b.pool.opentimestamps.org",
+        "https://a.pool.eternitywall.com"
+      ]
+    },
+    {
+      "file": "docs/analytics/reports/2026-05-14.md",
+      "sha256": "505583a97630e20c110e7eb5e71d1af494846e3f90c14553f66fcbcd6014549d",
+      "size": 9138,
+      "ots_file": "docs/analytics/reports/2026-05-14.md.ots",
+      "calendars": [
+        "https://a.pool.opentimestamps.org",
+        "https://b.pool.opentimestamps.org",
+        "https://a.pool.eternitywall.com"
+      ]
+    },
+    {
+      "file": "docs/analytics/reports/2026-05-14.html",
+      "sha256": "6aeb2541de7ca799c837156398d319a7dfc44b38c22b76440cf943a0fe318c3e",
+      "size": 17306,
+      "ots_file": "docs/analytics/reports/2026-05-14.html.ots",
+      "calendars": [
+        "https://a.pool.opentimestamps.org",
+        "https://b.pool.opentimestamps.org",
+        "https://a.pool.eternitywall.com"
+      ]
+    }
+  ]
+}
