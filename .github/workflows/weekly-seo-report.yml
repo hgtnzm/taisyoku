@@ -80,7 +80,7 @@ jobs:
           MSG=$(printf '%s\n%s\n\n%s\n\nLog: %s' \
             "❌ GSC週次収集 失敗" \
             "$DATE" \
-            "OAuth refresh_token 失効の可能性大（テスト中アプリの7日制限）。docs/analytics/README.md の復旧手順を参照。" \
+            "Run ログを確認。invalid_grant 系なら docs/analytics/README.md の OAuth 復旧手順を参照。" \
             "$RUN_URL")
           curl -sS "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
             --data-urlencode chat_id="${TG_CHAT}" \
