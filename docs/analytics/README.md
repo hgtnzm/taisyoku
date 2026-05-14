@@ -94,15 +94,59 @@ docs/analytics/
       last28_by_query.csv
       last28_by_date.csv
   reports/
-    YYYY-MM-DD.md            # 週次レポート（Claude生成・Yuki承認）
+    YYYY-MM-DD.md            # 週次レポート AI構造化版
+    YYYY-MM-DD.html          # 週次レポート 人間用
+```
+
+---
+
+## Telegram 通知
+
+Workflow 実行のたびに Telegram に結果が飛ぶ：
+
+- ✅ 成功：`raw/YYYY-MM-DD/` にデータコミット完了 + Run URL
+- ✅ 差分なし：データ反映ラグ等
+- ❌ 失敗：Run URL + 「OAuth 失効の可能性」の注意書き
+
+Secrets：`TELEGRAM_BOT_TOKEN`、`TELEGRAM_CHAT_ID`（既存のくろーどBotを流用）
+
+---
+
+## 復旧手順：OAuth refresh_token が失効したとき
+
+Telegram で「❌ GSC週次収集 失敗」が来たら、まずは Run ログを見て `invalid_grant` 系のエラーか確認。
+そうなら以下の手順で再発行：
+
+### Step 1：OAuth Playground で再認証
+
+1. https://developers.google.com/oauthplayground にアクセス
+2. 右上 ⚙ → 「Use your own OAuth credentials」にチェック
+3. Client ID / Client secret は既存の値を入力（`taisyoku-analytics` プロジェクトの `gsc-playground-client`）
+4. 左パネル「Input your own scopes」に：`https://www.googleapis.com/auth/webmasters.readonly`
+5. **「Authorize APIs」** → `shitugyou.otasuke@gmail.com` でログイン → 許可
+6. **「Exchange authorization code for tokens」** ボタン
+7. 新しい `refresh_token` をコピー
+
+### Step 2：GitHub Secret を更新
+
+Claude Code で：
+
+> taisyoku の GSC_OAUTH_JSON Secret の refresh_token を更新したい。新しい値は `1//xxx...`
+
+→ Claude が既存の Secret に新しい refresh_token を上書きして `gh secret set` で登録。
+
+### Step 3：Workflow 再実行
+
+```sh
+gh workflow run "Weekly SEO Report" -R hgtnzm/taisyoku
 ```
 
 ---
 
 ## 拡張アイデア
 
-- **Telegram 通知**：`weekly-seo-report.yml` の最後に `curl` で Telegram Bot に「収集完了」を送る
 - **完全自動分析**：Anthropic API キーを Secret に追加 → Workflow に Claude 呼び出しステップを追加。月コスト数十円
 - **GA4 統合**：GA4 Data API も同じサービスアカウントで読める。`fetch_ga4.py` を追加して PV / 滞在時間も収集
 - **Bing Webmaster API**：Copilot 経由のクエリも取れる
 - **Clarity 導入**：ヒートマップ用に `<script>` 1行貼るだけ
+- **OAuth アプリ本番昇格**：refresh_token の7日失効を解消（Google verification 申請、sensitive scope なので審査あり・数週間〜数ヶ月）

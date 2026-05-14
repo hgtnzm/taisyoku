@@ -33,13 +33,63 @@ jobs:
         run: python scripts/fetch_gsc.py
 
       - name: Commit & push
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/analytics/raw
           if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "no changes"
             exit 0
           fi
           git commit -m "chore(analytics): weekly GSC snapshot $(date -u +%Y-%m-%d)"
           git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Notify Telegram on success
+        if: success()
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+          CHANGED: ${{ steps.commit.outputs.changed }}
+        run: |
+          DATE=$(date -u +%Y-%m-%d)
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          if [ "$CHANGED" = "true" ]; then
+            STATUS="✅ GSC週次収集 成功"
+            DETAIL="新規データを raw/${DATE}/ にコミット。Claude Code で「今週のレポート作って」と言えばレポート生成可能。"
+          else
+            STATUS="✅ GSC週次収集 成功（差分なし）"
+            DETAIL="今回は更新無し。GSC データ反映ラグの可能性。"
+          fi
+          MSG="${STATUS}
+${DATE}
+
+${DETAIL}
+
+Run: ${RUN_URL}"
+          curl -sS "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
+            --data-urlencode chat_id="${TG_CHAT}" \
+            --data-urlencode text="${MSG}" \
+            > /dev/null
+
+      - name: Notify Telegram on failure
+        if: failure()
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          DATE=$(date -u +%Y-%m-%d)
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          MSG="❌ GSC週次収集 失敗
+${DATE}
+
+OAuth refresh_token 失効の可能性大（テスト中アプリの7日制限）。
+docs/analytics/README.md の復旧手順を参照。
+
+Log: ${RUN_URL}"
+          curl -sS "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
+            --data-urlencode chat_id="${TG_CHAT}" \
+            --data-urlencode text="${MSG}" \
+            > /dev/null
