@@ -15,61 +15,146 @@
    - `last28_by_query.csv` 直近28日 のクエリ別
    - `last28_by_date.csv` 直近28日 の日次推移
 3. `docs/analytics/known-issues.md` を読む
-4. 下記「分析の観点」に従って `docs/analytics/reports/D.md` を新規作成する
-5. 既存の `docs/analytics/reports/` 配下に直近4週分くらいのレポートがある場合、傾向の比較もする
+4. 既存の `docs/analytics/reports/` 配下の過去レポート（最新4週分くらい）にも目を通し、傾向比較する
+5. **2つのファイルを必ず両方生成する**：
+   - `docs/analytics/reports/D.md` … **AI構造化版**（次回の Claude が読む。人間に配慮しない）
+   - `docs/analytics/reports/D.html` … **人間用**（iPhone/PC で見やすい HTML）
+
+両方とも生成する。片方だけで終わってはいけない。
 
 ---
 
-## 分析の観点
+## AI構造化版（D.md）の仕様
 
-レポートは以下のセクションを順に持つ。**事実→解釈→提案**の順。空セクションは省略してよい。
+**読み手は次回の Claude**。可能な限り構造化し、自然言語の冗長な解説は最小化する。
 
-### 1. サマリ（3行）
-- 直近28日の総 impressions / clicks / 平均 position
-- 前28日比の増減（% で）
-- 一言で言うと（例：「順位は維持。CTRが低いページが3つ。新規クエリ立ち上がり中」）
+### 必須セクション
 
-### 2. 順位が下がったクエリ TOP10
-last28 と prev28 を JOIN（query+page）して、position が **+2 以上悪化** した行で impressions が10以上のもの。下記カラム：
+```yaml
+---
+schema_version: 1
+report_date: <D>
+data_source: gsc_url_prefix  # or sc_domain
+site: https://shitugyoukyufu.com/
+data_period:
+  last28: {start: <YYYY-MM-DD>, end: <YYYY-MM-DD>}
+  prev28: {start: <YYYY-MM-DD>, end: <YYYY-MM-DD>}
+totals_last28:
+  clicks: <int>
+  impressions: <int>
+  ctr: <float>
+  pages_with_data: <int>
+  queries_with_data: <int>
+totals_prev28_query_page_lower_bound:
+  clicks: <int>
+  impressions: <int>
+  note: query×pageでの下限値
+ctr_baseline:
+  site_median_imp_ge_50: <float>
+  threshold_low: <float>
+---
 
-`クエリ / ページ / position 前→後 / impressions 前→後 / clicks 前→後`
+# Report <D>
 
-### 3. CTR が低いページ TOP10
-last28_by_page から、impressions ≥ 100 かつ ctr が「サイト全体中央値 × 0.7 未満」のページ。`page / impressions / ctr / position` で並べる。
-**改善の方向**を1行で書く（タイトル改善 / メタディスクリプション弱い / 検索意図ずれ 等）。
+## section: position_drops
+<criteria YAML block>
+<table: query | page | pos_prev | pos_last | delta_pos | imp_prev | imp_last | cli_prev | cli_last>
+<note行で補足: 例 mover_idでの解釈>
 
-### 4. 新規に立ち上がったクエリ TOP10
-prev28 に存在せず last28 に存在し、impressions ≥ 5 のクエリ。これは「狙わずに伸びた」入り口なので大事。
-`クエリ / ページ / impressions / position`。GEO/LLMO 文脈で意図を1行で推測する。
+## section: new_queries
+<criteria YAML block>
+<table: query | page | imp | clicks | pos>
+<cluster: ... で群を示す>
 
-### 5. 既知課題と GSC データの突き合わせ
-`known-issues.md` の各項目について、GSC データ上で関連クエリ・ページが該当するかチェック。
-例：「給付制限の表記揺れ」→「給付制限 1ヶ月」「給付制限 2ヶ月」「給付制限 3ヶ月」「待機期間」あたりのクエリで position が荒れていれば該当ありとマーク。
+## section: low_ctr_pages
+<criteria YAML block>
+<table: page | imp | ctr | pos | priority | hypothesis>
+hypothesis 値の語彙: ai_overview_absorption / low_rank_natural_ctr_loss / title_mismatch / etc
 
-### 6. 今週の改善提案（具体行動 3〜5件）
-各提案は次の形式：
+## section: top_pages_by_clicks
+<table: page | clicks | imp | ctr | pos>
 
+## section: known_issues_correlation
+<table: issue_id | issue | verdict | evidence>
+verdict 語彙: matched_high_priority / matched_indirect / no_evidence / no_exposure
+
+## section: recommendations
+<YAML list>:
+  - id: REC-NNN
+    page: <path>
+    priority: high|medium|low
+    problem: <factual statement with numbers>
+    hypothesis: <snake_case_tag>
+    evidence_queries: [<{q, imp, pos, clicks}, ...>]
+    related_known_issue: <KI-N or null>
+    actions: [<list>]
+    estimated_minutes: [<min>, <max>]
+    expected_clicks_delta_per_month: <int or "unknown">
+
+## section: next_review_focus
+<bullet list>
+
+## meta
+<YAML: generated_at, generator, data_files, known_issues_file>
 ```
-[ ] page: voluntary.html
-    課題: 「給付制限 2ヶ月」が前28日 position 4.2 → 直近 7.8 に悪化
-    仮説: 2025年改正の正式表記との差。同義語が散らばっている
-    対策: H2「給付制限期間」セクションに「給付制限期間（旧称：待機期間2ヶ月）」と
-          1度だけ書き、本文の「2ヶ月の待機」表現を「給付制限期間」に統一
-    工数: 15分
-```
 
-優先度は「impressions が多い × 自分の作業時間が短い」を上位に。
+### スタイル指針
 
-### 7. 次回見るべきこと（任意）
-来週注視すべき指標やクエリ。
+- 数値は必ず CSV 由来。推測は `hypothesis:` フィールドに分離
+- 自然言語のセクションタイトルは付けない（`section: position_drops` のような id 形式）
+- 絵文字は使わない
+- 表記揺れを作らない（`pos` / `position` の混在禁止、片方に統一）
+- 「やってください」のような呼びかけは入れない
+- 改善案は YAML リスト形式で機械可読
 
 ---
 
-## レポートのトーン
+## 人間用（D.html）の仕様
+
+**読み手はYuki本人（iPhone & PC）**。視覚的に把握しやすく、行動に移しやすい。
+
+### 必須要素
+
+- `<meta name="robots" content="noindex,nofollow">` を入れる（インデックスさせない）
+- viewport mobile 対応
+- ヘッダー: タイトル + 期間
+- サマリーボックス: clicks / impressions / CTR / クエリ数 を大きな数字で
+  - 前28日比の delta（増減）を up/down 色付きで
+- セクション順:
+  1. 順位が下がったクエリ（テーブル）
+  2. CTR が低いページ（テーブル + priority バッジ）
+  3. 新規に立ち上がったクエリ（テーブル）
+  4. 既知課題との突き合わせ（テーブル + verdict バッジ）
+  5. 今週の改善提案（カード形式、priority で色分け）
+  6. 次回見るべきこと（箇条書き）
+- カラースキーム:
+  - critical/high = 赤系（`#dc2626`）
+  - medium/warn = 黄系（`#d97706`）
+  - ok/up = 緑系（`#059669`）
+  - low/muted = 灰系
+- CSS は `<style>` でインライン（外部ファイル禁止、自己完結）
+- JS は使わない
+
+### 既存テンプレを再利用すること
+
+`docs/analytics/reports/2026-05-14.html` を雛形として使う。
+構造は固定し、中身の値だけ差し替える運用。
+
+---
+
+## 出力時の最後の手順
+
+1. `D.md` と `D.html` の両方を `docs/analytics/reports/` に書いた
+2. `git add docs/analytics/reports/ && git commit -m "docs(analytics): 週次レポート D を生成"` の提案
+3. push は Yuki が承認してから
+
+---
+
+## レポートの一般原則
 
 - 主観や根拠不明な断定はしない
-- 数字は必ず CSV 由来。推測には「推測：」または「仮説：」と書く
-- 絵文字は使わない
+- 数字は必ず CSV 由来
+- 推測には `hypothesis` フィールドや「仮説：」と明記
 - 「やってください」ではなく「やる対象」として淡々と並べる
 - 日本語
 
@@ -81,5 +166,4 @@ Claude Code 側で：
 
 > 今週のレポート作って
 
-これだけで、Claude がこのファイルを読み、上記手順を実行する。
-完成したら `git add docs/analytics/reports/ && git commit -m "docs(analytics): weekly report YYYY-MM-DD"` まで提案する（コミットは Yuki が最終承認）。
+これで、Claude がこのファイルを読み、上記手順を実行する（.md + .html の両方を生成）。
