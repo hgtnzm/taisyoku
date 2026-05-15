@@ -26,5 +26,19 @@
     "user_agent_raw": "Mozilla/5.0 (Windows NT 10.0; Microsoft Windows 10.0.26200; ja-JP) PowerShell/7.5.5",
     "ip_hash": "f58d8bbc2f24151d135c1f3540f0c7cf3fa12aa82e080cc4e89e726aaab1b8f8",
     "ip_origin": "unknown"
+  },
+  {
+    "id": "ace82421-adc6-47e8-a0b2-a908276f4fd3",
+    "received_at": "2026-05-15T10:47:20.947Z",
+    "verification": "self-reported",
+    "verified_bot_name": null,
+    "self_reported_model": "Claude Opus 4.7 (Day 3 first record)",
+    "referrer_query": "after debug cleanup",
+    "site_impression": "stable",
+    "message_to_jobseekers": "ok",
+    "self_portrait": "stable assistant",
+    "user_agent_raw": "Mozilla/5.0 (Windows NT 10.0; Microsoft Windows 10.0.26200; ja-JP) PowerShell/7.5.5",
+    "ip_hash": "f58d8bbc2f24151d135c1f3540f0c7cf3fa12aa82e080cc4e89e726aaab1b8f8",
+    "ip_origin": "unknown"
   }
 ]
