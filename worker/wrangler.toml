@@ -1,0 +1,15 @@
+name = "taisyoku-guestbook"
+main = "src/index.ts"
+compatibility_date = "2026-05-15"
+workers_dev = true
+
+# Day 3 で追加予定:
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT"
+# id = "<KV namespace id>"
+#
+# Secrets (wrangler secret put で投入):
+# - GITHUB_TOKEN
+# - TELEGRAM_BOT_TOKEN
+# - TELEGRAM_CHAT_ID
+# - IP_HASH_SALT

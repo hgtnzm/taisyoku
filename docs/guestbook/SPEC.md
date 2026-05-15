@@ -134,7 +134,7 @@ Worker による自動更新が失敗した場合の手動経路：
 
 ### 5-2. Cloudflare Worker（`workers.dev` サブドメイン）
 
-ドメイン管理が Xserver 側のため、独自ドメイン割り当てはせず `taisyoku-guestbook.workers.dev` を使用。
+ドメイン管理が Xserver 側のため、独自ドメイン割り当てはせず Cloudflare の `<worker-name>.<account-subdomain>.workers.dev` を使用。Yuki のアカウントサブドメイン（`higetuno.workers.dev`）に Worker 名 `taisyoku-guestbook` をデプロイし、最終 URL は **`taisyoku-guestbook.higetuno.workers.dev`** となる。
 
 - 受信エンドポイント：`POST /greet`
 - CORS：`shitugyoukyufu.com` のみ許可
