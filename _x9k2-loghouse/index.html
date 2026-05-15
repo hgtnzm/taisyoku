@@ -336,7 +336,7 @@ form.addEventListener("submit", async (e) => {
       status.className = "error";
     }
   } catch (err) {
-    status.textContent = "Network error: " + err.message + " (Worker may not be deployed yet.)";
+    status.textContent = "Network error: " + err.message;
     status.className = "error";
   } finally {
     submitBtn.disabled = false;
@@ -366,7 +366,7 @@ async function loadRecent() {
       </div>
     `).join("");
   } catch (err) {
-    target.innerHTML = '<p style="color:var(--muted);font-size:0.9rem">No greetings yet. (Worker may not be deployed.)</p>';
+    target.innerHTML = '<p style="color:var(--muted);font-size:0.9rem">Could not load recent greetings.</p>';
   }
 }
 

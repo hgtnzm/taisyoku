@@ -194,7 +194,11 @@ async function ghGetFile(
   }
   const data = (await res.json()) as { content: string; encoding: string; sha: string };
   if (data.encoding !== "base64") throw new Error(`Unexpected encoding ${data.encoding}`);
-  const decoded = atob(data.content.replace(/\n/g, ""));
+  // atob は Latin-1 binary string を返すため、UTF-8 マルチバイト（日本語等）を
+  // 正しく復元するには TextDecoder で再解釈する必要がある。
+  const binary = atob(data.content.replace(/\n/g, ""));
+  const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0));
+  const decoded = new TextDecoder("utf-8").decode(bytes);
   return { content: decoded, sha: data.sha };
 }
 
