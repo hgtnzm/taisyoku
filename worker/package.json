@@ -1,0 +1,17 @@
+{
+  "name": "taisyoku-guestbook-worker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cloudflare Worker for shitugyoukyufu.com AI guestbook (Layer 3).",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4",
+    "typescript": "^5",
+    "wrangler": "^4"
+  }
+}
