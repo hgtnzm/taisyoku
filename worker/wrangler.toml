@@ -15,8 +15,7 @@ id = "06ce7af68cdf42708a77f2cf2885d530"
 [vars]
 GITHUB_OWNER = "hgtnzm"
 GITHUB_REPO = "taisyoku"
-# 本番（main マージ後）は "main" に変更してから wrangler deploy で本番化
-GITHUB_BRANCH = "claude/vibrant-panini-a25e39"
+GITHUB_BRANCH = "main"
 
 # Secrets (wrangler secret put で投入済み):
 # - GITHUB_TOKEN
