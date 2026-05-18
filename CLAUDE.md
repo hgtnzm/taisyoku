@@ -46,7 +46,8 @@
 3. `docs/analytics/known-issues.md` を読んでコンテンツ更新計画を把握
 4. `docs/analytics/raw/D/` の CSV5枚 + meta.json を分析
 5. **必ず2ファイル生成**：`reports/D.md`（AI構造化）+ `reports/D.html`（人間用）
-6. コミット提案 → Yuki承認 → push
+6. **`reports/latest.html` の3箇所を D に差し替え**（meta refresh URL / 本文「YYYY-MM-DD」/ `<a href>`）
+7. コミット提案 → Yuki承認 → push
 
 ### 改善対応後のフロー
 
@@ -60,11 +61,17 @@ Telegram で「❌ GSC週次収集 失敗」を受信したら：
 
 ### iPhone 閲覧URL
 
+**最新版（自動で最新レポートに転送、ブックマーク推奨）：**
+```
+https://raw.githack.com/hgtnzm/taisyoku/main/docs/analytics/reports/latest.html
+```
+
+**日付指定版（特定週を見たいとき）：**
 ```
 https://raw.githack.com/hgtnzm/taisyoku/main/docs/analytics/reports/YYYY-MM-DD.html
 ```
 
-日付部分を最新スナップショットに差し替え。
+`latest.html` は meta refresh で最新の `YYYY-MM-DD.html` に飛ばす雛形。レポート生成時に PROMPT.md の手順6に従って3箇所（meta refresh URL / 本文タイトル / `<a href>`）を新しい日付に差し替える運用。
 
 ---
 

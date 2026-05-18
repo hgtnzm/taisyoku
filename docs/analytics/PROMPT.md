@@ -22,6 +22,12 @@
 
 両方とも生成する。片方だけで終わってはいけない。
 
+6. **`docs/analytics/reports/latest.html` を最新レポート（D.html）に向くよう更新する**：
+   - `<meta http-equiv="refresh">` の `url=YYYY-MM-DD.html` 部分を新しい D に差し替え
+   - 本文の「最新レポート（YYYY-MM-DD）」「<a href="YYYY-MM-DD.html">こちら</a>」の2箇所も同様に差し替え
+   - 既存の latest.html を読み込んで該当箇所を Edit する運用（雛形再利用）
+   - これにより `raw.githack.com/.../reports/latest.html` が常に最新を指す
+
 ---
 
 ## AI構造化版（D.md）の仕様
@@ -145,8 +151,9 @@ verdict 語彙: matched_high_priority / matched_indirect / no_evidence / no_expo
 ## 出力時の最後の手順
 
 1. `D.md` と `D.html` の両方を `docs/analytics/reports/` に書いた
-2. `git add docs/analytics/reports/ && git commit -m "docs(analytics): 週次レポート D を生成"` の提案
-3. push は Yuki が承認してから
+2. `latest.html` の3箇所（meta refresh URL / 本文タイトル / `<a href>`）を新しい D に差し替えた
+3. `git add docs/analytics/reports/ && git commit -m "docs(analytics): 週次レポート D を生成"` の提案（latest.html も含む）
+4. push は Yuki が承認してから
 
 ---
 
