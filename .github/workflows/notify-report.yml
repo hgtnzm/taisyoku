@@ -1,0 +1,70 @@
+name: Notify Report
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/analytics/reports/*.html'
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Report date (YYYY-MM-DD) for manual notification. Leave empty to use the latest dated report on main.'
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Determine report date
+        id: date
+        run: |
+          DATE=""
+          if [ -n "${{ inputs.date }}" ]; then
+            DATE="${{ inputs.date }}"
+            echo "trigger=manual_input" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            # Manual dispatch without input → pick most recent dated report
+            DATE=$(ls docs/analytics/reports/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].html 2>/dev/null | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' | sort -u | tail -1)
+            echo "trigger=manual_auto" >> "$GITHUB_OUTPUT"
+          else
+            # push trigger → check newly added/modified date-pattern report
+            ADDED=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- 'docs/analytics/reports/' | grep -E 'reports/[0-9]{4}-[0-9]{2}-[0-9]{2}\.html$' | head -1)
+            if [ -z "$ADDED" ]; then
+              echo "no dated report added in this push, skipping"
+              exit 0
+            fi
+            DATE=$(basename "$ADDED" .html)
+            echo "trigger=push" >> "$GITHUB_OUTPUT"
+          fi
+          if [ -z "$DATE" ]; then
+            echo "no report date determined, skipping"
+            exit 0
+          fi
+          echo "date=$DATE" >> "$GITHUB_OUTPUT"
+          echo "Resolved date: $DATE"
+
+      - name: Send Telegram notification
+        if: steps.date.outputs.date != ''
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DATE: ${{ steps.date.outputs.date }}
+          TRIGGER: ${{ steps.date.outputs.trigger }}
+          REPO: ${{ github.repository }}
+        run: |
+          URL_LATEST="https://raw.githack.com/${REPO}/main/docs/analytics/reports/latest.html"
+          URL_DATED="https://raw.githack.com/${REPO}/main/docs/analytics/reports/${DATE}.html"
+          MSG=$(printf '📊 週次SEOレポート完成\n%s (trigger: %s)\n\n最新版（ブックマーク推奨）:\n%s\n\n日付指定版:\n%s' \
+            "$DATE" "$TRIGGER" "$URL_LATEST" "$URL_DATED")
+          curl -sS "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
+            --data-urlencode chat_id="${TG_CHAT}" \
+            --data-urlencode text="${MSG}" \
+            > /dev/null
