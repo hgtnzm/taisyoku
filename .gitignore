@@ -1,0 +1,6 @@
+# Claude Code のローカル状態（マシン固有設定・worktree スナップショット等）
+.claude/
+
+# OS / エディタ
+.DS_Store
+Thumbs.db
