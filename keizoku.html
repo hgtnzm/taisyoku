@@ -178,7 +178,7 @@ a { color:var(--primary); }
 
   <div class="danger-box">
     🚨 <strong>「60歳に達した日」がいつかで支給率が変わります</strong><br>
-    令和7年（2025年）4月1日の改正で、補填の上限率が<strong>15%から10%に引き下げ</strong>られました。基準は<strong>60歳に達した日</strong>（法律上は<strong>誕生日の前日</strong>）。誕生日でいうと、<strong>2025年4月1日まで</strong>が誕生日の方は15%、<strong>4月2日以降</strong>が誕生日の方は10%です。
+    令和7年（2025年）4月1日の改正で、補填の上限率が<strong>15%から10%に引き下げ</strong>られました。基準は<strong>60歳に達した日</strong>（法律上は<strong>誕生日の前日</strong>）。誕生日でいうと、<strong>2025年4月1日まで</strong>が誕生日の方は15%、<strong>4月2日以降</strong>が誕生日の方は10%です。<br><span style="font-size:13px;">※ 60歳に達した日の時点で雇用保険の加入が5年に満たない方は、加入が5年に達した日が基準になる等の例外があります。</span>
   </div>
 
   <div class="card" style="overflow-x:auto;">
@@ -216,7 +216,7 @@ a { color:var(--primary); }
 
   <div class="card">
     <h3>① 60歳以上65歳未満である</h3>
-    <p>60歳の誕生日を迎えた月から、65歳の誕生日を迎える月までが対象期間です。65歳になると、こちらの給付は終了します。</p>
+    <p>原則として、60歳に到達した日の属する月から、65歳に到達する日の属する月までが対象です。65歳になると、こちらの給付は終了します。</p>
   </div>
   <div class="card">
     <h3>② 雇用保険の被保険者期間が通算5年以上</h3>
@@ -285,37 +285,42 @@ a { color:var(--primary); }
   <h2>いくら補填される？（支給率）</h2>
   <p class="section-sub">下がり幅が大きいほど、補填率も高い</p>
 
-  <div class="card" style="overflow-x:auto;">
+  <div class="card">
+    <h3>💴 15%版（60歳に達した日が2025年3月31日以前）</h3>
     <table class="compare-table">
       <thead>
-        <tr>
-          <th>賃金の低下率<br>（今の賃金 ÷ 60歳時の賃金）</th>
-          <th>支給率（今の賃金に対して）</th>
-        </tr>
+        <tr><th>賃金の低下率（今の賃金 ÷ 60歳時の賃金）</th><th>支給率</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td>75%以上（あまり下がっていない）</td>
-          <td data-label="支給率" style="color:var(--danger);">支給なし</td>
-        </tr>
-        <tr>
-          <td>61%超〜75%未満</td>
-          <td data-label="支給率">下がるほど率が上がる（逓減計算）</td>
-        </tr>
-        <tr>
-          <td>61%以下（大きく下がった）</td>
-          <td data-label="支給率" class="highlight"><strong>上限の15% または 10%</strong></td>
-        </tr>
+        <tr><td>75%以上</td><td data-label="支給率" style="color:var(--danger);">支給なし</td></tr>
+        <tr><td>61%超〜75%未満</td><td data-label="支給率">逓減（下がるほど率が上がる）</td></tr>
+        <tr><td>61%以下</td><td data-label="支給率" class="highlight"><strong>今の賃金 × 15%</strong></td></tr>
       </tbody>
     </table>
+    <div class="info-box" style="margin-bottom:0;">
+      🧮 逓減（61%超〜75%未満）の計算式：<br>支給額 ＝ <strong>(−183 × Ｗ ＋ 137.25 × Ｗ₀) ÷ 280</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>💴 10%版（60歳に達した日が2025年4月1日以降）</h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>賃金の低下率（今の賃金 ÷ 60歳時の賃金）</th><th>支給率</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>75%以上</td><td data-label="支給率" style="color:var(--danger);">支給なし</td></tr>
+        <tr><td>64%超〜75%未満</td><td data-label="支給率">逓減（下がるほど率が上がる）</td></tr>
+        <tr><td>64%以下</td><td data-label="支給率" class="highlight"><strong>今の賃金 × 10%</strong></td></tr>
+      </tbody>
+    </table>
+    <div class="info-box" style="margin-bottom:0;">
+      🧮 逓減（64%超〜75%未満）の計算式：<br>支給額 ＝ <strong>(−64 × Ｗ ＋ 48 × Ｗ₀) ÷ 110</strong>
+    </div>
   </div>
 
   <div class="info-box">
-    🧮 <strong>計算式（61%超〜75%未満のとき）</strong><br>
-    Ｗ＝支給対象月の賃金、Ｗ₀＝60歳到達時の賃金月額 として、<br><br>
-    ・<strong>15%版</strong>（60歳到達が2025/3/31以前）：支給額 ＝ <strong>(−183 × Ｗ ＋ 137.25 × Ｗ₀) ÷ 280</strong><br>
-    ・<strong>10%版</strong>（60歳到達が2025/4/1以降）：支給額 ＝ <strong>(−122 × Ｗ ＋ 91.5 × Ｗ₀) ÷ 280</strong><br><br>
-    低下率が61%以下なら、シンプルに「今の賃金 × 15%（または10%）」です。
+    Ｗ＝支給対象月の賃金、Ｗ₀＝60歳到達時の賃金月額。<strong>15%版は低下率61%、10%版は64%</strong>が「上限率に達するライン」で、ここを下回れば「今の賃金 × 15%（または10%）」です。
   </div>
 </div>
 
@@ -482,7 +487,7 @@ a { color:var(--primary); }
       "name": "高年齢雇用継続給付はいくらもらえますか？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "賃金の低下率に応じて決まります。今の賃金が60歳時点の61%以下まで下がった場合は、今の賃金の最大15%（2025年4月以降に60歳到達なら最大10%）が支給されます。61%超75%未満の場合は逓減した率になり、75%以上だと支給されません。例えば60歳時30万円・現在18万円・15%版なら、月およそ2.7万円が補填されます。"
+        "text": "賃金の低下率に応じて決まります。15%版（60歳到達が2025年3月31日以前）は低下率61%以下で今の賃金の最大15%、10%版（2025年4月1日以降）は低下率64%以下で最大10%が支給されます。上限ラインを超え75%未満の間は逓減し、75%以上だと支給されません。例えば60歳時30万円・現在18万円・15%版なら、月およそ2.7万円が補填されます。"
       }
     },
     {
@@ -546,10 +551,12 @@ function calcKeizoku() {
   if (ratio >= 0.75) {
     benefit = 0;
     note = '賃金低下率が75%以上のため支給対象外です（下げ幅が25%未満）。';
-  } else if (ratio <= 0.61) {
-    benefit = is10 ? w * 0.10 : w * 0.15;
+  } else if (is10) {
+    // 10%版（60歳到達が2025/4/1以降）：64%以下は定率10%、64%超75%未満は逓減
+    benefit = ratio <= 0.64 ? w * 0.10 : (-64 * w + 48 * w0c) / 110;
   } else {
-    benefit = is10 ? (-122 * w + 91.5 * w0c) / 280 : (-183 * w + 137.25 * w0c) / 280;
+    // 15%版（60歳到達が2025/3/31以前）：61%以下は定率15%、61%超75%未満は逓減
+    benefit = ratio <= 0.61 ? w * 0.15 : (-183 * w + 137.25 * w0c) / 280;
   }
   benefit = Math.round(benefit);
 
