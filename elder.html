@@ -344,7 +344,7 @@ a { color:var(--primary); }
           <div class="value" id="res-total" style="color:#059669;">-</div>
         </div>
       </div>
-      <p style="font-size:12px;color:var(--gray-500);margin-top:12px;text-align:center;">※ 概算です。正確な金額はハローワークでご確認ください。<br>基本手当日額は令和7年8月1日〜の上限額を適用しています。</p>
+      <p style="font-size:12px;color:var(--gray-500);margin-top:12px;text-align:center;">※ 概算です。正確な金額はハローワークでご確認ください。<br>給付率・上限額は令和7年8月1日〜の「60歳以上65歳未満」の区分を適用しています。</p>
     </div>
   </div>
 </div>
@@ -493,7 +493,7 @@ a { color:var(--primary); }
   </div>
   <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">65歳の誕生日の前日に退職したらどうなりますか？</button>
-    <div class="faq-a">65歳の誕生日の前日はまだ「64歳」扱いです。この場合は通常の基本手当（64歳以下）が適用されます。65歳以上の高年齢求職者給付金を受けるには、65歳の誕生日当日以降に離職する必要があります。</div>
+    <div class="faq-a">法律上、満65歳に達するのは「65歳の誕生日の前日」です（年齢計算に関する法律）。そのため、<strong>誕生日の前日に離職すると、すでに65歳に達している扱い</strong>となり「高年齢求職者給付金」の対象になります。逆に、給付日数の多い64歳までの基本手当を選びたい場合は、<strong>65歳の誕生日の前々日以前</strong>に離職する必要があります。</div>
   </div>
   <div class="faq-item">
     <button class="faq-q" onclick="toggleFaq(this)">パート・アルバイトでも受給できますか？</button>
@@ -587,28 +587,27 @@ function calcElder() {
 
   var days = parseInt(document.querySelector('input[name="elder-period"]:checked').value);
 
-  // 賃金日額
+  // 賃金日額 ＝ 離職前6か月の賃金合計 ÷ 180（入力の平均月収 × 6 ÷ 180）
   var dailyWage = Math.round(salary * 6 / 180);
 
-  // 上下限（令和7年度 60〜64歳の上限を準用）
-  if (dailyWage < 2746) dailyWage = 2746;
-  if (dailyWage > 16210) dailyWage = 16210;
+  // 賃金日額の上下限（令和7年8月1日〜・60歳以上65歳未満の区分）
+  if (dailyWage < 3014) dailyWage = 3014;
+  if (dailyWage > 16940) dailyWage = 16940;
 
-  // 給付率計算（60〜64歳の計算式を準用）
-  var rate;
-  if (dailyWage <= 5200) {
-    rate = 0.80;
-  } else if (dailyWage >= 12580) {
-    rate = 0.45;
+  // 基本手当日額（60歳以上65歳未満の給付率：80%→45%／令和7年8月1日〜の公式計算式）
+  var dailyBenefit;
+  if (dailyWage <= 5340) {
+    dailyBenefit = 0.80 * dailyWage;
+  } else if (dailyWage <= 11800) {
+    dailyBenefit = 0.80 * dailyWage - 0.35 * ((dailyWage - 5340) / 6460) * dailyWage;
   } else {
-    // 線形補間
-    rate = 0.80 - (dailyWage - 5200) / (12580 - 5200) * (0.80 - 0.45);
+    dailyBenefit = 0.45 * dailyWage;
   }
+  dailyBenefit = Math.floor(dailyBenefit);
 
-  var dailyBenefit = Math.round(dailyWage * rate);
-
-  // 上限チェック（60〜64歳の上限日額 7,294円）
-  if (dailyBenefit > 7294) dailyBenefit = 7294;
+  // 基本手当日額の上下限（令和7年8月1日〜・60歳以上65歳未満）
+  if (dailyBenefit > 7623) dailyBenefit = 7623;
+  if (dailyBenefit < 2411) dailyBenefit = 2411;
 
   var total = dailyBenefit * days;
 
