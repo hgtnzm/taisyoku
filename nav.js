@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     + '    <li><a href="calculator.html" class="btn-calc">🧮 給付金計算</a></li>'
     + '    <li><a href="mental-check.html">🧠 メンタルチェック</a></li>'
     + '    <li><a href="tokutei.html">📋 特定理由離職者</a></li>'
+    + '    <li><a href="teinengo.html">🧭 定年後の再就職</a></li>'
     + '    <li><a href="keizoku.html">📉 60代の継続給付</a></li>'
     + '    <li><a href="elder.html">🧓 65歳〜の給付</a></li>'
     + '    <li><a href="health-insurance.html">🏥 退職後の健康保険</a></li>'

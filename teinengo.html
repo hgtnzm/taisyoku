@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <link rel="icon" href="/images/favicon.ico" sizes="32x32">
+<link rel="icon" href="/images/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>定年後の再就職ガイド｜ハローワーク・生涯現役支援窓口の使い方（60代・65歳以上）</title>
+<meta name="description" content="定年後も働きたい方へ。ハローワークの「生涯現役支援窓口」やシルバー人材センターの使い方、定年後の働き方の選択肢、65歳・70歳までの雇用制度、高齢者歓迎求人の探し方までやさしく解説。">
+<link rel="stylesheet" href="common.css">
+<meta property="og:site_name" content="退職・失業給付ガイド">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="定年後の再就職ガイド｜ハローワーク・生涯現役支援窓口の使い方">
+<meta property="og:description" content="定年後も働きたい方へ。生涯現役支援窓口・シルバー人材センターの使い方、働き方の選択肢、求人の探し方まで。">
+<meta property="og:url" content="https://shitugyoukyufu.com/teinengo.html">
+<meta property="og:image" content="https://shitugyoukyufu.com/images/ogp-index.jpg">
+<meta name="twitter:image" content="https://shitugyoukyufu.com/images/ogp-index.jpg">
+<style>
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1e3a8a;
+  --primary-light: #dbeafe;
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --danger: #dc2626;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-800: #1e293b;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Hiragino Sans',sans-serif; color:var(--gray-800); background:var(--gray-50); line-height:1.8; padding-bottom:80px; }
+a { color:var(--primary); }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #065f46, #059669);
+  color:white; text-align:center; padding:60px 20px 40px;
+}
+.hero-icon { font-size:48px; margin-bottom:12px; }
+.hero h1 { font-size:clamp(22px,5vw,32px); font-weight:900; line-height:1.4; margin-bottom:12px; }
+.hero h1 em { font-style:normal; border-bottom:3px solid #fbbf24; }
+.hero .sub { font-size:15px; opacity:0.9; margin-bottom:20px; }
+.hero-chips { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; }
+.hero-chip { background:rgba(255,255,255,0.15); padding:6px 14px; border-radius:99px; font-size:13px; font-weight:600; }
+
+/* SECTION */
+.section { max-width:800px; margin:40px auto; padding:0 16px; }
+.section-icon { font-size:32px; text-align:center; margin-bottom:8px; }
+.section h2 { font-size:clamp(18px,4vw,24px); font-weight:900; text-align:center; margin-bottom:6px; }
+.section .section-sub { text-align:center; font-size:14px; color:var(--gray-500); margin-bottom:24px; }
+
+/* CARD */
+.card { background:white; border-radius:var(--radius-lg); box-shadow:var(--shadow-md); padding:24px 20px; margin-bottom:16px; }
+.card h3 { font-size:16px; font-weight:800; margin-bottom:12px; }
+.card p { font-size:14px; color:var(--gray-600); line-height:1.8; }
+
+/* INFO / WARNING BOX */
+.info-box { background:var(--primary-light); border-radius:var(--radius-md); padding:16px 20px; margin-bottom:16px; font-size:14px; line-height:1.7; }
+.warning-box { background:#fffbeb; border:2px solid var(--warning); border-radius:var(--radius-md); padding:16px 20px; margin-bottom:16px; font-size:14px; line-height:1.7; }
+.danger-box { background:#fef2f2; border:2px solid var(--danger); border-radius:var(--radius-md); padding:16px 20px; margin-bottom:16px; font-size:14px; line-height:1.7; }
+
+/* TABLE */
+.compare-table { width:100%; border-collapse:collapse; margin-bottom:16px; }
+.compare-table th, .compare-table td { padding:12px 16px; text-align:left; border-bottom:1px solid var(--gray-200); font-size:14px; }
+.compare-table th { background:var(--gray-100); font-weight:700; }
+.compare-table .highlight { color:var(--success); font-weight:700; }
+.compare-table .col-elder { background:#f0fdf4; }
+
+/* FLOW */
+.flow-list { list-style:none; counter-reset:flow; }
+.flow-item { background:white; border-radius:var(--radius-md); padding:20px; margin-bottom:12px; box-shadow:var(--shadow-md); position:relative; padding-left:60px; }
+.flow-item::before { counter-increment:flow; content:counter(flow); position:absolute; left:16px; top:20px; width:32px; height:32px; border-radius:50%; background:#059669; color:white; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; }
+.flow-item h4 { font-size:15px; font-weight:800; margin-bottom:4px; }
+.flow-item p { font-size:13px; color:var(--gray-600); line-height:1.7; }
+.flow-item .flow-time { font-size:12px; color:var(--gray-500); margin-bottom:2px; }
+
+/* CTA */
+.cta-section { text-align:center; padding:40px 20px; background:linear-gradient(135deg,#065f46,#059669); color:white; margin-top:40px; }
+.cta-section h2 { font-size:clamp(18px,4vw,24px); font-weight:900; margin-bottom:12px; }
+.cta-section p { font-size:14px; opacity:0.9; margin-bottom:20px; }
+.cta-btn { display:inline-block; padding:14px 32px; background:white; color:#059669; border-radius:10px; font-size:16px; font-weight:800; text-decoration:none; margin:6px; }
+.cta-btn:hover { opacity:0.9; }
+
+/* FAQ */
+.faq-item { background:white; border-radius:var(--radius-md); box-shadow:var(--shadow-md); margin-bottom:8px; overflow:hidden; }
+.faq-q { width:100%; background:none; border:none; cursor:pointer; text-align:left; padding:16px 20px; font-size:14px; font-weight:700; color:var(--gray-800); display:flex; justify-content:space-between; align-items:center; }
+.faq-q::after { content:'▼'; font-size:12px; transition:transform 0.2s; }
+.faq-q.open::after { transform:rotate(180deg); }
+.faq-a { display:none; padding:0 20px 16px; font-size:14px; color:var(--gray-600); line-height:1.8; }
+.faq-a.open { display:block; }
+
+/* LINK CARD */
+.link-card { display:block; background:white; border-radius:var(--radius-md); box-shadow:var(--shadow-md); padding:18px 20px; margin-bottom:12px; text-decoration:none; color:var(--gray-800); border-left:5px solid #059669; transition:transform 0.15s; }
+.link-card:hover { transform:translateY(-2px); }
+.link-card .lc-title { font-size:15px; font-weight:800; color:#047857; margin-bottom:4px; }
+.link-card .lc-desc { font-size:13px; color:var(--gray-600); line-height:1.7; }
+
+/* MOBILE TABLE */
+@media (max-width:768px) {
+  .compare-table { min-width:auto; }
+  .compare-table thead { display:none; }
+  .compare-table tr { display:block; background:var(--gray-50); border-radius:8px; margin-bottom:12px; padding:12px 16px; border:1px solid var(--gray-200); }
+  .compare-table td { display:flex; justify-content:space-between; align-items:center; text-align:right; padding:8px 0; border-bottom:1px solid var(--gray-200); font-size:13px; }
+  .compare-table td:last-child { border-bottom:none; }
+  .compare-table td:first-child { text-align:left; font-weight:800; color:#059669; font-size:14px; padding-bottom:4px; display:block; border-bottom:2px solid #d1fae5; margin-bottom:4px; }
+  .compare-table td::before { content:attr(data-label); font-weight:700; color:var(--gray-600); font-size:12px; text-align:left; flex-shrink:0; margin-right:8px; }
+  .compare-table td:first-child::before { content:''; }
+}
+
+/* SCROLL TOP */
+.scroll-top { position:fixed; bottom:20px; right:16px; width:44px; height:44px; border-radius:50%; background:#059669; color:white; border:none; font-size:20px; cursor:pointer; display:none; align-items:center; justify-content:center; box-shadow:var(--shadow-lg); z-index:99; }
+.scroll-top.visible { display:flex; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<div class="hero-icon"><img src="images/kyufuneko.png" alt="給付ねこ" style="width:100px;height:100px;border-radius:50%;object-fit:cover;"></div>
+  <h1>定年後も働きたい方へ<br><em>再就職とハローワーク活用</em>ガイド</h1>
+  <p class="sub">いまハローワークは、シニア世代も主役です。<br>60歳・65歳からの仕事探しを、<strong>専用窓口の使い方</strong>から解説します。</p>
+  <div class="hero-chips">
+    <span class="hero-chip">🧭 生涯現役支援窓口</span>
+    <span class="hero-chip">👷 シルバー人材センター</span>
+    <span class="hero-chip">📜 65歳・70歳の雇用制度</span>
+    <span class="hero-chip">💰 給付との関係も</span>
+  </div>
+</div>
+
+<!-- 導入 -->
+<div class="section">
+  <div class="section-icon">📋</div>
+  <h2>「60代でハローワーク」は、もう当たり前</h2>
+  <p class="section-sub">ためらわず使っていい場所です</p>
+
+  <div class="card">
+    <h3>💡 高齢の求職者は、実はとても多い</h3>
+    <p>ハローワークの利用者には、定年前後のシニア世代がたくさんいます。「この歳で行っても…」と遠慮する必要はまったくありません。むしろ国は<strong>60歳以上の就労支援に力を入れていて</strong>、専用の窓口や制度が用意されています。</p>
+    <p style="margin-top:12px;">このページでは、定年後に働き続ける・もう一度働く人のために、<strong>どこに相談し、どんな選択肢があり、どんなお金（給付）が関わるのか</strong>を、入口からまとめて案内します。</p>
+  </div>
+</div>
+
+<!-- 生涯現役支援窓口（目玉） -->
+<div class="section">
+  <div class="section-icon">🧭</div>
+  <h2>まず知ってほしい「生涯現役支援窓口」</h2>
+  <p class="section-sub">概ね60歳以上のための専用窓口</p>
+
+  <div class="info-box">
+    🌟 <strong>一般の窓口に並ぶ前に、こちらへ</strong><br>
+    全国の主要なハローワーク<strong>約300か所</strong>に「生涯現役支援窓口」（シニア応援コーナー等）が設置されています。<strong>概ね60歳以上</strong>の求職者を対象に、シニア世代に詳しい担当者が相談に乗ってくれる専用コーナーです。この存在を知らずに一般窓口だけ使って帰ってしまう方が少なくありません。
+  </div>
+
+  <div class="card">
+    <h3>🤝 ここでしてもらえること</h3>
+    <p>これまでの就労経験・<strong>年金の受給状況</strong>・体力や生活のペースまで踏まえて、一人ひとりに合った仕事を一緒に探してくれます。具体的には——</p>
+    <ul style="margin:12px 0 0 1.2em; font-size:14px; color:var(--gray-600); line-height:1.9;">
+      <li>シニア向けの<strong>職業相談・職業紹介</strong></li>
+      <li>シニア歓迎企業の<strong>求人開拓・面接会・職場見学</strong>の案内</li>
+      <li>働き方やお金の不安に応える<strong>セミナー</strong>の紹介</li>
+      <li>必要に応じた<strong>公共職業訓練（ハロートレーニング）</strong>の受講あっせん</li>
+    </ul>
+  </div>
+
+  <div class="warning-box">
+    💡 <strong>窓口名は地域でいろいろ</strong><br>
+    「生涯現役支援窓口」のほか、「シニア応援コーナー」「シニアコーナー」など呼び方が地域で異なります。最寄りのハローワークで「<strong>60歳以上向けの相談窓口はありますか</strong>」と聞けば案内してもらえます。55歳から利用できる所や、65歳以上に特化した所もあります。
+  </div>
+</div>
+
+<!-- 定年後の働き方の選択肢 -->
+<div class="section">
+  <div class="section-icon">🛤️</div>
+  <h2>定年後の働き方、6つの選択肢</h2>
+  <p class="section-sub">「正社員フルタイム」だけが道ではない</p>
+
+  <div class="card" style="overflow-x:auto;">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>選択肢</th>
+          <th>どんな働き方か</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>① 再雇用（継続雇用）</td>
+          <td data-label="内容">定年後も同じ会社で契約社員などとして働く。給料は下がりがちだが慣れた環境。</td>
+        </tr>
+        <tr>
+          <td>② 勤務延長</td>
+          <td data-label="内容">定年でいったん退職せず、そのまま雇用を延長してもらう形。</td>
+        </tr>
+        <tr>
+          <td>③ 別の会社へ転職（再就職）</td>
+          <td data-label="内容">ハローワークや求人で新しい勤め先を探す。生涯現役支援窓口の出番。</td>
+        </tr>
+        <tr>
+          <td>④ シルバー人材センター</td>
+          <td data-label="内容">地域の臨時的・短期的、軽めの仕事。雇用ではなく請負・委任が中心。</td>
+        </tr>
+        <tr>
+          <td>⑤ 業務委託・フリーランス</td>
+          <td data-label="内容">これまでの経験を活かして個人で請け負う。70歳まで委託契約を結べる制度を持つ会社も。</td>
+        </tr>
+        <tr>
+          <td>⑥ 短時間・パート</td>
+          <td data-label="内容">週2〜3日など、年金や体力に合わせて無理のない範囲で働く。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box">
+    💡 <strong>「収入」だけでなく「ペース」で選ぶ</strong><br>
+    定年後は、フルで稼ぐより「<strong>生活リズム・健康・やりがい</strong>」を軸に選ぶ人が増えます。年金がいくら出るか、働くと年金が減らないか（→在職老齢年金）も一緒に考えると、自分に合うペースが見えてきます。
+  </div>
+</div>
+
+<!-- 会社の制度（法律の後ろ盾） -->
+<div class="section">
+  <div class="section-icon">📜</div>
+  <h2>法律で「働き続けられる」後ろ盾がある</h2>
+  <p class="section-sub">高年齢者雇用安定法</p>
+
+  <div class="card">
+    <h3>① 65歳まで＝会社の「義務」</h3>
+    <p>定年を65歳未満にしている会社は、次のどれかで<strong>65歳まで働ける仕組みを必ず用意する義務</strong>があります。</p>
+    <ul style="margin:10px 0 0 1.2em; font-size:14px; color:var(--gray-600); line-height:1.9;">
+      <li>65歳までの定年引き上げ</li>
+      <li>継続雇用制度（再雇用・勤務延長）の導入</li>
+      <li>定年制の廃止</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>② 70歳まで＝会社の「努力義務」（2021年4月〜）</h3>
+    <p>さらに2021年4月から、<strong>70歳まで</strong>の就業機会を確保する努力義務が加わりました（雇用以外も含む5つの選択肢）。</p>
+    <ul style="margin:10px 0 0 1.2em; font-size:14px; color:var(--gray-600); line-height:1.9;">
+      <li>70歳までの定年引き上げ</li>
+      <li>定年制の廃止</li>
+      <li>70歳までの継続雇用制度（再雇用・勤務延長）</li>
+      <li>70歳まで継続的に業務委託契約を結ぶ制度</li>
+      <li>70歳まで継続的に社会貢献事業に従事できる制度</li>
+    </ul>
+  </div>
+
+  <div class="warning-box">
+    ⚠️ <strong>70歳までは「努力義務」</strong><br>
+    65歳までは義務ですが、70歳までは「努力義務」です。すべての会社が70歳まで雇うわけではありません。勤務先にどんな制度があるかは、就業規則や人事に確認しましょう。「制度があるのに案内されていない」ケースもあります。
+  </div>
+</div>
+
+<!-- ハローワークでできること -->
+<div class="section">
+  <div class="section-icon">🏢</div>
+  <h2>ハローワークでの動き方</h2>
+  <p class="section-sub">相談から就職まで</p>
+
+  <ol class="flow-list">
+    <li class="flow-item">
+      <div class="flow-time">はじめに</div>
+      <h4>求職申込み（登録）をする</h4>
+      <p>ハローワークで求職登録をすると、求人検索・職業相談・紹介が受けられます。マイナンバーカードや本人確認書類を持参するとスムーズです。</p>
+    </li>
+    <li class="flow-item">
+      <div class="flow-time">専用窓口へ</div>
+      <h4>生涯現役支援窓口で相談</h4>
+      <p>「60歳以上向けの窓口はありますか」と伝え、シニア担当者に経験・希望・体力・年金状況を相談。自分に合う求人を一緒に探します。</p>
+    </li>
+    <li class="flow-item">
+      <div class="flow-time">必要なら</div>
+      <h4>セミナー・職業訓練を活用</h4>
+      <p>応募書類の書き方・面接対策のセミナーや、新しいスキルを学ぶ公共職業訓練（ハロートレーニング）を案内してもらえます。多くは受講料無料（テキスト代等は自己負担）。</p>
+    </li>
+    <li class="flow-item">
+      <div class="flow-time">応募〜就職</div>
+      <h4>面接会・紹介で応募</h4>
+      <p>シニア歓迎企業の面接会や、窓口からの紹介で応募します。気になる求人は担当者に相談しながら進められます。</p>
+    </li>
+  </ol>
+
+  <div class="info-box">
+    💡 <strong>「高齢者歓迎」の求人を見つけるコツ</strong><br>
+    求人検索では「<strong>60歳以上歓迎</strong>」「シニア活躍」「年齢不問」などの条件で絞れます。さらに、企業が<strong>高齢者を雇うと国から助成金（特定求職者雇用開発助成金など）を受けられる</strong>場合があり、これは応募の後押し材料になります。窓口担当者に「シニア歓迎の求人を中心に紹介してほしい」と伝えるのが近道です。
+  </div>
+</div>
+
+<!-- シルバー人材センター -->
+<div class="section">
+  <div class="section-icon">👷</div>
+  <h2>「雇用」以外の選択肢：シルバー人材センター</h2>
+  <p class="section-sub">無理のないペースで地域の仕事を</p>
+
+  <div class="card">
+    <h3>原則60歳以上が会員になれる</h3>
+    <p>シルバー人材センターは、市区町村ごとにある公益法人です。<strong>原則60歳以上</strong>の方が会員登録し、<strong>臨時的・短期的またはやや軽めの仕事</strong>（植木の手入れ・清掃・駐輪場管理・事務補助・子育て支援など）を引き受けます。</p>
+    <p style="margin-top:12px;">働き方は会社の「雇用」とは異なり、<strong>請負・委任が中心</strong>。受け取るのは給与ではなく「配分金」です。フルタイムでがっつり、ではなく「週に数日、地域の役に立ちながら」という人に向いています。</p>
+  </div>
+
+  <div class="info-box">
+    💡 <strong>ハローワークの求人とは別ルート</strong><br>
+    シルバー人材センターは、ハローワークの求人とは別の仕組みです。「しっかり再就職したい」ならハローワーク、「軽く・地域で」ならシルバー人材センター、と使い分け・併用ができます。お住まいの市区町村名＋「シルバー人材センター」で探せます。
+  </div>
+</div>
+
+<!-- 給付との接続（ハブ） -->
+<div class="section">
+  <div class="section-icon">💰</div>
+  <h2>あなたに関係する「お金（給付）」はどれ？</h2>
+  <p class="section-sub">状況別に、詳しいページへ</p>
+
+  <a class="link-card" href="keizoku.html">
+    <div class="lc-title">📉 働き続けて給料が下がった（60〜64歳）</div>
+    <div class="lc-desc">定年後の再雇用などで賃金が60歳時より下がったら「高年齢雇用継続給付」で一部が補填されます。→ 高年齢雇用継続給付ガイドへ</div>
+  </a>
+  <a class="link-card" href="elder.html">
+    <div class="lc-title">🧓 65歳以上で退職して仕事を探す</div>
+    <div class="lc-desc">65歳以上で退職した方は一時金の「高年齢求職者給付金」がもらえます（年金と同時受給OK）。→ 高年齢求職者給付金ガイドへ</div>
+  </a>
+  <a class="link-card" href="company.html">
+    <div class="lc-title">🏢 64歳以下で退職して再就職を目指す</div>
+    <div class="lc-desc">64歳以下で退職した方は通常の失業給付（基本手当）の対象。受給日数や手続きはこちら。→ 会社都合の失業給付ガイドへ</div>
+  </a>
+  <a class="link-card" href="calculator.html">
+    <div class="lc-title">🧮 失業給付がいくらになるか計算したい</div>
+    <div class="lc-desc">年齢・離職理由・給与から受給額の目安を試算できます。→ 給付金計算ツールへ</div>
+  </a>
+
+  <div class="warning-box" style="margin-top:16px;">
+    ⚠️ <strong>働くと年金が減ることがある（在職老齢年金）</strong><br>
+    厚生年金をもらいながら働くと、給料と年金の合計額によっては年金の一部が止まる「在職老齢年金」という仕組みがあります。働き方を決める前に、年金事務所でも確認しておくと安心です。
+  </div>
+</div>
+
+<!-- ワンポイント -->
+<div class="section">
+  <div class="section-icon">✨</div>
+  <h2>シニアの仕事探し ワンポイント</h2>
+  <p class="section-sub">年齢は、武器にもなる</p>
+
+  <div class="card">
+    <h3>「年齢の壁」は工夫で越えられる</h3>
+    <p>求人の中には年齢を気にする会社もありますが、長年の経験・人柄・安定感を求めるシニア歓迎の職場も増えています。<strong>体力に合った職種を選ぶ・週の日数を柔軟にする・通勤時間を短くする</strong>といった条件の整理で、ぐっと見つかりやすくなります。</p>
+  </div>
+  <div class="card">
+    <h3>一人で抱えない</h3>
+    <p>「何から探せばいいか分からない」状態こそ、生涯現役支援窓口の出番です。希望をうまく言葉にできなくても、担当者が対話しながら整理してくれます。まずは相談だけでも大丈夫です。</p>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+  <div class="section-icon">❓</div>
+  <h2>よくある質問</h2>
+  <p class="section-sub">定年後の再就職でよくある疑問</p>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">何歳までハローワークを使えますか？</button>
+    <div class="faq-a">年齢の上限はありません。65歳以上でも70歳以上でも、求職登録をして職業相談・紹介を受けられます。多くのハローワークには概ね60歳以上向けの「生涯現役支援窓口」もあります。</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">生涯現役支援窓口は予約が必要ですか？</button>
+    <div class="faq-a">基本は来所して相談できますが、混雑時は予約をすすめられることもあります。窓口の有無や利用方法は地域で異なるため、最寄りのハローワークに「60歳以上向けの相談窓口はありますか」と問い合わせるのが確実です。</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">年金をもらいながら働けますか？</button>
+    <div class="faq-a">働けます。ただし厚生年金を受けながら働くと、給料と年金の合計額によっては年金の一部が支給停止される「在職老齢年金」の仕組みがあります。減額のラインは毎年度見直されるため、年金事務所で自分のケースを確認しましょう。</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">シルバー人材センターとハローワークの違いは？</button>
+    <div class="faq-a">ハローワークは「会社に雇われて働く」再就職の支援が中心です。シルバー人材センターは原則60歳以上が会員となり、地域の臨時的・短期的・軽めの仕事を請負・委任で引き受ける仕組みで、受け取るのは給与ではなく配分金です。しっかり働きたいか、軽く働きたいかで使い分け・併用できます。</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">定年後に給料が下がりました。何かもらえますか？</button>
+    <div class="faq-a">60〜64歳で、賃金が60歳時点の75%未満に下がった場合は「高年齢雇用継続給付」で下がった分の一部が補填される可能性があります。詳しくは<a href="keizoku.html">高年齢雇用継続給付のページ</a>をご覧ください。</div>
+  </div>
+</div>
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "何歳までハローワークを使えますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "年齢の上限はありません。65歳以上でも70歳以上でも、求職登録をすれば職業相談・職業紹介を受けられます。多くのハローワークには概ね60歳以上の方を対象にした『生涯現役支援窓口』が設置されています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "生涯現役支援窓口とは何ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "概ね60歳以上の求職者を対象に、全国の主要なハローワーク約300か所に設置された専用の相談窓口です。これまでの就労経験や年金の受給状況などを踏まえた職業相談・職業紹介、シニア歓迎企業の求人開拓・面接会・セミナーの案内、公共職業訓練の受講あっせんなどを行います。地域により『シニア応援コーナー』などの名称の場合があります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "定年後も会社で働き続けられますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "高年齢者雇用安定法により、会社には65歳まで働ける仕組み（定年引き上げ・継続雇用制度・定年廃止のいずれか）を用意する義務があります。さらに2021年4月からは、70歳までの就業機会を確保する努力義務（定年引き上げ・定年廃止・継続雇用・業務委託・社会貢献事業の5つのいずれか）も加わりました。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "シルバー人材センターとハローワークの違いは何ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ハローワークは会社に雇われて働く再就職の支援が中心です。シルバー人材センターは原則60歳以上が会員となり、地域の臨時的・短期的または軽めの仕事を請負・委任で引き受ける仕組みで、受け取るのは給与ではなく配分金です。しっかり働きたい場合はハローワーク、軽く地域で働きたい場合はシルバー人材センター、と使い分けや併用ができます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "年金をもらいながら働くと年金は減りますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "厚生年金を受けながら働くと、給料と年金の合計額によっては年金の一部が支給停止される『在職老齢年金』の仕組みがあります。停止の基準額は毎年度見直されるため、自分のケースは年金事務所で確認するのが確実です。"
+      }
+    }
+  ]
+}
+</script>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>まずは相談から、で大丈夫</h2>
+  <p>最寄りのハローワークで「60歳以上向けの窓口はありますか」と聞いてみましょう</p>
+  <a class="cta-btn" href="https://www.hellowork.mhlw.go.jp/" target="_blank" rel="noopener">🔎 ハローワーク（公式）</a>
+  <a class="cta-btn" href="keizoku.html">📉 60代の給付を見る</a>
+  <a class="cta-btn" href="elder.html">🧓 65歳〜の給付を見る</a>
+</div>
+
+<!-- SCROLL TOP -->
+<button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ===== FAQ =====
+function toggleFaq(btn) {
+  btn.classList.toggle('open');
+  var answer = btn.nextElementSibling;
+  answer.classList.toggle('open');
+}
+
+// ===== SCROLL TOP =====
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('scroll-top');
+  if (window.scrollY > 400) { btn.classList.add('visible'); }
+  else { btn.classList.remove('visible'); }
+});
+</script>
+<script src="nav.js"></script>
+  <script src="footer.js"></script>
+</body>
+</html>

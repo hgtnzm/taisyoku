@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     + '        <li><a href="health-insurance.html">退職後の健康保険ガイド</a></li>'
     + '        <li><a href="checklist.html">退職後チェックリスト</a></li>'
     + '        <li><a href="parttime.html">受給中のアルバイト</a></li>'
+    + '        <li><a href="teinengo.html">定年後の再就職ガイド</a></li>'
     + '        <li><a href="keizoku.html">高年齢雇用継続給付（60〜64歳）</a></li>'
     + '        <li><a href="elder.html">高年齢求職者給付金（65歳〜）</a></li>'
     + '        <li><a href="mental-check.html">メンタルヘルスチェック</a></li>'
