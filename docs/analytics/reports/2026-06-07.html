@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>週次SEOレポート 2026-06-07 | shitugyoukyufu.com</title>
+<style>
+  :root {
+    --bg: #fafafa;
+    --card: #fff;
+    --text: #222;
+    --muted: #666;
+    --line: #e6e6e6;
+    --accent: #2563eb;
+    --critical: #dc2626;
+    --warn: #d97706;
+    --ok: #059669;
+    --low: #9ca3af;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Yu Gothic", sans-serif;
+    background: var(--bg); color: var(--text);
+    margin: 0; padding: 0; line-height: 1.6;
+  }
+  header {
+    background: #fff; border-bottom: 1px solid var(--line);
+    padding: 16px 20px; position: sticky; top: 0; z-index: 10;
+  }
+  header h1 { margin: 0; font-size: 18px; }
+  header .sub { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  main { max-width: 920px; margin: 0 auto; padding: 16px; }
+  .summary {
+    background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+    padding: 18px; margin-bottom: 20px;
+  }
+  .summary .stats {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px; margin-top: 12px;
+  }
+  .stat { padding: 10px; background: #f5f5f5; border-radius: 6px; text-align: center; }
+  .stat .num { font-size: 22px; font-weight: 600; }
+  .stat .label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .stat .delta { font-size: 11px; margin-top: 4px; }
+  .delta.up { color: var(--ok); }
+  .delta.down { color: var(--critical); }
+  section {
+    background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+    padding: 18px; margin-bottom: 16px;
+  }
+  section h2 {
+    margin: 0 0 12px; font-size: 16px;
+    padding-bottom: 8px; border-bottom: 1px solid var(--line);
+  }
+  section .desc { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
+  table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+  }
+  th, td {
+    text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  th { background: #f5f5f5; font-weight: 600; font-size: 12px; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 10px;
+    font-size: 11px; font-weight: 600;
+  }
+  .badge.critical { background: #fee2e2; color: var(--critical); }
+  .badge.high { background: #fee2e2; color: var(--critical); }
+  .badge.medium { background: #fef3c7; color: var(--warn); }
+  .badge.low { background: #f3f4f6; color: var(--low); }
+  .badge.ok { background: #d1fae5; color: var(--ok); }
+  .badge.watch { background: #fee2e2; color: var(--critical); }
+  .pos-delta-up { color: var(--critical); font-weight: 600; }
+  .pos-delta-down { color: var(--ok); font-weight: 600; }
+  .rec {
+    border-left: 4px solid var(--accent);
+    background: #f9fafb;
+    padding: 12px 14px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+  .rec.high { border-left-color: var(--critical); background: #fef2f2; }
+  .rec.medium { border-left-color: var(--warn); background: #fffbeb; }
+  .rec.low { border-left-color: var(--low); background: #f9fafb; }
+  .rec.monitor { border-left-color: var(--accent); background: #eff6ff; }
+  .rec.resolved { border-left-color: var(--ok); background: #f0fdf4; }
+  .rec h3 { margin: 0 0 6px; font-size: 14px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .rec .meta { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .rec ul { margin: 6px 0; padding-left: 18px; }
+  .rec li { margin: 2px 0; font-size: 13px; }
+  .url { font-family: ui-monospace, monospace; font-size: 12px; color: var(--muted); }
+  .q { font-size: 12px; }
+  .muted { color: var(--muted); }
+  .alert {
+    background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 4px solid var(--ok);
+    border-radius: 6px; padding: 12px 14px; margin-top: 12px; font-size: 13px;
+  }
+  .tag-carry {
+    display: inline-block; padding: 1px 6px; border-radius: 8px;
+    font-size: 10px; background: #e5e7eb; color: #374151;
+  }
+  .tag-new {
+    display: inline-block; padding: 1px 6px; border-radius: 8px;
+    font-size: 10px; background: #fee2e2; color: #991b1b;
+  }
+  .tag-done {
+    display: inline-block; padding: 1px 6px; border-radius: 8px;
+    font-size: 10px; background: #d1fae5; color: #065f46;
+  }
+  .verify-row td { background: #f0fdf4; }
+  .verify-row.warn td { background: #fffbeb; }
+  .verify-row.flat td { background: #f9fafb; }
+  .drop-row td { background: #fef2f2; }
+  .match-row td { background: #f0fdf4; }
+  footer {
+    text-align: center; color: var(--muted); font-size: 12px;
+    padding: 24px; margin-top: 20px;
+  }
+  details { margin-top: 8px; }
+  summary { cursor: pointer; font-size: 13px; color: var(--accent); }
+  @media (max-width: 600px) {
+    th, td { font-size: 12px; padding: 6px 4px; }
+    .stat .num { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>週次SEOレポート 2026-06-07</h1>
+  <div class="sub">shitugyoukyufu.com / 直近28日: 2026-05-08 〜 2026-06-04</div>
+</header>
+
+<main>
+  <div class="summary">
+    <strong>状況：</strong> 直近28日の clicks <strong>117→98（-16.2%）</strong>、impressions <strong>7,646→5,406（-29.3%）</strong>と縮小が続いた。先週「データ遅延か実際の落ち込みか次回で切り分け」とした<strong>5月下旬の急減は、今回『実際の落ち込み』で確定</strong>（理由は①）。一方サイト全体CTRは <strong>1.53%→1.81%</strong>と上昇したが、これは抜けた表示の多くがクリック0の低CTR枠だったための見かけ上の改善。主軸 calculator.html の<strong>検索順位（7.5位帯）と主軸クエリは崩れておらず</strong>、ページ固有の劣化ではなくサイト全体の順位/季節変動。<strong>5/19対応の効果はCTR面で維持〜改善</strong>。今週は新たに keizoku.html / teinengo.html を公開済（GSCには未反映）。
+    <div class="stats">
+      <div class="stat">
+        <div class="num">98</div>
+        <div class="label">clicks (直近28日)</div>
+        <div class="delta down">前週比 -19 (-16.2%)</div>
+      </div>
+      <div class="stat">
+        <div class="num">5,406</div>
+        <div class="label">impressions</div>
+        <div class="delta down">前週比 -2,240 (-29.3%)</div>
+      </div>
+      <div class="stat">
+        <div class="num">1.81%</div>
+        <div class="label">サイト全体CTR</div>
+        <div class="delta up">前週1.53%（分母縮小による）</div>
+      </div>
+      <div class="stat">
+        <div class="num">190</div>
+        <div class="label">ユニーククエリ数</div>
+        <div class="delta down">前週 202 (-12)</div>
+      </div>
+    </div>
+    <div class="alert">
+      <strong>✅ 先週の宿題に答えが出ました：5月下旬の急減は「実際の落ち込み」で確定</strong><br>
+      切り分けの方法は単純で、<strong>前回(5/31)と今回(6/7)の両方に含まれる 5/22〜5/28 の日次表示回数を並べたら、7日分すべて1件も上方修正されず完全に一致</strong>していました。GSCの集計遅れなら後から数字が増えるはずなので、その説は否定されます。さらに5/29以降も日次17〜88件・順位14〜19位帯で低位が続いています。<strong>季節要因か6月コアアップデート関連の順位変動</strong>の公算大。ただし主軸 calculator.html の順位は無傷なので、コンテンツの緊急対応は不要・静観継続でOK。
+    </div>
+  </div>
+
+  <section>
+    <h2>① 5月下旬の急減は「実低下」で確定（最重要）</h2>
+    <div class="desc">前回(5/31)と今回(6/7)の両snapshotに共通する 5/22〜5/28 を並べた表。<strong>表示回数が1件も上方修正されていない＝データ遅延ではなく実際の落ち込み</strong>。</div>
+    <table>
+      <thead>
+        <tr>
+          <th>日付</th>
+          <th class="num">5/31時点<br>の表示</th>
+          <th class="num">6/7時点<br>の表示</th>
+          <th class="num">修正</th>
+          <th class="num">順位</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="drop-row"><td>5/22</td><td class="num">135</td><td class="num">135</td><td class="num">なし</td><td class="num">9.9</td></tr>
+        <tr class="drop-row"><td>5/23</td><td class="num">74</td><td class="num">74</td><td class="num">なし</td><td class="num">11.7</td></tr>
+        <tr class="drop-row"><td>5/24</td><td class="num">49</td><td class="num">49</td><td class="num">なし</td><td class="num">12.4</td></tr>
+        <tr class="drop-row"><td>5/25</td><td class="num">35</td><td class="num">35</td><td class="num">なし</td><td class="num">16.1</td></tr>
+        <tr class="drop-row"><td>5/26</td><td class="num">60</td><td class="num">60</td><td class="num">なし</td><td class="num">14.7</td></tr>
+        <tr class="drop-row"><td>5/27</td><td class="num">43</td><td class="num">43</td><td class="num">なし</td><td class="num">10.0</td></tr>
+        <tr class="drop-row"><td>5/28</td><td class="num">58</td><td class="num">58</td><td class="num">なし</td><td class="num">16.0</td></tr>
+        <tr><td>5/29〜6/01</td><td class="num">—</td><td class="num">67/65/88/36</td><td class="num">新規</td><td class="num">10〜15</td></tr>
+        <tr><td>6/02〜6/04</td><td class="num">—</td><td class="num">17/42/37</td><td class="num">新規<span class="muted">※遅延余地</span></td><td class="num">16〜20</td></tr>
+      </tbody>
+    </table>
+    <p class="muted" style="font-size:13px;margin-top:10px;">
+      5/1〜5/21は日次240〜515件でしたが、5/22以降は低位のまま定着しました。<strong>これは特定ページの問題ではありません</strong>（②）。次回(6/14想定)で240件帯へ戻れば季節要因、低位のままなら順位変動として中期で対応方針を考えます。<strong>主軸 calculator.html の順位7.5位帯は維持</strong>されているため、いま打つべき緊急の手はありません。
+    </p>
+  </section>
+
+  <section>
+    <h2>② 落ち込みは「サイト全体」（ページ固有ではない）</h2>
+    <div class="desc">前週との表示回数比較。主要ページが揃って-24〜-39%。詐欺・健康保険ページはほぼ横ばい。広く薄く下がっており、サイト全体の順位/季節変動と整合する。</div>
+    <table>
+      <thead>
+        <tr>
+          <th>ページ</th>
+          <th class="num">表示 前週→今週</th>
+          <th class="num">増減</th>
+          <th class="num">clicks 前週→今週</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="url">/calculator.html</td><td class="num">2,738 → 2,033</td><td class="num pos-delta-up">-25.8%</td><td class="num">78 → 58</td></tr>
+        <tr><td class="url">/parttime.html</td><td class="num">3,048 → 1,859</td><td class="num pos-delta-up">-39.0%</td><td class="num">6 → 8</td></tr>
+        <tr><td class="url">/elder.html</td><td class="num">721 → 546</td><td class="num pos-delta-up">-24.3%</td><td class="num">10 → 8</td></tr>
+        <tr><td class="url">/tokutei.html</td><td class="num">449 → 316</td><td class="num pos-delta-up">-29.6%</td><td class="num">10 → 9</td></tr>
+        <tr><td class="url">/scam.html</td><td class="num">211 → 200</td><td class="num">-5.2%</td><td class="num">6 → 7</td></tr>
+        <tr><td class="url">/health-insurance.html</td><td class="num">229 → 220</td><td class="num">-3.9%</td><td class="num">3 → 3</td></tr>
+      </tbody>
+    </table>
+    <p class="muted" style="font-size:13px;margin-top:10px;">
+      表示回数の絶対減が最大なのは parttime（-1,189）ですが、その大半は<strong>クリック0の幻クエリ（pos=1.0 / AI Overview吸収）の脱落</strong>なので実害は小さく、むしろ parttime の clicks は 6→8 と増えています。実トラフィックの低下は calculator・elder・tokutei に集中。なお全体CTRが1.53%→1.81%に上がったのは、これら低CTR枠が抜けた<strong>見かけ上の改善</strong>です。
+    </p>
+  </section>
+
+  <section>
+    <h2>③ 順位が動いたクエリ</h2>
+    <div class="desc">impressions ≥ 10 かつ ±2位以上（比較基準は4/10〜5/7）。<strong>主軸「高年齢求職者給付金 計算ツール」は pos 7.9→7.7 とむしろ微改善</strong>（imp 1,316→1,731 / clicks 33→41）。新規悪化なし。</div>
+    <table>
+      <thead>
+        <tr>
+          <th>クエリ</th>
+          <th>ページ</th>
+          <th class="num">順位 前→後</th>
+          <th class="num">imp</th>
+          <th class="num">clicks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="q">高齢者 求職者給付金 計算ツール</td>
+          <td class="url">/calculator.html</td>
+          <td class="num">2.9 → 7.0 <span class="pos-delta-up">+4.0</span></td>
+          <td class="num">18 → 95</td>
+          <td class="num">2 → 9</td>
+        </tr>
+        <tr>
+          <td class="q">失業保険 日雇いバイト ばれる</td>
+          <td class="url">/parttime.html</td>
+          <td class="num">14.7 → 20.3 <span class="pos-delta-up">+5.6</span></td>
+          <td class="num">7 → 10</td>
+          <td class="num">0 → 0</td>
+        </tr>
+        <tr class="match-row">
+          <td class="q">退職給付金 詐欺</td>
+          <td class="url">/scam.html</td>
+          <td class="num">37.5 → 19.8 <span class="pos-delta-down">-17.7</span></td>
+          <td class="num">2 → 17</td>
+          <td class="num">0 → 1</td>
+        </tr>
+        <tr class="match-row">
+          <td class="q">失業保険 4時間未満 損</td>
+          <td class="url">/parttime.html</td>
+          <td class="num">26.2 → 22.9 <span class="pos-delta-down">-3.3</span></td>
+          <td class="num">5 → 13</td>
+          <td class="num">0 → 0</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="muted" style="font-size:13px;margin-top:10px;">
+      「高齢者 求職者給付金 計算ツール」の+4.0は<strong>露出が18→95件に増えた結果、低い順位も拾って平均が下がった見かけ上の低下</strong>で、clicks は 2→9 と増えています（実害なし）。一方「失業保険 日雇いバイト ばれる」は 13.8→19.75→20.3 と3週連続で本当に悪化（clicks 0継続）。<strong>scam.html は詐欺系の順位改善が継続</strong>し、全体が落ちる中で数少ない増勢ページです。
+    </p>
+  </section>
+
+  <section>
+    <h2>④ 新しく立ち上がったクエリ</h2>
+    <div class="desc">比較基準（4/10〜5/7）に存在せず、impressions ≥ 5。今週は純粋な新規が少なめ。注目は parttime の「いくらまで」系クラスタ。</div>
+    <table>
+      <thead>
+        <tr>
+          <th>クエリ</th>
+          <th>ページ</th>
+          <th class="num">imp</th>
+          <th class="num">clicks</th>
+          <th class="num">順位</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="q">高齢者求職者給付金 計算ツール</td><td class="url">/calculator.html</td><td class="num">25</td><td class="num">3</td><td class="num">6.9</td></tr>
+        <tr><td class="q"><strong>定年退職</strong></td><td class="url">/elder.html</td><td class="num">10</td><td class="num">0</td><td class="num"><strong>3.0</strong></td></tr>
+        <tr><td class="q">失業保険 バイト いくらまで</td><td class="url">/parttime.html</td><td class="num">7</td><td class="num">0</td><td class="num">26.7</td></tr>
+      </tbody>
+    </table>
+    <p class="muted" style="font-size:13px;margin-top:10px;">
+      <strong>新クラスタ「バイト いくらまで」</strong>（すべて parttime, 順位26〜28位, 合計imp 23, clicks 0）が今週明確に立ち上がりました：失業手当 バイト いくらまで（14件）＋失業保険 バイト いくらまで（7件）＋失業保険 アルバイト いくらまで（2件）。parttime には5/19にFAQ「いくらまで稼げる」を追加済ですが順位26〜28と弱く、<strong>専用セクション化の余地</strong>（REC-001）。「定年退職」も pos 3.0 / imp 10 で clicks 0 が継続（elder の受け皿不足、REC-002）。
+    </p>
+    <details>
+      <summary>消失したクエリ（比較基準で imp ≥ 10、今週は完全消滅）— 13件</summary>
+      <p class="muted" style="font-size:12px;margin-top:8px;">
+        特定理由離職者に なるには /tokutei（43, pos 1）／失業保険受給中 アルバイト おすすめ /parttime（45, pos 1）／特定理由離職者 給付制限 なし /tokutei（45, pos 9.2）／高年齢求職者給付金計算ツール /calc（38, pos 8.5）／失業手当 振込 いつ /timeline（17, pos 1）／失業保険もらいながらバイト /parttime（16, pos 1）／他7件
+        <br><br>
+        <strong>13件中10件が pos=1.0 かつ clicks=0</strong>。4週連続で同じ性質（GSC privacy threshold か AI Overview/snippet吸収による集計外し）。恒常的に出入りするファントム的クエリ群で実害は小さい。「高年齢求職者給付金計算ツール」（スペース無し）の消失も表記ゆれの集計帯移動で、本体クエリ（imp 1,731）は健在。
+      </p>
+    </details>
+  </section>
+
+  <section>
+    <h2>⑤ CTRが低いページ</h2>
+    <div class="desc">impressions ≥ 100 かつ サイト中央値の70%未満（1.51%未満）。今週も parttime.html のみが本質的な課題。</div>
+    <table>
+      <thead>
+        <tr>
+          <th>ページ</th>
+          <th class="num">imp</th>
+          <th class="num">CTR</th>
+          <th class="num">順位</th>
+          <th>優先度</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="url"><strong>/parttime.html</strong></td>
+          <td class="num"><strong>1,859</strong></td>
+          <td class="num"><strong>0.430%</strong></td>
+          <td class="num">8.1</td>
+          <td><span class="badge critical">critical</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="muted" style="font-size:13px;margin-top:10px;">
+      CTRは <strong>0.075% → 0.126% → 0.197% → 0.430%</strong> と4週連続で改善し、clicks も 3→5→6→8 と増加。改善の一部は低CTRクエリの脱落による分母縮小ですが、クリック実数も伸びています。ただし中央値2.16%の<strong>20%水準</strong>なので依然 critical。<br>
+      ※ elder.html（CTR 1.47%）と health-insurance.html（1.36%）も今回の閾値を僅かに下回りますが、<strong>実CTRは前週からほぼ不変</strong>で、中央値が上振れしたための相対的な見え方の変化です。elder は順位15位と深く、health-insurance は順位相応のため、コンテンツ起因の課題ではありません（critical対象外）。
+    </p>
+  </section>
+
+  <section>
+    <h2>⑥ 5/19対応の効果（3週目）+ 既知課題 + 新規ページ</h2>
+    <div class="desc">5/19実施の対応（parttime/tokutei/calculator）が、全体が落ちる今週もどう持ちこたえたか。対応前（5/17時点）と並べて確認。</div>
+
+    <h3 style="font-size:14px;margin:14px 0 6px;">5/19対応の効果の推移</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ページ</th>
+          <th class="num">対応前<br>(5/17)</th>
+          <th class="num">5/24</th>
+          <th class="num">5/31</th>
+          <th class="num">今週<br>(6/7)</th>
+          <th>判定</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="verify-row">
+          <td class="url"><strong>/calculator.html</strong><br><span class="muted" style="font-size:11px;">clicks</span></td>
+          <td class="num">55</td>
+          <td class="num">95</td>
+          <td class="num">78</td>
+          <td class="num"><strong>58</strong></td>
+          <td><span class="badge ok">維持</span> 対応前比+5%</td>
+        </tr>
+        <tr class="verify-row">
+          <td class="url">/calculator.html<br><span class="muted" style="font-size:11px;">CTR</span></td>
+          <td class="num">2.30%</td>
+          <td class="num">2.86%</td>
+          <td class="num">2.85%</td>
+          <td class="num">2.85%</td>
+          <td><span class="badge ok">安定</span></td>
+        </tr>
+        <tr class="verify-row">
+          <td class="url">/tokutei.html<br><span class="muted" style="font-size:11px;">clicks / CTR</span></td>
+          <td class="num">11 / 1.97%</td>
+          <td class="num">12 / 2.42%</td>
+          <td class="num">10 / 2.23%</td>
+          <td class="num">9 / <strong>2.85%</strong></td>
+          <td><span class="badge ok">CTRは対応前超を維持</span></td>
+        </tr>
+        <tr class="verify-row warn">
+          <td class="url">/parttime.html<br><span class="muted" style="font-size:11px;">clicks / CTR</span></td>
+          <td class="num">3 / 0.075%</td>
+          <td class="num">5 / 0.126%</td>
+          <td class="num">6 / 0.197%</td>
+          <td class="num">8 / <strong>0.430%</strong></td>
+          <td><span class="badge medium">4週連続改善 / 依然critical</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="muted" style="font-size:13px;margin-top:10px;">
+      3ページとも<strong>CTRは対応前を維持〜上回り</strong>、clicksの絶対値減は①のサイト全体軟化によるもの。tokutei は clicks 9 に落ちても CTR は 2.85%（対応前1.97%比+45%）で、露出が減る中でも取りこぼしは増えていません。parttime はCTRが着実に伸びていますが絶対値が低く、構造的な追加対策が次の一手です。
+    </p>
+
+    <h3 style="font-size:14px;margin:18px 0 6px;">残る既知課題</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>既知課題</th>
+          <th>判定</th>
+          <th>データ上の根拠</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>voluntary.html の自己都合期間を2025年改正版に最新化（KI-1）</td>
+          <td><span class="badge medium">間接該当</span></td>
+          <td class="q">imp 92 → 76、pos 21.3 → 25.8 と順位深化。「失業保険 自己都合」voluntary経由 imp 27 → 1。自己都合の主要流入は tokutei に流れる構図が継続</td>
+        </tr>
+        <tr>
+          <td>company.html の就職困難者を2025年版に拡充（KI-2）</td>
+          <td><span class="badge medium">露出ゼロ・5週連続減</span></td>
+          <td class="q">imp 89 → 75 → 49 → 39 → 27 と5週連続減少。clicks 0継続、就職困難者系クエリの露出なし</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-size:14px;margin:18px 0 6px;">今週公開した新規ページ（GSCには次回以降に反映）</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ページ</th>
+          <th>内容</th>
+          <th>公開</th>
+          <th>GSC状況</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="url">/keizoku.html</td>
+          <td class="q">高年齢雇用継続給付ページ（10%版支給率を公式値へ修正含む）</td>
+          <td class="num">6/2〜6/4</td>
+          <td><span class="badge low">未反映</span></td>
+        </tr>
+        <tr>
+          <td class="url">/teinengo.html</td>
+          <td class="q">定年後の再就職ガイド</td>
+          <td class="num">6/4</td>
+          <td><span class="badge low">未反映</span></td>
+        </tr>
+        <tr>
+          <td class="url">/elder.html</td>
+          <td class="q">高年齢求職者給付金 計算ツールを令和7年8月公式値へ更新</td>
+          <td class="num">6/4</td>
+          <td><span class="badge low">窓末尾以降</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="muted" style="font-size:13px;margin-top:10px;">
+      これらはデータ計測期間（5/8〜6/4）のほぼ後ろにあるため、効果は次回(6/14想定)以降に出ます。シニア系4ページ（elder / keizoku / teinengo / calculator）の相互リンクで回遊が立ち上がるかを観測します。
+    </p>
+  </section>
+
+  <section>
+    <h2>⑦ 今週の改善提案</h2>
+    <div class="desc">優先度順。<span class="tag-carry">継続</span> = 前週からの持ち越し、<span class="tag-new">新規</span> = 今週追加。</div>
+
+    <div class="rec resolved">
+      <h3><span class="badge ok">解決</span> REC-005 · サイト全体 · 前週WATCHの判定確定 <span class="tag-carry">継続</span></h3>
+      <div class="meta">前週の「5/22以降の急減はデータ遅延か実低下か」→ <strong>実低下で確定</strong>（両snapshotで5/22〜5/28のimpが完全一致＝上方修正ゼロ）。clicks 117→98、imp 7,646→5,406（-29%）<br>仮説：季節要因 or 6月の順位変動（コアアップデート関連）</div>
+      <ul>
+        <li>ページ固有の劣化ではなく広範な低下のため、<strong>コンテンツ緊急対応は不要</strong></li>
+        <li>主軸 calculator.html の pos 7.5位帯・主軸クエリ順位は維持 → 静観継続でOK</li>
+        <li>Google Search Status Dashboard・6月コアアップデート告知の有無を手動確認</li>
+        <li>次回(6/14想定)で日次impが240件帯へ戻るか／低位定着かで季節要因と順位変動を最終切り分け</li>
+      </ul>
+      <div class="meta"><strong>工数：</strong>0〜10分（確認のみ）</div>
+    </div>
+
+    <div class="rec high">
+      <h3><span class="badge high">HIGH</span> REC-001 · /parttime.html · 追加対策 <span class="tag-carry">継続</span></h3>
+      <div class="meta">課題：4週連続CTR改善（0.430%）も依然 critical（中央値の20%）。新クラスタ「バイト いくらまで」(合計imp 23 / pos 26-28)が clicks 0<br>仮説：AI Overview/snippet抜粋が継続。構造的差別化が必要</div>
+      <p class="muted" style="font-size:12px;margin:6px 0;"><strong>5/19実施済：</strong><span class="tag-done">DONE</span> HTML構造修正 / AI Overview対策の数字差別化（タイトル・meta・結論ブロック） / FAQ4件 + JSON-LD 4件追加</p>
+      <ul>
+        <li><strong>新規追加</strong>：「失業保険 4時間未満 バレる」専用セクション（imp 24でclicks 0の最大クエリ。タイトル/H2にキーワードを含む）</li>
+        <li><strong>新クラスタ対応</strong>：「失業保険受給中アルバイト いくらまで稼げるか」専用H2＋上限額の早見表を新設（既存FAQは pos 26-28と弱い）</li>
+        <li>比較表「4時間未満 vs 4時間以上のメリット/リスク」を冒頭H2直下に新設</li>
+        <li>シミュレーター動線をHero下に配置（回遊率向上で滞在時間シグナル強化）</li>
+      </ul>
+      <div class="meta"><strong>工数：</strong>50〜80分　<strong>期待：</strong>CTR 0.7%復帰で clicks 8 → 35/月</div>
+    </div>
+
+    <div class="rec medium">
+      <h3><span class="badge medium">MEDIUM</span> REC-002 · /elder.html <span class="tag-carry">継続</span></h3>
+      <div class="meta">課題：imp 546 / clicks 8 / pos 15.0。「定年退職」pos 3.0 / imp 10で clicks 0。6/4に計算ツールを令和7年8月公式値へ更新済（効果は次回観測）<br>仮説：需要はあるが受け皿セクションが薄い</div>
+      <ul>
+        <li>「定年退職」流入向けの定年制度概要セクション追加（pos 3.0の露出をclicksに変換）。新設 teinengo.html への内部リンクを併設</li>
+        <li>H2追加：「65歳以上の基本手当日額上限（令和7年8月の正式数字）」</li>
+        <li>calculator / keizoku / teinengo への相互内部リンク強化（シニア系4ページの回遊形成）</li>
+        <li>6/4更新の計算ツールが次回CTR改善するか観測してから追加投資を判断</li>
+      </ul>
+      <div class="meta"><strong>工数：</strong>40〜60分　<strong>期待：</strong>elder.html clicks +15/月＋シニア系の連鎖流入</div>
+    </div>
+
+    <div class="rec medium">
+      <h3><span class="badge medium">MEDIUM</span> REC-003 · /voluntary.html <span class="tag-carry">継続</span></h3>
+      <div class="meta">課題：imp 92→76で低位継続、pos 21.3→25.8へ深化。「失業保険 自己都合」voluntary経由 imp 27→1<br>仮説：2025年改正情報の遅れ＋tokuteiとのトピック重複</div>
+      <ul>
+        <li>2025年改正後の給付制限期間（原則1ヶ月）の正式表記に統一</li>
+        <li>所定給付日数表を最新化</li>
+        <li>「失業保険 自己都合 3ヶ月」系対応：給付制限期間1ヶ月（2025年改正）の解説をTOPに</li>
+        <li>tokutei.htmlへの内部リンクを冒頭に配置</li>
+      </ul>
+      <div class="meta"><strong>工数：</strong>30〜40分　<strong>期待：</strong>clicks +8/月</div>
+    </div>
+
+    <div class="rec low">
+      <h3><span class="badge low">LOW</span> REC-004 · /company.html <span class="tag-carry">継続</span></h3>
+      <div class="meta">課題：imp 89 → 75 → 49 → 39 → 27 と5週連続減少、clicks 0継続<br>仮説：内容薄＋検索意図ミスマッチ</div>
+      <ul>
+        <li>就職困難者の定義を H2 で明示（身体障害者・知的障害者・精神障害者・社会的事情）</li>
+        <li>給付日数表（年齢×加入期間×就職困難者最大360日）の正確な数字</li>
+        <li>H2「会社都合退職と就職困難者の併用は可能か」を新設</li>
+        <li>内部リンク：voluntary.html ↔ company.html ↔ tokutei.html の相互リンク強化</li>
+      </ul>
+      <div class="meta"><strong>工数：</strong>60〜90分</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>⑧ 次回見るべきこと</h2>
+    <ul>
+      <li><strong>最優先：traffic_declineの最終切り分け</strong>。次回(6/14想定)で日次impが240件帯へ回復するか／低位定着か。回復しなければGoogle側の順位変動（6月コアアップデート関連）として中期方針を再設計</li>
+      <li><strong>新規ページの初回露出</strong>：keizoku.html / teinengo.html が by_page に登場するか。6/4更新の elder.html 計算ツールのCTR/clicks変化。シニア系4ページの相互回遊が立ち上がるか</li>
+      <li>calculator.html 主軸「高年齢求職者給付金 計算ツール」pos 7.67で5週連続安定。clicks margin（対応前比+3）が薄くなった点は要監視</li>
+      <li>parttime.html CTR 0.430%（中央値の20%）。4週連続改善も依然 critical。新クラスタ「バイト いくらまで」(pos 26-28 / imp 23 / clicks 0)への専用セクション化（REC-001）</li>
+      <li>5/19対応はCTR面で維持〜改善。tokutei CTR 2.85%へ上昇（露出減でも取りこぼし増なし）</li>
+      <li>scam.html 順位改善の継続（退職給付金 詐欺 pos 19.8、失業保険不正受給 体験談 imp 1→22）。全体が落ちる中で数少ない増勢ページ</li>
+      <li>AI Overview / privacy threshold の影響（消失13件中10件が pos=1.0 with clicks=0、4週連続の同一パターン）</li>
+      <li>GA4 連携でページ別エンゲージ時間との JOIN（フェーズ2課題）</li>
+    </ul>
+  </section>
+
+  <footer>
+    生成：2026-06-09 / Claude Code（PROMPT.md準拠）<br>
+    集計元：<code>docs/analytics/raw/2026-06-07/</code><br>
+    前週レポート：<code>docs/analytics/reports/2026-05-31.md</code>
+  </footer>
+</main>
+</body>
+</html>
