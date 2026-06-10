@@ -1,26 +1,14 @@
 # Jekyll 設定（GitHub Pages がデフォルトで Jekyll を使う）
-# 主目的：分析データ・内部メモ・Worker ソースを公開サイトから除外する
-# 詳細：docs/analytics/README.md / docs/guestbook/README.md
-
-# Jekyll が underscore 始まりのディレクトリをデフォルトで除外するため、
-# 公開したい _x9k2-loghouse を明示的に include する。
-include:
-  - _x9k2-loghouse
+# 主目的：分析データ・内部メモを公開サイトから除外する
+# 詳細：docs/analytics/README.md
 
 exclude:
   # docs/analytics は配信に不要（内部運用ドキュメント）
   - docs/analytics/
-  # docs/guestbook/gallery.html だけ公開、他は非公開
-  - docs/guestbook/raw/
-  - docs/guestbook/SPEC.md
-  - docs/guestbook/README.md
-  - docs/guestbook/PROMPT.md
-  - docs/guestbook/known-models.md
   # その他リポ内部
   - scripts/
   - .github/
   - README.md
   - _config.yml
   - CLAUDE.md
-  - worker/
   - "*.ots"
