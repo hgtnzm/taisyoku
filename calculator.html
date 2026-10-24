@@ -487,7 +487,7 @@
     <h1>失業給付金<span>いくらもらえる？</span><br>完全シミュレーター</h1>
     <p>退職から初回振込まで、あなたの受給額を自動計算</p>
     <div class="law-badge">✅ 令和8年8月1日施行 基本手当日額・2025年4月給付制限改正に対応</div>
-    <div style="font-size:11px;color:#6b7280;margin-top:8px;">最終更新日：2026年8月19日</div>
+    <div style="font-size:11px;color:#6b7280;margin-top:8px;">最終更新日：2026年10月24日</div>
   </div>
 
   <!-- 2025年改正で何が変わったか -->
@@ -702,6 +702,7 @@
           <div class="s-note">給付率60%</div>
         </div>
       </div>
+      <p style="font-size:11px;color:#6b7280;margin:10px 0 0;line-height:1.6;">※ 算定に使う基本手当日額には上限があります（令和8年8月1日〜：59歳以下6,745円／60〜64歳5,454円）。上限を超える場合は上限額で計算しています。</p>
     </div>
 
     <!-- 転職エージェント紹介（アフィリエイト） -->
@@ -1043,9 +1044,10 @@ function calculate() {
   // 月あたり（28日分）
   var monthlyBenefit = benefitDaily * 28;
 
-  // 再就職手当
-  var saishushokuHigh = Math.floor(benefitDaily * benefitDays * 0.7);
-  var saishushokuLow = Math.floor(benefitDaily * benefitDays * 0.6);
+  // 再就職手当（算定に使う基本手当日額には上限あり：令和8年8月〜 59歳以下6,745円／60〜64歳5,454円）
+  var saishushokuDaily = Math.min(benefitDaily, ageGroup === '60to64' ? 5454 : 6745);
+  var saishushokuHigh = Math.floor(saishushokuDaily * benefitDays * 0.7);
+  var saishushokuLow = Math.floor(saishushokuDaily * benefitDays * 0.6);
 
   // ============================================================
   //  結果表示
