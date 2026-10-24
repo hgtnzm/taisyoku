@@ -1063,6 +1063,7 @@ window.addEventListener('scroll', function() {
   var level = parseInt(params.get('level') || '-1');
   var scenario = params.get('scenario') || '';
   var score = params.get('score') || '';
+  if (!/^\d{1,3}$/.test(score)) score = ''; // innerHTML に入るため数値以外は捨てる
 
   if (level < 0) return; // 診断なしで直接訪問の場合はスキップ
 
