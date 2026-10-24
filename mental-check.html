@@ -20,8 +20,11 @@
 <meta property="og:image" content="https://shitugyoukyufu.com/images/ogp-mentai-check.jpg">
 <meta name="twitter:image" content="https://shitugyoukyufu.com/images/ogp-mental-check.jpg">
 
+<!-- 回答（心身の状態）を扱うページのため、外部送信先・外部スクリプトを限定 -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net/npm/lz-string@1.5.0/; style-src 'self' 'unsafe-inline'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+
 <!-- LZString for URL compression -->
-<script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js" integrity="sha384-0d+Gr7vM4Drod8E3hXKgciWJSWbjD/opKLLygI9ktiWbuvlDwQLzU46wJ9s5gsp7" crossorigin="anonymous"></script>
 
 <style>
 /* =============================================
@@ -2004,7 +2007,17 @@ function tryRestoreFromURL() {
   try {
     const decoded = LZString.decompressFromEncodedURIComponent(r);
     if (!decoded) return false;
-    const a = JSON.parse(decoded);
+    const raw = JSON.parse(decoded);
+    if (!raw || typeof raw !== 'object') return false;
+    // URL は第三者が作れるため、フォームと同じ値域（整数・英小文字1字の配列）に正規化してから使う
+    const a = {};
+    const intIn = (v, max, def) => Number.isInteger(v) && v >= 0 && v <= max ? v : def;
+    ['q1','q2','q3','q4','q5','q6','q7','q10','q11','q12'].forEach(k => { a[k] = intIn(raw[k], 3, 0); });
+    a.q9  = intIn(raw.q9, 2, 0);
+    a.q15 = intIn(raw.q15, 3, -1);
+    ['q8','q13','q14','q16','q17'].forEach(k => {
+      a[k] = Array.isArray(raw[k]) ? raw[k].filter(v => /^[a-g]$/.test(v)) : [];
+    });
     // Fill form defaults for Step2 fields
     a.complaint = ''; a.since = ''; a.history = 'なし';
     a.meds = ''; a.family = '不明'; a.cert = '';
@@ -2128,12 +2141,14 @@ function buildSSCard(a) {
     </div>`;
   }).join('');
 
+  const esc = s => String(s).replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
+
   const complaintHTML = a.complaint
-    ? `<div class="ss-section-title">一番伝えたいこと</div><div class="ss-main-complaint">${a.complaint}</div>`
+    ? `<div class="ss-section-title">一番伝えたいこと</div><div class="ss-main-complaint">${esc(a.complaint)}</div>`
     : '';
 
   const certHTML = a.cert && a.cert !== '不要'
-    ? `<div class="ss-row"><span class="ss-row-label">診断書の希望</span><span class="ss-row-val">${a.cert}</span></div>`
+    ? `<div class="ss-row"><span class="ss-row-label">診断書の希望</span><span class="ss-row-val">${esc(a.cert)}</span></div>`
     : '';
 
   document.getElementById('ss-card-content').innerHTML = `
