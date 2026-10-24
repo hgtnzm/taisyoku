@@ -706,7 +706,7 @@
     </div>
 
     <!-- 転職エージェント紹介（アフィリエイト） -->
-<div class="calc-card animate" style="background:linear-gradient(135deg,#f0fdf4,#eff6ff);border:2px solid #bbf7d0;">
+<div id="agent-ad" class="calc-card animate" style="background:linear-gradient(135deg,#f0fdf4,#eff6ff);border:2px solid #bbf7d0;">
   <div style="text-align:center;margin-bottom:16px;">
     <span style="background:#dcfce7;color:#16a34a;font-size:12px;font-weight:700;padding:4px 12px;border-radius:99px;">💼 再就職手当を最大化するには？</span>
   </div>
@@ -1066,8 +1066,9 @@ function calculate() {
 
   document.getElementById('saishushoku-high').textContent = '約' + fmtMan(saishushokuHigh) + '万円';
   document.getElementById('saishushoku-low').textContent = '約' + fmtMan(saishushokuLow) + '万円';
-  // 65歳以上は高年齢求職者給付金（一時金）で再就職手当の対象外
+  // 65歳以上は高年齢求職者給付金（一時金）で再就職手当の対象外：手当欄と、手当が前提の広告カードを隠す
   document.querySelector('.saishushoku').style.display = is65over ? 'none' : '';
+  document.getElementById('agent-ad').style.display = is65over ? 'none' : '';
 
   // 30〜44歳 会社都合の場合の注記
   var ageSplitNote = document.getElementById('age-split-note');
