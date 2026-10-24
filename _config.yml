@@ -5,6 +5,8 @@
 exclude:
   # docs/analytics は配信に不要（内部運用ドキュメント）
   - docs/analytics/
+  # 廃止済みゲストブック（停止前の Worker が書き戻しても公開しない）
+  - docs/guestbook/
   # その他リポ内部
   - scripts/
   - .github/
