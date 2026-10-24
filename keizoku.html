@@ -336,7 +336,7 @@ a { color:var(--primary); }
     <input type="number" class="calc-input" id="cur-salary" placeholder="例：180000" inputmode="numeric">
 
     <div class="calc-label">60歳到達時の賃金月額</div>
-    <div class="calc-hint">60歳になる前6か月の平均月収。上限508,200円・下限90,420円で頭打ち</div>
+    <div class="calc-hint">60歳になる前6か月の平均月収。上限522,000円・下限96,090円で頭打ち</div>
     <input type="number" class="calc-input" id="base-salary" placeholder="例：300000" inputmode="numeric">
 
     <div class="calc-label">60歳の誕生日はいつですか？</div>
@@ -373,7 +373,7 @@ a { color:var(--primary); }
       <p style="font-size:12px;color:var(--gray-500);margin-top:12px;text-align:center;" id="res-note">※ 概算です。正確な金額はハローワークでご確認ください。</p>
     </div>
   </div>
-  <p style="font-size:12px;color:var(--gray-500);text-align:center;">金額は令和7年8月1日時点の支給限度額（386,922円）・最低限度額（2,411円）・賃金月額の上下限を反映しています。</p>
+  <p style="font-size:12px;color:var(--gray-500);text-align:center;">金額は令和8年8月1日時点の支給限度額（397,369円）・最低限度額（2,562円）・賃金月額の上下限を反映しています。</p>
 </div>
 
 <!-- 申請手順 -->
@@ -419,11 +419,11 @@ a { color:var(--primary); }
 
   <div class="card">
     <h3>① 賃金が高いと支給されない（支給限度額）</h3>
-    <p>支給対象月の賃金が<strong>386,922円以上</strong>（令和7年8月時点）だと支給されません。賃金と給付の合計がこの額を超える場合は、超えた分が調整されます。</p>
+    <p>支給対象月の賃金が<strong>397,369円以上</strong>（令和8年8月時点）だと支給されません。賃金と給付の合計がこの額を超える場合は、超えた分が調整されます。</p>
   </div>
   <div class="card">
     <h3>② 計算額が少額だと支給されない（最低限度額）</h3>
-    <p>計算した給付額が<strong>2,411円以下</strong>（令和7年8月時点）の月は支給されません。</p>
+    <p>計算した給付額が<strong>2,562円以下</strong>（令和8年8月時点）の月は支給されません。</p>
   </div>
   <div class="card">
     <h3>③ 年金（在職老齢年金）が一部止まることがある</h3>
@@ -538,10 +538,10 @@ function calcKeizoku() {
   if (!w || w < 1) { alert('いまの賃金を入力してください'); return; }
   if (!w0 || w0 < 1) { alert('60歳到達時の賃金月額を入力してください'); return; }
 
-  // 60歳到達時賃金月額の上下限（令和7年8月〜）
+  // 60歳到達時賃金月額の上下限（令和8年8月〜）
   var w0c = w0;
-  if (w0c > 508200) w0c = 508200;
-  if (w0c < 90420) w0c = 90420;
+  if (w0c > 522000) w0c = 522000;
+  if (w0c < 96090) w0c = 96090;
 
   var is10 = document.querySelector('input[name="kbn"]:checked').value === '10';
   var ratio = w / w0c;
@@ -560,17 +560,17 @@ function calcKeizoku() {
   }
   benefit = Math.round(benefit);
 
-  // 支給限度額・最低限度額（令和7年8月〜）
-  var LIMIT = 386922, MIN = 2411;
+  // 支給限度額・最低限度額（令和8年8月〜）
+  var LIMIT = 397369, MIN = 2562;
   if (w >= LIMIT) {
     benefit = 0;
-    if (!note) note = '賃金が支給限度額（386,922円）以上のため支給されません。';
+    if (!note) note = '賃金が支給限度額（397,369円）以上のため支給されません。';
   } else if (w + benefit > LIMIT) {
     benefit = LIMIT - w;
   }
   if (benefit > 0 && benefit <= MIN) {
     benefit = 0;
-    if (!note) note = '計算額が最低限度額（2,411円）以下のため支給されません。';
+    if (!note) note = '計算額が最低限度額（2,562円）以下のため支給されません。';
   }
 
   var effRate = w > 0 && benefit > 0 ? (benefit / w * 100) : 0;

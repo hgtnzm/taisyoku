@@ -344,7 +344,7 @@ a { color:var(--primary); }
           <div class="value" id="res-total" style="color:#059669;">-</div>
         </div>
       </div>
-      <p style="font-size:12px;color:var(--gray-500);margin-top:12px;text-align:center;">※ 概算です。正確な金額はハローワークでご確認ください。<br>給付率・上限額は令和7年8月1日〜の「60歳以上65歳未満」の区分を適用しています。</p>
+      <p style="font-size:12px;color:var(--gray-500);margin-top:12px;text-align:center;">※ 概算です。正確な金額はハローワークでご確認ください。<br>給付率・上限額は令和8年8月1日〜の「60歳以上65歳未満」の区分を適用しています。</p>
     </div>
   </div>
 </div>
@@ -590,24 +590,24 @@ function calcElder() {
   // 賃金日額 ＝ 離職前6か月の賃金合計 ÷ 180（入力の平均月収 × 6 ÷ 180）
   var dailyWage = Math.round(salary * 6 / 180);
 
-  // 賃金日額の上下限（令和7年8月1日〜・60歳以上65歳未満の区分）
-  if (dailyWage < 3014) dailyWage = 3014;
-  if (dailyWage > 16940) dailyWage = 16940;
+  // 賃金日額の上下限（令和8年8月1日〜・60歳以上65歳未満の区分）
+  if (dailyWage < 3203) dailyWage = 3203;
+  if (dailyWage > 17400) dailyWage = 17400;
 
-  // 基本手当日額（60歳以上65歳未満の給付率：80%→45%／令和7年8月1日〜の公式計算式）
+  // 基本手当日額（60歳以上65歳未満の給付率：80%→45%／令和8年8月1日〜の公式計算式）
   var dailyBenefit;
-  if (dailyWage <= 5340) {
+  if (dailyWage <= 5480) {
     dailyBenefit = 0.80 * dailyWage;
-  } else if (dailyWage <= 11800) {
-    dailyBenefit = 0.80 * dailyWage - 0.35 * ((dailyWage - 5340) / 6460) * dailyWage;
+  } else if (dailyWage <= 12120) {
+    dailyBenefit = 0.80 * dailyWage - 0.35 * ((dailyWage - 5480) / 6640) * dailyWage;
   } else {
     dailyBenefit = 0.45 * dailyWage;
   }
   dailyBenefit = Math.floor(dailyBenefit);
 
-  // 基本手当日額の上下限（令和7年8月1日〜・60歳以上65歳未満）
-  if (dailyBenefit > 7623) dailyBenefit = 7623;
-  if (dailyBenefit < 2411) dailyBenefit = 2411;
+  // 基本手当日額の上下限（令和8年8月1日〜・60歳以上65歳未満）
+  if (dailyBenefit > 7830) dailyBenefit = 7830;
+  if (dailyBenefit < 2562) dailyBenefit = 2562;
 
   var total = dailyBenefit * days;
 
