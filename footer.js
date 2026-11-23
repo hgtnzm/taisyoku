@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     + '      </ul>'
     + '    </div>'
     + '  </div>'
-    + '  <div class="footer-bottom">© 2025 退職・失業給付 完全ガイド</div>'
+    + '  <div class="footer-bottom">© 2025-2026 退職・失業給付 完全ガイド</div>'
     + '</footer>';
 
   // 既存の <footer> があれば置き換え、なければ body 末尾に追加
